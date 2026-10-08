@@ -106,10 +106,54 @@ a { color: var(--accent); }
   cursor: pointer;
   white-space: nowrap;
 }
-main {
-  max-width: 1080px;
+.layout {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 16px 16px 64px;
+  padding: 0 16px;
+  display: flex;
+  gap: 32px;
+}
+#side {
+  width: 210px;
+  flex: none;
+  position: sticky;
+  top: 72px;
+  align-self: flex-start;
+  padding: 24px 0;
+}
+#side a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+#side a:hover { background: var(--head); }
+#side a[aria-current="page"] { background: var(--head); font-weight: 700; color: var(--accent); }
+#side .sep { border-top: 1px solid var(--border); margin: 8px 0; }
+#menu { display: none; }
+main {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 0 64px;
+}
+@media (max-width: 860px) {
+  #menu { display: block; }
+  .layout { display: block; }
+  #side {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    width: auto;
+    padding: 8px 16px 12px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+  #side.open { display: block; }
 }
 h1 { font-size: 1.6rem; line-height: 1.4; margin: 16px 0 8px; }
 h2 {
@@ -164,14 +208,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 }
 .unsel { display: none !important; }
 #content hr { display: none; }
-details.more {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 10px 16px;
-  margin: 12px 0;
-}
-details.more summary { cursor: pointer; font-weight: 600; }
+section.doc h2 { margin-top: 20px; }
 .purpose {
   display: inline-block;
   margin-top: 4px;
@@ -183,6 +220,36 @@ details.more summary { cursor: pointer; font-weight: 600; }
   color: var(--muted);
   white-space: nowrap;
 }
+figure.diagram { margin: 16px auto; max-width: 440px; }
+.dg { display: block; width: 100%; height: auto; }
+.dg text { font-size: 12.5px; fill: var(--text); }
+.dg .head { font-size: 13px; font-weight: 700; }
+.dg .life { stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.dg .box { stroke-width: 1.5; }
+.dg .box.you { fill: var(--mid-bg); stroke: var(--mid-fg); }
+.dg .box.bad { fill: var(--top-bg); stroke: var(--top-fg); }
+.dg .box.org { fill: var(--head); stroke: var(--muted); }
+.dg line { stroke-width: 2; }
+.dg .l-you, .dg .stop { stroke: var(--mid-fg); }
+.dg .l-bad { stroke: var(--top-fg); }
+.dg .l-org { stroke: var(--muted); stroke-dasharray: 6 4; }
+.dg .stop { stroke-width: 3; fill: none; }
+.dg .m-you { fill: var(--mid-fg); }
+.dg .m-bad { fill: var(--top-fg); }
+.dg .m-org { fill: var(--muted); }
+.dg .t-you { fill: var(--mid-fg); font-weight: 700; }
+.dg .t-bad { fill: var(--top-fg); font-weight: 700; }
+.dg .t-org { fill: var(--muted); font-weight: 700; }
+.dg .result { font-size: 15px; }
+#first {
+  background: var(--top-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 12px 0 16px;
+}
+#first .k { font-size: 0.85rem; font-weight: 700; color: var(--top-fg); }
+#first .n { font-size: 1.2rem; font-weight: 700; margin: 2px 0 4px; }
+#first .d { margin: 0; }
 #how { color: var(--muted); font-size: 0.92rem; margin: 4px 0 12px; }
 #words {
   background: var(--surface);
@@ -195,7 +262,6 @@ details.more summary { cursor: pointer; font-weight: 600; }
 #words dt { font-weight: 700; margin-top: 10px; }
 #words dd { margin: 0; }
 td a { white-space: nowrap; font-weight: 600; }
-.more-lead { color: var(--muted); font-size: 0.88rem; margin: 48px 0 8px; }
 .table-wrap {
   overflow-x: auto;
   background: var(--surface);
@@ -252,10 +318,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <body>
 <div class="bar">
   <div class="bar-inner">
+    <button id="menu" type="button" aria-controls="side" aria-expanded="false">メニュー</button>
     <span class="bar-title">金融機関の自衛設定</span>
     <button id="theme" type="button">表示切替</button>
   </div>
 </div>
+<div class="layout">
+<aside id="side"><nav aria-label="このページの内容"></nav></aside>
 <main>
   <article id="content">
 <h1>金融機関・証券会社で「自分で」入れられる防御設定まとめ</h1>
@@ -286,7 +355,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tr>
 <td>3. すぐ気付く</td>
 <td>被害を小さくする</td>
-<td>ログイン通知、注文・出金通知、ログイン履歴の確認</td>
+<td>ログイン通知、注文・出金の通知メール</td>
 </tr>
 </tbody></table>
 <p>「取引や出金を止めておく」機能がある証券会社:</p>
@@ -406,6 +475,94 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li>銀行は証券ほどパスキー化が進んでいないため、現状の主な自衛手段は「<strong>振込限度額を下げる</strong>」「<strong>使わない機能を止める</strong>」「<strong>認証をアプリ方式にする</strong>」の3つです。限度額の引き下げは多くの銀行で即時、引き上げは時間がかかるため、普段は低くしておくのが有効です。</li>
 </ul>
 <hr>
+<h2>だましの手口(フィッシング)</h2>
+<p>金融機関そっくりのメールやSMSを送り、本物そっくりの偽サイトでIDやパスワードを入力させて盗む手口です。</p>
+<p><strong>ワンタイムパスワードを使っていても破られる流れ(リアルタイムフィッシング)</strong></p>
+<p>偽サイトが、あなたと本物の金融機関の「あいだ」に割り込みます。あなたが入力したものを、犯人がその場で本物のサイトに入力します。</p>
+<figure class="diagram"><svg class="dg" viewBox="0 0 360 452" role="img" aria-label="リアルタイムフィッシングの流れ。偽サイトが、あなたと本物の金融機関の間に割り込み、入力されたIDとパスワード、ワンタイムパスワードをすぐに本物のサイトへ入力してログインする。">
+  <defs>
+    <marker id="dg-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-you"/></marker>
+    <marker id="dg-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-bad"/></marker>
+    <marker id="dg-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-org"/></marker>
+  </defs>
+  <line class="life" x1="60" y1="54" x2="60" y2="420"/>
+  <line class="life" x1="180" y1="54" x2="180" y2="420"/>
+  <line class="life" x1="300" y1="54" x2="300" y2="420"/>
+  <rect class="box you" x="14" y="10" width="92" height="44" rx="8"/>
+  <text class="head" x="60" y="37" text-anchor="middle">あなた</text>
+  <rect class="box bad" x="126" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="180" y="29" text-anchor="middle">偽サイト</text>
+  <text class="head" x="180" y="46" text-anchor="middle">(犯人)</text>
+  <rect class="box org" x="246" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="300" y="29" text-anchor="middle">本物の</text>
+  <text class="head" x="300" y="46" text-anchor="middle">金融機関</text>
+
+  <text class="t-bad" x="120" y="88" text-anchor="middle">① 偽のメール・SMSを送る</text>
+  <line class="l-bad" x1="174" y1="98" x2="66" y2="98" marker-end="url(#dg-b)"/>
+
+  <text class="t-you" x="120" y="146" text-anchor="middle">② IDとパスワードを入力</text>
+  <line class="l-you" x1="66" y1="156" x2="174" y2="156" marker-end="url(#dg-a)"/>
+
+  <text class="t-bad" x="240" y="204" text-anchor="middle">③ すぐ本物のサイトに入力</text>
+  <line class="l-bad" x1="186" y1="214" x2="294" y2="214" marker-end="url(#dg-b)"/>
+
+  <text class="t-org" x="180" y="262" text-anchor="middle">④ ワンタイムパスワードをあなたに送る</text>
+  <line class="l-org" x1="294" y1="272" x2="66" y2="272" marker-end="url(#dg-c)"/>
+
+  <text class="t-you" x="120" y="320" text-anchor="middle">⑤ 届いた番号を入力</text>
+  <line class="l-you" x1="66" y1="330" x2="174" y2="330" marker-end="url(#dg-a)"/>
+
+  <text class="t-bad" x="240" y="378" text-anchor="middle">⑥ その番号をすぐ入力</text>
+  <line class="l-bad" x1="186" y1="388" x2="294" y2="388" marker-end="url(#dg-b)"/>
+
+  <text class="t-bad result" x="180" y="442" text-anchor="middle">犯人がログインできてしまう</text>
+</svg>
+</figure>
+
+<p>④で届く番号は本物の金融機関からのものなので、偽サイトだと気付きにくいのが特徴です。</p>
+<p><strong>パスキーだと防げる理由</strong></p>
+<p>パスキーは、本物のサイトの住所(URL)とセットでスマホに保存されています。偽サイトでは、スマホがパスキーを出しません。</p>
+<figure class="diagram"><svg class="dg" viewBox="0 0 360 286" role="img" aria-label="パスキーの場合の流れ。偽サイトを開いても、スマホが本物のサイトではないと判断してパスキーを出さないため、犯人は何も手に入らない。">
+  <line class="life" x1="60" y1="54" x2="60" y2="250"/>
+  <line class="life" x1="180" y1="54" x2="180" y2="250"/>
+  <line class="life" x1="300" y1="54" x2="300" y2="250"/>
+  <rect class="box you" x="14" y="10" width="92" height="44" rx="8"/>
+  <text class="head" x="60" y="37" text-anchor="middle">あなた</text>
+  <rect class="box bad" x="126" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="180" y="29" text-anchor="middle">偽サイト</text>
+  <text class="head" x="180" y="46" text-anchor="middle">(犯人)</text>
+  <rect class="box org" x="246" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="300" y="29" text-anchor="middle">本物の</text>
+  <text class="head" x="300" y="46" text-anchor="middle">金融機関</text>
+
+  <text class="t-bad" x="120" y="88" text-anchor="middle">① 偽のメール・SMSを送る</text>
+  <line class="l-bad" x1="174" y1="98" x2="66" y2="98" marker-end="url(#dg-b)"/>
+
+  <text class="t-you" x="120" y="146" text-anchor="middle">② 偽サイトを開く</text>
+  <line class="l-you" x1="66" y1="156" x2="174" y2="156" marker-end="url(#dg-a)"/>
+
+  <text class="t-you" x="150" y="204" text-anchor="middle">③ スマホがパスキーを出さない</text>
+  <line class="l-you" x1="66" y1="214" x2="118" y2="214"/>
+  <path class="stop" d="M124 206l16 16M140 206l-16 16"/>
+  <text class="t-org" x="252" y="218" text-anchor="middle">本物のサイトではないため</text>
+
+  <text class="t-you result" x="180" y="276" text-anchor="middle">犯人は何も手に入らない</text>
+</svg>
+</figure>
+
+<p>ただし、パスワードでもログインできる状態のままだと、犯人はそちらを狙います。</p>
+<p><strong>見分けようとせず、決まりごとにする</strong></p>
+<ul>
+<li>メールやSMSのリンクからはログインしない。いつものアプリか、ブックマーク(お気に入り)から開く</li>
+<li>「急いで確認を」と言われても、その場で入力しない。心配なら、いつものアプリから自分で確認する</li>
+<li>届いたワンタイムパスワードは、自分が始めた操作のためのものかを確かめる。身に覚えがなければ入力しない</li>
+</ul>
+<p>実際に出回っている偽メールや偽サイトの画像は、次の公的なページで見られます。</p>
+<ul>
+<li><a href="https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html">警察庁: フィッシング対策</a>(偽のログイン画面やSMSの画像つき)</li>
+<li><a href="https://www.antiphishing.jp/news/alert/">フィッシング対策協議会: 緊急情報</a>(いま出回っている偽メールの実例)</li>
+</ul>
+<hr>
 <h2>1. 証券会社</h2>
 <h3>SBI証券</h3>
 <table>
@@ -455,9 +612,9 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 <tr>
 <td>○</td>
-<td>ログイン通知メール / ログイン履歴</td>
-<td>不審なログインに気付く</td>
-<td>履歴は日時とチャネルを確認できる<br><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
+<td>ログイン通知メール</td>
+<td>誰かがログインするとメールが届く。身に覚えのない通知が来たらすぐ気付ける</td>
+<td><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
@@ -490,8 +647,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tbody><tr>
 <td>◎</td>
 <td>パスキー認証(FIDO2)</td>
-<td>2025/10/26導入。2026年6月以降、順次必須化(時期は個別に案内)</td>
-<td>2026/5/31からスマホなしでも作成可。使えない場合はメールの絵文字認証が必須<br><a href="https://www.rakuten-sec.co.jp/smartphone/security/passkey/">公式の案内</a></td>
+<td>2025/10/26導入。2026年6月以降、順次必須化(時期は個別に案内)。専用アプリは不要で、1口座に10個まで作れる</td>
+<td>公式サイトの「セキュリティ → パスキー認証(FIDO2)」にある「パスキーを作成する」から登録。2026/5/31からパソコンにも保存できる<br><a href="https://www.rakuten-sec.co.jp/smartphone/security/passkey/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -513,8 +670,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 <tr>
 <td>自動</td>
-<td>ログイン通知メール / ログイン履歴</td>
-<td>履歴は過去3か月分</td>
+<td>ログイン通知メール</td>
+<td>誰かがログインするとメールが届く</td>
 <td></td>
 </tr>
 <tr>
@@ -733,7 +890,6 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li><strong>パスキーを使えない場合</strong>: 電話認証、認証アプリ、リカバリーコードによる二要素認証でログインできます。問い合わせ先は「パスキー・二要素認証案内ダイヤル」(0120-977-930)です。</li>
 </ul>
 <p>この会社の公式の案内: <a href="https://kabu.com/support/security/default.html">三菱UFJ eスマート証券のセキュリティ・設定ページ</a></p>
-<p>不正アクセスが疑われる場合は、サポートセンターへの申告でログイン・取引・出金を止めてもらえます(再開は本人からの電話)。</p>
 <h3>野村證券</h3>
 <table>
 <thead>
@@ -747,8 +903,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tbody><tr>
 <td>◎</td>
 <td>パスキー認証</td>
-<td>オンラインで取引・出金するためのログインに必須(6/27から)</td>
-<td>NOMURAアプリ、またはオンラインサービスで登録<br><a href="https://www.nomura.co.jp/introduc/news/2026/20260513_1.html">公式の案内</a></td>
+<td>オンラインで取引・出金するためのログインに必須(2026/6/27から)。1口座に5件まで登録できる</td>
+<td>NOMURAアプリで登録する場合は、マイナンバーカード、その署名用電子証明書のパスワード、カードを読み取れるスマホが必要。パソコンなどで登録する場合は「口座情報/手続き → サービス・契約情報照会/変更 → パスワード関連」から郵送を申し込み、届いた確認コードで登録する<br><a href="https://www.nomura.co.jp/support/procedure/online/passkey/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -770,8 +926,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 <tr>
 <td>○</td>
-<td>ログイン履歴 / 登録電話番号の確認</td>
-<td>不審なアクセスがあると会社から電話が来ることがある</td>
+<td>登録電話番号の確認</td>
+<td>不審なアクセスがあると会社から電話が来ることがあるので、つながる番号にしておく</td>
 <td></td>
 </tr>
 <tr>
@@ -781,6 +937,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>登録状況は「お客様情報照会」で確認できる<br><a href="https://faq.nomura.co.jp/faq_detail.html?id=73">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>マイナンバーカードや対応スマホがない場合</strong>: オンラインサービスから「郵送で手続き」を選ぶと、本人限定受取郵便で確認コードが届きます(最短3営業日程度)。コードの有効期限は発行から20日間です。相談先は「パスキー設定サポートダイヤル」(0120-191-316)です。</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.nomura.co.jp/lp/security/">野村證券のセキュリティ・設定ページ</a></p>
 <p>2026/6/27から、ログインだけでなく取引・出金時にもパスキー認証が必須です。</p>
 <h3>大和証券</h3>
@@ -796,8 +956,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tbody><tr>
 <td>◎</td>
 <td>パスキー認証</td>
-<td>D-Portアプリまたはブラウザで利用</td>
-<td>D-Portで連携済みならPCログインも追加認証なし<br><a href="https://www.daiwa.jp/onlinetrade/tool/d_port/passkey.html">公式の案内</a></td>
+<td>オンライントレードのログインに必要。スマホはD-Portアプリ、パソコンはブラウザで設定する</td>
+<td>スマホ: D-Portアプリを入れてメールアドレスを登録し、「サービス連携 → 口座連携」で口座を登録。パソコン: ログイン画面の「パスキー設定はこちら」から(Windows 11とWindows Helloが必要)。どちらも、届け出た電話番号から案内の番号に電話をかける確認がある<br><a href="https://www.daiwa.jp/onlinetrade/tool/d_port/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -850,7 +1010,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>2026年4月下旬から順次必須化。<strong>パスキー以外でログインすると取引と入出金ができない</strong></td>
-<td>2026/8/21から、設定時にマイナンバーカードか運転免許証でのオンライン本人確認が必要<br><a href="https://www.smbcnikko.co.jp/security/passkey.html">公式の案内</a></td>
+<td>最初の1台は、マイナンバーカードか運転免許証をスマホで読み取る本人確認が必要(SMBC日興証券アプリを使う)。2台目以降は、登録済みの端末と新しい端末を近づけて追加する<br><a href="https://www.smbcnikko.co.jp/security/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -871,8 +1031,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td><a href="https://www.smbcnikko.co.jp/security/attention/03.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>パスキーを設定できない場合</strong>: 日興コンタクトセンターのパスキー窓口(0120-166-250、平日9:00〜17:30)に相談します。パスキー以外の方法でもログインはできますが、取引や入出金は使えません。</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.smbcnikko.co.jp/security/">SMBC日興証券のセキュリティ・設定ページ</a></p>
-<p>不正が疑われるときは、ログインパスワードを変更し、日興コンタクトセンター(0120-285-250)に連絡します。</p>
 <hr>
 <h2>2. メガバンク</h2>
 <h3>三菱UFJ銀行</h3>
@@ -991,14 +1154,20 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tr>
 <td>○</td>
 <td>ご利用カード(アプリ版)またはワンタイムパスワード</td>
-<td>振込、ペイジー、限度額の引き上げに必要</td>
-<td>紙のご利用カードではこれらの手続きができない<br><a href="https://www.mizuhobank.co.jp/direct/information2024/index.html">公式の案内</a></td>
+<td>「ご利用カード」は、振込のときに使う暗証番号の表。紙のカードと、みずほ銀行アプリの中で表示するアプリ版がある。振込、ペイジー、限度額の引き上げにはアプリ版かワンタイムパスワードが必要</td>
+<td>みずほダイレクト自体はパソコンやスマホのブラウザでも使える。紙のご利用カードのままだと、これらの手続きができない<br><a href="https://www.mizuhobank.co.jp/direct/information2024/index.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>アプリの生体認証</td>
-<td>アプリパスワードの代わりに使える</td>
-<td></td>
+<td>みずほ銀行アプリのログインを、6桁のアプリパスワードの代わりに指紋や顔で行う</td>
+<td>アプリの「お客さまメニュー → 設定の確認・変更」で生体認証をONにする。スマホ本体の生体認証もONにしておく。Androidは指紋のみ<br><a href="https://www.faq.mizuhobank.co.jp/faq/show/7275?site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>ログイン時の追加確認</td>
+<td>ブラウザ版のログインは、お客さま番号とログインパスワード。不審なアクセスと判定されたときだけ、第1暗証番号も求められる</td>
+<td><a href="https://www.faq.mizuhobank.co.jp/faq/show/10035?site_domain=default">公式の案内</a></td>
 </tr>
 </tbody></table>
 <p><strong>使えない場合の代替策と費用</strong></p>
@@ -1021,15 +1190,15 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </thead>
 <tbody><tr>
 <td>◎</td>
-<td><strong>利用停止してログアウト</strong></td>
-<td>ログアウト時に利用停止をかけ、普段はゆうちょダイレクトを止めておく</td>
-<td>ゆうちょ認証アプリかゆうちょ通帳アプリからログインすると解除される<br><a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=2475">公式の案内</a></td>
+<td><strong>ログイン時の2段階認証</strong></td>
+<td>お客さま番号とパスワードに加えて、メールのワンタイムパスワードを求める(2026/5/6導入)。それ以前からの利用者は初期設定で無効なので、自分で有効にする</td>
+<td>「ご登録内容確認・変更 → お客さま情報登録・変更 → ログイン時の2段階認証 → 確認・変更」。登録済みの端末や、ゆうちょ認証アプリでのログインでは求められない<br><a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=11156">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
-<td><strong>ログイン時の2段階認証</strong></td>
-<td>お客さま番号とパスワードに加えて、メールのワンタイムパスワードを求める(2026/5/6導入)</td>
-<td>それ以前からの利用者は初期設定で無効なので、自分で有効にする。認証アプリでのログインは対象外<br><a href="https://www.jp-bank.japanpost.jp/news/2026/news_id002500.html">公式の案内</a></td>
+<td><strong>利用停止してログアウト</strong></td>
+<td>ログアウト時に利用停止をかけ、普段はゆうちょダイレクトを止めておく</td>
+<td>ゆうちょ認証アプリかゆうちょ通帳アプリからログインすると解除される<br><a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=2475">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1079,10 +1248,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>アプリ「プロフィール → セキュリティ設定 → 振込限度額変更」。マイゲートは「その他サービス → 各種お手続き → 振込限度額変更」<br><a href="https://www.resonabank.co.jp/kojin/app/faq/faq_smartapp_0091.html">公式の案内</a></td>
 </tr>
 <tr>
-<td>○</td>
+<td>◎</td>
 <td>スマホ認証</td>
-<td>振込のときに取引内容を確認して認証する</td>
-<td>りそなグループアプリから申込み<br><a href="https://www.resonabank.co.jp/direct/otp/setup/entry_groupapp.html">公式の案内</a></td>
+<td>振込のときに、りそなグループアプリで取引内容を確認して認証する。無料</td>
+<td>りそなグループアプリを入れて普通預金口座と連携する。キャッシュカードが必要<br><a href="https://www.resonabank.co.jp/direct/otp/renewal/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1097,6 +1266,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホがない場合</strong>: ハードウェアトークン(パスワード生成機)を使います。初めての発行と、電池切れなどによる再発行は1,650円です。マイゲートの「各種変更・手続き → その他手続き」から申込書を請求します。</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.resonabank.co.jp/kojin/app/anshin/">りそな銀行のセキュリティ・設定ページ</a></p>
 <h3>楽天銀行</h3>
 <table>
@@ -1109,6 +1282,24 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 </thead>
 <tbody><tr>
+<td>◎</td>
+<td><strong>ログイン制限(PC端末ログイン制限)</strong></td>
+<td>パソコンからログインするたびに、メールで届くワンタイムキーを求める</td>
+<td>ログイン後「セキュリティ → PC端末ログイン制限」。先にワンタイム認証用のメールアドレスを設定しておく。そのメールを受け取れなくなると、解除は郵送での手続きになる<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/login_limit/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>モバイルアクセス制限</td>
+<td>スマホからのログインを「クイックログイン(登録した1台のアプリ)だけ許可」などに絞る</td>
+<td>先にアプリでクイックログインを設定する。登録できる端末は1口座に1台<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>クイックログイン(アプリの生体認証)</td>
+<td>楽天銀行アプリに指紋や顔でログインする</td>
+<td>アプリの「ログインのお手続き」から設定<br><a href="https://www.rakuten-bank.co.jp/guide/mobile/resister.html">公式の案内</a></td>
+</tr>
+<tr>
 <td>○</td>
 <td>振込限度額の引き下げ</td>
 <td>初期値は100万円</td>
@@ -1118,12 +1309,6 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>ワンタイム認証 / 合言葉認証</td>
 <td>重要な取引で使い捨てパスワードや合言葉を求める</td>
-<td>「認証強化設定」<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
-</tr>
-<tr>
-<td>○</td>
-<td>モバイルアクセス制限 / ログイン制限</td>
-<td>スマホからのログイン・取引を制限する / PCログイン時の認証項目を増やす</td>
 <td>「認証強化設定」<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
 </tr>
 <tr>
@@ -1138,12 +1323,6 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>ATM出金の条件、デビットカードの国内・海外別の利用可否と1日の限度額を設定</td>
 <td></td>
 </tr>
-<tr>
-<td>○</td>
-<td>IP制限サービス</td>
-<td>登録したIPアドレス以外からのログイン・取引を制限する</td>
-<td>固定IPがない家庭回線では使いにくい<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
-</tr>
 </tbody></table>
 <p>この会社の公式の案内: <a href="https://www.rakuten-bank.co.jp/security/howto/account_management/">楽天銀行のセキュリティ・設定ページ</a></p>
 <h3>住信SBIネット銀行(ドコモSMTBネット銀行)</h3>
@@ -1157,6 +1336,12 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 </thead>
 <tbody><tr>
+<td>◎</td>
+<td><strong>スマート認証NEOの「ログイン承認」</strong></td>
+<td>ONにすると、登録したスマホのアプリで承認しない限り、ブラウザなどからログインできない</td>
+<td>アプリ右下メニュー「認証設定 → ログイン承認」。登録できるスマホは1台<br><a href="https://help.netbk.co.jp/faq_detail.html?id=5965">公式の案内</a></td>
+</tr>
+<tr>
 <td>◎</td>
 <td>振込限度額</td>
 <td>0円〜1,000万円(1万円単位)で設定</td>
@@ -1173,12 +1358,6 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>キャッシュカード引出限度額</td>
 <td>1日0〜50万円、1か月0〜1,000万円</td>
 <td></td>
-</tr>
-<tr>
-<td>◎</td>
-<td><strong>スマート認証NEOの「ログイン承認」</strong></td>
-<td>ONにすると、登録したスマホのアプリで承認しない限り、ブラウザなどからログインできない</td>
-<td>アプリ右下メニュー「認証設定 → ログイン承認」。登録できるスマホは1台<br><a href="https://help.netbk.co.jp/faq_detail.html?id=5965">公式の案内</a></td>
 </tr>
 </tbody></table>
 <p>この会社の公式の案内: <a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">住信SBIネット銀行のセキュリティ・設定ページ</a></p>
@@ -1232,7 +1411,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>スマホ認証方式</td>
 <td>振込時に取引内容をアプリで確認して認証する</td>
-<td>2026/8/26のアプリ刷新で、アプリの再利用登録が必要<br><a href="https://sonybank.jp/guide/auth/01.html">公式の案内</a></td>
+<td>「ソニー銀行 アプリ」を入れて利用登録すると、自動でこの方式に切り替わる。キャッシュカードが必要で、使える端末は1台。2026/8/26のアプリ刷新で再登録が必要<br><a href="https://sonybank.jp/guide/auth/01.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1273,8 +1452,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tbody><tr>
 <td>◎</td>
 <td><strong>インターネットバンキングロック</strong></td>
-<td>普段はログインを止めておき、使うときだけ解除する</td>
-<td><a href="https://www.jibunbank.co.jp/service/security/service/">公式の案内</a></td>
+<td>普段はブラウザからのログインを止めておき、使うときだけ解除する。ロック中もじぶん銀行アプリは使える</td>
+<td>じぶん銀行アプリで操作<br><a href="https://www.jibunbank.co.jp/service/security/service/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -1285,8 +1464,14 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <tr>
 <td>○</td>
 <td>スマホ認証サービス</td>
-<td>振込などを実行前にスマホで承認する</td>
-<td>登録できるスマホは1台<br><a href="https://www.jibunbank.co.jp/service/security/service/">公式の案内</a></td>
+<td>振込などを実行前にスマホで承認する。パソコンからの振込も、スマホでの承認が必要になる</td>
+<td>アプリ「メニュー → アプリ設定 → スマホ認証サービス」。登録できるスマホは1台<br><a href="https://help.jibunbank.co.jp/faq_detail.html?id=1009">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリの生体認証</td>
+<td>じぶん銀行アプリに指紋や顔でログインする</td>
+<td>アプリ「メニュー → アプリ設定 → 生体認証設定」<br><a href="https://www.jibunbank.co.jp/service/jibun_app/bio/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1316,7 +1501,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>スマホ認証(FIDO)</td>
 <td>SBI新生銀行アプリの生体認証で取引を認証する。200万円を超える振込に必要</td>
-<td>登録には運転免許証などでのオンライン本人確認が必要。スマホは1台まで<br><a href="https://www.sbishinseibank.co.jp/info/news2512_spninsho.html">公式の案内</a></td>
+<td>アプリの「ログイン/スマホ認証を登録する」から。マイナンバーカード、運転免許証、在留カードのいずれかでの本人確認が必要で、審査に1営業日ほどかかることがある。スマホは1台まで<br><a href="https://www.sbishinseibank.co.jp/service/newpd/app_pd/guide/login.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1353,10 +1538,16 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>「お客さま情報・各種設定 → 振込限度額変更」</td>
 </tr>
 <tr>
+<td>◎</td>
+<td>スマホ認証(FIDO認証)</td>
+<td>2026/9/7導入。振込や登録情報の変更のときに、通帳アプリの生体認証などで本人確認をする。確認番号表とアプリのワンタイムパスワードは使えなくなった</td>
+<td>イオン銀行通帳アプリで登録。銀行に登録済みの携帯電話番号が必要。機種変更をすると再登録が必要<br><a href="https://www.aeonbank.co.jp/guide/app/certification-registration-f/">公式の案内</a></td>
+</tr>
+<tr>
 <td>○</td>
-<td>ワンタイムパスワード</td>
-<td>振込などのたびに使い捨てのパスワードを求める</td>
-<td>「お客さま情報・各種設定 → ワンタイムパスワード切替」<br><a href="https://www.aeonbank.co.jp/guide/direct/one_time_password/">公式の案内</a></td>
+<td>合言葉認証</td>
+<td>登録していない端末からログインすると、合言葉(秘密の質問と答え)を求める</td>
+<td>「お客さま情報・各種設定 → 合言葉認証設定」<br><a href="https://www.aeonbank.co.jp/security/measures/login/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1365,6 +1556,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>「お客さま情報・各種設定 → メール通知設定変更」<br><a href="https://www.aeonbank.co.jp/direct/mailservice/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホ認証を使えない場合</strong>: メールで届くワンタイムパスワードが使えますが、2027年3月末で終了する予定です。</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.aeonbank.co.jp/security/measures/">イオン銀行のセキュリティ・設定ページ</a></p>
 <h3>セブン銀行</h3>
 <table>
@@ -1378,15 +1573,15 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </thead>
 <tbody><tr>
 <td>◎</td>
+<td><strong>アプリ認証</strong></td>
+<td>ブラウザでログオンするたびに、Myセブン銀行アプリで「承認する」を押さないと入れない</td>
+<td>Myセブン銀行アプリの利用設定(キャッシュカードを持ってセブン銀行ATMで認証)をしてから、アプリの「ダイレクトバンキングサービス」ボタンで登録<br><a href="https://www.sevenbank.co.jp/personal/netbank/services/app-authentication/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
 <td>振込限度額の引き下げ</td>
 <td>Myセブン銀行は0円〜100万円(初期値10万円)、ATMは0円〜1,000万円(初期値200万円)</td>
 <td>Myセブン銀行「振込 → 振込限度額の管理」。ダイレクトバンキングは「各種手続き → セキュリティ設定」。ATMでは引き下げのみ可能<br><a href="https://faqsearch.sevenbank.co.jp/faq_detail.html?id=18542">公式の案内</a></td>
-</tr>
-<tr>
-<td>○</td>
-<td>アプリ認証</td>
-<td>ダイレクトバンキングの利用に必要。生体認証かパスコードで保護する</td>
-<td>Myセブン銀行アプリ</td>
 </tr>
 <tr>
 <td>○</td>
@@ -1525,12 +1720,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li>マネックス証券の取引制限(依頼制)とみずほ銀行の各項目は、公式ページを直接取得できず、検索結果の要約に基づいています。</li>
 <li>三菱UFJ eスマート証券、野村證券、大和証券、SMBC日興証券に、利用者が取引や出金を自分で止められる機能があるかは未確認です。</li>
 <li>各銀行のパスキー対応とログイン通知の有無は未確認です。</li>
+<li>みずほ銀行、PayPay銀行、ソニー銀行、auじぶん銀行、SBI新生銀行は、ブラウザからログインするたびに追加の認証(ワンタイムパスワードやアプリでの承認)を求める設定が見つかっていません。これらの銀行では、振込時の認証と振込限度額が守りの中心になります。</li>
+<li>大和証券は、電話によるログイン認証の利用者にもパスキーの設定を呼びかけており、電話認証がいつまで使えるかは未確認です。</li>
 <li>ソニー銀行、auじぶん銀行、GMOあおぞらネット銀行は、限度額を引き上げるときの追加認証や待ち時間が未確認です。野村證券のATM出金限度額は、引き上げも即時に反映されます。</li>
 <li>みずほ銀行のワンタイムパスワードカードの手数料(1,100円)は、新規発行を無料とする古い案内もあり、最新の扱いは未確認です。</li>
 <li>スマホがない場合に市販のセキュリティキー(USBなどの認証機器)でパスキーを登録できるかは、会社や利用環境によって異なり、公式の案内では未確認です。</li>
 <li>三井住友銀行のSMBCセーフティパスが使えない条件は、端末の非対応以外にもある可能性がありますが未確認です。</li>
 <li>三菱UFJ銀行の振込限度額の設定範囲(0円〜1,000万円)は古い案内に基づいており、現在の下限は未確認です。</li>
-<li>イオン銀行は、アプリ版ワンタイムパスワードへの切替を一時休止していた時期があり、現在の受付状況は未確認です。</li>
 </ul>
 <hr>
 <h2>5. ことばの説明</h2>
@@ -1595,11 +1791,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 <tr>
 <td>ログイン通知</td>
-<td>誰かがログインするとメールが届く機能。身に覚えのない通知が来たら、乗っ取りを疑う</td>
-</tr>
-<tr>
-<td>ログイン履歴</td>
-<td>いつ、どこからログインしたかの記録。身に覚えのないログインがないか確認できる</td>
+<td>誰かがログインするとメールが届く機能。身に覚えのない通知が来たら、すぐにその金融機関に問い合わせる</td>
 </tr>
 <tr>
 <td>デビット</td>
@@ -1704,9 +1896,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 
 </article>
   <footer>
-    個人が公開情報をもとにまとめたもので、各社の公式情報ではありません。設定の前に必ず各社の公式サイトで最新の内容を確認してください。
+    個人が公開情報をもとにまとめたもので、各社の公式情報ではありません。設定の前に必ず各社の公式サイトで最新の内容を確認してください。被害に遭ったと思ったときや、不審な点があるときは、利用している金融機関に直接問い合わせてください。
   </footer>
 </main>
+</div>
 <script>
 (function () {
   var content = document.getElementById('content');
@@ -1854,7 +2047,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     var how = document.createElement('p');
     how.id = 'how';
     how.className = 'unsel';
-    how.textContent = '上から順に、できるものから設定してください。「最優先」は効果が大きいもの、「自動」は何もしなくても適用されているものです。';
+    how.textContent = '余裕があれば、下の表も上から順に設定してください。「最優先」は効果が大きいもの、「自動」は何もしなくても適用されているものです。';
+    var first = document.createElement('div');
+    first.id = 'first';
+    first.className = 'unsel';
+    content.appendChild(first);
     content.appendChild(how);
     var box = document.createElement('details');
     box.id = 'words';
@@ -1867,6 +2064,18 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     var box = document.getElementById('words');
     var table = current && current.items[0];
     how.classList.toggle('unsel', !table);
+    // 表の1行目(いちばん効果が大きい設定)を「まずこれだけ」として先頭に出す
+    var first = document.getElementById('first');
+    var row = table && table.querySelector('tbody tr');
+    first.classList.toggle('unsel', !row);
+    if (row) {
+      var link = row.querySelector('a');
+      first.innerHTML = '<div class="k">まずこれだけ</div><div class="n"></div><p class="d"></p>';
+      first.querySelector('.n').textContent = row.cells[1].firstChild.textContent;
+      first.querySelector('.d').textContent = row.cells[2].textContent + ' ';
+      if (link) first.querySelector('.d').appendChild(link.cloneNode(true));
+      content.insertBefore(first, table);
+    }
     if (table) content.insertBefore(how, table);
     var hits = !table ? [] : glossary.filter(function (g) {
       return g.terms.some(function (w) { return table.textContent.indexOf(w) !== -1; });
@@ -1887,47 +2096,77 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     content.insertBefore(box, table.nextSibling);
   }
 
-  // 会社以外の節(共通事項、出典など)は末尾に折りたたんで置く
-  function foldOthers() {
-    var lead = document.createElement('p');
-    lead.className = 'more-lead';
-    lead.textContent = 'あわせて読む';
-    content.appendChild(lead);
+  // 会社以外の節(共通事項、手口の説明、出典など)は1ページずつにまとめ、サイドバーから開く
+  var docs = [];
+  function buildDocs() {
     groups.forEach(function (g) {
       if (g.head.tagName !== 'H2' || g.kind) return;
-      var d = document.createElement('details');
-      d.className = 'more';
-      var sum = document.createElement('summary');
-      sum.textContent = g.head.textContent.replace(/^\d+\.\s*/, '');
-      d.appendChild(sum);
-      g.items.forEach(function (el) { d.appendChild(el); });
-      g.head.remove();
-      content.appendChild(d);
+      var title = g.head.textContent.replace(/^\d+\.\s*/, '');
+      var sec = document.createElement('section');
+      sec.className = 'doc unsel';
+      g.head.textContent = title;
+      sec.appendChild(g.head);
+      g.items.forEach(function (el) { sec.appendChild(el); });
+      content.appendChild(sec);
+      docs.push({ title: title, el: sec });
     });
     groups.forEach(function (g) {
       if (g.kind) g.head.textContent = g.head.textContent.replace(/^\d+\.\s*/, '');
     });
+    var nav = document.querySelector('#side nav');
+    function add(label, hash) {
+      var a = document.createElement('a');
+      a.href = hash;
+      a.textContent = label;
+      nav.appendChild(a);
+      return a;
+    }
+    add('会社を選ぶ', '#');
+    var sep = document.createElement('div');
+    sep.className = 'sep';
+    nav.appendChild(sep);
+    docs.forEach(function (d) { d.link = add(d.title, '#~' + encodeURIComponent(d.title)); });
+    nav.addEventListener('click', function () { setMenu(false); });
   }
 
-  // URL の # で選ばれた1社の節だけを表示する(ブラウザの「戻る」で選択画面に戻れる)
+  function setMenu(open) {
+    document.getElementById('side').classList.toggle('open', open);
+    document.getElementById('menu').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.getElementById('menu').addEventListener('click', function () {
+    setMenu(!document.getElementById('side').classList.contains('open'));
+  });
+
+  // URL の # で、会社の節(#会社名)か読みもの(#~題名)のどちらか1つを表示する。
+  // ブラウザの「戻る」で前の画面に戻れる
   function apply() {
     var name = '';
     try { name = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
     var current = null;
+    var doc = null;
     companies.forEach(function (c) {
       var on = c.name === name;
       if (on) current = c;
       c.head.classList.toggle('unsel', !on);
       c.items.forEach(function (el) { el.classList.toggle('unsel', !on); });
     });
+    docs.forEach(function (d) {
+      var on = '~' + d.title === name;
+      if (on) doc = d;
+      d.el.classList.toggle('unsel', !on);
+      if (on) d.link.setAttribute('aria-current', 'page'); else d.link.removeAttribute('aria-current');
+    });
+    var home = document.querySelector('#side nav a');
+    if (!current && !doc) home.setAttribute('aria-current', 'page'); else home.removeAttribute('aria-current');
     groups.forEach(function (g) {
       if (g.kind) g.head.classList.add('unsel');
     });
-    document.getElementById('picker').classList.toggle('unsel', !!current);
+    var top = !current && !doc;
+    document.getElementById('picker').classList.toggle('unsel', !top);
     document.getElementById('back').classList.toggle('unsel', !current);
-    intro.forEach(function (el) { el.classList.toggle('unsel', !!current); });
+    intro.forEach(function (el) { el.classList.toggle('unsel', !top); });
     showWords(current);
-    if (current) window.scrollTo(0, 0);
+    if (!top) window.scrollTo(0, 0);
   }
 
   window.addEventListener('hashchange', apply);
@@ -1935,7 +2174,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
   decorate();
   buildPicker();
   buildWords();
-  foldOthers();
+  buildDocs();
   apply();
 })();
 </script>
