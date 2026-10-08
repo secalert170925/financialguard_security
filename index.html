@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>金融機関・証券会社で「自分で」入れられる防御設定まとめ</title>
-<meta name="description" content="証券会社・銀行ごとに、利用者が自分で入れられる防御設定(パスキー、パスワード無効化、取引制限、振込限度額など)をまとめた一覧。">
-<meta property="og:title" content="金融機関・証券会社の自衛設定まとめ">
-<meta property="og:description" content="各社の口座で、利用者が自分で入れられる防御設定の一覧。">
+<title>お金とアカウントを「自分で」守る設定まとめ</title>
+<meta name="description" content="証券会社・銀行、メール、SNSごとに、利用者が自分で入れられる防御設定(パスキー、2段階認証、取引制限、振込限度額など)をまとめた一覧。">
+<meta property="og:title" content="お金とアカウントを守る設定まとめ">
+<meta property="og:description" content="金融機関、メール、SNSで、利用者が自分で入れられる防御設定の一覧。">
 <meta property="og:type" content="article">
 <style>
 :root {
@@ -107,14 +107,14 @@ a { color: var(--accent); }
   white-space: nowrap;
 }
 .layout {
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 16px;
   display: flex;
   gap: 32px;
 }
 #side {
-  width: 210px;
+  width: 300px;
   flex: none;
   position: sticky;
   top: 72px;
@@ -127,6 +127,7 @@ a { color: var(--accent); }
   border-radius: 8px;
   color: var(--text);
   text-decoration: none;
+  white-space: nowrap;
 }
 #side a:hover { background: var(--head); }
 #side a[aria-current="page"] { background: var(--head); font-weight: 700; color: var(--accent); }
@@ -191,6 +192,65 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 .tile small { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); }
 .tile::after { content: "›"; color: var(--muted); font-size: 1.4rem; margin-left: 8px; }
 .tile:hover, .tile:focus-visible { border-color: var(--accent); }
+.tile.big { min-height: 120px; font-size: 1.35rem; padding: 20px; }
+.tile.big small { font-size: 0.85rem; margin-top: 6px; line-height: 1.5; }
+#picker .cats { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.catpage { margin: 16px 0; }
+.catpage .lead { font-size: 1.25rem; font-weight: 700; margin: 0 0 4px; }
+.catpage .hint { color: var(--muted); margin: 0 0 16px; }
+.catpage .label { font-weight: 700; margin: 24px 0 10px; }
+.catpage .group { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+#stale {
+  max-width: 420px;
+  width: calc(100% - 48px);
+  padding: 20px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+#stale::backdrop { background: rgba(0, 0, 0, 0.45); }
+#stale p { margin: 0 0 16px; }
+#stale button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--surface);
+  background: var(--accent);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.later {
+  display: block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.later[aria-pressed="true"] { color: var(--surface); background: var(--accent); border-color: var(--accent); }
+#todo h2 { margin-top: 20px; }
+#todo .empty { color: var(--muted); }
+#todo .co { font-weight: 700; margin: 24px 0 8px; }
+#todo .co a { color: var(--text); }
+#todo .item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0 0 10px;
+}
+#todo .item .n { font-weight: 700; }
+#todo .item p { margin: 4px 0 0; }
+#todo .item .later { display: inline-block; }
+#todo-home { margin: 20px 0 0; }
+#todo-home a { font-weight: 700; }
+#side .count { color: var(--muted); font-weight: 400; }
 #back {
   margin: 16px 0 0;
   padding: 10px 16px;
@@ -203,7 +263,8 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 }
 #content h3 { font-size: 1.5rem; margin-top: 20px; }
 @media (max-width: 600px) {
-  #picker .group { grid-template-columns: 1fr 1fr; }
+  #picker .cats { grid-template-columns: 1fr; }
+  #picker .group, .catpage .group { grid-template-columns: 1fr 1fr; }
   .tile { font-size: 1rem; padding: 12px 14px; }
 }
 .unsel { display: none !important; }
@@ -286,7 +347,22 @@ tr:last-child td { border-bottom: 0; }
 .badge.auto { background: var(--auto-bg); color: var(--auto-fg); }
 mark { background: var(--mark); color: inherit; padding: 0 1px; }
 .hidden { display: none !important; }
-footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
+.closing { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
+#notice {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+body { padding-bottom: 72px; }
 @media (max-width: 640px) {
   h1 { font-size: 1.35rem; }
   /* スマホでは表を1行=1枚のカードに組み替える */
@@ -315,11 +391,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 }
 </style>
 </head>
-<body>
+<body data-built="2026-10-08">
 <div class="bar">
   <div class="bar-inner">
     <button id="menu" type="button" aria-controls="side" aria-expanded="false">メニュー</button>
-    <span class="bar-title">金融機関の自衛設定</span>
+    <span class="bar-title">自衛設定まとめ</span>
     <button id="theme" type="button">表示切替</button>
   </div>
 </div>
@@ -327,12 +403,12 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <aside id="side"><nav aria-label="このページの内容"></nav></aside>
 <main>
   <article id="content">
-<h1>金融機関・証券会社で「自分で」入れられる防御設定まとめ</h1>
+<h1>お金とアカウントを「自分で」守る設定まとめ</h1>
 <p>調査日: 2026-10-08(各社公式ページ・FAQ・お知らせを中心に確認)</p>
 <p>仕様とメニュー名は頻繁に変わります。設定するときは、メールやSMSのリンクではなく、ブックマークか公式アプリから入ってください。</p>
 <p>凡例: <strong>◎</strong> = 効果が大きく最優先 / <strong>○</strong> = 入れておきたい / <strong>自動</strong> = 設定不要で適用済み</p>
 <hr>
-<h2>0. 全社共通の考え方</h2>
+<h2>金融機関に共通の考え方</h2>
 <p>攻撃の流れは「ID・パスワードを盗む → ログイン → 売却・買付・出金」なので、守りは3層に分けて考えると整理しやすいです。</p>
 <table>
 <thead>
@@ -563,7 +639,62 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li><a href="https://www.antiphishing.jp/news/alert/">フィッシング対策協議会: 緊急情報</a>(いま出回っている偽メールの実例)</li>
 </ul>
 <hr>
-<h2>1. 証券会社</h2>
+<h2>パスワードの使い回しと情報漏えい</h2>
+<p>会社から会員情報が漏れたというニュースは、毎月のように出ています。漏れたIDとパスワードは、その会社だけの問題では終わりません。</p>
+<p><strong>漏れたパスワードは、ほかのサービスで試される</strong></p>
+<p>犯人は、漏れたIDとパスワードの組み合わせを、メール、銀行、証券、SNSなどで片っ端から試します。同じパスワードを使い回していると、漏らしたのが別の会社でも入られてしまいます。この手口は「リスト型攻撃」と呼ばれます。</p>
+<figure class="diagram"><svg class="dg" viewBox="0 0 360 300" role="img" aria-label="パスワードの使い回しが狙われる流れ。どこかの会社からIDとパスワードが漏れると、犯人は同じ組み合わせをメール、銀行・証券、SNSで試す。同じパスワードを使っているところには入られ、別のパスワードにしているところには入れない。">
+  <defs>
+    <marker id="dg2-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-bad"/></marker>
+    <marker id="dg2-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-org"/></marker>
+  </defs>
+  <rect class="box org" x="50" y="8" width="260" height="46" rx="8"/>
+  <text class="head" x="180" y="28" text-anchor="middle">どこかの会社(通販サイトなど)</text>
+  <text x="180" y="46" text-anchor="middle">IDとパスワードが漏れる</text>
+  <line class="l-bad" x1="180" y1="54" x2="180" y2="84" marker-end="url(#dg2-b)"/>
+
+  <rect class="box bad" x="80" y="88" width="200" height="46" rx="8"/>
+  <text class="head" x="180" y="108" text-anchor="middle">犯人</text>
+  <text x="180" y="126" text-anchor="middle">同じ組み合わせを、ほかで試す</text>
+
+  <line class="l-bad" x1="130" y1="134" x2="66" y2="182" marker-end="url(#dg2-b)"/>
+  <line class="l-bad" x1="180" y1="134" x2="180" y2="182" marker-end="url(#dg2-b)"/>
+  <line class="l-org" x1="230" y1="134" x2="294" y2="182" marker-end="url(#dg2-c)"/>
+
+  <rect class="box bad" x="10" y="186" width="106" height="52" rx="8"/>
+  <text class="head" x="63" y="208" text-anchor="middle">メール</text>
+  <text x="63" y="227" text-anchor="middle">同じパスワード</text>
+  <rect class="box bad" x="127" y="186" width="106" height="52" rx="8"/>
+  <text class="head" x="180" y="208" text-anchor="middle">銀行・証券</text>
+  <text x="180" y="227" text-anchor="middle">同じパスワード</text>
+  <rect class="box you" x="244" y="186" width="106" height="52" rx="8"/>
+  <text class="head" x="297" y="208" text-anchor="middle">SNS</text>
+  <text x="297" y="227" text-anchor="middle">別のパスワード</text>
+
+  <text class="t-bad result" x="63" y="268" text-anchor="middle">入られる</text>
+  <text class="t-bad result" x="180" y="268" text-anchor="middle">入られる</text>
+  <text class="t-you result" x="297" y="268" text-anchor="middle">入れない</text>
+</svg>
+</figure>
+
+<p>2026年にも、外部で手に入れたとみられるIDとパスワードを使った不正ログインが公表されています(<a href="https://rocket-boys.co.jp/security-measures-lab/yonex-online-store-credential-stuffing-attack/">ヨネックス公式オンラインショップ、8月</a>、<a href="https://unitis.jp/articles/23014/">エン「ミドルの転職」、6月</a>)。どちらも、その会社から漏れたパスワードではなく、よそで漏れたものが使われたとされています。</p>
+<p><strong>やること</strong></p>
+<ul>
+<li><strong>お金とメールのパスワードは、ほかと別にする</strong>。全部を変えるのが大変なら、まず銀行、証券、メールの3つだけでも、どこにも使っていないパスワードにする</li>
+<li><strong>パスワードは覚えず、スマホやブラウザに覚えさせる</strong>。iPhoneの「パスワード」アプリや、Googleパスワードマネージャーは、サービスごとに長いパスワードを作って保存してくれる</li>
+<li><strong>漏れていないか確かめる</strong>。iPhoneは「パスワード」アプリの「セキュリティ」、Googleは「パスワード チェックアップ」で、漏れたパスワードや使い回しを教えてくれる(<a href="https://support.apple.com/ja-jp/guide/iphone/iphd5d8daf4f/ios">Apple</a>、<a href="https://support.google.com/accounts/answer/9457609?hl=ja">Google</a>)</li>
+<li><strong>パスキーや2段階認証を入れておく</strong>。パスワードが漏れても、それだけでは入れなくなる</li>
+</ul>
+<p><strong>漏えいのニュースを見たら</strong></p>
+<ul>
+<li>その会社のパスワードを変える</li>
+<li>同じパスワードをほかでも使っていたら、そちらも変える。銀行、証券、メールを先に</li>
+<li>その会社を名乗るメールやSMSが増えるので、リンクからはログインしない</li>
+</ul>
+<p>くわしくは、<a href="https://www.ipa.go.jp/security/anshin/measures/account_security.html">IPA: 不正ログイン対策特集ページ</a>と<a href="https://www.nisc.go.jp/pr/column/20221115.html">内閣サイバーセキュリティセンター: パスワードの使いまわしの危険性と対処方法</a>を見てください。</p>
+<hr>
+<h2>金融機関 / 証券会社</h2>
+<p>証券会社と銀行の口座を守る設定です。不正な売買や送金を防ぎます。</p>
 <h3>SBI証券</h3>
 <table>
 <thead>
@@ -1037,7 +1168,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </ul>
 <p>この会社の公式の案内: <a href="https://www.smbcnikko.co.jp/security/">SMBC日興証券のセキュリティ・設定ページ</a></p>
 <hr>
-<h2>2. メガバンク</h2>
+<h2>金融機関 / メガバンク</h2>
 <h3>三菱UFJ銀行</h3>
 <table>
 <thead>
@@ -1177,7 +1308,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <p>この会社の公式の案内: <a href="https://www.mizuhobank.co.jp/direct/security/index.html">みずほ銀行のセキュリティ・設定ページ</a></p>
 <p>利用を止めたいときは、みずほダイレクトヘルプデスクまたは店舗に連絡します。</p>
 <hr>
-<h2>3. その他の銀行</h2>
+<h2>金融機関 / その他の銀行</h2>
 <h3>ゆうちょ銀行</h3>
 <table>
 <thead>
@@ -1712,7 +1843,342 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tbody></table>
 <p>この会社の公式の案内: <a href="https://www.smbctb.co.jp/service/security/ib/">SMBC信託銀行のセキュリティ・設定ページ</a></p>
 <hr>
-<h2>4. 未確認情報</h2>
+<h2>メール・アカウント / メールとアカウント</h2>
+<p>金融機関の認証コードやパスワードの再設定は、メールに届きます。メールを乗っ取られると口座の守りも破られるので、メールのアカウントは口座と同じ重さで守ってください。GoogleとAppleのアカウントは、パスキーの保管場所でもあります。</p>
+<h3>Google(Gmail)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー</td>
+<td>指紋・顔・画面ロックでログインする。作成すると、パスワードを使わないログインが優先される</td>
+<td>Googleアカウントの「セキュリティ」から「パスキーを作成する」<br><a href="https://support.google.com/accounts/answer/13548313?hl=ja">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>2段階認証プロセス</td>
+<td>パスワードが盗まれても、スマホでの確認がないとログインできないようにする</td>
+<td>Googleアカウントの「セキュリティ → Googleにログインする方法 → 2段階認証プロセス」<br><a href="https://support.google.com/accounts/answer/185839?hl=ja">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>「可能な場合はパスワードをスキップ」をオンにする</td>
+<td>パスキーを作ったあと、パスワードではなくパスキーで入る設定になっているか確かめる</td>
+<td>Googleアカウントの「セキュリティ」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>再設定用の電話番号とバックアップコード</td>
+<td>スマホをなくしたときに、自分がログインできなくなるのを防ぐ</td>
+<td>Googleアカウントの「セキュリティ」<br><a href="https://support.google.com/accounts/answer/46526?hl=ja-jp">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホがない場合</strong>: 市販のセキュリティキー(USBなどの認証機器)を2段階認証に使えます。機器は自分で購入します。<a href="https://support.google.com/accounts/answer/6103523?hl=ja">公式の案内</a></li>
+</ul>
+<h3>Apple(iCloudメール)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>2ファクタ認証</td>
+<td>新しい端末でサインインするとき、パスワードに加えて6桁の確認コードを求める</td>
+<td>iPhoneの「設定 → 自分の名前 → サインインとセキュリティ → 2ファクタ認証」。一度オンにするとオフには戻せない<br><a href="https://support.apple.com/ja-jp/guide/personal-safety/ips7d5628cc5/1.0/1.0">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>盗難デバイスの保護</td>
+<td>iPhoneを盗まれ、パスコードまで知られても、パスワードの変更などに顔・指紋認証と待ち時間を求める</td>
+<td>iPhoneの「設定 → Face IDとパスコード → 盗難デバイスの保護」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>復旧用連絡先</td>
+<td>パスワードを忘れたとき、家族など信頼できる人から復旧コードを受け取れるようにする。5人まで登録できる</td>
+<td>「サインインとセキュリティ → 復旧用連絡先」<br><a href="https://support.apple.com/ja-jp/102641">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>セキュリティキー</td>
+<td>サインインに物理的な認証機器を必須にする</td>
+<td>機器が2本以上必要で、自分で購入する。有効にすると、これがサインインの唯一の方法になる<br><a href="https://support.apple.com/ja-jp/102637">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>Yahoo! JAPAN(Yahoo!メール)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー(生体認証)でのログイン</td>
+<td>指紋・顔・画面ロックでログインする。10件まで登録できる</td>
+<td>Yahoo! JAPAN IDの「パスキーの設定」で「パスキーを追加」<br><a href="https://id.yahoo.co.jp/security/manage_auth_device.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>パスワード無効設定</strong></td>
+<td>パスワードでのログインを止める。パスキーを登録しただけではパスワードでも入れるので、ここまで行う</td>
+<td>先にSMS認証の設定が必要。メールソフトでは引き続きパスワードを使う<br><a href="https://id.yahoo.co.jp/security/inactive_pw.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SMS認証</td>
+<td>ログインのたびに、携帯電話に届く確認コードを入力する</td>
+<td>パスワード無効設定の前提になる</td>
+</tr>
+</tbody></table>
+<h3>Microsoft(Outlook.com)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>2段階認証</td>
+<td>見慣れない端末でサインインするとき、メール・電話・認証アプリに届くコードを求める</td>
+<td>account.microsoft.com の「セキュリティ → サインイン方法の管理 → 追加のセキュリティ → 2段階認証」で「有効にする」<br><a href="https://support.microsoft.com/ja-jp/account-billing/microsoft-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%A7-2-%E6%AE%B5%E9%9A%8E%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95-c7910146-672f-01e9-50a0-93b4585e7eb4">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>Microsoft Authenticator</td>
+<td>スマホのアプリで「承認」を押してサインインする。パスワードを使わない設定にもできる</td>
+<td>「サインイン方法の管理」から追加<br><a href="https://support.microsoft.com/ja-jp/account-billing/microsoft-authenticator-%E3%81%AB%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95-92544b53-7706-4581-a142-30344a2a2a57">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>連絡方法を2種類登録する</td>
+<td>片方が使えなくなっても、自分がログインできなくなるのを防ぐ</td>
+<td>「サインイン方法の管理」</td>
+</tr>
+</tbody></table>
+<h3>ドコモ(dアカウント・ドコモメール)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー端末設定</td>
+<td>dアカウントに、指紋・顔・画面ロックでログインできるようにする</td>
+<td>dアカウントのサイトで設定<br><a href="https://id.smt.docomo.ne.jp/src/utility/passkeys.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>いつもパスキー設定</strong></td>
+<td>パスワードでの認証を止め、パスキーだけにする</td>
+<td>dアカウントのサイトで設定(アプリからの設定は終了)。解除するときは新しいパスワードを決め直す。一部のサービスはパスキーに対応していない<br><a href="https://id.smt.docomo.ne.jp/src/utility/passwordless.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>2段階認証を「強」にする</td>
+<td>ログインのたびに、SMSやメールで届くセキュリティコードを求める</td>
+<td>dアカウントメニューの「2段階認証の設定 → 2段階認証設定を変更する」で「強(推奨)」を選ぶ<br><a href="https://id.smt.docomo.ne.jp/src/utility/twostepauth.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>連絡先メールアドレスと携帯番号の確認</td>
+<td>機種変更や復旧のときに、自分がログインできなくなるのを防ぐ</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>au(au ID・auメール)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>指紋・顔認証によるログイン</td>
+<td>登録したスマホの指紋・顔認証でしかログインできなくする</td>
+<td>au ID会員情報サイトの「指紋・顔認証によるログイン設定」で「この端末を登録する」<br><a href="https://www.au.com/au-id/auth-biometric/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>2段階認証</td>
+<td>ログインのときに、SMSやメールでの確認を求める</td>
+<td>au ID会員情報サイトの「ログインとセキュリティ → 2段階認証 → 2段階認証を設定する」<br><a href="https://www.au.com/support/faq/details/00/0000/000026/pg00002637/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>「パスワードによるログイン設定」は必要なときだけ有効にする</td>
+<td>パソコンなど別の端末で使うとき以外は、パスワードでのログインを止めておく</td>
+<td>有効のままだと、偽サイトにだまされやすくなる<br><a href="https://id.auone.jp/id/sp/security/pw_login.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>ソフトバンク(My SoftBank)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>My SoftBankに、パスワードを入力せずスマホの指紋・顔・画面ロックでログインする(2026/5/25開始)</td>
+<td>スマホから「パスキーを設定する」で登録。iPhoneはiOS 18以上、AndroidはAndroid 9以上<br><a href="https://www.softbank.jp/support/faq/view/196500">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>連絡先(SMS・メール)を最新にする</td>
+<td>確認のための番号が、確実に自分に届くようにする</td>
+<td>My SoftBankの「アカウント情報」</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>SNS / SNS</h2>
+<p>SNSを乗っ取られると、あなたになりすまして知人にお金や電子マネーを求める詐欺に使われます。</p>
+<h3>LINE</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>ログイン許可をオフにする</strong></td>
+<td>パソコンやタブレットなど、スマホ以外からのログインを止める。初期設定はオン</td>
+<td>「ホーム → 設定 → アカウント → ログイン許可」。パソコン版LINEを使う人はオフにできない<br><a href="https://guide.line.me/ja/features-and-columns/line-security.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>WEBログインの2要素認証</td>
+<td>パスワードに加えて、スマホのLINEで認証番号を入力しないとログインできないようにする</td>
+<td>「ホーム → 設定 → アカウント → WEBログインの2要素認証」<br><a href="https://guide.line.me/ja/account-and-settings/settings/two-factor-authenticationswitc.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>パスワードの見直し</td>
+<td>ほかのサービスと同じパスワードや、推測されやすいパスワードを変える</td>
+<td>「ホーム → 設定 → アカウント → パスワード」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>生体情報でのログイン</td>
+<td>パソコンやiPadのLINEに、スマホの顔・指紋認証でログインする</td>
+<td>ログイン許可をオンにする必要がある<br><a href="https://guide.line.me/ja/security/bio-auth.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p>SMSで届く認証番号は、友だちを名乗る相手にも教えないでください。<a href="https://guide.line.me/ja/cyber-bousai/">乗っ取り被害に遭わないために(LINE公式)</a></p>
+<h3>Instagram</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>二段階認証</td>
+<td>見慣れない端末からログインするとき、パスワードに加えてコードを求める</td>
+<td>「設定 → アカウントセンター → パスワードとセキュリティ → 二段階認証」。認証アプリが推奨されている<br><a href="https://help.instagram.com/566810106808145">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>認証アプリ</td>
+<td>コードをSMSではなくスマホのアプリで受け取る</td>
+<td>二段階認証の画面で「認証アプリ」を選ぶ<br><a href="https://help.instagram.com/1582474155197965">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>バックアップコードを控える</td>
+<td>スマホをなくしたときに、自分がログインできなくなるのを防ぐ</td>
+<td>二段階認証の画面</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>ログインリクエストの通知</td>
+<td>二段階認証を有効にすると、知らない端末からのログインが通知され、承認か拒否を選べる</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>X(旧Twitter)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>2要素認証(認証アプリ)</td>
+<td>パスワードに加えて、スマホの認証アプリに表示されるコードを求める</td>
+<td>「設定とプライバシー → セキュリティとアカウントアクセス → セキュリティ → 2要素認証」<br><a href="https://help.x.com/ja/managing-your-account/two-factor-authentication">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>パスキー</td>
+<td>パスワードの代わりに、指紋・顔・画面ロックでログインする</td>
+<td>「セキュリティ → 追加のパスワード保護」<br><a href="https://help.x.com/ja/managing-your-account/how-to-use-passkey">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>パスワードリセットの保護</td>
+<td>パスワードを変えるときに、メールアドレスや電話番号の確認を求める</td>
+<td>「セキュリティ」の画面</td>
+</tr>
+<tr>
+<td>○</td>
+<td>バックアップコードを控える</td>
+<td>認証アプリを入れたスマホをなくしたときに、自分がログインできなくなるのを防ぐ</td>
+<td>「セキュリティ」の画面</td>
+</tr>
+</tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>SMS(テキストメッセージ)での2要素認証は、有料プラン(Premium)の加入者だけが使えます。認証アプリとセキュリティキーは無料です。</li>
+</ul>
+<hr>
+<h2>未確認情報</h2>
 <p>公式情報で裏付けが取れていない項目です。利用する前に各社の窓口や設定画面で確認してください。</p>
 <ul>
 <li>SBI証券の取引制限(依頼制)は、利用者の報告に基づく情報で、公式の案内ページは確認できていません。</li>
@@ -1720,6 +2186,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li>マネックス証券の取引制限(依頼制)とみずほ銀行の各項目は、公式ページを直接取得できず、検索結果の要約に基づいています。</li>
 <li>三菱UFJ eスマート証券、野村證券、大和証券、SMBC日興証券に、利用者が取引や出金を自分で止められる機能があるかは未確認です。</li>
 <li>各銀行のパスキー対応とログイン通知の有無は未確認です。</li>
+<li>LINE、Instagram、au ID、個人用Microsoftアカウントのパスキー対応と設定手順は未確認です。ソフトバンクに、ログインのたびに追加の確認を求める設定(2段階認証)があるかも未確認です。</li>
+<li>Appleの「盗難デバイスの保護」の設定場所は、公式ページで手順を確認できていません。</li>
+<li>メール・SNSの公式の案内は、英語のページに移動する場合があります。</li>
+<li>2026年のリスト型攻撃の事例(ヨネックス、エン)は、各社の発表を紹介した解説記事に基づいており、各社の公式発表そのものは確認していません。</li>
 <li>みずほ銀行、PayPay銀行、ソニー銀行、auじぶん銀行、SBI新生銀行は、ブラウザからログインするたびに追加の認証(ワンタイムパスワードやアプリでの承認)を求める設定が見つかっていません。これらの銀行では、振込時の認証と振込限度額が守りの中心になります。</li>
 <li>大和証券は、電話によるログイン認証の利用者にもパスキーの設定を呼びかけており、電話認証がいつまで使えるかは未確認です。</li>
 <li>ソニー銀行、auじぶん銀行、GMOあおぞらネット銀行は、限度額を引き上げるときの追加認証や待ち時間が未確認です。野村證券のATM出金限度額は、引き上げも即時に反映されます。</li>
@@ -1729,7 +2199,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li>三菱UFJ銀行の振込限度額の設定範囲(0円〜1,000万円)は古い案内に基づいており、現在の下限は未確認です。</li>
 </ul>
 <hr>
-<h2>5. ことばの説明</h2>
+<h2>ことばの説明</h2>
 <table>
 <thead>
 <tr>
@@ -1791,7 +2261,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </tr>
 <tr>
 <td>ログイン通知</td>
-<td>誰かがログインするとメールが届く機能。身に覚えのない通知が来たら、すぐにその金融機関に問い合わせる</td>
+<td>誰かがログインするとメールが届く機能。身に覚えのない通知が来たら、すぐにその会社に問い合わせる</td>
 </tr>
 <tr>
 <td>デビット</td>
@@ -1802,12 +2272,21 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>自分の画面では設定できず、電話や問い合わせフォームで会社に頼んで設定してもらうもの</td>
 </tr>
 <tr>
+<td>リスト型攻撃</td>
+<td>よそで漏れたIDとパスワードの組み合わせを、別のサービスで次々に試してログインする手口</td>
+</tr>
+<tr>
+<td>パスワード管理アプリ・パスワードマネージャー</td>
+<td>サービスごとに違う長いパスワードを作り、覚えておいてくれる仕組み。iPhoneの「パスワード」アプリやGoogleパスワードマネージャーなど</td>
+</tr>
+<tr>
 <td>リカバリーコード</td>
 <td>スマホが使えなくなったときのために、あらかじめ控えておく予備の番号</td>
 </tr>
 </tbody></table>
 <hr>
 <h2>出典</h2>
+<p>メール・アカウント、SNSの出典は、各社の表にある「公式の案内」のリンクを見てください。</p>
 <p>証券(共通)</p>
 <ul>
 <li><a href="https://www.jsda.or.jp/houdou/2025/20251015fuseiaccess-guideline.pdf">日本証券業協会: 不正アクセス対応ガイドライン改正(2025/10/15)</a></li>
@@ -1895,11 +2374,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </ul>
 
 </article>
-  <footer>
-    個人が公開情報をもとにまとめたもので、各社の公式情報ではありません。設定の前に必ず各社の公式サイトで最新の内容を確認してください。被害に遭ったと思ったときや、不審な点があるときは、利用している金融機関に直接問い合わせてください。
-  </footer>
+  <p class="closing">被害に遭ったと思ったときや、不審な点があるときは、その会社の公式の窓口に直接問い合わせてください。</p>
 </main>
 </div>
+<dialog id="stale"><p></p><button type="button">閉じる</button></dialog>
+<footer id="notice">個人がAIを使ってまとめた情報です。設定の前に、必ず各社の公式サイトでも確認してください。</footer>
 <script>
 (function () {
   var content = document.getElementById('content');
@@ -1925,8 +2404,9 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 
   function purposeOf(name) {
     if (/通知先/.test(name)) return '目的: 本人確認を強くする';
+    if (/復旧|再設定用|バックアップ|連絡先|連絡方法/.test(name)) return '目的: 自分が締め出されないようにする';
     if (/通知|履歴|アラート|確認メール|お知らせメール|メールアドレス登録|登録電話番号の確認/.test(name)) return '目的: 不正にすぐ気付く';
-    if (/ログイン|ログアウト|パスキー|あんしんパス|セーフティパス|バンキングロック|2段階|IP制限|モバイルアクセス|サインオン|生体認証|パスコード/.test(name)) return '目的: 他人にログインさせない';
+    if (/ログイン|ログアウト|パスキー|2ファクタ|二段階|2要素|2段階|あんしんパス|セーフティパス|バンキングロック|2段階|IP制限|モバイルアクセス|サインオン|生体認証|パスコード/.test(name)) return '目的: 他人にログインさせない';
     if (/限度額|上限|停止|ロック|制限|出金|解約|変更|デビット|カード利用|フレキシブルペイ|一部利用/.test(name)) return '目的: お金を動かせなくする';
     return '目的: 本人確認を強くする';
   }
@@ -1973,8 +2453,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
         groups.push(cur);
         if (el.tagName === 'H2') {
           section = cur;
-          // 会社を並べる大見出し(証券会社、メガバンク、その他の銀行)
-          cur.kind = /証券|バンク|銀行/.test(el.textContent) ? el.textContent.replace(/^\d+\.\s*/, '') : null;
+          // 「区分 / グループ」の形の大見出し(例: 金融機関 / 証券会社)が、会社を並べる節
+          var m = el.textContent.match(/^(.+?) \/ (.+)$/);
+          cur.kind = m ? m[2] : null;
+          cur.cat = m ? m[1] : null;
         } else if (el.tagName === 'H3' && section && section.kind) {
           cur.section = section;
           cur.name = el.textContent;
@@ -1986,50 +2468,86 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     });
   }
 
+  // 最初の画面: 区分(金融機関・メール・SNS)を選ぶ → その区分の会社を選ぶ
+  var cats = [];
+  function tile(main, sub, big) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = big ? 'tile big' : 'tile';
+    var label = document.createElement('span');
+    label.textContent = main;
+    if (sub) {
+      var small = document.createElement('small');
+      small.textContent = sub;
+      label.appendChild(small);
+    }
+    b.appendChild(label);
+    return b;
+  }
+
   function buildPicker() {
     var first = content.querySelector('hr') || content.querySelector('h2');
     Array.prototype.forEach.call(content.children, function (el) {
       if (el.tagName === 'P' && (el.compareDocumentPosition(first) & Node.DOCUMENT_POSITION_FOLLOWING)) intro.push(el);
     });
-    var box = document.createElement('div');
-    box.id = 'picker';
-    box.innerHTML = '<p class="lead">使っている会社を選んでください</p>' +
-      '<p class="hint">その会社で入れておきたい設定を表示します。</p>';
     groups.forEach(function (section) {
       if (!section.kind) return;
-      var label = document.createElement('p');
-      label.className = 'label';
-      label.textContent = section.kind;
-      box.appendChild(label);
-      var row = document.createElement('div');
-      row.className = 'group';
-      companies.forEach(function (c) {
-        if (c.section !== section) return;
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'tile';
-        // 見出しの括弧書き(別名・旧名)は小さく添える
-        var m = c.name.match(/^(.*?)\((.*)\)$/);
-        var label = document.createElement('span');
-        label.textContent = m ? m[1] : c.name;
-        if (m) {
-          var sub = document.createElement('small');
-          sub.textContent = m[2];
-          label.appendChild(sub);
-        }
-        b.appendChild(label);
-        b.addEventListener('click', function () { location.hash = encodeURIComponent(c.name); });
-        row.appendChild(b);
+      var cat = cats.filter(function (c) { return c.name === section.cat; })[0];
+      if (!cat) {
+        cat = { name: section.cat, sections: [], lead: '' };
+        cats.push(cat);
+      }
+      cat.sections.push(section);
+      // 大見出しの直後の段落は、その区分の説明として使う
+      section.items.forEach(function (el) {
+        if (!cat.lead) cat.lead = el.textContent;
+        el.remove();
       });
-      box.appendChild(row);
+      section.items = [];
     });
-    content.insertBefore(box, first);
+
+    var box = document.createElement('div');
+    box.id = 'picker';
+    box.innerHTML = '<p class="lead">何を守りますか</p><div class="group cats"></div>';
+    cats.forEach(function (cat) {
+      var names = [];
+      companies.forEach(function (c) { if (c.section.cat === cat.name) names.push(c.name.replace(/\(.*\)$/, '')); });
+      var b = tile(cat.name, names.slice(0, 4).join('、') + (names.length > 4 ? ' など' + names.length + '社' : ''), true);
+      b.addEventListener('click', function () { location.hash = '@' + encodeURIComponent(cat.name); });
+      box.querySelector('.cats').appendChild(b);
+
+      var page = document.createElement('div');
+      page.className = 'catpage unsel';
+      page.innerHTML = '<p class="lead"></p><p class="hint"></p>';
+      page.querySelector('.lead').textContent = cat.name + ': 使っている会社を選んでください';
+      page.querySelector('.hint').textContent = cat.lead;
+      cat.sections.forEach(function (section) {
+        if (cat.sections.length > 1) {
+          var label = document.createElement('p');
+          label.className = 'label';
+          label.textContent = section.kind;
+          page.appendChild(label);
+        }
+        var row = document.createElement('div');
+        row.className = 'group';
+        companies.forEach(function (c) {
+          if (c.section !== section) return;
+          // 見出しの括弧書き(別名・旧名)は小さく添える
+          var m = c.name.match(/^(.*?)\((.*)\)$/);
+          var b2 = tile(m ? m[1] : c.name, m ? m[2] : '');
+          b2.addEventListener('click', function () { location.hash = encodeURIComponent(c.name); });
+          row.appendChild(b2);
+        });
+        page.appendChild(row);
+      });
+      cat.page = page;
+      content.insertBefore(page, first);
+    });
+    content.insertBefore(box, cats[0].page);
     var back = document.createElement('button');
     back.type = 'button';
     back.id = 'back';
-    back.textContent = '‹ 会社を選び直す';
-    back.addEventListener('click', function () { location.hash = ''; });
-    content.insertBefore(back, first);
+    content.insertBefore(back, box);
   }
 
   // 会社の表に出てくる専門用語だけを「ことばの説明」から拾って、表の下に出す
@@ -2096,6 +2614,105 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     content.insertBefore(box, table.nextSibling);
   }
 
+  // 「あとでやる」: 対策ごとに印を付け、一覧で見られるようにする(この端末のブラウザに保存)
+  var later = [];
+  try { later = JSON.parse(localStorage.getItem('later')) || []; } catch (e) {}
+  var measures = {};   // 「会社名|設定名」→ 行の情報
+  function saveLater() {
+    try { localStorage.setItem('later', JSON.stringify(later)); } catch (e) {}
+    document.querySelectorAll('.later[data-key]').forEach(function (b) {
+      var on = later.indexOf(b.getAttribute('data-key')) !== -1;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = on ? '✓ あとでやるに入れた(取り消す)' : 'あとでやる';
+    });
+    var n = later.filter(function (k) { return measures[k]; }).length;
+    document.querySelectorAll('.later-count').forEach(function (el) { el.textContent = n ? '(' + n + '件)' : ''; });
+    document.getElementById('todo-home').classList.toggle('unsel', n === 0 || !!location.hash.slice(1));
+  }
+  function toggleLater(key) {
+    var i = later.indexOf(key);
+    if (i === -1) later.push(key); else later.splice(i, 1);
+    saveLater();
+  }
+  function buildLater() {
+    companies.forEach(function (c) {
+      c.items.forEach(function (el) {
+        el.querySelectorAll('tbody tr').forEach(function (tr) {
+          var badge = tr.cells[0].querySelector('.badge');
+          // 「自動」は何もしなくてよい項目なので対象外
+          if (!badge || badge.classList.contains('auto') || tr.cells.length < 4) return;
+          var name = tr.cells[1].firstChild.textContent;
+          var key = c.name + '|' + name;
+          var link = tr.querySelector('a');
+          measures[key] = { company: c.name, name: name, text: tr.cells[2].textContent, href: link ? link.href : '' };
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'later';
+          b.setAttribute('data-key', key);
+          b.addEventListener('click', function () { toggleLater(key); });
+          tr.cells[3].appendChild(b);
+        });
+      });
+    });
+    var sec = document.createElement('section');
+    sec.id = 'todo';
+    sec.className = 'unsel';
+    content.appendChild(sec);
+    var home = document.createElement('p');
+    home.id = 'todo-home';
+    home.innerHTML = '<a href="#+todo">あとでやること<span class="later-count"></span>を見る</a>';
+    content.insertBefore(home, document.getElementById('picker').nextSibling);
+  }
+  function renderTodo() {
+    var sec = document.getElementById('todo');
+    sec.innerHTML = '<h2>あとでやること</h2>';
+    var keys = later.filter(function (k) { return measures[k]; });
+    if (!keys.length) {
+      var p = document.createElement('p');
+      p.className = 'empty';
+      p.textContent = 'まだありません。各社のページで、対策の「あとでやる」を押すとここに並びます。この一覧は、いま使っている端末のブラウザにだけ保存されます。';
+      sec.appendChild(p);
+      return;
+    }
+    var lastCo = '';
+    companies.forEach(function (c) {
+      keys.forEach(function (k) {
+        var m = measures[k];
+        if (m.company !== c.name) return;
+        if (lastCo !== c.name) {
+          lastCo = c.name;
+          var co = document.createElement('p');
+          co.className = 'co';
+          var a = document.createElement('a');
+          a.href = '#' + encodeURIComponent(c.name);
+          a.textContent = c.name;
+          co.appendChild(a);
+          sec.appendChild(co);
+        }
+        var item = document.createElement('div');
+        item.className = 'item';
+        item.innerHTML = '<div class="n"></div><p class="d"></p>';
+        item.querySelector('.n').textContent = m.name;
+        item.querySelector('.d').textContent = m.text + ' ';
+        if (m.href) {
+          var link = document.createElement('a');
+          link.href = m.href;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = '公式の案内';
+          item.querySelector('.d').appendChild(link);
+        }
+        var done = document.createElement('button');
+        done.type = 'button';
+        done.className = 'later';
+        done.textContent = 'できた(一覧から外す)';
+        done.addEventListener('click', function () { toggleLater(k); renderTodo(); });
+        item.appendChild(done);
+        sec.appendChild(item);
+      });
+    });
+  }
+
   // 会社以外の節(共通事項、手口の説明、出典など)は1ページずつにまとめ、サイドバーから開く
   var docs = [];
   function buildDocs() {
@@ -2121,7 +2738,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
       nav.appendChild(a);
       return a;
     }
-    add('会社を選ぶ', '#');
+    add('最初の画面', '#');
+    var todoLink = add('あとでやること', '#+todo');
+    todoLink.id = 'todo-link';
+    todoLink.innerHTML = 'あとでやること<span class="later-count count"></span>';
     var sep = document.createElement('div');
     sep.className = 'sep';
     nav.appendChild(sep);
@@ -2137,13 +2757,14 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     setMenu(!document.getElementById('side').classList.contains('open'));
   });
 
-  // URL の # で、会社の節(#会社名)か読みもの(#~題名)のどちらか1つを表示する。
-  // ブラウザの「戻る」で前の画面に戻れる
+  // URL の # で表示を切り替える。なし=区分を選ぶ画面、#@区分=会社を選ぶ画面、
+  // #会社名=その会社の対策、#~題名=読みもの。ブラウザの「戻る」で前の画面に戻れる
   function apply() {
     var name = '';
     try { name = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
     var current = null;
     var doc = null;
+    var cat = null;
     companies.forEach(function (c) {
       var on = c.name === name;
       if (on) current = c;
@@ -2156,24 +2777,57 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
       d.el.classList.toggle('unsel', !on);
       if (on) d.link.setAttribute('aria-current', 'page'); else d.link.removeAttribute('aria-current');
     });
-    var home = document.querySelector('#side nav a');
-    if (!current && !doc) home.setAttribute('aria-current', 'page'); else home.removeAttribute('aria-current');
+    cats.forEach(function (c) {
+      var on = '@' + c.name === name;
+      if (on) cat = c;
+      c.page.classList.toggle('unsel', !on);
+    });
     groups.forEach(function (g) {
       if (g.kind) g.head.classList.add('unsel');
     });
-    var top = !current && !doc;
+    var todo = name === '+todo';
+    document.getElementById('todo').classList.toggle('unsel', !todo);
+    if (todo) renderTodo();
+    var todoLink = document.getElementById('todo-link');
+    if (todo) todoLink.setAttribute('aria-current', 'page'); else todoLink.removeAttribute('aria-current');
+    var top = !current && !doc && !cat && !todo;
+    var home = document.querySelector('#side nav a');
+    if (top) home.setAttribute('aria-current', 'page'); else home.removeAttribute('aria-current');
     document.getElementById('picker').classList.toggle('unsel', !top);
-    document.getElementById('back').classList.toggle('unsel', !current);
     intro.forEach(function (el) { el.classList.toggle('unsel', !top); });
+    // 戻るボタン: 会社の画面からはその区分へ、区分の画面からは最初の画面へ
+    var back = document.getElementById('back');
+    back.classList.toggle('unsel', !current && !cat);
+    if (current) {
+      back.textContent = '‹ ' + current.section.cat + 'の一覧に戻る';
+      back.onclick = function () { location.hash = '@' + encodeURIComponent(current.section.cat); };
+    } else if (cat) {
+      back.textContent = '‹ 最初の画面に戻る';
+      back.onclick = function () { location.hash = ''; };
+    }
     showWords(current);
+    saveLater();
     if (!top) window.scrollTo(0, 0);
   }
 
   window.addEventListener('hashchange', apply);
 
+  // 作成から1か月以上たっていたら、情報が古いことを開いたときに知らせる
+  (function () {
+    var built = new Date(document.body.getAttribute('data-built'));
+    var days = Math.floor((Date.now() - built.getTime()) / 86400000);
+    var dlg = document.getElementById('stale');
+    if (isNaN(days) || days < 31 || !dlg.showModal) return;
+    dlg.querySelector('p').textContent = 'このページは ' + built.getFullYear() + '年' + (built.getMonth() + 1) + '月' + built.getDate() +
+      '日 時点の情報です。1か月以上前の情報を含みます。設定の前に、各社の公式サイトで最新の内容を確認してください。';
+    dlg.querySelector('button').addEventListener('click', function () { dlg.close(); });
+    dlg.showModal();
+  })();
+
   decorate();
   buildPicker();
   buildWords();
+  buildLater();
   buildDocs();
   apply();
 })();
