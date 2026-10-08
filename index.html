@@ -172,6 +172,29 @@ details.more {
   margin: 12px 0;
 }
 details.more summary { cursor: pointer; font-weight: 600; }
+.purpose {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--muted);
+  white-space: nowrap;
+}
+#how { color: var(--muted); font-size: 0.92rem; margin: 4px 0 12px; }
+#words {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 12px 0 20px;
+}
+#words summary { cursor: pointer; font-weight: 600; }
+#words dt { font-weight: 700; margin-top: 10px; }
+#words dd { margin: 0; }
+td a { white-space: nowrap; font-weight: 600; }
 .more-lead { color: var(--muted); font-size: 0.88rem; margin: 48px 0 8px; }
 .table-wrap {
   overflow-x: auto;
@@ -296,12 +319,89 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>全停止・取引停止・出金制限・商品指定、出金先変更のロック</td>
 </tr>
 </tbody></table>
+<p>限度額の引き下げが効く理由と、引き上げにハードルがある銀行:</p>
+<p>乗っ取られたら攻撃者に限度額を上げられてしまうのでは、と思うかもしれません。それでも引き下げに意味があるのは、<strong>引き上げのほうにだけ追加のハードルがある</strong>銀行が多いからです。パスワードを盗まれただけなら、そこで止まります。ただしワンタイムパスワードまで偽サイトに入力すると突破されるので、アプリ方式の認証と、限度額変更の通知メールをあわせて使ってください。</p>
+<table>
+<thead>
+<tr>
+<th>銀行</th>
+<th>引き上げに必要なもの</th>
+<th>反映までの時間</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>三菱UFJ銀行</td>
+<td>ワンタイムパスワード。電話(自動音声)の本人確認で登録した場合は、限度額にかかわらず振込は1日10万円まで</td>
+<td></td>
+</tr>
+<tr>
+<td>三井住友銀行</td>
+<td>ワンタイムパスワード(引き下げは不要)</td>
+<td></td>
+</tr>
+<tr>
+<td>みずほ銀行</td>
+<td>ご利用カード(アプリ版)かワンタイムパスワード。紙のご利用カードでは不可</td>
+<td>銀行の判断で時間がかかることがある</td>
+</tr>
+<tr>
+<td>ゆうちょ銀行</td>
+<td>認証アプリ・通帳アプリ・トークンのいずれかと、書類による本人確認。オンラインは50万円まで</td>
+<td>審査に2日程度</td>
+</tr>
+<tr>
+<td>りそな銀行</td>
+<td>キャッシュカードの暗証番号や、届け出た電話番号による認証</td>
+<td></td>
+</tr>
+<tr>
+<td>楽天銀行</td>
+<td></td>
+<td>1,000万円以上は翌営業日</td>
+</tr>
+<tr>
+<td>住信SBIネット銀行</td>
+<td></td>
+<td>100万円超は翌日</td>
+</tr>
+<tr>
+<td>PayPay銀行</td>
+<td>トークンのワンタイムパスワード</td>
+<td>100万円以上は24時間後</td>
+</tr>
+<tr>
+<td>SBI新生銀行</td>
+<td>200万円を超えて振り込むにはスマホ認証(FIDO)の登録</td>
+<td></td>
+</tr>
+<tr>
+<td>イオン銀行</td>
+<td></td>
+<td>翌々日</td>
+</tr>
+<tr>
+<td>セブン銀行</td>
+<td>100万円を超えるにはアプリ認証の登録。ATMでは引き下げのみ</td>
+<td></td>
+</tr>
+<tr>
+<td>みんなの銀行</td>
+<td>登録したスマホ1台でしか変更できない</td>
+<td></td>
+</tr>
+<tr>
+<td>SMBC信託銀行</td>
+<td>国内ATMの限度額は電話か店頭で申込み</td>
+<td>3〜5営業日</td>
+</tr>
+</tbody></table>
 <p>押さえておきたい点:</p>
 <ul>
 <li><strong>パスキーを登録しただけでは不十分</strong>です。パスワードでのログインが残っていれば、攻撃者はそちらを使います。「パスワード無効化」「パスキーのみ」の設定がある会社では、そこまで行ってください。</li>
 <li>パスキーのみにすると、端末の故障・紛失時に入れなくなります。<strong>複数端末に登録</strong>し、復旧手段(電話窓口、本人確認書類)を先に確認しておいてください。</li>
 <li>パスキーの保管先(Appleアカウント、Googleアカウント、パスワードマネージャー)が次の弱点になります。そちらのパスワードを長くし、二段階認証を有効にしてください。</li>
 <li>出金や出金先変更の認証コードが<strong>メール</strong>に届く会社では、メールアカウントの防御が口座の防御と同じ重みを持ちます。</li>
+<li><strong>生体認証やパスキーの対策が使えないとき</strong>: 端末が対応していない、スマホを持っていない、といった理由で使えない場合があります。多くの会社は、アプリや電話によるワンタイムパスワード、カード型のパスワード生成機(無料〜1,650円程度)を代わりに用意しています。各社の「使えない場合の代替策と費用」を確認してください。</li>
 <li>登録の電話番号とメールアドレスが古いと、通知も復旧も機能しません。最初に確認してください。</li>
 <li>銀行は証券ほどパスキー化が進んでいないため、現状の主な自衛手段は「<strong>振込限度額を下げる</strong>」「<strong>使わない機能を止める</strong>」「<strong>認証をアプリ方式にする</strong>」の3つです。限度額の引き下げは多くの銀行で即時、引き上げは時間がかかるため、普段は低くしておくのが有効です。</li>
 </ul>
@@ -321,25 +421,25 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>2026/6/30から原則必須化。最大10個まで登録可</td>
-<td>ログイン後「セキュリティ設定」。取引パスワードとメールの認証コードが必要</td>
+<td>ログイン後「セキュリティ設定」。取引パスワードとメールの認証コードが必要<br><a href="https://faq.sbisec.co.jp/answer/6a56cc6419fb00c09ce97472/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>ログインパスワード無効設定</strong></td>
 <td>ユーザーネーム・パスワードでのログインを止め、パスキーのみにする。対象はメインサイト(PC・スマホ)、スマホ専用サイト、SBI証券Plus</td>
-<td>パスキー登録が前提。「My設定 → 各種サービス」で、設定を「設定しない(ログインパスワード利用可)」から「設定する(ログインパスワード利用不可)」に変更する。2026/7/10夜以降は、有効にするとアプリ・ツールのログイン制限も自動で適用される</td>
+<td>パスキー登録が前提。「My設定 → 各種サービス」で、設定を「設定しない(ログインパスワード利用可)」から「設定する(ログインパスワード利用不可)」に変更する。2026/7/10夜以降は、有効にするとアプリ・ツールのログイン制限も自動で適用される<br><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>アプリ・ツールのログイン制限設定</td>
 <td>使わないアプリ・ツールからのログインをツール単位で止める</td>
-<td>WEBサイトから設定。使っているアプリがあると、パスワード無効化がエラーになる場合がある模様</td>
+<td>WEBサイトから設定。使っているアプリがあると、パスワード無効化がエラーになる場合がある模様<br><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ログイン一時利用停止/解除</td>
 <td>全チャネルのログインを一時的に止める。取引しない夜間などに使う</td>
-<td>次回ログイン時に解除。法人口座は不可</td>
+<td>次回ログイン時に解除。法人口座は不可<br><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -351,27 +451,32 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>電話番号認証</td>
 <td>パスワードログインを残す場合の追加認証。登録電話番号から発信して認証する</td>
-<td>パスキーのみにできない人向けの次善策</td>
+<td>パスキーのみにできない人向けの次善策<br><a href="https://faq.sbisec.co.jp/answer/6858995032e113ce5a332149/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ログイン通知メール / ログイン履歴</td>
 <td>不審なログインに気付く</td>
-<td>履歴は日時とチャネルを確認できる</td>
+<td>履歴は日時とチャネルを確認できる<br><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
 <td>出金時の二要素認証</td>
 <td>出金指示のときにメールで認証コードが届く</td>
-<td></td>
+<td><a href="https://search.sbisec.co.jp/v2/popwin/guide/tool/banking_browser/03_domestic/withdrawal.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
 <td>出金先口座の変更</td>
 <td>取引パスワードとメールの認証コードが必要。出金先は1口座のみ登録可</td>
-<td></td>
+<td><a href="https://faq.sbisec.co.jp/answer/5ea9391d1149dd0011cbe8e7/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>パスキーを使えない場合</strong>: パスワードでのログインに、電話番号認証(登録電話番号から指定の番号に発信する)を組み合わせます。</li>
+</ul>
+<p>この会社の公式の案内: <a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">SBI証券のセキュリティ・設定ページ</a></p>
 <h3>楽天証券</h3>
 <table>
 <thead>
@@ -386,19 +491,19 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証(FIDO2)</td>
 <td>2025/10/26導入。2026年6月以降、順次必須化(時期は個別に案内)</td>
-<td>2026/5/31からスマホなしでも作成可。使えない場合はメールの絵文字認証が必須</td>
+<td>2026/5/31からスマホなしでも作成可。使えない場合はメールの絵文字認証が必須<br><a href="https://www.rakuten-sec.co.jp/smartphone/security/passkey/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>取引やサービスの一時的な利用停止</strong></td>
 <td>下の5種類から選んで止める</td>
-<td>PC:「セキュリティ設定 → 取引やサービスの一時的な利用停止」。スマホ:「マイメニュー → セキュリティ設定 → 取引の一時的な利用停止」タブ。種類を選んで「認証へ進む」。設定・解除とも<strong>登録電話番号への音声ワンタイムキー</strong>で本人確認</td>
+<td>PC:「セキュリティ設定 → 取引やサービスの一時的な利用停止」。スマホ:「マイメニュー → セキュリティ設定 → 取引の一時的な利用停止」タブ。種類を選んで「認証へ進む」。設定・解除とも<strong>登録電話番号への音声ワンタイムキー</strong>で本人確認<br><a href="https://www.rakuten-sec.co.jp/web/security/account_lock/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>出金先指定口座の変更停止</td>
 <td>出金先の変更機能をロックする</td>
-<td>カスタマーサービスセンターに電話して依頼</td>
+<td>カスタマーサービスセンターに電話して依頼<br><a href="https://www.rakuten-sec.co.jp/web/security/measures/information.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -419,6 +524,12 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>出金先は本人名義の登録口座のみ</td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホがない場合</strong>: 2026/5/31から、パソコンだけでもパスキーを作成できます。</li>
+<li><strong>パスキーを使えない場合</strong>: メールに届く絵文字によるログイン追加認証を使います。費用はかかりません。</li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.rakuten-sec.co.jp/web/security/">楽天証券のセキュリティ・設定ページ</a></p>
 <p>利用停止の5種類(設定できるのは同時に1種類だけ):</p>
 <table>
 <thead>
@@ -482,27 +593,28 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>2026/6/30にログイン時のパスキー認証を必須化。公式FAQでは、登録後は従来のID・パスワードでログインできなくなる</td>
-<td>ログイン後「パスキー登録状況」。複数登録可。2個目以降の追加は既存パスキーでのログインが必要</td>
+<td>ログイン後「パスキー登録状況」。複数登録可。2個目以降の追加は既存パスキーでのログインが必要<br><a href="https://faq.monex.co.jp/faq/show/24137?site_domain=default">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ワンタイムパスワード</td>
 <td>登録情報の照会・変更と出金指示で使う。認証アプリとSMSがあり、認証アプリが推奨</td>
-<td>ログイン時のワンタイムパスワードは廃止予定</td>
+<td>ログイン時のワンタイムパスワードは廃止予定<br><a href="https://info.monex.co.jp/security/authentication/multi-factor-authentication.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>取引・サービスの一時的な利用停止</strong></td>
 <td>自分で即時に止められる。出金と株・投信・債券などの取引が止まり、ログイン、残高確認、入金、<strong>設定済みの投信積立は続く</strong></td>
-<td>「MY PAGE → 登録情報 → 取引・サービスの一時的な利用停止」で「登録」し、取引パスワードを入力。メールアドレス1の登録が必要</td>
+<td>「MY PAGE → 登録情報 → 取引・サービスの一時的な利用停止」で「登録」し、取引パスワードを入力。メールアドレス1の登録が必要<br><a href="https://faq.monex.co.jp/faq/show/23253?site_domain=default">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>取引制限(依頼制)</td>
 <td>売買、即時入金、出金・即時出金を個別に制限してもらう</td>
-<td>問い合わせフォームまたはコールセンターに依頼。設定完了まで2営業日程度かかる場合あり。解除は書類郵送か電話(書類は1〜2週間程度)</td>
+<td>問い合わせフォームまたはコールセンターに依頼。設定完了まで2営業日程度かかる場合あり。解除は書類郵送か電話(書類は1〜2週間程度)<br><a href="https://faq.monex.co.jp/faq/show/22656?site_domain=default">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://info.monex.co.jp/security/index.html">マネックス証券のセキュリティ・設定ページ</a></p>
 <p>一時的な利用停止の注意点:</p>
 <ul>
 <li><strong>解除には取引パスワードの再設定が必要</strong>で、すぐには戻せません。方法は、オンライン(パスキー登録とマイナンバーカードでの本人確認)、郵送、電話の3つです。</li>
@@ -523,39 +635,40 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー登録</td>
 <td>2026年6月から登録必須</td>
-<td>「口座管理 → セキュリティ設定 → パスキー設定」</td>
+<td>「口座管理 → セキュリティ設定 → パスキー設定」<br><a href="https://support.matsui.co.jp/faq/show/54546?site_domain=faq">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>「パスキーでのみログイン」</strong></td>
 <td>ID・パスワードでのログインを全チャネルで止める(2026/7/25から)</td>
-<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → ログイン」。使う全端末でパスキーログインできることを先に確認。一部の資産管理アプリが使えなくなる可能性あり</td>
+<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → ログイン」。使う全端末でパスキーログインできることを先に確認。一部の資産管理アプリが使えなくなる可能性あり<br><a href="https://www.matsui.co.jp/news/2026/detail_0721_01.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>出金依頼時のSMS認証・電話番号認証</strong></td>
 <td>出金時に取引暗証番号に加えて認証番号を求める。<strong>任意設定なので自分で有効にする</strong></td>
-<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → 出金依頼」</td>
+<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → 出金依頼」<br><a href="https://support.matsui.co.jp/faq/show/35270?site_domain=faq">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>出金先口座の変更ロック</td>
 <td>出金先の登録・変更を止める</td>
-<td>顧客サポートに連絡して設定。解除は書類提出が必要。ロック状況はサイト上で確認できない</td>
+<td>顧客サポートに連絡して設定。解除は書類提出が必要。ロック状況はサイト上で確認できない<br><a href="https://support.matsui.co.jp/faq/show/999?site_domain=faq">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>口座・取引の利用制限(依頼制)</td>
 <td>ログインを含む全停止、取引のみ停止、出金のみ制限から選べる。売却のみ・買付のみの制限や、商品を指定した制限も可能</td>
-<td>顧客サポート(0120-953-006、平日8:30〜17:00)に電話。設定も解除も電話のみで、サイト上では操作できない</td>
+<td>顧客サポート(0120-953-006、平日8:30〜17:00)に電話。設定も解除も電話のみで、サイト上では操作できない<br><a href="https://support.matsui.co.jp/faq/show/52194?site_domain=faq">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
 <td>ログイン通知メール</td>
 <td>必須で、オフにできない</td>
-<td>通知先アドレスは変更可</td>
+<td>通知先アドレスは変更可<br><a href="https://support.matsui.co.jp/faq/show/35312?site_domain=help">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.matsui.co.jp/support/security/measures/">松井証券のセキュリティ・設定ページ</a></p>
 <h3>三菱UFJ eスマート証券(旧auカブコム証券)</h3>
 <table>
 <thead>
@@ -570,25 +683,25 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー登録</td>
 <td>2026/4/26導入。ログイン時の必須化は2026年10月末を目標に準備中</td>
-<td>PC:「設定・申込 → お客様基本情報 → パスキー管理」。スマホ: 右上メニュー「設定・照会 → パスキー管理」。PCとスマホ両方に登録するならスマホが先</td>
+<td>PC:「設定・申込 → お客様基本情報 → パスキー管理」。スマホ: 右上メニュー「設定・照会 → パスキー管理」。PCとスマホ両方に登録するならスマホが先<br><a href="https://kabu.com/support/security/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>「ログイン・重要なお手続きでのパスワード認証」を無効</strong></td>
 <td>ログインだけでなく<strong>出金などの認証もパスキーのみ</strong>になる</td>
-<td>パスキー管理画面</td>
+<td>パスキー管理画面<br><a href="https://kabu.com/support/security/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>認証メールアドレスの登録</td>
 <td>ログイン通知と出金時の認証コードの受け取りに必要</td>
-<td></td>
+<td><a href="https://kabu.com/support/procedure/auth_address.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>認証アプリ / 電話認証</td>
 <td>パスキーを使えない場合の二要素認証。メールの認証コードは電話認証へ移行予定</td>
-<td>電話番号は「連絡・通知先設定」で登録</td>
+<td>電話番号は「連絡・通知先設定」で登録<br><a href="https://kabu.com/support/procedure/contact.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -615,6 +728,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>パスキーを使えない場合</strong>: 電話認証、認証アプリ、リカバリーコードによる二要素認証でログインできます。問い合わせ先は「パスキー・二要素認証案内ダイヤル」(0120-977-930)です。</li>
+</ul>
+<p>この会社の公式の案内: <a href="https://kabu.com/support/security/default.html">三菱UFJ eスマート証券のセキュリティ・設定ページ</a></p>
 <p>不正アクセスが疑われる場合は、サポートセンターへの申告でログイン・取引・出金を止めてもらえます(再開は本人からの電話)。</p>
 <h3>野村證券</h3>
 <table>
@@ -630,7 +748,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>オンラインで取引・出金するためのログインに必須(6/27から)</td>
-<td>NOMURAアプリ、またはオンラインサービスで登録</td>
+<td>NOMURAアプリ、またはオンラインサービスで登録<br><a href="https://www.nomura.co.jp/introduc/news/2026/20260513_1.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -642,13 +760,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>ワンタイムパスワード</td>
 <td>追加の認証要素</td>
-<td></td>
+<td><a href="https://www.nomura.co.jp/solution/financial-assets/online/feature/otp.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ATM出金限度額の引き下げ</td>
 <td>野村カードでのATM出金の上限を、1日0円〜50万円の範囲で下げる</td>
-<td>オンラインサービスで変更でき、即時に反映</td>
+<td>オンラインサービスで変更でき、即時に反映<br><a href="https://www.nomura.co.jp/onlineservice/help/account/customer/limit_change.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -660,9 +778,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>自動</td>
 <td>出金先口座の変更は書類のみ</td>
 <td>オンラインでは出金先を変更できない。届出印を押した書類の郵送が必要</td>
-<td>登録状況は「お客様情報照会」で確認できる</td>
+<td>登録状況は「お客様情報照会」で確認できる<br><a href="https://faq.nomura.co.jp/faq_detail.html?id=73">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.nomura.co.jp/lp/security/">野村證券のセキュリティ・設定ページ</a></p>
 <p>2026/6/27から、ログインだけでなく取引・出金時にもパスキー認証が必須です。</p>
 <h3>大和証券</h3>
 <table>
@@ -678,7 +797,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>D-Portアプリまたはブラウザで利用</td>
-<td>D-Portで連携済みならPCログインも追加認証なし</td>
+<td>D-Portで連携済みならPCログインも追加認証なし<br><a href="https://www.daiwa.jp/onlinetrade/tool/d_port/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
@@ -690,19 +809,19 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>ワンタイムパスワード通知先の事前設定</td>
 <td>出金、取引パスワードのリセット、暗証番号変更で使う</td>
-<td></td>
+<td><a href="https://www.daiwa.jp/doc/221017.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>電話によるログイン認証</td>
 <td>代替の認証手段。申込みが必要</td>
-<td></td>
+<td><a href="https://www.daiwa.jp/doc/260323.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
 <td>出金先口座の変更はオンライン不可</td>
 <td>出金先の変更は電話か来店でのみ受け付け。登録は本人名義の口座のみ</td>
-<td>登録状況は「お手続き・サポート → 口座登録状況」で確認できる</td>
+<td>登録状況は「お手続き・サポート → 口座登録状況」で確認できる<br><a href="https://www.daiwa.jp/contact/procedures/account.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
@@ -711,6 +830,11 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>パスキーや生体認証に対応した端末がない場合</strong>: 「電話によるログイン認証」を申し込むとログインできます。通話料は利用者の負担です。<a href="https://daiwa.dga.jp/faq_detail.html?id=1611">公式の案内</a></li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.daiwa.jp/onlinetrade/security/">大和証券のセキュリティ・設定ページ</a></p>
 <p>2026/10/5に、問い合わせ管理の委託先への不正アクセスで約11万人分の氏名・メールアドレス・口座番号などが漏えいした可能性があると報じられています。大和証券を名乗るメールや電話には特に注意してください。</p>
 <h3>SMBC日興証券</h3>
 <table>
@@ -726,7 +850,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>パスキー認証</td>
 <td>2026年4月下旬から順次必須化。<strong>パスキー以外でログインすると取引と入出金ができない</strong></td>
-<td>2026/8/21から、設定時にマイナンバーカードか運転免許証でのオンライン本人確認が必要</td>
+<td>2026/8/21から、設定時にマイナンバーカードか運転免許証でのオンライン本人確認が必要<br><a href="https://www.smbcnikko.co.jp/security/passkey.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -738,18 +862,19 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>取引パスワードの設定</td>
 <td>注文や出金のときに求められるパスワード</td>
-<td>「各種お手続き → 口座管理 → パスワード・セキュリティ設定 → 取引パスワード」</td>
+<td>「各種お手続き → 口座管理 → パスワード・セキュリティ設定 → 取引パスワード」<br><a href="https://www.smbcnikko.co.jp/security/attention/03.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
 <td>出金時のワンタイムパスワード / 取引パスワード</td>
 <td></td>
-<td></td>
+<td><a href="https://www.smbcnikko.co.jp/security/attention/03.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.smbcnikko.co.jp/security/">SMBC日興証券のセキュリティ・設定ページ</a></p>
 <p>不正が疑われるときは、ログインパスワードを変更し、日興コンタクトセンター(0120-285-250)に連絡します。</p>
 <hr>
-<h2>2. 銀行</h2>
+<h2>2. メガバンク</h2>
 <h3>三菱UFJ銀行</h3>
 <table>
 <thead>
@@ -762,35 +887,48 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </thead>
 <tbody><tr>
 <td>◎</td>
+<td><strong>MUFGあんしんパス</strong></td>
+<td>登録すると、アプリでもPCでも、登録スマホの生体認証と承認がないとログインできない。パスワードを盗まれても入られない</td>
+<td>アプリ「マイページ → MUFGあんしんパス・ワンタイムパスワード」。運転免許証かマイナンバーカードが必要。登録はスマホ1台のみで、そのスマホがないとログインできない<br><a href="https://direct.bk.mufg.jp/secure/ansnps/index.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
 <td>振込限度額の引き下げ</td>
-<td>普段は必要最小限にしておく</td>
-<td>ログイン後「ご利用限度額変更」</td>
+<td>普段は必要最小限にしておく(1日0円〜1,000万円)</td>
+<td>ログイン後「ご利用限度額変更」<br><a href="https://faq01.bk.mufg.jp/faq/show/110?site_domain=default">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ワンタイムパスワード(アプリ)</td>
 <td>振込や限度額変更の認証に使う</td>
-<td>電話(自動音声)の本人確認で登録した場合、振込上限は10万円。免許証・マイナンバーカード・店頭なら1日最大1,000万円</td>
+<td>電話(自動音声)の本人確認で登録した場合、振込上限は10万円。免許証・マイナンバーカード・店頭なら1日最大1,000万円<br><a href="https://direct.bk.mufg.jp/secure/otp/index.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>アプリの生体認証</td>
 <td>アプリのログインを生体認証にする</td>
-<td>アプリの「マイページ」から登録。機種変更時は再登録が必要</td>
+<td>アプリの「マイページ」から登録。機種変更時は再登録が必要<br><a href="https://direct.bk.mufg.jp/btm/banking/sp_appli/seitai.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>Eメール通知</td>
 <td>振込、住所変更、限度額変更、パスワード変更などの手続きがあるとメールが届く</td>
-<td>メールアドレスの登録・変更はインターネットバンキングで行う(ワンタイムパスワードが必要)</td>
+<td>メールアドレスの登録・変更はインターネットバンキングで行う(ワンタイムパスワードが必要)<br><a href="https://www.bk.mufg.jp/ippan/email/index.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>キャッシュカード・通帳の利用停止</td>
 <td>紛失・盗難時にアプリから止められる</td>
-<td>アプリ「マイページ → カード・通帳・印鑑 → 紛失・盗難による通帳/カードの利用停止・再発行」</td>
+<td>アプリ「マイページ → カード・通帳・印鑑 → 紛失・盗難による通帳/カードの利用停止・再発行」<br><a href="https://faq01.bk.mufg.jp/faq/show/6995?site_domain=default">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>MUFGあんしんパスは、国内在住で、生体認証に対応したスマホと、運転免許証かマイナンバーカードが必要です。海外では使えないため、出国前に登録解除が必要です。</li>
+<li><strong>あんしんパスを使えない場合</strong>: アプリのワンタイムパスワードを使います。無料です。<a href="https://direct.bk.mufg.jp/secure/otp/index.html">公式の案内</a></li>
+<li><strong>スマホがない場合</strong>: カード型の「ワンタイムパスワードカード」をインターネットバンキングから申し込みます。利用料は無料、紛失・盗難による再発行は1,100円、故障や電池切れの再発行は無料です。届くまで1週間〜10日ほどです。<a href="https://direct.bk.mufg.jp/tesuuryo/index.html">手数料一覧</a></li>
+</ul>
+<p>この会社の公式の案内: <a href="https://direct.bk.mufg.jp/secure/index.html">三菱UFJ銀行のセキュリティ・設定ページ</a></p>
 <h3>三井住友銀行(SMBC)</h3>
 <table>
 <thead>
@@ -805,27 +943,35 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td><strong>SMBCセーフティパス</strong></td>
 <td>登録すると、アプリでもPCでも、登録スマホの生体認証がないとログインできない</td>
-<td>登録はスマホ1台まで。PCからは画面の二次元コードを登録スマホで読み取って承認</td>
+<td>登録はスマホ1台まで。PCからは画面の二次元コードを登録スマホで読み取って承認<br><a href="https://www.smbc.co.jp/kojin/direct/securi/safetypass/login/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td>振込上限金額の引き下げ</td>
 <td>普段は必要最小限にし、必要なときだけ引き上げる</td>
-<td>アプリ「振込 → 振込上限金額の変更など」。引き下げはワンタイムパスワード不要、引き上げは必要</td>
+<td>アプリ「振込 → 振込上限金額の変更など」。引き下げはワンタイムパスワード不要、引き上げは必要<br><a href="https://www.smbc.co.jp/kojin/otetsuduki/ib/hurikomi/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>Oliveフレキシブルペイの利用制限</td>
 <td>カード全体、または支払いモードなどの項目ごとに利用を止められる</td>
-<td>三井住友銀行アプリのフレキシブルペイ画面で、制限したい項目をONにする</td>
+<td>三井住友銀行アプリのフレキシブルペイ画面で、制限したい項目をONにする<br><a href="https://www.smbc.co.jp/smartphone/service/directapp4/help/fpay05.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>デビットモードの利用限度額</td>
 <td>海外ショッピング、海外ATMなどの上限を0円から設定できる</td>
-<td>アプリのデビットモード「利用制限」</td>
+<td>アプリのデビットモード「利用制限」<br><a href="https://www.smbc.co.jp/kojin/debit/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>SMBCセーフティパスは、生体認証に対応したスマホが必要です。一部のAndroid機種・OSでは登録できません。</li>
+<li><strong>スマホはあるが登録できない場合</strong>: 三井住友銀行アプリのワンタイムパスワードを使います。無料です。<a href="https://www.smbc.co.jp/kojin/direct/securi/passca/">公式の案内</a></li>
+<li><strong>スマホがない場合</strong>: カード型の「ワンタイムパスワードカード」を郵送か窓口で申し込みます。利用料は無料、紛失による再発行は1,100円、電池切れの再発行は無料です。郵送は投函から1〜2週間かかります。<a href="https://www.smbc.co.jp/kojin/otetsuduki/ib/riyoutouroku/">公式の案内</a></li>
+<li>セーフティパス、アプリのワンタイムパスワード、ワンタイムパスワードカードは併用できず、どれか1つを選びます。</li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.smbc.co.jp/kojin/direct/securi/safetypass/login/">三井住友銀行のセキュリティ・設定ページ</a></p>
 <h3>みずほ銀行</h3>
 <table>
 <thead>
@@ -840,13 +986,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>振込限度額の引き下げ</td>
 <td>0〜500万円の範囲で設定でき、引き下げはすぐに反映される</td>
-<td>アプリ「振込・振替 → 振込限度額の変更」。登録済みの振込先への振込は別枠(1日2,000万円で固定)で、この設定では下がらない</td>
+<td>アプリ「振込・振替 → 振込限度額の変更」。引き上げにはご利用カード(アプリ版)かワンタイムパスワードが必要。登録済みの振込先への振込は別枠(1日2,000万円で固定)で、この設定では下がらない<br><a href="https://www.faq.mizuhobank.co.jp/faq/show/6675?site_domain=default">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ご利用カード(アプリ版)またはワンタイムパスワード</td>
 <td>振込、ペイジー、限度額の引き上げに必要</td>
-<td>紙のご利用カードではこれらの手続きができない</td>
+<td>紙のご利用カードではこれらの手続きができない<br><a href="https://www.mizuhobank.co.jp/direct/information2024/index.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -855,7 +1001,14 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホがない場合</strong>: カード型の「ワンタイムパスワードカード」を使います。申込・更新に1,100円かかります。<a href="https://www.mizuhobank.co.jp/direct/security/password/index.html">公式の案内</a></li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.mizuhobank.co.jp/direct/security/index.html">みずほ銀行のセキュリティ・設定ページ</a></p>
 <p>利用を止めたいときは、みずほダイレクトヘルプデスクまたは店舗に連絡します。</p>
+<hr>
+<h2>3. その他の銀行</h2>
 <h3>ゆうちょ銀行</h3>
 <table>
 <thead>
@@ -868,27 +1021,33 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 </thead>
 <tbody><tr>
 <td>◎</td>
-<td><strong>利用停止・利用停止解除</strong></td>
-<td>普段はゆうちょダイレクトを止めておき、取引のときだけ解除する</td>
-<td></td>
+<td><strong>利用停止してログアウト</strong></td>
+<td>ログアウト時に利用停止をかけ、普段はゆうちょダイレクトを止めておく</td>
+<td>ゆうちょ認証アプリかゆうちょ通帳アプリからログインすると解除される<br><a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=2475">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>ログイン時の2段階認証</strong></td>
 <td>お客さま番号とパスワードに加えて、メールのワンタイムパスワードを求める(2026/5/6導入)</td>
-<td>それ以前からの利用者は初期設定で無効なので、自分で有効にする。認証アプリでのログインは対象外</td>
+<td>それ以前からの利用者は初期設定で無効なので、自分で有効にする。認証アプリでのログインは対象外<br><a href="https://www.jp-bank.japanpost.jp/news/2026/news_id002500.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ゆうちょ認証アプリ</td>
 <td>生体認証またはパスコードでログインと送金の認証を行う</td>
-<td>送金時に使う4桁の取引コードを任意で追加できる</td>
+<td>送金時に使う4桁の取引コードを任意で追加できる<br><a href="https://www.jp-bank.japanpost.jp/app/app_ninshou.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>送金限度額の引き下げ</td>
 <td>普段の利用範囲まで下げる</td>
-<td>「ご登録内容確認・変更 → 1日の送金限度額」。引き下げは即時。引き上げはオンラインで最大50万円、審査に2日程度</td>
+<td>「ご登録内容確認・変更 → 1日の送金限度額」。引き下げは即時。引き上げはオンラインで最大50万円、審査に2日程度<br><a href="https://www.jp-bank.japanpost.jp/direct/pc/guide/dr_pc_gd_sokingendogaku_sp.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ゆうちょデビットの利用停止・限度額</td>
+<td>普段は止めておき、使うときだけ解除できる。利用限度額も変更可</td>
+<td>ゆうちょデビット会員WEB(限度額は「各種変更 → 利用限度額変更」)<br><a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=10436">公式の案内</a></td>
 </tr>
 <tr>
 <td>自動</td>
@@ -897,6 +1056,48 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>ゆうちょ認証アプリは無料ですが、スマホが必要です。</li>
+<li><strong>スマホがない場合</strong>: 「トークン」(ワンタイムパスワード生成機)を使います。発行料金は1,650円で、電池切れや紛失による再発行も同額です。ゆうちょダイレクトにログインして申し込み、届くまで10日〜2週間ほどです。<a href="https://faq.jp-bank.japanpost.jp/faq_detail.html?id=73">公式の案内</a></li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.jp-bank.japanpost.jp/direct/pc/security/dr_pc_sc_index.html">ゆうちょ銀行のセキュリティ・設定ページ</a></p>
+<h3>りそな銀行(埼玉りそな・関西みらい)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額の引き下げ</td>
+<td>上限は500万円。引き下げはその場で完了する</td>
+<td>アプリ「プロフィール → セキュリティ設定 → 振込限度額変更」。マイゲートは「その他サービス → 各種お手続き → 振込限度額変更」<br><a href="https://www.resonabank.co.jp/kojin/app/faq/faq_smartapp_0091.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>スマホ認証</td>
+<td>振込のときに取引内容を確認して認証する</td>
+<td>りそなグループアプリから申込み<br><a href="https://www.resonabank.co.jp/direct/otp/setup/entry_groupapp.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリの生体認証・パスコード</td>
+<td>アプリ起動時に求める。取引時はセキュリティパスワードも必要</td>
+<td>端末側の生体認証の登録と連動</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>通知メール</td>
+<td>限度額の変更や、パスワード誤入力による取引停止があるとメールが届く</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://www.resonabank.co.jp/kojin/app/anshin/">りそな銀行のセキュリティ・設定ページ</a></p>
 <h3>楽天銀行</h3>
 <table>
 <thead>
@@ -911,19 +1112,19 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>振込限度額の引き下げ</td>
 <td>初期値は100万円</td>
-<td>ログイン後に自分で設定</td>
+<td>ログイン後に自分で設定<br><a href="https://www.rakuten-bank.co.jp/security/howto/account_management/payment_limit/index.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>ワンタイム認証 / 合言葉認証</td>
 <td>重要な取引で使い捨てパスワードや合言葉を求める</td>
-<td>「認証強化設定」</td>
+<td>「認証強化設定」<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>モバイルアクセス制限 / ログイン制限</td>
 <td>スマホからのログイン・取引を制限する / PCログイン時の認証項目を増やす</td>
-<td>「認証強化設定」</td>
+<td>「認証強化設定」<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -941,9 +1142,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>IP制限サービス</td>
 <td>登録したIPアドレス以外からのログイン・取引を制限する</td>
-<td>固定IPがない家庭回線では使いにくい</td>
+<td>固定IPがない家庭回線では使いにくい<br><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.rakuten-bank.co.jp/security/howto/account_management/">楽天銀行のセキュリティ・設定ページ</a></p>
 <h3>住信SBIネット銀行(ドコモSMTBネット銀行)</h3>
 <table>
 <thead>
@@ -958,13 +1160,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>振込限度額</td>
 <td>0円〜1,000万円(1万円単位)で設定</td>
-<td>100万円超への増額は翌日反映</td>
+<td>100万円超への増額は翌日反映<br><a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>キャッシュカード利用設定</strong></td>
 <td>「通常 / 停止 / 一時許可」を切り替える</td>
-<td>「一時許可」は1時間以内に1回だけ出金でき、その後自動で停止に戻る</td>
+<td>「一時許可」は1時間以内に1回だけ出金でき、その後自動で停止に戻る<br><a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -973,12 +1175,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 <tr>
-<td>○</td>
-<td>スマート認証NEO</td>
-<td>アプリによる認証</td>
-<td></td>
+<td>◎</td>
+<td><strong>スマート認証NEOの「ログイン承認」</strong></td>
+<td>ONにすると、登録したスマホのアプリで承認しない限り、ブラウザなどからログインできない</td>
+<td>アプリ右下メニュー「認証設定 → ログイン承認」。登録できるスマホは1台<br><a href="https://help.netbk.co.jp/faq_detail.html?id=5965">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">住信SBIネット銀行のセキュリティ・設定ページ</a></p>
 <h3>PayPay銀行</h3>
 <table>
 <thead>
@@ -993,13 +1196,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td><strong>振込限度額を0円にする(振込ロック)</strong></td>
 <td>使わないときは0円または最小限にしておく。初期値は30万円</td>
-<td>「各種手続 → 振込限度額変更」。トークンが必要。PayPayアプリからは変更不可。100万円以上への引き上げは24時間後に反映</td>
+<td>「各種手続 → 振込限度額変更」。トークンが必要。PayPayアプリからは変更不可。100万円以上への引き上げは24時間後に反映<br><a href="https://www.paypay-bank.co.jp/security/effort/set_limited.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>Visaデビットのカード番号停止・再開</td>
 <td>カード番号単位で止められる</td>
-<td>ログイン後のカード番号照会画面</td>
+<td>ログイン後のカード番号照会画面<br><a href="https://www.paypay-bank.co.jp/debit/how_05.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1011,9 +1214,10 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>○</td>
 <td>トークンの取引停止</td>
 <td>端末を紛失したときに止める</td>
-<td>ログイン後「取引停止・再開」</td>
+<td>ログイン後「取引停止・再開」<br><a href="https://www.paypay-bank.co.jp/procedure/card-token.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.paypay-bank.co.jp/security/effort/set_limited.html">PayPay銀行のセキュリティ・設定ページ</a></p>
 <h3>ソニー銀行</h3>
 <table>
 <thead>
@@ -1028,13 +1232,13 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td>スマホ認証方式</td>
 <td>振込時に取引内容をアプリで確認して認証する</td>
-<td>2026/8/26のアプリ刷新で、アプリの再利用登録が必要</td>
+<td>2026/8/26のアプリ刷新で、アプリの再利用登録が必要<br><a href="https://sonybank.jp/guide/auth/01.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>振込限度額</td>
 <td>0円、または1円〜1,000万円で設定</td>
-<td></td>
+<td><a href="https://moneykit.net/visitor/securityinfo/securityinfo03_02.html">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1055,6 +1259,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://sonybank.jp/guide/auth/">ソニー銀行のセキュリティ・設定ページ</a></p>
 <h3>auじぶん銀行</h3>
 <table>
 <thead>
@@ -1069,19 +1274,19 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td>◎</td>
 <td><strong>インターネットバンキングロック</strong></td>
 <td>普段はログインを止めておき、使うときだけ解除する</td>
-<td></td>
+<td><a href="https://www.jibunbank.co.jp/service/security/service/">公式の案内</a></td>
 </tr>
 <tr>
 <td>◎</td>
 <td><strong>ATMロック</strong></td>
 <td>普段はATM利用を止めておく。解除後60分で自動的に再ロック</td>
-<td>じぶん銀行アプリで操作。現金の入金はロック中も可能</td>
+<td>じぶん銀行アプリで操作。現金の入金はロック中も可能<br><a href="https://help.jibunbank.co.jp/faq_detail.html?id=967">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
 <td>スマホ認証サービス</td>
 <td>振込などを実行前にスマホで承認する</td>
-<td>登録できるスマホは1台</td>
+<td>登録できるスマホは1台<br><a href="https://www.jibunbank.co.jp/service/security/service/">公式の案内</a></td>
 </tr>
 <tr>
 <td>○</td>
@@ -1090,8 +1295,229 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <td></td>
 </tr>
 </tbody></table>
+<p>この会社の公式の案内: <a href="https://www.jibunbank.co.jp/service/security/service/">auじぶん銀行のセキュリティ・設定ページ</a></p>
+<h3>SBI新生銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額・ATM出金限度額</td>
+<td>振込は0円〜1,000万円(初期値50万円)、ATM出金は0円〜200万円で設定</td>
+<td>パワーダイレクト「登録情報 → 振込限度額の変更」<br><a href="https://www.sbishinseibank.co.jp/service/newpd/guide/gendogaku_henkou2_sp.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>スマホ認証(FIDO)</td>
+<td>SBI新生銀行アプリの生体認証で取引を認証する。200万円を超える振込に必要</td>
+<td>登録には運転免許証などでのオンライン本人確認が必要。スマホは1台まで<br><a href="https://www.sbishinseibank.co.jp/info/news2512_spninsho.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>通知メール</td>
+<td>振込、出金、限度額変更、パスワード変更、ログイン制限があると届く</td>
+<td>パワーダイレクトまたはアプリの「メール設定」<br><a href="https://faq.sbishinseibank.co.jp/faq_detail.html?page=1&category=66&id=459">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>パワーダイレクトの利用停止(依頼制)</td>
+<td>ログインを含めてすべての操作を止める</td>
+<td>パワーコール(0120-456-007)に本人が電話。解除も電話<br><a href="https://www.sbishinseibank.co.jp/security/news091002_service.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li><strong>スマホ認証(FIDO)を使えない場合</strong>: SMS認証か電話認証で取引できます。ただし振込は1日200万円までです。</li>
+</ul>
+<p>この会社の公式の案内: <a href="https://www.sbishinseibank.co.jp/security/pd/007.html">SBI新生銀行のセキュリティ・設定ページ</a></p>
+<h3>イオン銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額の引き下げ</td>
+<td>0〜1,000万円で設定。<strong>初期値が500万円と高い</strong>ので見直す。減額は即時、増額は翌々日反映</td>
+<td>「お客さま情報・各種設定 → 振込限度額変更」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイムパスワード</td>
+<td>振込などのたびに使い捨てのパスワードを求める</td>
+<td>「お客さま情報・各種設定 → ワンタイムパスワード切替」<br><a href="https://www.aeonbank.co.jp/guide/direct/one_time_password/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>メール通知設定</td>
+<td>取引や手続きの結果をメールで受け取る。初期設定でOFFの項目がある</td>
+<td>「お客さま情報・各種設定 → メール通知設定変更」<br><a href="https://www.aeonbank.co.jp/direct/mailservice/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://www.aeonbank.co.jp/security/measures/">イオン銀行のセキュリティ・設定ページ</a></p>
+<h3>セブン銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額の引き下げ</td>
+<td>Myセブン銀行は0円〜100万円(初期値10万円)、ATMは0円〜1,000万円(初期値200万円)</td>
+<td>Myセブン銀行「振込 → 振込限度額の管理」。ダイレクトバンキングは「各種手続き → セキュリティ設定」。ATMでは引き下げのみ可能<br><a href="https://faqsearch.sevenbank.co.jp/faq_detail.html?id=18542">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリ認証</td>
+<td>ダイレクトバンキングの利用に必要。生体認証かパスコードで保護する</td>
+<td>Myセブン銀行アプリ</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ATMでの定期預金解約の停止</td>
+<td>ATMから定期預金を解約できないようにする</td>
+<td>ダイレクトバンキングで設定</td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://www.sevenbank.co.jp/personal/useful/app/mysevenbank/">セブン銀行のセキュリティ・設定ページ</a></p>
+<h3>GMOあおぞらネット銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>2026/7/22導入。生体認証でログインする</td>
+<td>「お客さま情報(申込・設定) → セキュリティ → パスキー認証」。3台まで登録可。登録後もID・パスワードでのログインは残る<br><a href="https://help.gmo-aozora.com/faqs/68ba84c2acc81f7fe42cf201/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>国内ATM・デビットのロック</strong></td>
+<td>普段はロックしておき、使うときだけ解除する</td>
+<td>アプリのホーム右上のアイコン、またはWeb「お客さま情報(申込・設定) → カード・ATM(ロック設定)」<br><a href="https://gmo-aozora.com/security/take-measures.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>振込限度額</td>
+<td>0円〜1,000万円(初期値50万円)</td>
+<td>「お客さま情報(申込・設定) → 口座情報 → 振込限度額」<br><a href="https://help.gmo-aozora.com/faqs/6686541aefe214ffd634262c/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ATM・デビットの限度額</td>
+<td>ATMやデビットの利用上限を自分で設定する</td>
+<td>ログイン後のお客さま情報画面</td>
+</tr>
+<tr>
+<td>○</td>
+<td>認証アプリ</td>
+<td>取引時のワンタイムパスワードをアプリで表示する</td>
+<td>「お客さま情報(申込・設定) → セキュリティ → 認証方法」。スマホは1台<br><a href="https://gmo-aozora.com/priv/service/app-auth.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>未登録先への振込制限</td>
+<td>登録していない振込先への振込は1日100万円まで</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://gmo-aozora.com/security/take-measures.html">GMOあおぞらネット銀行のセキュリティ・設定ページ</a></p>
+<h3>みんなの銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>各種限度額を0円にする</strong></td>
+<td>振込(0〜500万円、初期値50万円)やATM出金の限度額を0円にすると、出金・振込を止められる</td>
+<td>マイページ「各種設定 → 各種限度額の設定」。定額自動振込は1日の限度額の対象外<br><a href="https://cs-faq.minna-no-ginko.com/faq/show/156?category_id=60&site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>デビットカードの一時停止</strong></td>
+<td>普段は止めておき、使うときだけ解除できる</td>
+<td>「デビットカードを使う → カードを一時停止」。月額料金などの引落先にしていると、停止中は引落されない<br><a href="https://cs-faq.minna-no-ginko.com/faq/show/371?category_id=29&site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>生体認証</td>
+<td>アプリのログインを生体認証にする</td>
+<td>マイページ「各種設定 → 生体認証情報を利用する」<br><a href="https://faq.minna-no-ginko.com/s/article/MNG-0286">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>取引・手続きの通知</td>
+<td>ATM出金、振込、デビット利用、登録情報の変更があるとメールが届く</td>
+<td>取引できる端末は登録したスマホ1台のみ</td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://www.minna-no-ginko.com/security/">みんなの銀行のセキュリティ・設定ページ</a></p>
+<h3>SMBC信託銀行(プレスティア)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>プレスティア アラートサービス</td>
+<td>サインオンの成功・失敗、未登録先への振込、カードでの引出しなどをメールで通知</td>
+<td>「手続き・その他 → Eメール登録・配信設定・変更」<br><a href="https://www.smbctb.co.jp/service/security/ib/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>サインオン時のワンタイムパスワード</td>
+<td>ログインにトークンのワンタイムパスワードを追加する</td>
+<td>「手続き・その他 → ワンタイムパスワード(トークン申込・設定・変更)」。トークンは無料で郵送<br><a href="https://www.smbctb.co.jp/service/security/ib/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>GLOBAL PASSの一部利用制限</td>
+<td>実店舗、ネットショッピング、海外ATMの利用を個別に止められる</td>
+<td>GLOBAL PASS会員Webサイト「各種変更 → 一部利用制限」<br><a href="https://www.smbctb.co.jp/news/2026/news_011926_01.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>カードの利用限度額</td>
+<td>海外ATMやショッピングの上限を0円から設定する</td>
+<td>GLOBAL PASS会員Webサイト。国内ATMの限度額は電話か店頭で、反映に3〜5営業日<br><a href="https://www.smbctb.co.jp/guide/security/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p>この会社の公式の案内: <a href="https://www.smbctb.co.jp/service/security/ib/">SMBC信託銀行のセキュリティ・設定ページ</a></p>
 <hr>
-<h2>3. 未確認情報</h2>
+<h2>4. 未確認情報</h2>
 <p>公式情報で裏付けが取れていない項目です。利用する前に各社の窓口や設定画面で確認してください。</p>
 <ul>
 <li>SBI証券の取引制限(依頼制)は、利用者の報告に基づく情報で、公式の案内ページは確認できていません。</li>
@@ -1099,9 +1525,95 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <li>マネックス証券の取引制限(依頼制)とみずほ銀行の各項目は、公式ページを直接取得できず、検索結果の要約に基づいています。</li>
 <li>三菱UFJ eスマート証券、野村證券、大和証券、SMBC日興証券に、利用者が取引や出金を自分で止められる機能があるかは未確認です。</li>
 <li>各銀行のパスキー対応とログイン通知の有無は未確認です。</li>
-<li>住信SBIネット銀行のスマート認証NEOは、機能の詳細が未確認です。</li>
-<li>三菱UFJ銀行の振込限度額を0円まで下げられるかは未確認です。</li>
+<li>ソニー銀行、auじぶん銀行、GMOあおぞらネット銀行は、限度額を引き上げるときの追加認証や待ち時間が未確認です。野村證券のATM出金限度額は、引き上げも即時に反映されます。</li>
+<li>みずほ銀行のワンタイムパスワードカードの手数料(1,100円)は、新規発行を無料とする古い案内もあり、最新の扱いは未確認です。</li>
+<li>スマホがない場合に市販のセキュリティキー(USBなどの認証機器)でパスキーを登録できるかは、会社や利用環境によって異なり、公式の案内では未確認です。</li>
+<li>三井住友銀行のSMBCセーフティパスが使えない条件は、端末の非対応以外にもある可能性がありますが未確認です。</li>
+<li>三菱UFJ銀行の振込限度額の設定範囲(0円〜1,000万円)は古い案内に基づいており、現在の下限は未確認です。</li>
+<li>イオン銀行は、アプリ版ワンタイムパスワードへの切替を一時休止していた時期があり、現在の受付状況は未確認です。</li>
 </ul>
+<hr>
+<h2>5. ことばの説明</h2>
+<table>
+<thead>
+<tr>
+<th>ことば</th>
+<th>かんたんな説明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>パスキー</td>
+<td>パスワードの代わりに、スマホやパソコンの指紋・顔認証・画面ロックでログインする仕組み。偽サイトでは使えないので、だまされて盗まれる心配がほとんどない</td>
+</tr>
+<tr>
+<td>FIDO</td>
+<td>パスキーと同じ仕組みの技術の名前。「FIDO認証」「スマホ認証」と呼ぶ会社もある</td>
+</tr>
+<tr>
+<td>フィッシング</td>
+<td>本物そっくりの偽サイトや偽メールで、IDやパスワードを入力させて盗む手口</td>
+</tr>
+<tr>
+<td>ワンタイムパスワード・ワンタイムキー・認証コード・認証番号</td>
+<td>1回しか使えない使い捨ての暗証番号。アプリ、専用のカード、メール、SMSなどで受け取る</td>
+</tr>
+<tr>
+<td>多要素認証・二要素認証・2段階認証</td>
+<td>パスワードに加えて、スマホでの操作やワンタイムパスワードなど、もう1つ別の確認を求めること</td>
+</tr>
+<tr>
+<td>生体認証</td>
+<td>指紋や顔で本人確認をすること</td>
+</tr>
+<tr>
+<td>トークン</td>
+<td>ワンタイムパスワードを表示する小さな機器やアプリ</td>
+</tr>
+<tr>
+<td>認証アプリ</td>
+<td>ワンタイムパスワードを表示したり、ログインを承認したりするためのスマホアプリ</td>
+</tr>
+<tr>
+<td>SMS認証</td>
+<td>登録した携帯電話にSMS(ショートメッセージ)で届く番号を入力して本人確認をする方法</td>
+</tr>
+<tr>
+<td>電話番号認証・電話認証</td>
+<td>登録した電話から決められた番号に電話をかける、または自動音声で番号を聞いて本人確認をする方法</td>
+</tr>
+<tr>
+<td>限度額・上限金額</td>
+<td>1日に振り込める(引き出せる)金額の上限。低くしておくと、乗っ取られても被害額を抑えられる</td>
+</tr>
+<tr>
+<td>出金先</td>
+<td>証券口座からお金を出すときの振込先として登録してある銀行口座。ここを書き換えられると、他人の口座にお金を送られてしまう</td>
+</tr>
+<tr>
+<td>取引パスワード・取引暗証番号</td>
+<td>ログイン用とは別の、注文や出金のときに入力するパスワード</td>
+</tr>
+<tr>
+<td>ログイン通知</td>
+<td>誰かがログインするとメールが届く機能。身に覚えのない通知が来たら、乗っ取りを疑う</td>
+</tr>
+<tr>
+<td>ログイン履歴</td>
+<td>いつ、どこからログインしたかの記録。身に覚えのないログインがないか確認できる</td>
+</tr>
+<tr>
+<td>デビット</td>
+<td>使うと同時に口座から引き落とされるカード</td>
+</tr>
+<tr>
+<td>依頼制</td>
+<td>自分の画面では設定できず、電話や問い合わせフォームで会社に頼んで設定してもらうもの</td>
+</tr>
+<tr>
+<td>リカバリーコード</td>
+<td>スマホが使えなくなったときのために、あらかじめ控えておく予備の番号</td>
+</tr>
+</tbody></table>
 <hr>
 <h2>出典</h2>
 <p>証券(共通)</p>
@@ -1162,6 +1674,18 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 <p>銀行</p>
 <ul>
 <li><a href="https://faq01.bk.mufg.jp/faq/show/6009?site_domain=default">三菱UFJ銀行: 振込上限額について</a></li>
+<li><a href="https://direct.bk.mufg.jp/secure/ansnps/index.html">三菱UFJ銀行: MUFGあんしんパス</a></li>
+<li><a href="https://www.netbk.co.jp/contents/lineup/smartauth-neo/">住信SBIネット銀行: スマート認証NEO</a></li>
+<li><a href="https://faq.jp-bank.japanpost.jp/faq_list.html?category=25">ゆうちょ銀行: 利用停止してログアウト</a></li>
+<li><a href="https://www.resonabank.co.jp/kojin/app/faq/faq_smartapp_0091.html">りそな銀行: アプリの振込限度額変更</a></li>
+<li><a href="https://www.sbishinseibank.co.jp/security/pd/007.html">SBI新生銀行: ご利用限度額の設定</a></li>
+<li><a href="https://www.sbishinseibank.co.jp/security/news091002_service.html">SBI新生銀行: 利用停止の案内</a></li>
+<li><a href="https://www.aeonbank.co.jp/security/measures/">イオン銀行: セキュリティ対策</a></li>
+<li><a href="https://faqsearch.sevenbank.co.jp/faq_detail.html?id=18542">セブン銀行: 振込限度額の変更方法</a></li>
+<li><a href="https://gmo-aozora.com/security/passkey.html">GMOあおぞらネット銀行: パスキー認証</a></li>
+<li><a href="https://gmo-aozora.com/security/take-measures.html">GMOあおぞらネット銀行: 簡単なセキュリティ対策</a></li>
+<li><a href="https://www.minna-no-ginko.com/security/">みんなの銀行: 安心のセキュリティ</a></li>
+<li><a href="https://www.smbctb.co.jp/service/security/ib/">SMBC信託銀行: インターネットバンキングのセキュリティ</a></li>
 <li><a href="https://www.bk.mufg.jp/ippan/email/index.html">三菱UFJ銀行: Eメール配信サービス</a></li>
 <li><a href="https://www.smbc.co.jp/smartphone/service/directapp4/help/fpay05.html">三井住友銀行: フレキシブルペイの利用制限を設定する</a></li>
 <li><a href="https://www.faq.mizuhobank.co.jp/faq/show/6675?site_domain=default">みずほ銀行: 振込限度額の変更</a></li>
@@ -1206,6 +1730,14 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
   var companies = [];  // 会社ごとの節(h3)
   var intro = [];      // 冒頭の説明(会社を選ぶ画面でだけ見せる)
 
+  function purposeOf(name) {
+    if (/通知先/.test(name)) return '目的: 本人確認を強くする';
+    if (/通知|履歴|アラート|確認メール|お知らせメール|メールアドレス登録|登録電話番号の確認/.test(name)) return '目的: 不正にすぐ気付く';
+    if (/ログイン|ログアウト|パスキー|あんしんパス|セーフティパス|バンキングロック|2段階|IP制限|モバイルアクセス|サインオン|生体認証|パスコード/.test(name)) return '目的: 他人にログインさせない';
+    if (/限度額|上限|停止|ロック|制限|出金|解約|変更|デビット|カード利用|フレキシブルペイ|一部利用/.test(name)) return '目的: お金を動かせなくする';
+    return '目的: 本人確認を強くする';
+  }
+
   function decorate() {
     // 表を横スクロール可能な枠で包み、優先度の列をバッジにする
     content.querySelectorAll('table').forEach(function (t) {
@@ -1217,6 +1749,14 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
         var cell = tr.cells[0];
         var b = cell && BADGES[cell.textContent.trim()];
         if (b) cell.innerHTML = '<span class="badge ' + b[0] + '">' + b[1] + '</span>';
+        // 何のための設定かを、設定名から判定して平易なラベルで添える
+        if (b && tr.cells[1]) {
+          var tag = document.createElement('span');
+          tag.className = 'purpose';
+          tag.textContent = purposeOf(tr.cells[1].textContent);
+          tr.cells[1].appendChild(document.createElement('br'));
+          tr.cells[1].appendChild(tag);
+        }
         // スマホ表示用: 名前の列を見出し扱いにし、残りの列に項目名を付ける
         var nameCol = b ? 1 : 0;
         Array.prototype.forEach.call(tr.cells, function (td, i) {
@@ -1240,8 +1780,8 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
         groups.push(cur);
         if (el.tagName === 'H2') {
           section = cur;
-          var m = el.textContent.match(/証券|銀行/);
-          cur.kind = m ? m[0] : null;
+          // 会社を並べる大見出し(証券会社、メガバンク、その他の銀行)
+          cur.kind = /証券|バンク|銀行/.test(el.textContent) ? el.textContent.replace(/^\d+\.\s*/, '') : null;
         } else if (el.tagName === 'H3' && section && section.kind) {
           cur.section = section;
           cur.name = el.textContent;
@@ -1262,15 +1802,16 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     box.id = 'picker';
     box.innerHTML = '<p class="lead">使っている会社を選んでください</p>' +
       '<p class="hint">その会社で入れておきたい設定を表示します。</p>';
-    [['証券', '証券会社'], ['銀行', '銀行']].forEach(function (kind) {
+    groups.forEach(function (section) {
+      if (!section.kind) return;
       var label = document.createElement('p');
       label.className = 'label';
-      label.textContent = kind[1];
+      label.textContent = section.kind;
       box.appendChild(label);
       var row = document.createElement('div');
       row.className = 'group';
       companies.forEach(function (c) {
-        if (c.section.kind !== kind[0]) return;
+        if (c.section !== section) return;
         var b = document.createElement('button');
         b.type = 'button';
         b.className = 'tile';
@@ -1296,6 +1837,54 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     back.textContent = '‹ 会社を選び直す';
     back.addEventListener('click', function () { location.hash = ''; });
     content.insertBefore(back, first);
+  }
+
+  // 会社の表に出てくる専門用語だけを「ことばの説明」から拾って、表の下に出す
+  var glossary = [];
+  function buildWords() {
+    content.querySelectorAll('h2').forEach(function (h) {
+      if (h.textContent.indexOf('ことばの説明') === -1) return;
+      var el = h.nextElementSibling;
+      while (el && !el.querySelector('table')) el = el.nextElementSibling;
+      if (!el) return;
+      el.querySelectorAll('tbody tr').forEach(function (tr) {
+        glossary.push({ terms: tr.cells[0].textContent.split('・'), text: tr.cells[1].textContent });
+      });
+    });
+    var how = document.createElement('p');
+    how.id = 'how';
+    how.className = 'unsel';
+    how.textContent = '上から順に、できるものから設定してください。「最優先」は効果が大きいもの、「自動」は何もしなくても適用されているものです。';
+    content.appendChild(how);
+    var box = document.createElement('details');
+    box.id = 'words';
+    box.className = 'unsel';
+    content.appendChild(box);
+  }
+
+  function showWords(current) {
+    var how = document.getElementById('how');
+    var box = document.getElementById('words');
+    var table = current && current.items[0];
+    how.classList.toggle('unsel', !table);
+    if (table) content.insertBefore(how, table);
+    var hits = !table ? [] : glossary.filter(function (g) {
+      return g.terms.some(function (w) { return table.textContent.indexOf(w) !== -1; });
+    });
+    box.classList.toggle('unsel', hits.length === 0);
+    if (!hits.length) return;
+    box.innerHTML = '<summary>ことばの説明(この表に出てくる用語)</summary><dl></dl>';
+    var dl = box.querySelector('dl');
+    hits.forEach(function (g) {
+      var dt = document.createElement('dt');
+      dt.textContent = g.terms.join('・');
+      var dd = document.createElement('dd');
+      dd.textContent = g.text;
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+    });
+    box.open = false;
+    content.insertBefore(box, table.nextSibling);
   }
 
   // 会社以外の節(共通事項、出典など)は末尾に折りたたんで置く
@@ -1337,6 +1926,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
     document.getElementById('picker').classList.toggle('unsel', !!current);
     document.getElementById('back').classList.toggle('unsel', !current);
     intro.forEach(function (el) { el.classList.toggle('unsel', !!current); });
+    showWords(current);
     if (current) window.scrollTo(0, 0);
   }
 
@@ -1344,6 +1934,7 @@ footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 
   decorate();
   buildPicker();
+  buildWords();
   foldOthers();
   apply();
 })();
