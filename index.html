@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>お金とアカウントを「自分で」守る設定まとめ</title>
-<meta name="description" content="証券会社・銀行、メール、SNSごとに、利用者が自分で入れられる防御設定(パスキー、2段階認証、取引制限、振込限度額など)をまとめた一覧。">
+<meta name="description" content="証券会社・銀行、メール、SNS、スマホ決済、クレジットカードごとに、利用者が自分で入れられる防御設定(パスキー、2段階認証、取引制限、振込限度額など)をまとめた一覧。">
 <meta property="og:title" content="お金とアカウントを守る設定まとめ">
 <meta property="og:description" content="金融機関、メール、SNSで、利用者が自分で入れられる防御設定の一覧。">
 <meta property="og:type" content="article">
@@ -78,7 +78,7 @@ a { color: var(--accent); }
   border-bottom: 1px solid var(--border);
 }
 .bar-inner {
-  max-width: 1080px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 10px 16px;
   display: flex;
@@ -114,7 +114,7 @@ a { color: var(--accent); }
   gap: 32px;
 }
 #side {
-  width: 300px;
+  width: 240px;
   flex: none;
   position: sticky;
   top: 72px;
@@ -270,6 +270,10 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 .unsel { display: none !important; }
 #content hr { display: none; }
 section.doc h2 { margin-top: 20px; }
+#side details { margin: 2px 0; }
+#side summary { padding: 9px 12px; border-radius: 8px; cursor: pointer; color: var(--text); }
+#side summary:hover { background: var(--head); }
+#side details a { padding: 7px 12px 7px 24px; font-size: 0.92rem; white-space: normal; line-height: 1.5; }
 .purpose {
   display: inline-block;
   margin-top: 4px;
@@ -311,6 +315,13 @@ figure.diagram { margin: 16px auto; max-width: 440px; }
 #first .k { font-size: 0.85rem; font-weight: 700; color: var(--top-fg); }
 #first .n { font-size: 1.2rem; font-weight: 700; margin: 2px 0 4px; }
 #first .d { margin: 0; }
+#mfa-note {
+  background: var(--head);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 12px 0 20px;
+  font-size: 0.95rem;
+}
 #how { color: var(--muted); font-size: 0.92rem; margin: 4px 0 12px; }
 #words {
   background: var(--surface);
@@ -626,18 +637,90 @@ body { padding-bottom: 72px; }
 </svg>
 </figure>
 
-<p>ただし、パスワードでもログインできる状態のままだと、犯人はそちらを狙います。</p>
+<p>ただし、パスワードでもログインできる状態のままだと、犯人はそちらを狙います。偽サイトでパスワードとワンタイムパスワードを求められて入力してしまえば、パスキーを設定していても乗っ取られます。</p>
 <p><strong>見分けようとせず、決まりごとにする</strong></p>
 <ul>
 <li>メールやSMSのリンクからはログインしない。いつものアプリか、ブックマーク(お気に入り)から開く</li>
 <li>「急いで確認を」と言われても、その場で入力しない。心配なら、いつものアプリから自分で確認する</li>
 <li>届いたワンタイムパスワードは、自分が始めた操作のためのものかを確かめる。身に覚えがなければ入力しない</li>
+<li>パスキーを設定したサービスで、パスワードやワンタイムパスワードを求められたら、偽サイトを疑う</li>
 </ul>
 <p>実際に出回っている偽メールや偽サイトの画像は、次の公的なページで見られます。</p>
 <ul>
 <li><a href="https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html">警察庁: フィッシング対策</a>(偽のログイン画面やSMSの画像つき)</li>
 <li><a href="https://www.antiphishing.jp/news/alert/">フィッシング対策協議会: 緊急情報</a>(いま出回っている偽メールの実例)</li>
 </ul>
+<hr>
+<h2>2段階認証をしていても乗っ取られる理由</h2>
+<p>2段階認証やパスキーはとても有効ですが、入れたら絶対に安全というわけではありません。破られる道は、主に2つあります。</p>
+<p><strong>1. 偽サイトに、ワンタイムパスワードまで入力してしまう</strong></p>
+<p>偽サイトに入力したものを、犯人がその場で本物のサイトに打ち込む手口です。図は<a href="#~%E3%81%A0%E3%81%BE%E3%81%97%E3%81%AE%E6%89%8B%E5%8F%A3%28%E3%83%95%E3%82%A3%E3%83%83%E3%82%B7%E3%83%B3%E3%82%B0%29">だましの手口(フィッシング)</a>にあります。</p>
+<p>パスキーは偽サイトでは働かないので、この手口に強い仕組みです。ただし、<strong>パスキーを設定しただけでは防げません</strong>。偽サイトは「パスキーが使えない場合はこちら」のように、パスワードとワンタイムパスワードを入力させようとします。そこで入力してしまえば、パスキーを設定していても同じように乗っ取られます。</p>
+<ul>
+<li>パスキーを設定したサービスで、パスワードやワンタイムパスワードを求められたら、まず偽サイトを疑う。いつもパスキーで入れているのに今日だけ違う、というのがいちばんの手がかりです</li>
+<li>パスワードでのログインを止められるサービスでは、止めておく。そうすれば、だまされて入力しても、犯人はそのパスワードで入れません</li>
+</ul>
+<p><strong>2. パソコンに入り込んだウイルスに、「ログイン済みの印」を盗まれる</strong></p>
+<p>ログインに成功すると、サイトはブラウザに「ログイン済みの印」(Cookie)を渡します。次に開いたときにパスワードを聞かれないのは、この印があるからです。</p>
+<p>情報を盗むウイルス(インフォスティーラー)は、ブラウザに保存されたパスワードと一緒に、この印を盗みます。犯人は印を自分のブラウザに入れるだけで、ログイン済みの状態になります。ログインの関門をすでに通ったあとの印なので、2段階認証もパスキーも聞かれません。</p>
+<figure class="diagram"><svg class="dg" viewBox="0 0 360 344" role="img" aria-label="ログイン済みの印を盗まれる流れ。あなたが正しくログインすると、サイトはパソコンにログイン済みの印を渡す。パソコンに入り込んだウイルスがその印を盗んで犯人に送り、犯人はそれを本物のサイトに見せるだけで、パスワードも2段階認証もなしに入れる。">
+  <defs>
+    <marker id="dg3-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-you"/></marker>
+    <marker id="dg3-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-bad"/></marker>
+    <marker id="dg3-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="m-org"/></marker>
+  </defs>
+  <line class="life" x1="60" y1="54" x2="60" y2="300"/>
+  <line class="life" x1="180" y1="54" x2="180" y2="300"/>
+  <line class="life" x1="300" y1="54" x2="300" y2="300"/>
+  <rect class="box you" x="6" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="60" y="29" text-anchor="middle">あなたの</text>
+  <text class="head" x="60" y="46" text-anchor="middle">パソコン</text>
+  <rect class="box org" x="126" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="180" y="29" text-anchor="middle">本物の</text>
+  <text class="head" x="180" y="46" text-anchor="middle">サイト</text>
+  <rect class="box bad" x="246" y="10" width="108" height="44" rx="8"/>
+  <text class="head" x="300" y="37" text-anchor="middle">犯人</text>
+
+  <text class="t-you" x="120" y="88" text-anchor="middle">① 正しくログイン</text>
+  <line class="l-you" x1="66" y1="98" x2="174" y2="98" marker-end="url(#dg3-a)"/>
+
+  <text class="t-org" x="120" y="146" text-anchor="middle">②「ログイン済みの印」を渡す</text>
+  <line class="l-org" x1="174" y1="156" x2="66" y2="156" marker-end="url(#dg3-c)"/>
+
+  <text class="t-bad" x="180" y="204" text-anchor="middle">③ ウイルスが印を盗んで送る</text>
+  <line class="l-bad" x1="66" y1="214" x2="294" y2="214" marker-end="url(#dg3-b)"/>
+
+  <text class="t-bad" x="240" y="262" text-anchor="middle">④ 盗んだ印を見せる</text>
+  <line class="l-bad" x1="294" y1="272" x2="186" y2="272" marker-end="url(#dg3-b)"/>
+
+  <text class="t-bad result" x="180" y="330" text-anchor="middle">パスワードも2段階認証もなしで入られる</text>
+</svg>
+</figure>
+
+<p><strong>ウイルスはどこから入るか</strong></p>
+<ul>
+<li>有料ソフトを無料で配っているもの(海賊版)や、ゲームの改造ツール</li>
+<li>検索結果や広告に出てくる、偽のダウンロードページ</li>
+<li>「私はロボットではありません」の確認を装って、キーボードの操作(Windowsキー+R、貼り付け)をさせる偽の画面</li>
+<li>メールの添付ファイル</li>
+</ul>
+<p><strong>防ぐために</strong></p>
+<ul>
+<li>出どころの分からないソフトを入れない</li>
+<li>確認の画面で「このキーを押して、貼り付けて」と言われたら、閉じる。本物の確認は、画面の中をクリックするだけです</li>
+<li>パソコンとスマホの更新をためない。Windowsに最初から入っているウイルス対策を切らない</li>
+<li>お金の操作が終わったら、ログアウトする。多くのサイトでは、ログアウトすると「印」が使えなくなります</li>
+<li>共用のパソコンでは、銀行や証券にログインしない</li>
+</ul>
+<p><strong>入られたあとでも効く設定</strong></p>
+<p>ログインを乗っ取られても、お金を動かすところに別の関門があれば、そこで止まります。</p>
+<ul>
+<li>出金や振込のたびに、アプリでの承認やワンタイムパスワードを求める設定</li>
+<li>取引や出金を止めておく設定、振込限度額の引き下げ</li>
+<li>出金先を変えられないようにするロック</li>
+</ul>
+<p>各社のページで「目的: お金を動かせなくする」と書かれている設定が、これにあたります。</p>
+<p>参考: <a href="https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html">金融庁: インターネット取引サービスへの不正アクセス・不正取引にご注意ください</a>、<a href="https://scan.netsecurity.ne.jp/article/2025/10/03/53736.html">偽の確認画面について警察庁が注意喚起(ScanNetSecurity)</a></p>
 <hr>
 <h2>パスワードの使い回しと情報漏えい</h2>
 <p>会社から会員情報が漏れたというニュースは、毎月のように出ています。漏れたIDとパスワードは、その会社だけの問題では終わりません。</p>
@@ -692,6 +775,67 @@ body { padding-bottom: 72px; }
 <li>その会社を名乗るメールやSMSが増えるので、リンクからはログインしない</li>
 </ul>
 <p>くわしくは、<a href="https://www.ipa.go.jp/security/anshin/measures/account_security.html">IPA: 不正ログイン対策特集ページ</a>と<a href="https://www.nisc.go.jp/pr/column/20221115.html">内閣サイバーセキュリティセンター: パスワードの使いまわしの危険性と対処方法</a>を見てください。</p>
+<hr>
+<h2>クレジットカードの番号が盗まれる手口</h2>
+<p>カードそのものを盗まれなくても、番号・有効期限・セキュリティコードが分かれば、ネットの買い物に使われてしまいます。</p>
+<p><strong>番号はどこから漏れるか</strong></p>
+<ul>
+<li>カード会社や通販サイトをまねた偽サイトに、自分で入力してしまう</li>
+<li>買い物をした通販サイトが攻撃を受けて、そこから漏れる。この場合、自分では防げません</li>
+<li>「ご利用の確認」「カードを停止しました」などの偽メールやSMSから、偽サイトに誘導される。カード会社が実際に送るメールとそっくりに作られています</li>
+</ul>
+<p><strong>決まりごとにする</strong></p>
+<ul>
+<li>カード会社からのメールやSMSは、リンクを押さず、いつものアプリを開いて確かめる</li>
+<li>利用通知を入れておく。身に覚えのない通知が来たら、カード会社に連絡する</li>
+<li>ネットや海外で使わない人は、その使い方を止めておく</li>
+<li>ネットの買い物での本人確認(3Dセキュア)を登録しておく</li>
+<li>初めて使う通販サイトで、値段が極端に安いときは買わない</li>
+</ul>
+<p>自分では防げない漏れ方もあるので、「盗まれない」より「盗まれても使われない、使われたらすぐ気付く」設定が役に立ちます。</p>
+<p>参考: <a href="https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html">警察庁: フィッシング対策</a></p>
+<hr>
+<h2>スマホ決済をねらう詐欺</h2>
+<p>スマホ決済の被害で多いのは、アカウントを乗っ取られるものより、<strong>だまされて自分で送金してしまう</strong>ものです。自分の操作で送ったお金は、取り戻すのが難しくなります。</p>
+<p><strong>「返金します」と言って、逆に送金させる</strong></p>
+<p>消費者庁が注意を呼びかけている手口です。</p>
+<ol>
+<li>偽の通販サイトで商品を注文させる</li>
+<li>「在庫がないので返金します」と連絡してくる</li>
+<li>LINEで友だち登録をさせる</li>
+<li>「スマホ決済で返金する」と言い、LINEの通話で画面を共有させる</li>
+<li>言われたとおりに操作させ、気付かないうちに相手へ送金させる</li>
+</ol>
+<p><strong>偽のQRコードを読み取らせる</strong></p>
+<p>お店の本物のQRコードの上に、偽のQRコードを貼る手口です。読み取って支払うと、お店ではなく犯人に届きます。</p>
+<p><strong>メールやSMSからアプリを開かせる</strong></p>
+<p>「料金が未払いです」「税金の期限が迫っています」などのメールやSMSから、決済アプリの送金画面を開かせる手口です。</p>
+<p><strong>決まりごとにする</strong></p>
+<ul>
+<li>「返金」のために、こちらが操作する必要はない。操作を求められたら、やめる</li>
+<li>通話しながらの画面共有はしない。本物の返金で求められることはない</li>
+<li>送金ボタンを押す前に、「送る」画面なのか「受け取る」画面なのかを見る</li>
+<li>送金を使わない人は、送金の上限を低くしておく(PayPayなら「利用可能額の設定」の「友だちに送る」)</li>
+</ul>
+<p>参考: <a href="https://www.caa.go.jp/notice/entry/041215/">消費者庁: 返金手続を装い、コード決済で逆に送金させる事業者に関する注意喚起</a>、<a href="https://paypay.ne.jp/notice/20240712/s-01/">PayPay: 詐欺行為や携帯電話の盗難にご注意ください</a></p>
+<hr>
+<h2>SNSの釣り広告・釣り投稿</h2>
+<p>SNSでは、アカウントを乗っ取られなくても、広告や投稿のリンクから詐欺に引き込まれることがあります。</p>
+<p><strong>有名人の名前や写真を使った、偽の投資広告</strong></p>
+<p>有名人が投資をすすめているように見せた広告から、LINEのグループに誘い込み、「必ずもうかる」と言ってお金を振り込ませる手口です。警察庁のまとめでは、SNS型投資詐欺は2025年11月末までに8,217件、被害額は1,071億円にのぼり、だまされたときの連絡手段は約9割がLINEでした。</p>
+<p><strong>話題の投稿の返信欄に並ぶ、釣りアカウント</strong></p>
+<p>Xでは、たくさん拡散された投稿の返信欄に、同じようなアカウントが大量に現れます(「ナイト系スパム」と呼ばれるものなど)。目を引く写真をアイコンにし、ほかの人のコメントを写して貼り付け、プロフィールや固定された投稿のリンクを押させようとします。リンクの先は、広告で稼ぐためのサイトや、詐欺サイト、ウイルスを配るサイトです。</p>
+<p><strong>リンクの見た目と行き先が違う</strong></p>
+<p>投稿に表示されているサイト名と、実際に開くページが違うことがあります。知っているサイトの名前が出ていても、安心できません。</p>
+<p><strong>決まりごとにする</strong></p>
+<ul>
+<li>広告や返信欄のリンクは押さない。気になる話は、自分で検索して公式サイトから確かめる</li>
+<li>「必ずもうかる」「元本保証」「あなただけ」は、詐欺の言葉だと決めておく</li>
+<li>LINEなど別のアプリに誘われたら、そこでやめる</li>
+<li>振込先が個人の名前の口座なら、振り込まない</li>
+<li>釣りアカウントは、相手にせず、ブロックや通報をする</li>
+</ul>
+<p>参考: <a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/sns-romance/investment/">警察庁: SNS型投資詐欺</a>、<a href="https://www.fsa.go.jp/ordinary/chuui/nisekoukoku.html">金融庁: 証券会社などをかたるSNS上の偽広告に注意</a>、<a href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_036/">消費者庁: SNSなどを通じた「もうけ話」にご注意ください</a></p>
 <hr>
 <h2>金融機関 / 証券会社</h2>
 <p>証券会社と銀行の口座を守る設定です。不正な売買や送金を防ぎます。</p>
@@ -2178,6 +2322,483 @@ body { padding-bottom: 72px; }
 <li>SMS(テキストメッセージ)での2要素認証は、有料プラン(Premium)の加入者だけが使えます。認証アプリとセキュリティキーは無料です。</li>
 </ul>
 <hr>
+<h2>スマホ決済 / スマホ決済</h2>
+<p>スマホ決済は、アプリを開ければその場で支払いや送金ができます。アプリを他人に開かせないことと、上限を低くしておくことが守りの中心です。</p>
+<h3>PayPay</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>利用可能額の設定</strong></td>
+<td>「支払い」「友だちに送る」「チャージ」ごとに、1日と1か月の上限を自分で決める。上限を上げたり外したりするには、スマホの指紋・顔認証などが必要</td>
+<td>「アカウント → 利用可能額の設定」。送金をしない人は「友だちに送る」を低くしておく<br><a href="https://paypay.ne.jp/help/c0202/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>端末の認証</td>
+<td>PayPayアプリを使うときに、指紋・顔・パスコードを求める。スマホをなくしたときにも勝手に使われにくい</td>
+<td>「アカウント → セキュリティとプライバシー → 端末の認証を有効にする」<br><a href="https://paypay.ne.jp/safe/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>クレジットカードの本人認証</td>
+<td>ほかの会社のクレジットカードをPayPayで使うには、本人認証(3Dセキュア)が必要</td>
+<td><a href="https://paypay.ne.jp/guide/3ds/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>楽天ペイ</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>楽天IDに、指紋・顔・画面ロックでログインする。5つまで作れる</td>
+<td>楽天ペイアプリを使っているスマホで作る。スマホの画面ロックとBluetoothを有効にしておく<br><a href="https://pay.rakuten.co.jp/topics/fido2/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>端末認証</td>
+<td>支払いの前に、パスコード・指紋・顔を求める</td>
+<td>楽天ペイアプリで設定<br><a href="https://pay.rakuten.co.jp/security/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>楽天IDのパスワードをほかと別にする</td>
+<td>楽天IDは楽天のサービス全体で共通なので、ほかのサイトと同じパスワードにしない</td>
+<td>楽天会員情報(my Rakuten)</td>
+</tr>
+</tbody></table>
+<h3>d払い</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>支払いのセキュリティ</td>
+<td>アプリを開くときに指紋・顔・パスワードを求め、バーコードをすぐには表示しない</td>
+<td>d払いアプリの「アカウント → 支払いのセキュリティ」をONにする。スマホ本体の画面ロックが必要<br><a href="https://service.smt.docomo.ne.jp/keitai_payment/security/index.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>利用限度額の引き下げ</td>
+<td>電話料金とまとめて払う場合の上限を、1,000円単位で下げる</td>
+<td>d払いアプリの「アカウント → 利用限度額 → ご利用限度額を確認・変更する」<br><a href="https://service.smt.docomo.ne.jp/keitai_payment/app/help/detail/0773.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>dアカウントの2段階認証を「強」にする</td>
+<td>d払いはdアカウントで使うので、dアカウントへのログインを守る</td>
+<td>dアカウントメニューの「2段階認証の設定」<br><a href="https://id.smt.docomo.ne.jp/src/utility/twostepauth.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>au PAY</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>セキュリティロック</td>
+<td>au PAYアプリを開くときに、指紋・顔・パスワードを求める</td>
+<td>au PAYアプリの「アカウント → アプリの設定 → セキュリティロック」をオンにする<br><a href="https://www.au.com/support/faq/details/00/0000/000026/pg00002687/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>利用上限額の設定</td>
+<td>通信料金とまとめて払う「auかんたん決済」の上限を下げる。すぐに反映される</td>
+<td>au PAYサイトの「au PAY(auかんたん決済)メニュー → ご利用上限額の設定」<br><a href="https://www.au.com/support/faq/details/00/0000/000003/pg00000349/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>利用制限設定</td>
+<td>auかんたん決済の一部または全部を、自分で止めておく</td>
+<td>「利用制限設定」のページで設定。4桁の暗証番号が必要<br><a href="https://www.au.com/support/faq/details/00/0000/000019/pg00001946/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>送金と出金の制限</td>
+<td>残高を送れるのは1回5万円・月5万円まで。出金先は本人名義のauじぶん銀行口座だけ</td>
+<td><a href="https://wallet.auone.jp/contents/sp/security/index.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>メルペイ(メルカリ)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー</td>
+<td>メルカリに、指紋・顔・画面ロックでログインする。登録すると、ログインにはパスキーが必ず必要になる</td>
+<td>「マイページ → 設定 → アカウント設定(個人情報設定) → パスキー設定」。最初の登録には電話番号での確認がある<br><a href="https://help.jp.mercari.com/guide/articles/1876/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>あと払いの上限金額の設定</td>
+<td>メルペイのあと払い(クレジット)で使える金額を、自分で低く決める</td>
+<td>「おさいふ → 設定・その他 → クレジットの設定(利用上限金額)」<br><a href="https://help.jp.mercari.com/guide/articles/685/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>あんしん支払い設定</td>
+<td>新しくログインした直後は、支払いが止められる。外すには指紋・顔認証かSMSでの確認と、15分の待ち時間が必要</td>
+<td><a href="https://help.jp.mercari.com/guide/articles/1287/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>決済の通知</td>
+<td>支払いがあると、アプリとメールに通知が届く</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>クレジットカード / クレジットカード</h2>
+<p>カードの被害でいちばん多いのは、カード番号を盗まれてネットの買い物に使われるものです。使うたびに届く通知、使わない使い方を止めておく設定、ネットで使うときの本人確認の3つが守りの中心です。</p>
+<h3>楽天カード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>カード利用お知らせメール</td>
+<td>カードを使うたびにメールが届く。身に覚えのない利用にすぐ気付ける</td>
+<td>楽天e-NAVIで設定<br><a href="https://support.rakuten-card.jp/faq/show/8185?site_domain=guest">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>本人認証サービス(3Dセキュア)</td>
+<td>ネットの買い物のときに、ワンタイムパスワードでの確認を求める</td>
+<td>決まったパスワードを使っている人は、ワンタイムパスワード方式に切り替える<br><a href="https://support.rakuten-card.jp/faq/show/8185?site_domain=guest">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>楽天e-NAVIの第2パスワード</td>
+<td>会員サイトに入るときに、もう1つのパスワードを求める</td>
+<td>楽天IDのパスワードとは別のものにする</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用可能枠の引き下げ</td>
+<td>使わない分の枠を下げておく。現金を借りる枠(キャッシング)も下げられる</td>
+<td>楽天e-NAVIから申込み<br><a href="https://www.rakuten-card.co.jp/support/guide/credit-limit/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>不正検知</td>
+<td>不正の疑いがあると、カードを一時的に止めて本人に確認する</td>
+<td><a href="https://www.rakuten-card.co.jp/security/detection/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>三井住友カード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>ご利用通知サービス</td>
+<td>カードを使うたびに、メール・アプリ・LINEのどれかに通知が届く</td>
+<td>Vpassの「メニュー → 利用通知・利用制限設定」<br><a href="https://www.smbc-card.com/mem/service/sec/selfcontrol/index.jsp">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>あんしん利用制限サービス</strong></td>
+<td>海外のお店での利用と、ネットショッピングでの利用を、それぞれ止めておける。設定した日から効く</td>
+<td>Vpassの「メニュー → 利用通知・利用制限設定」。カードごとに設定する<br><a href="https://www.smbc-card.com/mem/service/sec/selfcontrol/usage_limit.jsp">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>オートロックサービス</td>
+<td>ふだんはカードのすべての利用を止めておき、使うときだけ解除する。30分たつと自動で止まった状態に戻る</td>
+<td>Vpassアプリだけの機能<br><a href="https://www.smbc-card.com/mem/service/sec/selfcontrol/auto_lock.jsp">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ネットショッピング認証サービス(3Dセキュア)</td>
+<td>ネットの買い物のときに、メールで届く認証コードを求める</td>
+<td>Vpassにメールアドレスを登録しておく<br><a href="https://www.smbc-card.com/mem/service/sec/index.jsp">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>JCBカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>カードご利用通知</td>
+<td>カードを使うたびに通知が届く。「毎回」か「決めた金額以上のとき」を選べる</td>
+<td>MyJCBアプリの「安心サポート」、またはMyJCBの「My安心設定」<br><a href="https://www.jcb.co.jp/security/my-anshin/usage-notice/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>カードご利用制限</strong></td>
+<td>「カードロック(すべて)」「海外取引制限」「ネットショッピング制限」を自分でかけられる。すぐに反映される</td>
+<td>MyJCBの「My安心設定」。カードを切り替えると設定は引き継がれない<br><a href="https://www.jcb.co.jp/security/my-anshin/usage-limit/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>使いすぎアラート・ブロック</td>
+<td>1か月の利用額が決めた金額を超えたら、通知する、または利用を止める</td>
+<td>MyJCBの「My安心設定」<br><a href="https://www.jcb.co.jp/security/my-anshin/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>イオンカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>カードご利用通知サービス</td>
+<td>カードの利用や、利用が一時的に止められたことを、アプリの通知で知らせる</td>
+<td>AEON Payアプリ(旧イオンウォレット)<br><a href="https://www.aeon.co.jp/information/2025/0321_walletPush/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>本人認証サービス(3Dセキュア)</td>
+<td>ネットの買い物のときに、SMSで届くワンタイムパスワードを求める</td>
+<td>カードに携帯電話番号を登録しておけば使える。登録状況は暮らしのマネーサイトの「セキュリティ設定」で確認<br><a href="https://faq.aeon.co.jp/faq/show/464?site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>不正検知による一時制限</td>
+<td>他人が使った疑いがあると、取引を一時的に止める。解除にはSMSかマイナンバーカードでの確認が必要</td>
+<td><a href="https://www.aeon.co.jp/inquiry/unavailable/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>dカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>カードご利用速報</td>
+<td>カードを使うたびに、金額と日時がメールかアプリに届く</td>
+<td>会員ページかdカードアプリの「通知受信設定」<br><a href="https://dcard.docomo.ne.jp/st/beginner_security/flash_report/index.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>あんしんご利用制限</strong></td>
+<td>海外での利用やネットショッピングなどを、あらかじめ止めておく。使うときだけ解除する</td>
+<td>会員ページで設定。カード番号が「4363」「5344」「5365」で始まるカードが対象<br><a href="https://fw.dcard.docomo.ne.jp/st/faq/detail/?faqId=483315">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>カードご利用制限通知</td>
+<td>カードが使えなかったときに、その理由がメールとアプリに届く</td>
+<td>「通知受信設定」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用枠の引き下げ</td>
+<td>使わない分の枠を下げておく</td>
+<td>申込み後の取り消しはできず、元に戻すには引き上げの申込みが必要<br><a href="https://dcard.docomo.ne.jp/st/member_settings/down/card/index.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>PayPayカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>あんしん利用制限</strong></td>
+<td>「ネットでの支払い」「海外のお店での支払い」「その両方」「すべて」から選んで止めておける。解除すればすぐ使える</td>
+<td>PayPayアプリの「PayPayカード」、または会員メニューの「管理 → あんしん利用制限」<br><a href="https://www.paypay-card.co.jp/service/usage-limit/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>カード利用速報</td>
+<td>カードを使った時点で、お店・日時・金額がPayPayアプリとメールに届く</td>
+<td>会員メニューの「管理 → お知らせ通知の配信設定」<br><a href="https://www.paypay-card.co.jp/service/flash-report/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用可能枠の減枠</td>
+<td>使わない分の枠を下げておく</td>
+<td>「ご利用可能枠の変更 → 減枠の申し込み」<br><a href="https://www.paypay-card.co.jp/service/000211.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>エポスカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>カード利用通知サービス</td>
+<td>カードを使うたびに、日時と金額が届く</td>
+<td>エポスアプリの「カード → メニュー・設定 → 使いすぎ防止」、またはエポスNet<br><a href="https://faq.eposcard.co.jp/faq/show/688?site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>海外利用停止サービス</td>
+<td>海外でのショッピング、海外のネットショッピング、海外での現金の借り入れを、それぞれ止めておける</td>
+<td>エポスNetの「海外利用停止サービス(設定)」。海外に行くときは出発前に解除する<br><a href="https://faq.eposcard.co.jp/faq/show/690?category_id=62&site_domain=default">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>バーチャルカード</td>
+<td>ネットの買い物専用の別のカード番号。本物のカード番号を入力しなくて済む</td>
+<td>エポスNetで発行。止めたり番号を変えたりもできる<br><a href="https://www.eposcard.co.jp/web_security/index.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>本人認証サービス</td>
+<td>ネットの買い物のときに、ワンタイムパスワードなどでの確認を求める</td>
+<td>エポスNetで登録<br><a href="https://www.eposcard.co.jp/3d/index.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>セゾンカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>利用通知サービス</td>
+<td>カードを使うと、アプリに通知が届く</td>
+<td>セゾンPortalの「メニュー → 通知・ログイン設定 → ご利用通知」<br><a href="https://www.saisoncard.co.jp/guide/usage_notificaton/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>カード一時停止</td>
+<td>自分でカードの利用をすべて止める。最長24時間で、国内・海外の買い物も現金の借り入れも止まる</td>
+<td>セゾンPortalの「メニュー → サポート → 利用一時停止・解除」。毎月の支払い(携帯料金など)が止まることがある<br><a href="https://www.saisoncard.co.jp/customer-support/netanswer/stopping/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>本人認証サービス(3Dセキュア)</td>
+<td>ネットの買い物のときに、本人確認を求める。カードごとに設定する</td>
+<td>Netアンサーの「セキュリティ → 本人認証サービス(3Dセキュア)」<br><a href="https://www.saisoncard.co.jp/customer-support/security-service/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用可能枠の減枠</td>
+<td>使わない分の枠を下げておく。下げられるのは5万円まで</td>
+<td>専用のフォームから申込み<br><a href="https://www.saisoncard.co.jp/customer-support/netanswer/credit-limit/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>au PAY カード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>本人認証サービス(3Dセキュア)</td>
+<td>ネットの買い物のときに、本人確認を求める</td>
+<td>会員さま専用サイトで登録<br><a href="https://www.au.com/support/faq/details/00/0000/000028/pg00002854/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用可能枠の減枠</td>
+<td>使わない分の枠を下げておく</td>
+<td>会員さま専用サイトから申込み<br><a href="https://www.kddi-fs.com/support/update/increase/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>三菱UFJカード</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>本人認証サービス(オンラインショッピング認証サービス)</td>
+<td>ネットの買い物のときに、携帯電話かメールに届くワンタイムパスワードを求める</td>
+<td>会員サイト「My Digital Connect」の「本人認証サービス」で、届け先を登録する。家族カードは別に登録が必要<br><a href="https://www.cr.mufg.jp/mufgcard/contact/unable_to_authenticate/index.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>不正利用の検知</td>
+<td>不審な利用があると取引を保留し、メール・SMS・電話で連絡が来る</td>
+<td><a href="https://www.cr.mufg.jp/mufgcard/contact/nonavailable/index.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<hr>
 <h2>未確認情報</h2>
 <p>公式情報で裏付けが取れていない項目です。利用する前に各社の窓口や設定画面で確認してください。</p>
 <ul>
@@ -2189,6 +2810,9 @@ body { padding-bottom: 72px; }
 <li>LINE、Instagram、au ID、個人用Microsoftアカウントのパスキー対応と設定手順は未確認です。ソフトバンクに、ログインのたびに追加の確認を求める設定(2段階認証)があるかも未確認です。</li>
 <li>Appleの「盗難デバイスの保護」の設定場所は、公式ページで手順を確認できていません。</li>
 <li>メール・SNSの公式の案内は、英語のページに移動する場合があります。</li>
+<li>楽天カード、イオンカード、au PAY カード、三菱UFJカードに、海外やネットでの利用を自分で止めておく設定や、利用のたびの通知があるかは、一部未確認です。</li>
+<li>楽天ペイの端末認証の設定場所と、利用上限を自分で下げられるかは未確認です。</li>
+<li>「ナイト系スパム」の説明は2022年ごろの情報に基づいており、現在の規模や手口は未確認です。</li>
 <li>2026年のリスト型攻撃の事例(ヨネックス、エン)は、各社の発表を紹介した解説記事に基づいており、各社の公式発表そのものは確認していません。</li>
 <li>みずほ銀行、PayPay銀行、ソニー銀行、auじぶん銀行、SBI新生銀行は、ブラウザからログインするたびに追加の認証(ワンタイムパスワードやアプリでの承認)を求める設定が見つかっていません。これらの銀行では、振込時の認証と振込限度額が守りの中心になります。</li>
 <li>大和証券は、電話によるログイン認証の利用者にもパスキーの設定を呼びかけており、電話認証がいつまで使えるかは未確認です。</li>
@@ -2272,12 +2896,32 @@ body { padding-bottom: 72px; }
 <td>自分の画面では設定できず、電話や問い合わせフォームで会社に頼んで設定してもらうもの</td>
 </tr>
 <tr>
+<td>Cookie(クッキー)</td>
+<td>サイトがブラウザに渡す「ログイン済みの印」。これがあるので、開くたびにパスワードを入れ直さなくて済む。盗まれると、他人がログイン済みの状態になれる</td>
+</tr>
+<tr>
+<td>インフォスティーラー</td>
+<td>パソコンに入り込み、ブラウザに保存されたパスワードやCookieを盗んで犯人に送るウイルス</td>
+</tr>
+<tr>
 <td>リスト型攻撃</td>
 <td>よそで漏れたIDとパスワードの組み合わせを、別のサービスで次々に試してログインする手口</td>
 </tr>
 <tr>
 <td>パスワード管理アプリ・パスワードマネージャー</td>
 <td>サービスごとに違う長いパスワードを作り、覚えておいてくれる仕組み。iPhoneの「パスワード」アプリやGoogleパスワードマネージャーなど</td>
+</tr>
+<tr>
+<td>本人認証サービス・3Dセキュア</td>
+<td>ネットの買い物でカードを使うときに、カード番号とは別に、ワンタイムパスワードなどで本人かどうかを確かめる仕組み</td>
+</tr>
+<tr>
+<td>利用可能枠</td>
+<td>そのカードで使える金額の上限。低くしておくと、不正に使われたときの被害額を抑えられる</td>
+</tr>
+<tr>
+<td>キャッシング</td>
+<td>クレジットカードで現金を借りること</td>
 </tr>
 <tr>
 <td>リカバリーコード</td>
@@ -2405,9 +3049,9 @@ body { padding-bottom: 72px; }
   function purposeOf(name) {
     if (/通知先/.test(name)) return '目的: 本人確認を強くする';
     if (/復旧|再設定用|バックアップ|連絡先|連絡方法/.test(name)) return '目的: 自分が締め出されないようにする';
-    if (/通知|履歴|アラート|確認メール|お知らせメール|メールアドレス登録|登録電話番号の確認/.test(name)) return '目的: 不正にすぐ気付く';
+    if (/通知|速報|使いすぎ|お知らせメール|履歴|アラート|確認メール|お知らせメール|メールアドレス登録|登録電話番号の確認/.test(name)) return '目的: 不正にすぐ気付く';
     if (/ログイン|ログアウト|パスキー|2ファクタ|二段階|2要素|2段階|あんしんパス|セーフティパス|バンキングロック|2段階|IP制限|モバイルアクセス|サインオン|生体認証|パスコード/.test(name)) return '目的: 他人にログインさせない';
-    if (/限度額|上限|停止|ロック|制限|出金|解約|変更|デビット|カード利用|フレキシブルペイ|一部利用/.test(name)) return '目的: お金を動かせなくする';
+    if (/限度額|上限|可能額|利用枠|バーチャル|停止|ロック|制限|出金|解約|変更|デビット|カード利用|フレキシブルペイ|一部利用/.test(name)) return '目的: お金を動かせなくする';
     return '目的: 本人確認を強くする';
   }
 
@@ -2571,6 +3215,13 @@ body { padding-bottom: 72px; }
     first.className = 'unsel';
     content.appendChild(first);
     content.appendChild(how);
+    // 2段階認証を入れても乗っ取られる場合があることと、その読みものへの入口
+    var note = document.createElement('p');
+    note.id = 'mfa-note';
+    note.className = 'unsel';
+    note.innerHTML = '2段階認証やパスキーを入れていても、乗っ取られることがあります。<span class="money">「目的: お金を動かせなくする」の設定は、ログインされたあとでも効きます。</span>' +
+      '<a href="#' + encodeURIComponent('~2段階認証をしていても乗っ取られる理由') + '">理由と対策を見る</a>';
+    content.appendChild(note);
     var box = document.createElement('details');
     box.id = 'words';
     box.className = 'unsel';
@@ -2582,6 +3233,11 @@ body { padding-bottom: 72px; }
     var box = document.getElementById('words');
     var table = current && current.items[0];
     how.classList.toggle('unsel', !table);
+    var mfa = document.getElementById('mfa-note');
+    mfa.classList.toggle('unsel', !table);
+    if (table) content.insertBefore(mfa, table.nextSibling);
+    // 「お金を動かせなくする」設定がない会社(メールやSNS)では、その一文を出さない
+    if (table) mfa.querySelector('.money').classList.toggle('unsel', table.textContent.indexOf('お金を動かせなくする') === -1);
     // 表の1行目(いちばん効果が大きい設定)を「まずこれだけ」として先頭に出す
     var first = document.getElementById('first');
     var row = table && table.querySelector('tbody tr');
@@ -2715,6 +3371,10 @@ body { padding-bottom: 72px; }
 
   // 会社以外の節(共通事項、手口の説明、出典など)は1ページずつにまとめ、サイドバーから開く
   var docs = [];
+  var shelves = [
+    { id: 'guide', title: '知っておくと役立つこと' },
+    { id: 'about', title: 'このページについて' }
+  ];
   function buildDocs() {
     groups.forEach(function (g) {
       if (g.head.tagName !== 'H2' || g.kind) return;
@@ -2742,11 +3402,25 @@ body { padding-bottom: 72px; }
     var todoLink = add('あとでやること', '#+todo');
     todoLink.id = 'todo-link';
     todoLink.innerHTML = 'あとでやること<span class="later-count count"></span>';
-    var sep = document.createElement('div');
-    sep.className = 'sep';
-    nav.appendChild(sep);
-    docs.forEach(function (d) { d.link = add(d.title, '#~' + encodeURIComponent(d.title)); });
-    nav.addEventListener('click', function () { setMenu(false); });
+    // 読みものは、閉じた状態の折りたたみ(アコーディオン)2つにまとめる
+    shelves.forEach(function (sh) {
+      var box = document.createElement('details');
+      box.innerHTML = '<summary></summary>';
+      box.querySelector('summary').textContent = sh.title;
+      docs.forEach(function (d) {
+        var about = /未確認情報|ことばの説明|出典/.test(d.title);
+        if (about !== (sh.id === 'about')) return;
+        d.shelf = sh;
+        d.link = document.createElement('a');
+        d.link.href = '#~' + encodeURIComponent(d.title);
+        d.link.textContent = d.title;
+        box.appendChild(d.link);
+      });
+      sh.box = box;
+      nav.appendChild(box);
+    });
+    // 項目を選んだらスマホのメニューを閉じる(折りたたみの開閉では閉じない)
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
   }
 
   function setMenu(open) {
@@ -2775,7 +3449,6 @@ body { padding-bottom: 72px; }
       var on = '~' + d.title === name;
       if (on) doc = d;
       d.el.classList.toggle('unsel', !on);
-      if (on) d.link.setAttribute('aria-current', 'page'); else d.link.removeAttribute('aria-current');
     });
     cats.forEach(function (c) {
       var on = '@' + c.name === name;
@@ -2785,6 +3458,11 @@ body { padding-bottom: 72px; }
     groups.forEach(function (g) {
       if (g.kind) g.head.classList.add('unsel');
     });
+    docs.forEach(function (d) {
+      if (d === doc) d.link.setAttribute('aria-current', 'page'); else d.link.removeAttribute('aria-current');
+    });
+    // 開いている読みものが入っている折りたたみは、開いた状態にする
+    if (doc) doc.shelf.box.open = true;
     var todo = name === '+todo';
     document.getElementById('todo').classList.toggle('unsel', !todo);
     if (todo) renderTodo();
