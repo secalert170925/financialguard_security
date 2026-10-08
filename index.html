@@ -1,0 +1,1352 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>金融機関・証券会社で「自分で」入れられる防御設定まとめ</title>
+<meta name="description" content="証券会社・銀行ごとに、利用者が自分で入れられる防御設定(パスキー、パスワード無効化、取引制限、振込限度額など)をまとめた一覧。">
+<meta property="og:title" content="金融機関・証券会社の自衛設定まとめ">
+<meta property="og:description" content="各社の口座で、利用者が自分で入れられる防御設定の一覧。">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #1c2330;
+  --muted: #5b6676;
+  --border: #dde2ea;
+  --accent: #0b5cad;
+  --head: #eef2f7;
+  --top-bg: #fde8e8;
+  --top-fg: #a11616;
+  --mid-bg: #e4effc;
+  --mid-fg: #0b4f96;
+  --auto-bg: #e9eef0;
+  --auto-fg: #47525e;
+  --mark: #fff1a8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161c;
+    --surface: #1a2029;
+    --text: #e6eaf0;
+    --muted: #9aa6b6;
+    --border: #2d3644;
+    --accent: #6db3ff;
+    --head: #222a36;
+    --top-bg: #4a1c1c;
+    --top-fg: #ffb4b4;
+    --mid-bg: #1b3350;
+    --mid-fg: #a9d0ff;
+    --auto-bg: #2a323d;
+    --auto-fg: #b6c0cc;
+    --mark: #5c5200;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161c;
+  --surface: #1a2029;
+  --text: #e6eaf0;
+  --muted: #9aa6b6;
+  --border: #2d3644;
+  --accent: #6db3ff;
+  --head: #222a36;
+  --top-bg: #4a1c1c;
+  --top-fg: #ffb4b4;
+  --mid-bg: #1b3350;
+  --mid-fg: #a9d0ff;
+  --auto-bg: #2a323d;
+  --auto-fg: #b6c0cc;
+  --mark: #5c5200;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo, sans-serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+a { color: var(--accent); }
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.bar-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.bar-title { flex: 1; font-weight: 600; }
+.bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 12px;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.bar button {
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px 16px 64px;
+}
+h1 { font-size: 1.6rem; line-height: 1.4; margin: 16px 0 8px; }
+h2 {
+  font-size: 1.3rem;
+  margin: 48px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--border);
+}
+h3 { font-size: 1.1rem; margin: 32px 0 8px; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+#picker { margin: 24px 0; }
+#picker .lead { font-size: 1.25rem; font-weight: 700; margin: 0 0 4px; }
+#picker .hint { color: var(--muted); margin: 0 0 16px; }
+#picker .label { font-weight: 700; margin: 24px 0 10px; }
+#picker .group {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 14px 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.tile small { display: block; font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+.tile::after { content: "›"; color: var(--muted); font-size: 1.4rem; margin-left: 8px; }
+.tile:hover, .tile:focus-visible { border-color: var(--accent); }
+#back {
+  margin: 16px 0 0;
+  padding: 10px 16px;
+  font-size: 1rem;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+}
+#content h3 { font-size: 1.5rem; margin-top: 20px; }
+@media (max-width: 600px) {
+  #picker .group { grid-template-columns: 1fr 1fr; }
+  .tile { font-size: 1rem; padding: 12px 14px; }
+}
+.unsel { display: none !important; }
+#content hr { display: none; }
+details.more {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 12px 0;
+}
+details.more summary { cursor: pointer; font-weight: 600; }
+.more-lead { color: var(--muted); font-size: 0.88rem; margin: 48px 0 8px; }
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 12px 0 20px;
+}
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.93rem; }
+th, td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+th { background: var(--head); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.badge {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.badge.top { background: var(--top-bg); color: var(--top-fg); }
+.badge.mid { background: var(--mid-bg); color: var(--mid-fg); }
+.badge.auto { background: var(--auto-bg); color: var(--auto-fg); }
+mark { background: var(--mark); color: inherit; padding: 0 1px; }
+.hidden { display: none !important; }
+footer { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
+@media (max-width: 640px) {
+  h1 { font-size: 1.35rem; }
+  /* スマホでは表を1行=1枚のカードに組み替える */
+  .table-wrap { overflow: visible; background: none; border: 0; }
+  table, tbody, tr, td { display: block; width: auto; min-width: 0; }
+  table { font-size: 1rem; }
+  thead { display: none; }
+  tr {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin: 0 0 12px;
+  }
+  td { padding: 0; border: 0; }
+  td:empty { display: none; }
+  td + td { margin-top: 8px; }
+  td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  td.name { font-size: 1.08rem; font-weight: 700; }
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-inner">
+    <span class="bar-title">金融機関の自衛設定</span>
+    <button id="theme" type="button">表示切替</button>
+  </div>
+</div>
+<main>
+  <article id="content">
+<h1>金融機関・証券会社で「自分で」入れられる防御設定まとめ</h1>
+<p>調査日: 2026-10-08(各社公式ページ・FAQ・お知らせを中心に確認)</p>
+<p>仕様とメニュー名は頻繁に変わります。設定するときは、メールやSMSのリンクではなく、ブックマークか公式アプリから入ってください。</p>
+<p>凡例: <strong>◎</strong> = 効果が大きく最優先 / <strong>○</strong> = 入れておきたい / <strong>自動</strong> = 設定不要で適用済み</p>
+<hr>
+<h2>0. 全社共通の考え方</h2>
+<p>攻撃の流れは「ID・パスワードを盗む → ログイン → 売却・買付・出金」なので、守りは3層に分けて考えると整理しやすいです。</p>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>狙い</th>
+<th>代表的な設定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 入らせない</td>
+<td>フィッシングで盗まれても入れない状態にする</td>
+<td>パスキー登録 <strong>+ パスワードログインの無効化</strong></td>
+</tr>
+<tr>
+<td>2. 入られても動かせない</td>
+<td>売却・出金・送金を止めておく</td>
+<td>取引制限、出金先変更ロック、振込限度額0円、利用停止</td>
+</tr>
+<tr>
+<td>3. すぐ気付く</td>
+<td>被害を小さくする</td>
+<td>ログイン通知、注文・出金通知、ログイン履歴の確認</td>
+</tr>
+</tbody></table>
+<p>「取引や出金を止めておく」機能がある証券会社:</p>
+<table>
+<thead>
+<tr>
+<th>会社</th>
+<th>自分で即時に設定</th>
+<th>電話・フォームで依頼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>楽天証券</td>
+<td>取引やサービスの一時的な利用停止(5種類から選択)</td>
+<td>出金先変更のロック</td>
+</tr>
+<tr>
+<td>マネックス証券</td>
+<td>取引・サービスの一時的な利用停止</td>
+<td>売買・入金・出金の個別制限</td>
+</tr>
+<tr>
+<td>SBI証券</td>
+<td>ログインの一時停止、アプリ・ツールのログイン制限</td>
+<td>取引制限</td>
+</tr>
+<tr>
+<td>松井証券</td>
+<td></td>
+<td>全停止・取引停止・出金制限・商品指定、出金先変更のロック</td>
+</tr>
+</tbody></table>
+<p>押さえておきたい点:</p>
+<ul>
+<li><strong>パスキーを登録しただけでは不十分</strong>です。パスワードでのログインが残っていれば、攻撃者はそちらを使います。「パスワード無効化」「パスキーのみ」の設定がある会社では、そこまで行ってください。</li>
+<li>パスキーのみにすると、端末の故障・紛失時に入れなくなります。<strong>複数端末に登録</strong>し、復旧手段(電話窓口、本人確認書類)を先に確認しておいてください。</li>
+<li>パスキーの保管先(Appleアカウント、Googleアカウント、パスワードマネージャー)が次の弱点になります。そちらのパスワードを長くし、二段階認証を有効にしてください。</li>
+<li>出金や出金先変更の認証コードが<strong>メール</strong>に届く会社では、メールアカウントの防御が口座の防御と同じ重みを持ちます。</li>
+<li>登録の電話番号とメールアドレスが古いと、通知も復旧も機能しません。最初に確認してください。</li>
+<li>銀行は証券ほどパスキー化が進んでいないため、現状の主な自衛手段は「<strong>振込限度額を下げる</strong>」「<strong>使わない機能を止める</strong>」「<strong>認証をアプリ方式にする</strong>」の3つです。限度額の引き下げは多くの銀行で即時、引き上げは時間がかかるため、普段は低くしておくのが有効です。</li>
+</ul>
+<hr>
+<h2>1. 証券会社</h2>
+<h3>SBI証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>2026/6/30から原則必須化。最大10個まで登録可</td>
+<td>ログイン後「セキュリティ設定」。取引パスワードとメールの認証コードが必要</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>ログインパスワード無効設定</strong></td>
+<td>ユーザーネーム・パスワードでのログインを止め、パスキーのみにする。対象はメインサイト(PC・スマホ)、スマホ専用サイト、SBI証券Plus</td>
+<td>パスキー登録が前提。「My設定 → 各種サービス」で、設定を「設定しない(ログインパスワード利用可)」から「設定する(ログインパスワード利用不可)」に変更する。2026/7/10夜以降は、有効にするとアプリ・ツールのログイン制限も自動で適用される</td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリ・ツールのログイン制限設定</td>
+<td>使わないアプリ・ツールからのログインをツール単位で止める</td>
+<td>WEBサイトから設定。使っているアプリがあると、パスワード無効化がエラーになる場合がある模様</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ログイン一時利用停止/解除</td>
+<td>全チャネルのログインを一時的に止める。取引しない夜間などに使う</td>
+<td>次回ログイン時に解除。法人口座は不可</td>
+</tr>
+<tr>
+<td>○</td>
+<td>取引制限(依頼制)</td>
+<td>外国株の買付停止や出金停止などを、カスタマーサービスに依頼してかけてもらう</td>
+<td>問い合わせフォーム・電話・チャットで依頼し、解除は電話。希望内容(例: 中国株を含む外国株式の新規買付停止)を具体的に伝える</td>
+</tr>
+<tr>
+<td>○</td>
+<td>電話番号認証</td>
+<td>パスワードログインを残す場合の追加認証。登録電話番号から発信して認証する</td>
+<td>パスキーのみにできない人向けの次善策</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ログイン通知メール / ログイン履歴</td>
+<td>不審なログインに気付く</td>
+<td>履歴は日時とチャネルを確認できる</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金時の二要素認証</td>
+<td>出金指示のときにメールで認証コードが届く</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金先口座の変更</td>
+<td>取引パスワードとメールの認証コードが必要。出金先は1口座のみ登録可</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>楽天証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証(FIDO2)</td>
+<td>2025/10/26導入。2026年6月以降、順次必須化(時期は個別に案内)</td>
+<td>2026/5/31からスマホなしでも作成可。使えない場合はメールの絵文字認証が必須</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>取引やサービスの一時的な利用停止</strong></td>
+<td>下の5種類から選んで止める</td>
+<td>PC:「セキュリティ設定 → 取引やサービスの一時的な利用停止」。スマホ:「マイメニュー → セキュリティ設定 → 取引の一時的な利用停止」タブ。種類を選んで「認証へ進む」。設定・解除とも<strong>登録電話番号への音声ワンタイムキー</strong>で本人確認</td>
+</tr>
+<tr>
+<td>○</td>
+<td>出金先指定口座の変更停止</td>
+<td>出金先の変更機能をロックする</td>
+<td>カスタマーサービスセンターに電話して依頼</td>
+</tr>
+<tr>
+<td>○</td>
+<td>注文通知</td>
+<td>注文の受付・訂正・取消でメールが届く</td>
+<td>商品ごとに設定(2025/10/26開始)</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>ログイン通知メール / ログイン履歴</td>
+<td>履歴は過去3か月分</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金時の追加認証</td>
+<td>SMSまたは音声のワンタイムキー(2025/10/26から必須)</td>
+<td>出金先は本人名義の登録口座のみ</td>
+</tr>
+</tbody></table>
+<p>利用停止の5種類(設定できるのは同時に1種類だけ):</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>使える操作</th>
+<th>止まる操作</th>
+<th>向いている人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>投資信託の買付以外を停止</strong></td>
+<td>ログイン、入金、投信の買付・積立、配当金・分配金・利金の受取と再投資</td>
+<td>出金、投信の売却、外国株式などその他商品の取引</td>
+<td>投信積立だけの人</td>
+</tr>
+<tr>
+<td>投資信託と出金以外を停止</td>
+<td>ログイン、入金、出金、投信の買付・売付・積立、配当金等の受取と再投資</td>
+<td>その他商品の取引</td>
+<td>投信の売買と出金は使う人</td>
+</tr>
+<tr>
+<td>外国株式のみ停止</td>
+<td>外国株式以外</td>
+<td>米国・中国・アセアン株式の取引</td>
+<td>外国株を使わない人(不正取引で悪用されやすい中国株などを止める)</td>
+</tr>
+<tr>
+<td>すべての取引を停止</td>
+<td>ログイン</td>
+<td>取引全般</td>
+<td>残高確認だけしたい人</td>
+</tr>
+<tr>
+<td>ログイン・すべての取引を停止</td>
+<td>なし</td>
+<td>ログインを含むすべて</td>
+<td>長期間触らない人</td>
+</tr>
+</tbody></table>
+<p>設定すると、同じ画面の「適用中の利用停止設定」に種類が表示され、「変更」「解除」のボタンが出ます。</p>
+<p>注意点:</p>
+<ul>
+<li>個別株の売買やデイトレードをする人は、上2つを選ぶと取引できなくなります。</li>
+<li>逆指値注文は停止中は執行されず、解除時に想定外の価格で約定することがあります。設定前に取り消してください。</li>
+<li>投信の買付まで止まる種類(すべての取引を停止など)では積立注文がエラーになります。iDeCoの拠出と配当金の受取は続きます。</li>
+<li>ログインを含む停止の解除は、自動音声ダイヤル(0120-852-638)に登録電話番号からかけて行います。</li>
+</ul>
+<h3>マネックス証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>2026/6/30にログイン時のパスキー認証を必須化。公式FAQでは、登録後は従来のID・パスワードでログインできなくなる</td>
+<td>ログイン後「パスキー登録状況」。複数登録可。2個目以降の追加は既存パスキーでのログインが必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイムパスワード</td>
+<td>登録情報の照会・変更と出金指示で使う。認証アプリとSMSがあり、認証アプリが推奨</td>
+<td>ログイン時のワンタイムパスワードは廃止予定</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>取引・サービスの一時的な利用停止</strong></td>
+<td>自分で即時に止められる。出金と株・投信・債券などの取引が止まり、ログイン、残高確認、入金、<strong>設定済みの投信積立は続く</strong></td>
+<td>「MY PAGE → 登録情報 → 取引・サービスの一時的な利用停止」で「登録」し、取引パスワードを入力。メールアドレス1の登録が必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>取引制限(依頼制)</td>
+<td>売買、即時入金、出金・即時出金を個別に制限してもらう</td>
+<td>問い合わせフォームまたはコールセンターに依頼。設定完了まで2営業日程度かかる場合あり。解除は書類郵送か電話(書類は1〜2週間程度)</td>
+</tr>
+</tbody></table>
+<p>一時的な利用停止の注意点:</p>
+<ul>
+<li><strong>解除には取引パスワードの再設定が必要</strong>で、すぐには戻せません。方法は、オンライン(パスキー登録とマイナンバーカードでの本人確認)、郵送、電話の3つです。</li>
+<li>スマホアプリと登録情報の照会も使えなくなります。家計簿アプリとの連携は切れ、解除後に再連携が必要です。</li>
+<li>米国株のスマホアプリは、ログアウトしないとセッションが残ります。</li>
+</ul>
+<h3>松井証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー登録</td>
+<td>2026年6月から登録必須</td>
+<td>「口座管理 → セキュリティ設定 → パスキー設定」</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>「パスキーでのみログイン」</strong></td>
+<td>ID・パスワードでのログインを全チャネルで止める(2026/7/25から)</td>
+<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → ログイン」。使う全端末でパスキーログインできることを先に確認。一部の資産管理アプリが使えなくなる可能性あり</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>出金依頼時のSMS認証・電話番号認証</strong></td>
+<td>出金時に取引暗証番号に加えて認証番号を求める。<strong>任意設定なので自分で有効にする</strong></td>
+<td>「口座管理 → セキュリティ設定 → 多要素認証設定 → 出金依頼」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>出金先口座の変更ロック</td>
+<td>出金先の登録・変更を止める</td>
+<td>顧客サポートに連絡して設定。解除は書類提出が必要。ロック状況はサイト上で確認できない</td>
+</tr>
+<tr>
+<td>○</td>
+<td>口座・取引の利用制限(依頼制)</td>
+<td>ログインを含む全停止、取引のみ停止、出金のみ制限から選べる。売却のみ・買付のみの制限や、商品を指定した制限も可能</td>
+<td>顧客サポート(0120-953-006、平日8:30〜17:00)に電話。設定も解除も電話のみで、サイト上では操作できない</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>ログイン通知メール</td>
+<td>必須で、オフにできない</td>
+<td>通知先アドレスは変更可</td>
+</tr>
+</tbody></table>
+<h3>三菱UFJ eスマート証券(旧auカブコム証券)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー登録</td>
+<td>2026/4/26導入。ログイン時の必須化は2026年10月末を目標に準備中</td>
+<td>PC:「設定・申込 → お客様基本情報 → パスキー管理」。スマホ: 右上メニュー「設定・照会 → パスキー管理」。PCとスマホ両方に登録するならスマホが先</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>「ログイン・重要なお手続きでのパスワード認証」を無効</strong></td>
+<td>ログインだけでなく<strong>出金などの認証もパスキーのみ</strong>になる</td>
+<td>パスキー管理画面</td>
+</tr>
+<tr>
+<td>○</td>
+<td>認証メールアドレスの登録</td>
+<td>ログイン通知と出金時の認証コードの受け取りに必要</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>認証アプリ / 電話認証</td>
+<td>パスキーを使えない場合の二要素認証。メールの認証コードは電話認証へ移行予定</td>
+<td>電話番号は「連絡・通知先設定」で登録</td>
+</tr>
+<tr>
+<td>○</td>
+<td>取引時のパスワード省略をオフにする</td>
+<td>注文のたびにパスワードを求める状態にしておく</td>
+<td>「設定・申込 → サイト機能設定 → カスタマイズ機能」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>約定・失効通知サービス</td>
+<td>注文の約定・失効をメールで通知</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>自動通知サービス</td>
+<td>メールアドレス・電話番号の変更、出金依頼の受付、出金先やパスワードの変更を通知</td>
+<td>認証メールアドレス宛に届く</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金時の二要素認証</td>
+<td>出金パスワードとワンタイム認証コード</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>不正アクセスが疑われる場合は、サポートセンターへの申告でログイン・取引・出金を止めてもらえます(再開は本人からの電話)。</p>
+<h3>野村證券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>オンラインで取引・出金するためのログインに必須(6/27から)</td>
+<td>NOMURAアプリ、またはオンラインサービスで登録</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>メール通知サービス</td>
+<td>ログイン、出金、取引・手続き完了をメールで通知</td>
+<td>「口座情報/手続き → メールアドレス登録/変更 → メール通知サービス登録状況」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイムパスワード</td>
+<td>追加の認証要素</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ATM出金限度額の引き下げ</td>
+<td>野村カードでのATM出金の上限を、1日0円〜50万円の範囲で下げる</td>
+<td>オンラインサービスで変更でき、即時に反映</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ログイン履歴 / 登録電話番号の確認</td>
+<td>不審なアクセスがあると会社から電話が来ることがある</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金先口座の変更は書類のみ</td>
+<td>オンラインでは出金先を変更できない。届出印を押した書類の郵送が必要</td>
+<td>登録状況は「お客様情報照会」で確認できる</td>
+</tr>
+</tbody></table>
+<p>2026/6/27から、ログインだけでなく取引・出金時にもパスキー認証が必須です。</p>
+<h3>大和証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>D-Portアプリまたはブラウザで利用</td>
+<td>D-Portで連携済みならPCログインも追加認証なし</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>操作通知</td>
+<td>ログインや取引のときに通知</td>
+<td>「口座情報 → メールサービスの登録状況 → 申込・変更」で「オンライントレードでの操作通知」にチェック</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイムパスワード通知先の事前設定</td>
+<td>出金、取引パスワードのリセット、暗証番号変更で使う</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>電話によるログイン認証</td>
+<td>代替の認証手段。申込みが必要</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金先口座の変更はオンライン不可</td>
+<td>出金先の変更は電話か来店でのみ受け付け。登録は本人名義の口座のみ</td>
+<td>登録状況は「お手続き・サポート → 口座登録状況」で確認できる</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金時のワンタイムパスワード</td>
+<td>出金には必ず入力が必要</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>2026/10/5に、問い合わせ管理の委託先への不正アクセスで約11万人分の氏名・メールアドレス・口座番号などが漏えいした可能性があると報じられています。大和証券を名乗るメールや電話には特に注意してください。</p>
+<h3>SMBC日興証券</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>パスキー認証</td>
+<td>2026年4月下旬から順次必須化。<strong>パスキー以外でログインすると取引と入出金ができない</strong></td>
+<td>2026/8/21から、設定時にマイナンバーカードか運転免許証でのオンライン本人確認が必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>メールアドレス登録</td>
+<td>ログイン時通知を受け取る</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>取引パスワードの設定</td>
+<td>注文や出金のときに求められるパスワード</td>
+<td>「各種お手続き → 口座管理 → パスワード・セキュリティ設定 → 取引パスワード」</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>出金時のワンタイムパスワード / 取引パスワード</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>不正が疑われるときは、ログインパスワードを変更し、日興コンタクトセンター(0120-285-250)に連絡します。</p>
+<hr>
+<h2>2. 銀行</h2>
+<h3>三菱UFJ銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額の引き下げ</td>
+<td>普段は必要最小限にしておく</td>
+<td>ログイン後「ご利用限度額変更」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイムパスワード(アプリ)</td>
+<td>振込や限度額変更の認証に使う</td>
+<td>電話(自動音声)の本人確認で登録した場合、振込上限は10万円。免許証・マイナンバーカード・店頭なら1日最大1,000万円</td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリの生体認証</td>
+<td>アプリのログインを生体認証にする</td>
+<td>アプリの「マイページ」から登録。機種変更時は再登録が必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>Eメール通知</td>
+<td>振込、住所変更、限度額変更、パスワード変更などの手続きがあるとメールが届く</td>
+<td>メールアドレスの登録・変更はインターネットバンキングで行う(ワンタイムパスワードが必要)</td>
+</tr>
+<tr>
+<td>○</td>
+<td>キャッシュカード・通帳の利用停止</td>
+<td>紛失・盗難時にアプリから止められる</td>
+<td>アプリ「マイページ → カード・通帳・印鑑 → 紛失・盗難による通帳/カードの利用停止・再発行」</td>
+</tr>
+</tbody></table>
+<h3>三井住友銀行(SMBC)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>SMBCセーフティパス</strong></td>
+<td>登録すると、アプリでもPCでも、登録スマホの生体認証がないとログインできない</td>
+<td>登録はスマホ1台まで。PCからは画面の二次元コードを登録スマホで読み取って承認</td>
+</tr>
+<tr>
+<td>◎</td>
+<td>振込上限金額の引き下げ</td>
+<td>普段は必要最小限にし、必要なときだけ引き上げる</td>
+<td>アプリ「振込 → 振込上限金額の変更など」。引き下げはワンタイムパスワード不要、引き上げは必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>Oliveフレキシブルペイの利用制限</td>
+<td>カード全体、または支払いモードなどの項目ごとに利用を止められる</td>
+<td>三井住友銀行アプリのフレキシブルペイ画面で、制限したい項目をONにする</td>
+</tr>
+<tr>
+<td>○</td>
+<td>デビットモードの利用限度額</td>
+<td>海外ショッピング、海外ATMなどの上限を0円から設定できる</td>
+<td>アプリのデビットモード「利用制限」</td>
+</tr>
+</tbody></table>
+<h3>みずほ銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額の引き下げ</td>
+<td>0〜500万円の範囲で設定でき、引き下げはすぐに反映される</td>
+<td>アプリ「振込・振替 → 振込限度額の変更」。登録済みの振込先への振込は別枠(1日2,000万円で固定)で、この設定では下がらない</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ご利用カード(アプリ版)またはワンタイムパスワード</td>
+<td>振込、ペイジー、限度額の引き上げに必要</td>
+<td>紙のご利用カードではこれらの手続きができない</td>
+</tr>
+<tr>
+<td>○</td>
+<td>アプリの生体認証</td>
+<td>アプリパスワードの代わりに使える</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>利用を止めたいときは、みずほダイレクトヘルプデスクまたは店舗に連絡します。</p>
+<h3>ゆうちょ銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>利用停止・利用停止解除</strong></td>
+<td>普段はゆうちょダイレクトを止めておき、取引のときだけ解除する</td>
+<td></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>ログイン時の2段階認証</strong></td>
+<td>お客さま番号とパスワードに加えて、メールのワンタイムパスワードを求める(2026/5/6導入)</td>
+<td>それ以前からの利用者は初期設定で無効なので、自分で有効にする。認証アプリでのログインは対象外</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ゆうちょ認証アプリ</td>
+<td>生体認証またはパスコードでログインと送金の認証を行う</td>
+<td>送金時に使う4桁の取引コードを任意で追加できる</td>
+</tr>
+<tr>
+<td>○</td>
+<td>送金限度額の引き下げ</td>
+<td>普段の利用範囲まで下げる</td>
+<td>「ご登録内容確認・変更 → 1日の送金限度額」。引き下げは即時。引き上げはオンラインで最大50万円、審査に2日程度</td>
+</tr>
+<tr>
+<td>自動</td>
+<td>取扱確認メール</td>
+<td>送金などの結果がメールで届く</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>楽天銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>○</td>
+<td>振込限度額の引き下げ</td>
+<td>初期値は100万円</td>
+<td>ログイン後に自分で設定</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ワンタイム認証 / 合言葉認証</td>
+<td>重要な取引で使い捨てパスワードや合言葉を求める</td>
+<td>「認証強化設定」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>モバイルアクセス制限 / ログイン制限</td>
+<td>スマホからのログイン・取引を制限する / PCログイン時の認証項目を増やす</td>
+<td>「認証強化設定」</td>
+</tr>
+<tr>
+<td>○</td>
+<td>取引通知メール</td>
+<td>ログインや取引・手続きがあるとメールで通知</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>ATM出金制限 / デビット利用制限</td>
+<td>ATM出金の条件、デビットカードの国内・海外別の利用可否と1日の限度額を設定</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>IP制限サービス</td>
+<td>登録したIPアドレス以外からのログイン・取引を制限する</td>
+<td>固定IPがない家庭回線では使いにくい</td>
+</tr>
+</tbody></table>
+<h3>住信SBIネット銀行(ドコモSMTBネット銀行)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>振込限度額</td>
+<td>0円〜1,000万円(1万円単位)で設定</td>
+<td>100万円超への増額は翌日反映</td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>キャッシュカード利用設定</strong></td>
+<td>「通常 / 停止 / 一時許可」を切り替える</td>
+<td>「一時許可」は1時間以内に1回だけ出金でき、その後自動で停止に戻る</td>
+</tr>
+<tr>
+<td>○</td>
+<td>キャッシュカード引出限度額</td>
+<td>1日0〜50万円、1か月0〜1,000万円</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>スマート認証NEO</td>
+<td>アプリによる認証</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>PayPay銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>振込限度額を0円にする(振込ロック)</strong></td>
+<td>使わないときは0円または最小限にしておく。初期値は30万円</td>
+<td>「各種手続 → 振込限度額変更」。トークンが必要。PayPayアプリからは変更不可。100万円以上への引き上げは24時間後に反映</td>
+</tr>
+<tr>
+<td>○</td>
+<td>Visaデビットのカード番号停止・再開</td>
+<td>カード番号単位で止められる</td>
+<td>ログイン後のカード番号照会画面</td>
+</tr>
+<tr>
+<td>○</td>
+<td>ATM出金・デビットの各限度額</td>
+<td>取引の種類ごとに上限を設定</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>トークンの取引停止</td>
+<td>端末を紛失したときに止める</td>
+<td>ログイン後「取引停止・再開」</td>
+</tr>
+</tbody></table>
+<h3>ソニー銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>スマホ認証方式</td>
+<td>振込時に取引内容をアプリで確認して認証する</td>
+<td>2026/8/26のアプリ刷新で、アプリの再利用登録が必要</td>
+</tr>
+<tr>
+<td>○</td>
+<td>振込限度額</td>
+<td>0円、または1円〜1,000万円で設定</td>
+<td></td>
+</tr>
+<tr>
+<td>○</td>
+<td>Visaデビットの利用制限</td>
+<td>海外利用とネットショッピングを個別に止められる</td>
+<td>Sony Bank WALLET アプリ</td>
+</tr>
+<tr>
+<td>○</td>
+<td>カードの一時停止 / ATM引出限度額</td>
+<td>カードの全機能を一時停止・再開できる</td>
+<td></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>お知らせメール</td>
+<td>振込、ATM出金、暗証番号の誤入力で届く</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>auじぶん銀行</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>インターネットバンキングロック</strong></td>
+<td>普段はログインを止めておき、使うときだけ解除する</td>
+<td></td>
+</tr>
+<tr>
+<td>◎</td>
+<td><strong>ATMロック</strong></td>
+<td>普段はATM利用を止めておく。解除後60分で自動的に再ロック</td>
+<td>じぶん銀行アプリで操作。現金の入金はロック中も可能</td>
+</tr>
+<tr>
+<td>○</td>
+<td>スマホ認証サービス</td>
+<td>振込などを実行前にスマホで承認する</td>
+<td>登録できるスマホは1台</td>
+</tr>
+<tr>
+<td>○</td>
+<td>振込限度額</td>
+<td>初期値は10万円。0円〜1,000万円で変更可</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. 未確認情報</h2>
+<p>公式情報で裏付けが取れていない項目です。利用する前に各社の窓口や設定画面で確認してください。</p>
+<ul>
+<li>SBI証券の取引制限(依頼制)は、利用者の報告に基づく情報で、公式の案内ページは確認できていません。</li>
+<li>SBI証券の出金時の二要素認証は、対象金額の記載が公式ページ間で異なります(全額 / 100万円超)。</li>
+<li>マネックス証券の取引制限(依頼制)とみずほ銀行の各項目は、公式ページを直接取得できず、検索結果の要約に基づいています。</li>
+<li>三菱UFJ eスマート証券、野村證券、大和証券、SMBC日興証券に、利用者が取引や出金を自分で止められる機能があるかは未確認です。</li>
+<li>各銀行のパスキー対応とログイン通知の有無は未確認です。</li>
+<li>住信SBIネット銀行のスマート認証NEOは、機能の詳細が未確認です。</li>
+<li>三菱UFJ銀行の振込限度額を0円まで下げられるかは未確認です。</li>
+</ul>
+<hr>
+<h2>出典</h2>
+<p>証券(共通)</p>
+<ul>
+<li><a href="https://www.jsda.or.jp/houdou/2025/20251015fuseiaccess-guideline.pdf">日本証券業協会: 不正アクセス対応ガイドライン改正(2025/10/15)</a></li>
+<li><a href="https://diamond.jp/zai/articles/-/1053757">ザイ・オンライン: 大手ネット証券5社のセキュリティ対策比較</a></li>
+<li><a href="https://www.bloomberg.com/jp/news/articles/2026-04-08/TD5WZTKJH6V400">Bloomberg: 3月の証券口座乗っ取り被害額302億円</a></li>
+</ul>
+<p>SBI証券</p>
+<ul>
+<li><a href="https://faq.sbisec.co.jp/answer/67e65898faf45f7a65208b67/">不正なアクセスを防止するための対策</a></li>
+<li><a href="https://faq.sbisec.co.jp/answer/6937e6e3b14749ed0cd6062a/">パスキー認証は必須になりますか</a></li>
+<li><a href="https://www.sbisec.co.jp/ETGate/WPLETmgR001Control?OutSide=on&getFlg=on&burl=search_home&cat1=home&cat2=service&dir=service&file=home_security_setting.html">セキュリティ設定</a></li>
+<li><a href="https://faq.sbisec.co.jp/answer/5ea9391d1149dd0011cbe8e7/">出金先口座の変更手続き</a></li>
+</ul>
+<p>楽天証券</p>
+<ul>
+<li><a href="https://www.rakuten-sec.co.jp/web/security/">セキュリティ</a></li>
+<li><a href="https://www.rakuten-sec.co.jp/web/security/account_lock/">取引やサービスの一時的な利用停止</a></li>
+<li><a href="https://www.rakuten-sec.co.jp/smartphone/security/passkey/">パスキー認証</a></li>
+</ul>
+<p>マネックス証券</p>
+<ul>
+<li><a href="https://info.monex.co.jp/news/2026/20260625_01.html">ログイン時のパスキー認証必須化(2026/6/25)</a></li>
+<li><a href="https://faq.monex.co.jp/faq/show/24137?site_domain=default">パスキーの登録・削除</a></li>
+<li><a href="https://info.monex.co.jp/security/authentication/multi-factor-authentication.html">多要素認証</a></li>
+<li><a href="https://faq.monex.co.jp/faq/show/23253?site_domain=default">取引やサービスの利用を自分で一時的に停止できますか</a></li>
+<li><a href="https://faq.monex.co.jp/faq/show/22656?site_domain=default">口座に制限をかけることはできますか</a></li>
+</ul>
+<p>松井証券</p>
+<ul>
+<li><a href="https://www.matsui.co.jp/support/security/measures/">当社のセキュリティ対策</a></li>
+<li><a href="https://www.matsui.co.jp/news/2026/detail_0721_01.html">ログイン方法を「パスキー」に限定(7/25〜)</a></li>
+<li><a href="https://support.matsui.co.jp/faq/show/35270?site_domain=faq">出金依頼時のSMS認証・電話番号認証の設定</a></li>
+<li><a href="https://support.matsui.co.jp/faq/show/999?site_domain=faq">出金先銀行の変更ができない場合(変更ロック)</a></li>
+<li><a href="https://support.matsui.co.jp/faq/show/52194?site_domain=faq">口座や取引に制限をかけることはできますか</a></li>
+</ul>
+<p>三菱UFJ eスマート証券</p>
+<ul>
+<li><a href="https://kabu.com/support/security/passkey.html">パスキー認証</a></li>
+<li><a href="https://kabu.com/company/pressrelease/20260618_1.html">パスキー認証の段階的必須化(2026/6/18)</a></li>
+<li><a href="https://kabu.com/support/security/measures.html">セキュリティ対策</a></li>
+</ul>
+<p>野村・大和・SMBC日興</p>
+<ul>
+<li><a href="https://faq.nomura.co.jp/faq_detail.html?id=73">野村證券: 出金先口座の変更</a></li>
+<li><a href="https://www.nomura.co.jp/onlineservice/help/account/customer/limit_change.html">野村證券: ATM出金限度額変更</a></li>
+<li><a href="https://www.daiwa.jp/contact/procedures/account.html">大和証券: 預貯金口座の登録・変更</a></li>
+<li><a href="https://www.smbcnikko.co.jp/security/attention/03.html">SMBC日興証券: フィッシング詐欺等による不正なログインや取引</a></li>
+<li><a href="https://kabu.com/support/security/default.html">三菱UFJ eスマート証券: 安心・安全な取引のために</a></li>
+<li><a href="https://www.nomura.co.jp/lp/security/">野村證券: セキュリティ</a></li>
+<li><a href="https://www.nomura.co.jp/introduc/news/2026/20260513_1.html">野村證券: ログイン・取引・出金時のパスキー認証必須化</a></li>
+<li><a href="https://www.daiwa.jp/onlinetrade/security/">大和証券: オンライントレードのセキュリティ</a></li>
+<li><a href="https://www.issoh.co.jp/tech/details/18132/">大和証券の委託先不正アクセスに関する解説</a></li>
+<li><a href="https://www.smbcnikko.co.jp/security/">SMBC日興証券: セキュリティ対策</a></li>
+<li><a href="https://www.smbcnikko.co.jp/news/customer/2026/n_20260417_01.html">SMBC日興証券: パスキー認証必須化(2026/4/17)</a></li>
+</ul>
+<p>銀行</p>
+<ul>
+<li><a href="https://faq01.bk.mufg.jp/faq/show/6009?site_domain=default">三菱UFJ銀行: 振込上限額について</a></li>
+<li><a href="https://www.bk.mufg.jp/ippan/email/index.html">三菱UFJ銀行: Eメール配信サービス</a></li>
+<li><a href="https://www.smbc.co.jp/smartphone/service/directapp4/help/fpay05.html">三井住友銀行: フレキシブルペイの利用制限を設定する</a></li>
+<li><a href="https://www.faq.mizuhobank.co.jp/faq/show/6675?site_domain=default">みずほ銀行: 振込限度額の変更</a></li>
+<li><a href="https://www.rakuten-bank.co.jp/security/howto/account_management/">楽天銀行: 口座管理・利用制限機能</a></li>
+<li><a href="https://www.smbc.co.jp/kojin/direct/securi/safetypass/login/">三井住友銀行: SMBCセーフティパス</a></li>
+<li><a href="https://www.smbc.co.jp/kojin/otetsuduki/ib/hurikomi/">三井住友銀行: 振込上限金額の変更</a></li>
+<li><a href="https://www.mizuhobank.co.jp/direct/information2024/index.html">みずほ銀行: 振込等にはご利用カード(アプリ版)またはワンタイムパスワードが必要</a></li>
+<li><a href="https://www.jp-bank.japanpost.jp/news/2026/news_id002500.html">ゆうちょ銀行: ゆうちょダイレクトの機能改善(2026)</a></li>
+<li><a href="https://www.jp-bank.japanpost.jp/direct/pc/security/drsecurity/dr_pc_sc_ds_drsecurity.html">ゆうちょ銀行: ゆうちょダイレクトのセキュリティ対策</a></li>
+<li><a href="https://www.rakuten-bank.co.jp/security/howto/enhanced/">楽天銀行: 認証強化設定</a></li>
+<li><a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">住信SBIネット銀行: 各種限度額・利用制限</a></li>
+<li><a href="https://www.paypay-bank.co.jp/security/effort/set_limited.html">PayPay銀行: 各種限度額の設定</a></li>
+<li><a href="https://sonybank.jp/guide/auth/">ソニー銀行: 認証方式</a></li>
+<li><a href="https://www.jibunbank.co.jp/service/security/service/">auじぶん銀行: セキュリティサービス</a></li>
+</ul>
+
+</article>
+  <footer>
+    個人が公開情報をもとにまとめたもので、各社の公式情報ではありません。設定の前に必ず各社の公式サイトで最新の内容を確認してください。
+  </footer>
+</main>
+<script>
+(function () {
+  var content = document.getElementById('content');
+
+  // テーマ切替(端末設定 → 明 → 暗 の順)
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme');
+    var dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  var BADGES = { '◎': ['top', '◎ 最優先'], '○': ['mid', '○ 推奨'], '自動': ['auto', '自動'] };
+  var groups = [];     // 見出し(h2/h3)とその配下の要素
+  var companies = [];  // 会社ごとの節(h3)
+  var intro = [];      // 冒頭の説明(会社を選ぶ画面でだけ見せる)
+
+  function decorate() {
+    // 表を横スクロール可能な枠で包み、優先度の列をバッジにする
+    content.querySelectorAll('table').forEach(function (t) {
+      var wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+      t.parentNode.insertBefore(wrap, t);
+      wrap.appendChild(t);
+      t.querySelectorAll('tbody tr').forEach(function (tr) {
+        var cell = tr.cells[0];
+        var b = cell && BADGES[cell.textContent.trim()];
+        if (b) cell.innerHTML = '<span class="badge ' + b[0] + '">' + b[1] + '</span>';
+        // スマホ表示用: 名前の列を見出し扱いにし、残りの列に項目名を付ける
+        var nameCol = b ? 1 : 0;
+        Array.prototype.forEach.call(tr.cells, function (td, i) {
+          if (i === nameCol) td.className = 'name';
+          else if (i > nameCol) td.setAttribute('data-label', t.rows[0].cells[i].textContent);
+        });
+      });
+    });
+    content.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    });
+    // 見出しごとにまとめる。会社の節は「証券会社」「銀行」の大見出しの下にある h3
+    var cur = null;
+    var section = null;
+    Array.prototype.forEach.call(content.children, function (el) {
+      if (el.tagName === 'H1') return;
+      var isHead = el.tagName === 'H2' || el.tagName === 'H3';
+      if (isHead || !cur) {
+        cur = { head: el, items: [], section: null, kind: null };
+        groups.push(cur);
+        if (el.tagName === 'H2') {
+          section = cur;
+          var m = el.textContent.match(/証券|銀行/);
+          cur.kind = m ? m[0] : null;
+        } else if (el.tagName === 'H3' && section && section.kind) {
+          cur.section = section;
+          cur.name = el.textContent;
+          companies.push(cur);
+        }
+        if (isHead) return;
+      }
+      if (el.tagName !== 'HR') cur.items.push(el);
+    });
+  }
+
+  function buildPicker() {
+    var first = content.querySelector('hr') || content.querySelector('h2');
+    Array.prototype.forEach.call(content.children, function (el) {
+      if (el.tagName === 'P' && (el.compareDocumentPosition(first) & Node.DOCUMENT_POSITION_FOLLOWING)) intro.push(el);
+    });
+    var box = document.createElement('div');
+    box.id = 'picker';
+    box.innerHTML = '<p class="lead">使っている会社を選んでください</p>' +
+      '<p class="hint">その会社で入れておきたい設定を表示します。</p>';
+    [['証券', '証券会社'], ['銀行', '銀行']].forEach(function (kind) {
+      var label = document.createElement('p');
+      label.className = 'label';
+      label.textContent = kind[1];
+      box.appendChild(label);
+      var row = document.createElement('div');
+      row.className = 'group';
+      companies.forEach(function (c) {
+        if (c.section.kind !== kind[0]) return;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tile';
+        // 見出しの括弧書き(別名・旧名)は小さく添える
+        var m = c.name.match(/^(.*?)\((.*)\)$/);
+        var label = document.createElement('span');
+        label.textContent = m ? m[1] : c.name;
+        if (m) {
+          var sub = document.createElement('small');
+          sub.textContent = m[2];
+          label.appendChild(sub);
+        }
+        b.appendChild(label);
+        b.addEventListener('click', function () { location.hash = encodeURIComponent(c.name); });
+        row.appendChild(b);
+      });
+      box.appendChild(row);
+    });
+    content.insertBefore(box, first);
+    var back = document.createElement('button');
+    back.type = 'button';
+    back.id = 'back';
+    back.textContent = '‹ 会社を選び直す';
+    back.addEventListener('click', function () { location.hash = ''; });
+    content.insertBefore(back, first);
+  }
+
+  // 会社以外の節(共通事項、出典など)は末尾に折りたたんで置く
+  function foldOthers() {
+    var lead = document.createElement('p');
+    lead.className = 'more-lead';
+    lead.textContent = 'あわせて読む';
+    content.appendChild(lead);
+    groups.forEach(function (g) {
+      if (g.head.tagName !== 'H2' || g.kind) return;
+      var d = document.createElement('details');
+      d.className = 'more';
+      var sum = document.createElement('summary');
+      sum.textContent = g.head.textContent.replace(/^\d+\.\s*/, '');
+      d.appendChild(sum);
+      g.items.forEach(function (el) { d.appendChild(el); });
+      g.head.remove();
+      content.appendChild(d);
+    });
+    groups.forEach(function (g) {
+      if (g.kind) g.head.textContent = g.head.textContent.replace(/^\d+\.\s*/, '');
+    });
+  }
+
+  // URL の # で選ばれた1社の節だけを表示する(ブラウザの「戻る」で選択画面に戻れる)
+  function apply() {
+    var name = '';
+    try { name = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    var current = null;
+    companies.forEach(function (c) {
+      var on = c.name === name;
+      if (on) current = c;
+      c.head.classList.toggle('unsel', !on);
+      c.items.forEach(function (el) { el.classList.toggle('unsel', !on); });
+    });
+    groups.forEach(function (g) {
+      if (g.kind) g.head.classList.add('unsel');
+    });
+    document.getElementById('picker').classList.toggle('unsel', !!current);
+    document.getElementById('back').classList.toggle('unsel', !current);
+    intro.forEach(function (el) { el.classList.toggle('unsel', !!current); });
+    if (current) window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('hashchange', apply);
+
+  decorate();
+  buildPicker();
+  foldOthers();
+  apply();
+})();
+</script>
+</body>
+</html>
