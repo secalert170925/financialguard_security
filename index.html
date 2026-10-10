@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>お金とアカウントを「自分で」守る設定まとめ</title>
-<meta name="description" content="証券会社・銀行、メール、SNS、スマホ決済、クレジットカードごとに、利用者が自分で入れられる防御設定(パスキー、2段階認証、取引制限、振込限度額など)をまとめた一覧。">
+<meta name="description" content="証券会社・銀行、メール、SNS、スマホ決済、クレジットカード、電話・SMSごとに、利用者が自分で入れられる防御設定(パスキー、2段階認証、取引制限、振込限度額など)をまとめた一覧。">
 <meta property="og:title" content="お金とアカウントを守る設定まとめ">
 <meta property="og:description" content="金融機関、メール、SNSで、利用者が自分で入れられる防御設定の一覧。">
 <meta property="og:type" content="article">
@@ -165,6 +165,91 @@ h2 {
 }
 h3 { font-size: 1.1rem; margin: 32px 0 8px; }
 hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
+#content > h1 + p { font-size: 1.1rem; font-weight: 600; }
+#content > p.meta { color: var(--muted); font-size: 0.85rem; }
+#news { margin: 16px 0 0; }
+#news .label { font-size: 0.85rem; font-weight: 700; margin: 0 0 4px; }
+#news .label span { font-weight: 400; color: var(--muted); }
+#news .scroll {
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  scroll-snap-type: y mandatory;
+}
+#news .item { padding: 8px 12px; font-size: 0.92rem; line-height: 1.6; scroll-snap-align: start; }
+#news .item + .item { border-top: 1px solid var(--border); }
+#news time { color: var(--muted); margin-right: 8px; white-space: nowrap; }
+.share { margin: 28px 0 0; }
+.share { display: flex; flex-wrap: wrap; gap: 8px; }
+.share .row { display: contents; }
+.share .btn {
+  display: inline-block;
+  padding: 9px 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.share .btn:hover, .share .btn:focus-visible { border-color: var(--accent); }
+@media print {
+  .bar, #side, #notice, #back, .later, .share, #mfa-note, #words, #how, #stale { display: none !important; }
+  body { padding-bottom: 0; background: #fff; }
+  .layout { display: block; padding: 0; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
+}
+#wizard-start { display: block; width: 100%; margin: 24px 0 0; padding: 16px; font-size: 1.15rem; }
+#wizard-start small { display: block; margin-top: 2px; font-size: 0.82rem; font-weight: 400; }
+.wz-btn {
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.wz-btn.main { color: var(--surface); background: var(--accent); border-color: var(--accent); }
+.wz-btn.skip { display: block; margin-top: 16px; padding: 4px 0; font-size: 0.88rem; font-weight: 400; color: var(--muted); background: none; border: 0; text-decoration: underline; }
+#wizard h2 { margin-top: 20px; }
+#wizard .hint { color: var(--muted); margin: 0 0 12px; }
+#wizard .label { font-weight: 700; margin: 20px 0 10px; }
+#wizard .group { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.wz-step { color: var(--muted); font-size: 0.88rem; margin: 0 0 4px; }
+.wz-q { font-size: 1.2rem; font-weight: 700; margin: 12px 0 8px; }
+.wz-result { font-size: 1.05rem; }
+.wz-ans { display: flex; gap: 8px; margin-top: 10px; }
+.wz-ans .wz-btn { padding: 8px 14px; font-size: 0.92rem; }
+.wz-ans .wz-btn[aria-pressed="true"] { color: var(--surface); background: var(--accent); border-color: var(--accent); }
+.wz-ans .wz-btn[aria-pressed="true"]::before { content: "✓ "; }
+.wz-list { display: grid; gap: 10px; }
+.wz-row {
+  display: block; width: 100%; padding: 14px 16px; text-align: left;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 12px; cursor: pointer;
+}
+.wz-row .n { display: block; font-size: 1.1rem; font-weight: 700; }
+.wz-row .s { display: block; color: var(--muted); font-size: 0.88rem; }
+.wz-name .badge { margin-right: 4px; vertical-align: 2px; }
+.wz-keep { font-size: 0.85rem; margin-top: 12px !important; }
+.wz-habits { margin: 8px 0 0; padding-left: 1.3em; }
+.wz-habits li { margin: 0 0 8px; }
+.wz-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.wz-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin: 8px 0 4px; }
+.wz-co { color: var(--muted); font-size: 0.88rem; margin: 0; }
+.wz-name { font-size: 1.2rem; font-weight: 700; margin: 2px 0 6px; }
+.wz-text { margin: 0 0 6px; }
+.wz-links a { display: inline-block; margin-right: 16px; }
+.wz-label { font-size: 0.78rem; font-weight: 700; color: var(--muted); margin: 10px 0 0; }
+.tile.pick::after { content: ""; }
+.tile.pick[aria-pressed="true"] { border-color: var(--accent); background: var(--mid-bg); }
+.tile.pick[aria-pressed="true"]::after { content: "✓"; color: var(--accent); font-size: 1.2rem; }
+@media (max-width: 600px) { #wizard .group { grid-template-columns: 1fr 1fr; } }
 #picker { margin: 24px 0; }
 #picker .lead { font-size: 1.25rem; font-weight: 700; margin: 0 0 4px; }
 #picker .hint { color: var(--muted); margin: 0 0 16px; }
@@ -306,6 +391,8 @@ figure.diagram { margin: 16px auto; max-width: 440px; }
 .dg .t-bad { fill: var(--top-fg); font-weight: 700; }
 .dg .t-org { fill: var(--muted); font-weight: 700; }
 .dg .result { font-size: 15px; }
+.caution { margin: 8px 0 0; padding: 6px 10px; border-left: 3px solid var(--top-fg); background: var(--top-bg); font-size: 0.88rem; line-height: 1.6; }
+#first .caution { background: var(--surface); }
 #first {
   background: var(--top-bg);
   border-radius: 12px;
@@ -402,7 +489,7 @@ body { padding-bottom: 72px; }
 }
 </style>
 </head>
-<body data-built="2026-10-09">
+<body data-built="2026-10-10">
 <div class="bar">
   <div class="bar-inner">
     <button id="menu" type="button" aria-controls="side" aria-expanded="false">メニュー</button>
@@ -415,9 +502,11 @@ body { padding-bottom: 72px; }
 <main>
   <article id="content">
 <h1>お金とアカウントを「自分で」守る設定まとめ</h1>
-<p>調査日: 2026-10-08(各社公式ページ・FAQ・お知らせを中心に確認)</p>
-<p>仕様とメニュー名は頻繁に変わります。設定するときは、メールやSMSのリンクではなく、ブックマークか公式アプリから入ってください。</p>
-<p>凡例: <strong>◎</strong> = 効果が大きく最優先 / <strong>○</strong> = 入れておきたい / <strong>自動</strong> = 設定不要で適用済み</p>
+<p>乗っ取りや不正送金のニュースを見て、「自分は何をしておけばいいんだろう」と思った人のためのページです。</p>
+<p>使っている会社を選ぶと、その会社で<strong>自分で入れられる守りの設定</strong>だけが出ます。むずかしい知識はいりません。まずは、いちばん上に出る1つから始めてください。</p>
+<p>設定するときは、メールやSMSのリンクからではなく、いつものアプリか公式サイトから入ってください。</p>
+<p>このページで選んだ内容は、どこにも送られず、記録もされません。お使いの端末の中にだけ残ります。ページを保存しておけば、インターネットにつながっていなくても使えます。</p>
+<p>調査日: 2026-10-08 〜 2026-10-10(各社の公式ページ・よくある質問・お知らせを中心に確認)</p>
 <hr>
 <h2>金融機関に共通の考え方</h2>
 <p>攻撃の流れは「ID・パスワードを盗む → ログイン → 売却・買付・出金」なので、守りは3層に分けて考えると整理しやすいです。</p>
@@ -722,7 +811,14 @@ body { padding-bottom: 72px; }
 <li>出金先を変えられないようにするロック</li>
 </ul>
 <p>各社のページで「目的: お金を動かせなくする」と書かれている設定が、これにあたります。</p>
-<p>参考: <a href="https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html">金融庁: インターネット取引サービスへの不正アクセス・不正取引にご注意ください</a>、<a href="https://scan.netsecurity.ne.jp/article/2025/10/03/53736.html">偽の確認画面について警察庁が注意喚起(ScanNetSecurity)</a></p>
+<p><strong>パスキーを保管しているアカウントをねらわれる</strong></p>
+<p>2026年10月に、SBI証券やSMBC日興証券が注意を呼びかけています。パスキーをGoogleやAppleのアカウントに保存している場合、そのアカウントを乗っ取られると、保存してあるパスキーやログインの情報も使われてしまう、という内容です。ほかの証券会社で報告された事案を受けたもので、SBI証券は、自社の口座での被害は確認されていないとしています。パスキーの仕組みそのものが破られたわけではなく、ねらわれているのはパスキーを預けているアカウントのほうです。</p>
+<ul>
+<li>GoogleやAppleのアカウントに、2段階認証(2ファクタ認証)を入れる。再設定用のメールアドレスと電話番号が、自分のものになっているかを確かめる</li>
+<li>「パスキーを登録し直してください」というSMSやメールが来ても、そこから登録し直さない</li>
+<li>サポートを名乗る電話で、パスキーの登録し直しを求められても、応じない</li>
+</ul>
+<p>参考: <a href="https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html">金融庁: インターネット取引サービスへの不正アクセス・不正取引にご注意ください</a>、<a href="https://scan.netsecurity.ne.jp/article/2025/10/03/53736.html">偽の確認画面について警察庁が注意喚起(ScanNetSecurity)</a>、<a href="https://atmarkit.itmedia.co.jp/ait/articles/2610/09/news034.html">SBI証券の注意喚起についての記事(@IT)</a>、<a href="https://www.itmedia.co.jp/news/article/2610/08/2000002137/">SBI証券「被害は確認されていない」(ITmedia NEWS)</a></p>
 <hr>
 <h2>パスワードの使い回しと情報漏えい</h2>
 <p>会社から会員情報が漏れたというニュースは、毎月のように出ています。漏れたIDとパスワードは、その会社だけの問題では終わりません。</p>
@@ -818,7 +914,12 @@ body { padding-bottom: 72px; }
 </ol>
 <p>残高が少なくても、登録してあるカードや銀行口座からお金が出ていくことがあり、70万円を超える被害の報告もありました。PayPayはその日のうちに、QRコードでつなげる方法をやめ、つなげる前に相手のサービス名をはっきり表示するように変えています。</p>
 <p><strong>お店のQRコードを、偽物に貼り替える</strong></p>
-<p>お店の本物のQRコードの上に、偽のQRコードを貼る手口です。読み取って支払うと、お店ではなく犯人に届きます。</p>
+<p>お店の本物のQRコードの上に、偽のQRコードのシールを貼る手口です。支払い用のQRコードなら、読み取って払ったお金がお店ではなく犯人に届きます。飲食店のテーブルにある注文用のQRコードなどが貼り替えられ、偽のサイトでカード番号や個人情報を入力させられる例も報じられています。</p>
+<ul>
+<li>読み取る前に、上から別のシールが貼られていないかを見る</li>
+<li>読み取ったあとに開いた画面の、お店の名前やサイトの名前を確かめる</li>
+<li>注文や駐車料金の支払いで、カード番号や暗証番号を細かく聞かれたら、入力せずにお店の人に確かめる</li>
+</ul>
 <p><strong>メールやSMSからアプリを開かせる</strong></p>
 <p>「料金が未払いです」「税金の期限が迫っています」などのメールやSMSから、決済アプリの送金画面を開かせる手口です。</p>
 <p><strong>決まりごとにする</strong></p>
@@ -830,7 +931,7 @@ body { padding-bottom: 72px; }
 <li>送金ボタンを押す前に、「送る」画面なのか「受け取る」画面なのかを見る</li>
 <li>送金を使わない人は、送金の上限を低くしておく(PayPayなら「利用可能額の設定」の「友だちに送る」)</li>
 </ul>
-<p>参考: <a href="https://www.caa.go.jp/notice/entry/041215/">消費者庁: 返金手続を装い、コード決済で逆に送金させる事業者に関する注意喚起</a>、<a href="https://paypay.ne.jp/notice/20240712/s-01/">PayPay: 詐欺行為や携帯電話の盗難にご注意ください</a>、<a href="https://paypay.ne.jp/notice/20250620/s-01/">PayPay: PayPayカードを騙るフィッシングメールにご注意ください</a>、<a href="https://ascii.jp/elem/000/004/293/4293648/">PayPayの緊急対策についての記事(ASCII.jp)</a></p>
+<p>参考: <a href="https://www.caa.go.jp/notice/entry/041215/">消費者庁: 返金手続を装い、コード決済で逆に送金させる事業者に関する注意喚起</a>、<a href="https://paypay.ne.jp/notice/20240712/s-01/">PayPay: 詐欺行為や携帯電話の盗難にご注意ください</a>、<a href="https://paypay.ne.jp/notice/20250620/s-01/">PayPay: PayPayカードを騙るフィッシングメールにご注意ください</a>、<a href="https://ascii.jp/elem/000/004/293/4293648/">PayPayの緊急対策についての記事(ASCII.jp)</a>、<a href="https://news.yahoo.co.jp/articles/1ae3c8b341a241e22257d3fe9b485cdb8174ab0c">飲食店でのQRコードの貼り替えについての報道(FNN)</a></p>
 <hr>
 <h2>SNSの釣り広告・釣り投稿</h2>
 <p>SNSでは、アカウントを乗っ取られなくても、広告や投稿のリンクから詐欺に引き込まれることがあります。</p>
@@ -838,17 +939,215 @@ body { padding-bottom: 72px; }
 <p>有名人が投資をすすめているように見せた広告から、LINEのグループに誘い込み、「必ずもうかる」と言ってお金を振り込ませる手口です。警察庁のまとめでは、SNS型投資詐欺は2025年11月末までに8,217件、被害額は1,071億円にのぼり、だまされたときの連絡手段は約9割がLINEでした。</p>
 <p><strong>話題の投稿の返信欄に並ぶ、釣りアカウント</strong></p>
 <p>Xでは、たくさん拡散された投稿の返信欄に、同じようなアカウントが大量に現れます(「ナイト系スパム」と呼ばれるものなど)。目を引く写真をアイコンにし、ほかの人のコメントを写して貼り付け、プロフィールや固定された投稿のリンクを押させようとします。リンクの先は、広告で稼ぐためのサイトや、詐欺サイト、ウイルスを配るサイトです。</p>
+<p><strong>コンビニで金券を買わせて、番号を聞き出す</strong></p>
+<p>「コンビニでプリペイドカード(電子マネーのカード)を買って、裏の番号を写真で送って」と頼んでくる手口です。番号を伝えた時点で、カードの金額はすべて相手のものになります。知人のアカウントから届くこともありますが、その場合は知人のアカウントが乗っ取られています。</p>
+<p>警察庁は、会社や役所が、支払いのためにコンビニで電子マネーのカードを買わせることは絶対にない、としています。</p>
 <p><strong>リンクの見た目と行き先が違う</strong></p>
 <p>投稿に表示されているサイト名と、実際に開くページが違うことがあります。知っているサイトの名前が出ていても、安心できません。</p>
 <p><strong>決まりごとにする</strong></p>
 <ul>
 <li>広告や返信欄のリンクは押さない。気になる話は、自分で検索して公式サイトから確かめる</li>
 <li>「必ずもうかる」「元本保証」「あなただけ」は、詐欺の言葉だと決めておく</li>
+<li>「カードを買って番号を教えて」と言われたら、相手が誰でも詐欺だと決めておく。知人からなら、電話など別の方法で本人に確かめる</li>
 <li>LINEなど別のアプリに誘われたら、そこでやめる</li>
 <li>振込先が個人の名前の口座なら、振り込まない</li>
 <li>釣りアカウントは、相手にせず、ブロックや通報をする</li>
 </ul>
-<p>参考: <a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/sns-romance/investment/">警察庁: SNS型投資詐欺</a>、<a href="https://www.fsa.go.jp/ordinary/chuui/nisekoukoku.html">金融庁: 証券会社などをかたるSNS上の偽広告に注意</a>、<a href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_036/">消費者庁: SNSなどを通じた「もうけ話」にご注意ください</a></p>
+<p>参考: <a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/sns-romance/investment/">警察庁: SNS型投資詐欺</a>、<a href="https://www.fsa.go.jp/ordinary/chuui/nisekoukoku.html">金融庁: 証券会社などをかたるSNS上の偽広告に注意</a>、<a href="https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_036/">消費者庁: SNSなどを通じた「もうけ話」にご注意ください</a>、<a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/fictitious-billing/">警察庁: 架空料金請求詐欺</a>、<a href="https://www.kokusen.go.jp/news/data/n-20240424_2.html">国民生活センター: 電子マネー番号を伝えない</a></p>
+<hr>
+<h2>設定のほかに、気をつけること</h2>
+<p>設定を入れても、自分でだまされて操作してしまう被害は防げません。次のことを、決まりごとにしておいてください。</p>
+<table>
+<thead>
+<tr>
+<th>対象</th>
+<th>気をつけること</th>
+<th>くわしく</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>共通</td>
+<td>メールやSMSのリンクからはログインしない。いつものアプリか、ブックマーク(お気に入り)から開く</td>
+<td>だましの手口(フィッシング)</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>パスキーを設定した会社で、パスワードやワンタイムパスワードを求められたら、偽サイトを疑う</td>
+<td>2段階認証をしていても乗っ取られる理由</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>「パスキーを登録し直してください」というSMS・メール・電話には応じない。登録し直すときは、いつものアプリか公式サイトから自分で始める</td>
+<td>2段階認証をしていても乗っ取られる理由</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>届いたワンタイムパスワードは、自分が始めた操作のためのものかを確かめる。人に教えない</td>
+<td>だましの手口(フィッシング)</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>同じパスワードを、ほかのサービスで使わない。全部が大変なら、お金とメールだけでも別にする</td>
+<td>パスワードの使い回しと情報漏えい</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>出どころの分からないソフトを入れない。確認の画面で「キーを押して貼り付けて」と言われたら閉じる</td>
+<td>2段階認証をしていても乗っ取られる理由</td>
+</tr>
+<tr>
+<td>共通</td>
+<td>スマホを買い替えるときは、古いスマホを手放す前に、新しいスマホでログインできるか確かめる</td>
+<td>スマホの買い替えなどで設定し直すもの</td>
+</tr>
+<tr>
+<td>金融機関</td>
+<td>お金の操作が終わったら、ログアウトする。共用のパソコンではログインしない</td>
+<td>2段階認証をしていても乗っ取られる理由</td>
+</tr>
+<tr>
+<td>クレジットカード</td>
+<td>カード会社を名乗るメールやSMSは、リンクを押さず、いつものアプリを開いて確かめる</td>
+<td>クレジットカードの番号が盗まれる手口</td>
+</tr>
+<tr>
+<td>スマホ決済</td>
+<td>「返金します」と言われても、こちらが操作する必要はない。通話しながらの画面共有はしない</td>
+<td>スマホ決済をねらう詐欺</td>
+</tr>
+<tr>
+<td>スマホ決済</td>
+<td>メールやSMSに付いているQRコード、人から送られてきたQRコードは読み取らない</td>
+<td>スマホ決済をねらう詐欺</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>「カードを買って番号を教えて」と言われたら、相手がだれでも詐欺。知人からなら、別の方法で本人に確かめる</td>
+<td>SNSの釣り広告・釣り投稿</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>広告や返信欄のリンクは押さない。「必ずもうかる」「あなただけ」は詐欺の言葉だと決めておく</td>
+<td>SNSの釣り広告・釣り投稿</td>
+</tr>
+<tr>
+<td>メール・アカウント</td>
+<td>メールのアカウントは、口座と同じ重さで守る。パスワードの再設定や確認コードは、メールに届く</td>
+<td>パスワードの使い回しと情報漏えい</td>
+</tr>
+<tr>
+<td>電話・SMS</td>
+<td>「+」で始まる番号(海外からの電話)は、心当たりがなければ出ない、かけ直さない</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>スマホの買い替えなどで設定し直すもの</h2>
+<p>守りの設定には、いちど入れたら終わりではなく、スマホを買い替えたときなどにやり直しが必要なものがあります。やり直しを忘れると、守りが外れたままになったり、自分がログインできなくなったりします。</p>
+<p><strong>スマホを買い替えるとき</strong></p>
+<p>パスキー、生体認証、認証アプリの多くは、そのスマホに結び付いています。</p>
+<ul>
+<li>古いスマホを手放す前に、新しいスマホで、銀行・証券・メールにログインできることを確かめる</li>
+<li>登録できるスマホが1台だけの会社(三菱UFJ銀行、三井住友銀行、住信SBIネット銀行、SBI新生銀行、ソニー銀行など)は、古いスマホの登録を外して、新しいスマホで登録し直す</li>
+<li>認証アプリを使っているサービスは、バックアップコードを保存してあるか確かめる</li>
+<li>GoogleやAppleに保存したパスキーは、同じアカウントで新しいスマホにログインすれば引き継がれることが多い。それでも、古いスマホがあるうちに確かめる</li>
+</ul>
+<p><strong>スマホが壊れたとき、アプリが消えたとき</strong></p>
+<p>登録できるスマホが1台だけの銀行では、そのスマホが使えなくなると、ログインや振込ができなくなります。お金がなくなるわけではありませんが、戻すのに本人確認や日数が必要です。</p>
+<ul>
+<li>どの銀行も、登録し直す道は用意されている。必要になるのは、運転免許証やマイナンバーカード、キャッシュカード、銀行に届け出た電話番号、秘密の質問の答えなど。ふだんから、すぐ出せるようにしておく</li>
+<li>戻すまでに時間がかかることがある(郵送で1週間ほど、登録後24時間は使えない、など)。急ぎの振込に使う口座を、1台のスマホだけに頼らない</li>
+<li>届け出た電話番号が古いままだと、登録し直せない。番号を変えたら、すぐに銀行の登録も変える</li>
+<li>しばらく使わないと、登録が外れる銀行がある(ゆうちょ銀行、SBI新生銀行など)</li>
+</ul>
+<p>iPhoneには、長く使っていないアプリを自動で消す機能があります(「設定 → アプリ → App Store → 非使用のAppを取り除く」)。消えるのはアプリ本体だけで、中のデータは残り、アイコンを押せば元に戻ります。ただ、銀行のアプリは、入れ直したときに登録のやり直しを求められることがあります。銀行や証券のアプリを消されたくない場合は、この機能をオフにしておけます。</p>
+<p><strong>パスキーだけでログインする設定にしていて、端末を失ったとき</strong></p>
+<p>パスワードでのログインを止めている会社や、パスキーが必須の会社では、パスキーの入った端末がなくなると、自分ではログインできなくなることがあります。戻し方は会社によって違います。</p>
+<table>
+<thead>
+<tr>
+<th>会社</th>
+<th>端末が壊れた・なくなったときの戻し方</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SBI証券</td>
+<td>「ログインパスワード無効設定」をしている場合は、テクニカルサポートデスクに電話</td>
+</tr>
+<tr>
+<td>楽天証券</td>
+<td>登録した電話番号から電話してパスキーを30分止め、IDとパスワードでログインして作り直す</td>
+</tr>
+<tr>
+<td>マネックス証券</td>
+<td>「ログイン・各種手続きダイヤル」に電話して、パスキーを消してもらう</td>
+</tr>
+<tr>
+<td>松井証券</td>
+<td>「パスキーでのみログイン」にしている場合は、顧客サポートに問い合わせ</td>
+</tr>
+<tr>
+<td>三菱UFJ eスマート証券</td>
+<td>ログインパスワードを再設定すると、パスワードでのログインに戻せる</td>
+</tr>
+<tr>
+<td>野村證券</td>
+<td>アプリでマイナンバーカードを読み取るか、郵送の確認コードで登録し直す</td>
+</tr>
+<tr>
+<td>大和証券</td>
+<td>ログインサポート専用ダイヤルに連絡。D-Portのアカウントを作り直す</td>
+</tr>
+<tr>
+<td>SMBC日興証券</td>
+<td>日興コンタクトセンターのパスキー窓口に連絡</td>
+</tr>
+<tr>
+<td>ドコモ(dアカウント)</td>
+<td>IDとパスワード、連絡先に届くコードで「いつもパスキー設定」を解除</td>
+</tr>
+<tr>
+<td>au(au ID)</td>
+<td>auの回線の契約があれば、新しいスマホでIDとパスワードを使ってログイン</td>
+</tr>
+<tr>
+<td>Yahoo! JAPAN</td>
+<td>「ログイン方法の再設定」の手続き</td>
+</tr>
+<tr>
+<td>メルカリ</td>
+<td>「アカウント復旧」の手続き(マイナンバーカードか顔での本人確認)</td>
+</tr>
+</tbody></table>
+<p>電話での手続きになる会社では、戻るまで取引や出金ができないことがあります。パスキーを複数登録できる会社では、別の端末にも登録しておいてください。</p>
+<p><strong>電話番号を変えるとき</strong></p>
+<p>SMSや電話での確認は、登録した番号に届きます。</p>
+<ul>
+<li>番号を変える前に、銀行・証券・カード・メールに登録している電話番号を、新しい番号に変える。変えたあとだと、確認のSMSを受け取れず、手続きが進まなくなることがある</li>
+<li>Googleは、電話番号の変更が反映されるまで最長7日かかることがある</li>
+</ul>
+<p><strong>メールアドレスを変えるとき</strong></p>
+<ul>
+<li>ワンタイムパスワードや通知の届け先になっているメールアドレスは、古いアドレスが使えるうちに変える</li>
+<li>携帯会社を変えると、その会社のメールアドレスが使えなくなることがある</li>
+</ul>
+<p><strong>口座やカードを新しく作ったとき、カードを切り替えたとき</strong></p>
+<ul>
+<li>最初の設定のままにしない。振込限度額は、最初から高めに設定されていることがある(イオン銀行は500万円、楽天銀行は100万円など)</li>
+<li>利用通知、ネットの買い物での本人確認、利用制限は、カードごとの設定が多い。新しいカードには引き継がれないことがある</li>
+<li>使わなくなった口座やカードが、守りの弱いまま残っていないかも見る</li>
+</ul>
+<p><strong>海外に行くとき</strong></p>
+<ul>
+<li>海外での利用を止めている場合は、出発の前に解除し、帰ってきたら止め直す</li>
+<li>現地のSIMに差し替えると、SMSでの確認を受け取れなくなる</li>
+<li>海外では使えない機能がある(三菱UFJ銀行のMUFGあんしんパスなど)</li>
+</ul>
+<p><strong>アプリが大きく変わったとき</strong></p>
+<ul>
+<li>アプリの作り直しや大きな更新のあとに、登録のやり直しを求められることがある。お知らせが届いたら、メールのリンクからではなく、アプリや公式サイトで確かめてから進める</li>
+</ul>
+<p>会社ごとに分かっているものは、各社のページの「こんなときは設定し直す」に書いてあります。</p>
 <hr>
 <h2>金融機関 / 証券会社</h2>
 <p>証券会社と銀行の口座を守る設定です。不正な売買や送金を防ぎます。</p>
@@ -917,6 +1216,12 @@ body { padding-bottom: 72px; }
 <td><a href="https://faq.sbisec.co.jp/answer/5ea9391d1149dd0011cbe8e7/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: 同じ種類のスマホ(iPhoneからiPhone、AndroidからAndroid)で、同じAppleやGoogleのアカウントを使っていれば、パスキーはそのまま使える。種類が変わるとき(iPhoneからAndroidなど)は引き継げないので、古いスマホが使えるうちに、新しいスマホでパスキーを登録する。Windowsのパソコンは、パソコンごとに登録が必要</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: ほかに登録した端末があれば、そこからログインして、使えなくなった端末のパスキーを消す。ほかに端末がなく、「ログインパスワード無効設定」もしている場合は、自分ではログインできない。テクニカルサポートデスク(0120-581-255、平日8:00〜17:00)に電話して手続きする</li>
+</ul>
+<p>「ログインパスワード無効設定」をする前に、パスキーを2つ以上の場所に登録しておいてください(スマホとパソコン、など)。SBI証券は10個まで登録できます。1つしか登録していないと、その1台が壊れたときに、電話での手続きが済むまでログインできなくなります。</p>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>パスキーを使えない場合</strong>: パスワードでのログインに、電話番号認証(登録電話番号から指定の番号に発信する)を組み合わせます。</li>
@@ -969,6 +1274,12 @@ body { padding-bottom: 72px; }
 <td>出金先は本人名義の登録口座のみ</td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>電話番号を変えたとき</strong>: 利用停止の設定や解除、出金のときの確認は、登録した電話番号に届く。番号を変えたら、登録も変えておく</li>
+<li><strong>スマホを買い替えたとき</strong>: 同じ種類のスマホ(iPhoneからiPhoneなど)なら、基本的にパスキーを作り直す必要はない。種類が変わるときは、新しいスマホでパスキーを追加する</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: 登録した電話番号から楽天証券に電話すると、パスキーの利用を30分間止められる。そのあいだにIDとパスワードでログインし、パスキーを作り直す。それでも入れないときは、カスタマーサービスセンターでパスキーを消してもらう</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>スマホがない場合</strong>: 2026/5/31から、パソコンだけでもパスキーを作成できます。</li>
@@ -1020,6 +1331,8 @@ body { padding-bottom: 72px; }
 <p>注意点:</p>
 <ul>
 <li>個別株の売買やデイトレードをする人は、上2つを選ぶと取引できなくなります。</li>
+<li>米国株など外国株式の取引は、どの種類を選んでも止まります。外国株式の積立をしている人は、積立も止まります。</li>
+<li>設定のときの本人確認は、登録した電話番号にかかってくる自動音声です。電話に出られる状態(消音にしていない状態)で操作してください。うまく受け取れないときは、下の自動音声ダイヤルに自分から電話して設定する方法があります。</li>
 <li>逆指値注文は停止中は執行されず、解除時に想定外の価格で約定することがあります。設定前に取り消してください。</li>
 <li>投信の買付まで止まる種類(すべての取引を停止など)では積立注文がエラーになります。iDeCoの拠出と配当金の受取は続きます。</li>
 <li>ログインを含む停止の解除は、自動音声ダイヤル(0120-852-638)に登録電話番号からかけて行います。</li>
@@ -1059,6 +1372,12 @@ body { padding-bottom: 72px; }
 <td>問い合わせフォームまたはコールセンターに依頼。設定完了まで2営業日程度かかる場合あり。解除は書類郵送か電話(書類は1〜2週間程度)<br><a href="https://faq.monex.co.jp/faq/show/22656?site_domain=default">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: パスキーが新しいスマホに引き継がれる場合と、登録し直しが必要な場合がある(前のスマホの種類による)。古いスマホを手放す前に、新しいスマホでログインできることを確かめる</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: パスキーを登録すると、IDとパスワードではログインできなくなる。本人が「ログイン・各種手続きダイヤル」に電話し、本人確認のうえでパスキーを消してもらう。登録し直すときは、マイナンバーカードなどでの本人確認がある</li>
+<li><strong>パソコン(Windows)で登録したとき</strong>: パスキーはそのパソコンの中にだけ入る。パソコンを替えたら登録し直す。パスキーは複数登録できるので、予備を作っておくと安心</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://info.monex.co.jp/security/index.html">マネックス証券のセキュリティ・設定ページ</a></p>
 <p>一時的な利用停止の注意点:</p>
 <ul>
@@ -1113,6 +1432,12 @@ body { padding-bottom: 72px; }
 <td>通知先アドレスは変更可<br><a href="https://support.matsui.co.jp/faq/show/35312?site_domain=help">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホやパソコンを買い替えるとき</strong>: 「パスキーでのみログイン」にしていると、パスキーを登録していない端末からは入れない。古い端末が使えるうちに、新しい端末でパスキーを登録する</li>
+<li><strong>スマホを買い替えたとき</strong>: 同じ種類のスマホなら、基本的に登録し直す必要はない。種類が変わるときや、Windowsのパソコンを替えるときは、登録し直す</li>
+<li><strong>「パスキーでのみログイン」にしていて、端末が壊れた・なくなったとき</strong>: IDとパスワードではログインできないので、松井証券顧客サポートに問い合わせる</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.matsui.co.jp/support/security/measures/">松井証券のセキュリティ・設定ページ</a></p>
 <h3>三菱UFJ eスマート証券(旧auカブコム証券)</h3>
 <table>
@@ -1173,6 +1498,12 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: 新しい端末で、パスキーの登録が改めて必要になる場合がある</li>
+<li><strong>パスワード認証を無効にしていて、前の端末が使えないとき</strong>: ログインパスワードを再設定すると、パスワード認証が有効に戻る。そのあと、新しい端末でパスキーを登録する</li>
+<li><strong>認証アプリを使っているとき</strong>: 認証アプリは新しいスマホに引き継がれない。アプリを入れ直して登録し直す</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>パスキーを使えない場合</strong>: 電話認証、認証アプリ、リカバリーコードによる二要素認証でログインできます。問い合わせ先は「パスキー・二要素認証案内ダイヤル」(0120-977-930)です。</li>
@@ -1225,6 +1556,11 @@ body { padding-bottom: 72px; }
 <td>登録状況は「お客様情報照会」で確認できる<br><a href="https://faq.nomura.co.jp/faq_detail.html?id=73">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: 同じ種類のスマホなら、登録したパスキーをそのまま使える。種類が変わるときは、新しいスマホで登録し直す</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: 使えるパスキーが1つもないと、その場では登録し直せない。NOMURAアプリでマイナンバーカードを読み取って登録するか、郵送で確認コードを受け取って登録する。できないときは取引店に相談する。そのあいだも、残高の確認(照会メニュー)はできるが、取引と出金はできない</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>マイナンバーカードや対応スマホがない場合</strong>: オンラインサービスから「郵送で手続き」を選ぶと、本人限定受取郵便で確認コードが届きます(最短3営業日程度)。コードの有効期限は発行から20日間です。相談先は「パスキー設定サポートダイヤル」(0120-191-316)です。</li>
@@ -1278,6 +1614,12 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: AppleやGoogleのアカウントでパスキーを同期していれば、新しいスマホでもそのまま使える。同期していないと引き継がれない。iPhoneとAndroidのあいだの買い替えでは、D-Portのアカウントから登録し直す</li>
+<li><strong>パスキーを消してしまったとき</strong>: ログインできなくなり、D-Portのアカウントを作り直すことになる</li>
+<li><strong>スマホをなくしたとき</strong>: ログインサポート専用ダイヤル(0120-776177、平日9:00〜17:00)に本人が連絡する</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>パスキーや生体認証に対応した端末がない場合</strong>: 「電話によるログイン認証」を申し込むとログインできます。通話料は利用者の負担です。<a href="https://daiwa.dga.jp/faq_detail.html?id=1611">公式の案内</a></li>
@@ -1319,6 +1661,11 @@ body { padding-bottom: 72px; }
 <td><a href="https://www.smbcnikko.co.jp/security/attention/03.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>新しい端末を足すとき</strong>: 登録済みの端末と新しい端末を近づけて追加する。登録済みの端末が手元にあるうちに行う</li>
+<li><strong>パスキーを消したいとき、登録し直したいとき</strong>: サイトからは消せない。日興コンタクトセンターのパスキー窓口(0120-166-250)に連絡する</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>パスキーを設定できない場合</strong>: 日興コンタクトセンターのパスキー窓口(0120-166-250、平日9:00〜17:30)に相談します。パスキー以外の方法でもログインはできますが、取引や入出金は使えません。</li>
@@ -1373,6 +1720,12 @@ body { padding-bottom: 72px; }
 <td>アプリ「マイページ → カード・通帳・印鑑 → 紛失・盗難による通帳/カードの利用停止・再発行」<br><a href="https://faq01.bk.mufg.jp/faq/show/6995?site_domain=default">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき、アプリを入れ直したとき</strong>: MUFGあんしんパスと生体認証を登録し直す。ログイン画面で「パスワードでログイン」を選び、「登録端末を紛失・機種変更した場合」から進む</li>
+<li><strong>海外に行くとき</strong>: MUFGあんしんパスは海外では使えないので、出国の前に登録を解除する</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: 新しいスマホでも、上と同じ手順で登録し直す。マイナンバーカードか運転免許証での本人確認が必要なので、手元に用意しておく。なくしたときは、まず銀行の紛失の窓口に連絡する</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li>MUFGあんしんパスは、国内在住で、生体認証に対応したスマホと、運転免許証かマイナンバーカードが必要です。海外では使えないため、出国前に登録解除が必要です。</li>
@@ -1415,6 +1768,10 @@ body { padding-bottom: 72px; }
 <td>アプリのデビットモード「利用制限」<br><a href="https://www.smbc.co.jp/kojin/debit/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: SMBCセーフティパスを解除し、新しいスマホで登録し直す。登録したスマホが手元にない場合は、本人確認書類の読み取りなどで解除する</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li>SMBCセーフティパスは、生体認証に対応したスマホが必要です。一部のAndroid機種・OSでは登録できません。</li>
@@ -1513,6 +1870,12 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えるとき</strong>: 前のスマホが使えるうちに、ゆうちょ認証アプリで「再登録用パスワード」を出しておく(48時間有効)。新しいスマホでは、書類による本人確認をもう一度行う。登録のあと、送金などに使えるようになるまで24時間かかる</li>
+<li><strong>しばらく使っていないとき</strong>: 一定の期間使わないと、登録が「削除済み」になることがある。アプリの「登録情報の確認・変更」から登録し直す</li>
+<li><strong>スマホをなくしたとき</strong>: カード紛失センター(0120-794889)に連絡し、ゆうちょダイレクトを止めてもらう</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li>ゆうちょ認証アプリは無料ですが、スマホが必要です。</li>
@@ -1554,6 +1917,11 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: アプリの中身は新しいスマホに引き継げない。新しいスマホでアプリを設定し直し、マイゲートの「その他サービス → パスワード関連変更 → スマホ認証・ハードウェアトークン等 → スマホ認証利用申込」から申し込み直す。届け出た電話番号に届くパスワードと、秘密の質問の答えが必要。設定し直してから6時間は、一部の取引ができないことがある</li>
+<li><strong>「スマホ認証がご利用できなくなりました」と出たとき</strong>: 書面での申込みが必要になることがある</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>スマホがない場合</strong>: ハードウェアトークン(パスワード生成機)を使います。初めての発行と、電池切れなどによる再発行は1,650円です。マイゲートの「各種変更・手続き → その他手続き」から申込書を請求します。</li>
@@ -1612,6 +1980,10 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>メールアドレスを変えるとき</strong>: ログイン制限を設定している場合は、先にワンタイム認証用のメールアドレスを新しいものに変える。古いメールを受け取れなくなると、解除は郵送での手続きになる</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.rakuten-bank.co.jp/security/howto/account_management/">楽天銀行のセキュリティ・設定ページ</a></p>
 <h3>住信SBIネット銀行(ドコモSMTBネット銀行)</h3>
 <table>
@@ -1648,6 +2020,11 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき、壊れたとき、アプリを入れ直したとき</strong>: 新しいスマホでアプリにログインし、SMSでの本人確認をしてスマート認証NEOを登録し直す。登録できるのは、銀行に届け出た電話番号のスマホだけ。新しく登録すると、前のスマホのアプリは自動でログアウトされる</li>
+<li><strong>ログインできなくなったとき</strong>: 「ログイン情報リセット」か「仮ログインパスワード再発行」を申し込む。口座を作ったときの認証番号表が手元にあれば、捨てずに取っておく</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.netbk.co.jp/contents/security/measures/restriction.html">住信SBIネット銀行のセキュリティ・設定ページ</a></p>
 <h3>PayPay銀行</h3>
 <table>
@@ -1684,6 +2061,10 @@ body { padding-bottom: 72px; }
 <td>ログイン後「取引停止・再開」<br><a href="https://www.paypay-bank.co.jp/procedure/card-token.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: トークンアプリを入れ直し、店番号・口座番号・ログインパスワードなどを入力して登録し直す</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.paypay-bank.co.jp/security/effort/set_limited.html">PayPay銀行のセキュリティ・設定ページ</a></p>
 <h3>ソニー銀行</h3>
 <table>
@@ -1726,6 +2107,13 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>アプリが新しくなったとき</strong>: 2026年8月のアプリの作り直しのように、アプリの利用登録をやり直す必要が出ることがある。登録し直すまで、スマホ認証方式は使えない</li>
+<li><strong>スマホを買い替えたとき</strong>: 新しいスマホでアプリを入れ、利用登録をやり直す。ログインパスワード、キャッシュカードの暗証番号、カード裏面の製造番号、登録した電話番号でのSMS確認が必要。登録が終わると、前のスマホのアプリは使えなくなる</li>
+<li><strong>スマホをなくしたとき</strong>: サイトの「各種手続 → 認証方式に関するお手続き → ソニー銀行アプリについての手続 → 紛失」で、アプリを止める</li>
+<li><strong>電話番号を変えるとき</strong>: アプリの登録にSMSを使うので、先に登録の電話番号を変えておく</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://sonybank.jp/guide/auth/">ソニー銀行のセキュリティ・設定ページ</a></p>
 <h3>auじぶん銀行</h3>
 <table>
@@ -1768,6 +2156,12 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>アプリを更新したとき</strong>: 更新後の最初の1回は、生体認証ではなくログインパスワードの入力が必要</li>
+<li><strong>スマホを買い替えたとき、アプリを入れ直したとき</strong>: 新しいスマホでアプリの利用設定をしてから、スマホ認証サービスを申し込み直す</li>
+<li><strong>前のスマホが使えず、電話番号も変わったとき</strong>: 郵送で届く認証コードが必要で、1週間ほどかかる。電話番号を変えるなら、前のスマホが使えるうちに番号の変更を済ませる</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.jibunbank.co.jp/service/security/service/">auじぶん銀行のセキュリティ・設定ページ</a></p>
 <h3>SBI新生銀行</h3>
 <table>
@@ -1804,6 +2198,12 @@ body { padding-bottom: 72px; }
 <td>パワーコール(0120-456-007)に本人が電話。解除も電話<br><a href="https://www.sbishinseibank.co.jp/security/news091002_service.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき、アプリを入れ直したとき</strong>: アプリの「初回ログイン」からやり直す。スマホ認証(FIDO)の登録には、マイナンバーカードや運転免許証での本人確認がもう一度必要</li>
+<li><strong>スマホが壊れたとき、なくしたとき</strong>: チャットか電話(パワーコール)で、スマホ認証の登録を解除してもらう。解除したあとは、SMSか電話での確認で取引できるが、振込は1日200万円まで</li>
+<li><strong>しばらく使っていないとき</strong>: 一定の期間使わないと、スマホ認証の登録が解除されることがある</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>スマホ認証(FIDO)を使えない場合</strong>: SMS認証か電話認証で取引できます。ただし振込は1日200万円までです。</li>
@@ -1844,6 +2244,11 @@ body { padding-bottom: 72px; }
 <td>「お客さま情報・各種設定 → メール通知設定変更」<br><a href="https://www.aeonbank.co.jp/direct/mailservice/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: 新しいスマホで通帳アプリにログインすると、スマホ認証(FIDO認証)が外れるので、登録し直す</li>
+<li><strong>電話番号を変えるとき</strong>: 先に、銀行に登録している携帯電話番号を変えておく。登録にその番号を使うため</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>スマホ認証を使えない場合</strong>: メールで届くワンタイムパスワードが使えますが、2027年3月末で終了する予定です。</li>
@@ -1878,6 +2283,10 @@ body { padding-bottom: 72px; }
 <td>ダイレクトバンキングで設定</td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき</strong>: 新しいスマホで、キャッシュカードを持ってセブン銀行ATMでの認証をやり直す。設定が終わると、古いスマホのアプリではログオンできなくなる</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.sevenbank.co.jp/personal/useful/app/mysevenbank/">セブン銀行のセキュリティ・設定ページ</a></p>
 <h3>GMOあおぞらネット銀行</h3>
 <table>
@@ -1998,6 +2407,10 @@ body { padding-bottom: 72px; }
 <td>GLOBAL PASS会員Webサイト。国内ATMの限度額は電話か店頭で、反映に3〜5営業日<br><a href="https://www.smbctb.co.jp/guide/security/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えたとき、アプリを更新したとき</strong>: いちどユーザーIDとパスワードでサインオンし、生体認証を設定し直す</li>
+</ul>
 <p>この会社の公式の案内: <a href="https://www.smbctb.co.jp/service/security/ib/">SMBC信託銀行のセキュリティ・設定ページ</a></p>
 <hr>
 <h2>メール・アカウント / メールとアカウント</h2>
@@ -2055,6 +2468,10 @@ body { padding-bottom: 72px; }
 <td>ねらわれやすい立場の人向け。一部の外部アプリが使えなくなることがある。鍵をなくすと、取り戻すのに数日かかることがある<br><a href="https://support.google.com/accounts/answer/7539956?hl=ja">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>電話番号を変えたとき</strong>: 再設定用の電話番号と、2段階認証の電話番号を新しいものに変える。変更が反映されるまで、最長で7日かかることがある</li>
+</ul>
 <p><strong>使えない場合の代替策と費用</strong></p>
 <ul>
 <li><strong>スマホがない場合</strong>: 市販のセキュリティキー(USBなどの認証機器)を2段階認証に使えます。機器は自分で購入します。<a href="https://support.google.com/accounts/answer/6103523?hl=ja">公式の案内</a></li>
@@ -2112,6 +2529,10 @@ body { padding-bottom: 72px; }
 <td>機器が2本以上必要で、自分で購入する。有効にすると、これがサインインの唯一の方法になる<br><a href="https://support.apple.com/ja-jp/102637">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>電話番号を変えたとき</strong>: 「信頼できる電話番号」を新しいものに変える。古い番号のままだと、確認コードを受け取れなくなる</li>
+</ul>
 <h3>Yahoo! JAPAN(Yahoo!メール)</h3>
 <table>
 <thead>
@@ -2141,6 +2562,11 @@ body { padding-bottom: 72px; }
 <td>パスワード無効設定の前提になる</td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>電話番号を変えるとき、スマホを買い替えるとき</strong>: パスワードを無効にしていると、SMSを受け取れなくなったときにログインできなくなる。買い替えや番号の変更の前に、ログインに使えるパスキーが残るかを確かめる。端末の中にだけ入るパスキーは、端末を替えると使えない</li>
+<li><strong>ログインできなくなったとき</strong>: 「ログイン方法の再設定」の手続きで、確認に使う電話番号を変えられる</li>
+</ul>
 <h3>Microsoft(Outlook.com)</h3>
 <table>
 <thead>
@@ -2205,6 +2631,11 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えるとき</strong>: 「いつもパスキー設定」にしている場合は、買い替えの前に、連絡先のメールアドレスと携帯番号がいまも使えるものかを確かめる</li>
+<li><strong>前の端末が使えなくなったとき</strong>: 「いつもパスキー設定」は、パスキーがなくても解除できる。dアカウントのIDとパスワードに加えて、連絡先のメールアドレスと携帯番号に届くコードが必要。解除したあとは、新しいパスワードを決める</li>
+</ul>
 <h3>au(au ID・auメール)</h3>
 <table>
 <thead>
@@ -2234,6 +2665,10 @@ body { padding-bottom: 72px; }
 <td>有効のままだと、偽サイトにだまされやすくなる<br><a href="https://id.auone.jp/id/sp/security/pw_login.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>前のスマホが手元にないとき</strong>: auの回線の契約があれば、新しいスマホでau IDとパスワードを使ってログインできる(Wi-Fiを切り、auの回線につないで行う)。ログインしたら、前のスマホの設定を解除して、新しいスマホで設定し直す</li>
+</ul>
 <h3>ソフトバンク(My SoftBank)</h3>
 <table>
 <thead>
@@ -2407,6 +2842,10 @@ body { padding-bottom: 72px; }
 </tbody></table>
 <p>Discordの運営が、アプリの中のメッセージで直接連絡してくることはありません。運営やサポートを名乗る相手に、コードを教えたり、言われたとおりの操作をしたりしないでください。</p>
 <p>ほかの人から送られてきたQRコードを、Discordのアプリで読み取らないでください。読み取って承認すると、相手のパソコンにあなたのアカウントでログインさせてしまい、パスワードも多要素認証も聞かれません。「認証」「年齢確認」「プレゼントの受け取り」のためと言われても、読み取る必要はありません。フレンドから届いたものでも同じです。</p>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えるとき、なくしたとき</strong>: 認証アプリを入れたスマホが使えなくなると、バックアップコードがないとログインできない。買い替えの前に、バックアップコードを保存してあるか確かめる</li>
+</ul>
 <h3>Facebook</h3>
 <table>
 <thead>
@@ -2626,6 +3065,11 @@ body { padding-bottom: 72px; }
 <td></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>スマホを買い替えるとき</strong>: 新しいスマホへのパスキーの追加は、登録済みのスマホから行う。古いスマホが使えるうちに、新しいスマホを追加する</li>
+<li><strong>登録したスマホが手元にないとき</strong>: 「アカウント復旧」の手続きをする。マイナンバーカードか、顔での本人確認が必要</li>
+</ul>
 <hr>
 <h2>クレジットカード / クレジットカード</h2>
 <p>カードの被害でいちばん多いのは、カード番号を盗まれてネットの買い物に使われるものです。使うたびに届く通知、使わない使い方を止めておく設定、ネットで使うときの本人確認の3つが守りの中心です。</p>
@@ -2670,6 +3114,10 @@ body { padding-bottom: 72px; }
 <td><a href="https://www.rakuten-card.co.jp/security/detection/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>海外に行くとき</strong>: 現地のSIMに差し替えると、ネットの買い物のときのSMS(ワンタイムパスワード)を受け取れなくなる</li>
+</ul>
 <h3>三井住友カード</h3>
 <table>
 <thead>
@@ -2705,6 +3153,10 @@ body { padding-bottom: 72px; }
 <td>Vpassにメールアドレスを登録しておく<br><a href="https://www.smbc-card.com/mem/service/sec/index.jsp">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>カードを新しく作ったとき</strong>: 利用制限はカードごとの設定なので、新しいカードにも設定する</li>
+</ul>
 <h3>JCBカード</h3>
 <table>
 <thead>
@@ -2734,6 +3186,10 @@ body { padding-bottom: 72px; }
 <td>MyJCBの「My安心設定」<br><a href="https://www.jcb.co.jp/security/my-anshin/">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>カードを切り替えたとき(上位のカードへの変更など)</strong>: 利用通知や利用制限の設定は引き継がれないので、新しいカードで設定し直す</li>
+</ul>
 <h3>イオンカード</h3>
 <table>
 <thead>
@@ -2862,6 +3318,10 @@ body { padding-bottom: 72px; }
 <td>エポスNetで登録<br><a href="https://www.eposcard.co.jp/3d/index.html">公式の案内</a></td>
 </tr>
 </tbody></table>
+<p><strong>こんなときは設定し直す</strong></p>
+<ul>
+<li><strong>海外に行くとき</strong>: 海外利用停止サービスを、出発の前に解除する。帰ってきたら、また止めておく</li>
+</ul>
 <h3>セゾンカード</h3>
 <table>
 <thead>
@@ -2944,6 +3404,288 @@ body { padding-bottom: 72px; }
 </tr>
 </tbody></table>
 <hr>
+<h2>電話・SMS / 電話・SMS</h2>
+<p>詐欺の多くは、電話とSMSから始まります。あやしい電話やSMSが自分に届かないようにしておくと、口座やカードの設定より手前で防げます。無料でできるものが多くあります。</p>
+<h3>ドコモの電話・SMS</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>迷惑電話ストップサービス</td>
+<td>迷惑電話の番号を登録すると、次からは自動で断ってくれる。無料で、申込みもいらない。30件まで登録でき、番号を通知してこない相手も登録できる</td>
+<td>迷惑電話を受けたあと、My docomoで「最後に着信して通話した番号の登録」を選ぶ<br><a href="https://www.docomo.ne.jp/service/annoyance_stop/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SMS拒否設定</td>
+<td>受け取るSMSを自分で絞る</td>
+<td>My docomoで設定<br><a href="https://www.docomo.ne.jp/info/spam_mail/sms/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>危険SMS拒否設定</td>
+<td>危険なSMSを自動で拒否する。無料</td>
+<td>「SMS一括拒否」や「個別番号受信」を自分で設定すると、この機能は外れる<br><a href="https://www.docomo.ne.jp/info/notice/page/220113_00.html">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>迷惑SMSを自動で専用フォルダに分ける「あんしんセキュリティ(迷惑SMS対策)」は月220円で、使える機種が限られます。<a href="https://www.docomo.ne.jp/service/anshin_security_sms/">公式の案内</a></li>
+</ul>
+<h3>auの電話・SMS</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>○</td>
+<td>迷惑電話撃退サービス</td>
+<td>迷惑電話の番号を登録すると、次からは相手にお断りのメッセージを流して、着信させない。月110円</td>
+<td>申込みが必要。迷惑電話を受けたあとに「1442」に電話をかけると登録できる<br><a href="https://www.au.com/mobile/service/meiwaku-gekitai/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>迷惑メッセージ・電話ブロック</td>
+<td>迷惑電話や迷惑SMSを、アプリが見分けて止める</td>
+<td>Pontaパスなどの有料サービスに入っている人は、追加料金なしで使える。専用のアプリを入れて設定する<br><a href="https://www.au.com/support/faq/details/00/0000/000002/pg00000259/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>迷惑SMSブロック</td>
+<td>迷惑SMSの疑いがあるものを、届く前に自動で止める。無料で、申込みもいらない</td>
+<td><a href="https://www.au.com/mobile/service/sms/filter/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>ソフトバンクの電話・SMS</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>ナンバーブロック</td>
+<td>迷惑電話の番号を登録すると、次からは自動で断ってくれる。2026年8月から無料になった。30件まで</td>
+<td>My SoftBankで申込みが必要。「サービス・端末設定 → ナンバーブロック」で番号を登録するか、「144」に電話をかけて登録する。LINEMOでは使えない<br><a href="https://www.softbank.jp/support/faq/view/10573">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SMSの迷惑メールフィルター</td>
+<td>迷惑SMSを受け取らないようにする。無料</td>
+<td>My SoftBankで設定<br><a href="https://www.softbank.jp/mobile/support/protect/specialfraud/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<p><strong>使えない場合の代替策と費用</strong></p>
+<ul>
+<li>警察から提供された番号をもとに着信時に警告を出す「迷惑電話チェック」や、迷惑SMSを自動で分ける機能は、「セキュリティパックプレミアム」(月770円)に含まれます。</li>
+</ul>
+<h3>楽天モバイル</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>○</td>
+<td>迷惑電話・SMS対策 by Whoscall</td>
+<td>知らない番号が誰からかを表示し、迷惑電話を自動で断る。月330円(初回は3か月無料)</td>
+<td>専用のアプリを入れて設定する。スマホに最初から入っている電話アプリへの着信が対象で、Rakuten Linkアプリへの着信は対象外<br><a href="https://network.mobile.rakuten.co.jp/service/whoscall/">公式の案内</a></td>
+</tr>
+<tr>
+<td>自動</td>
+<td>迷惑SMS拒否設定</td>
+<td>詐欺に使われるSMSを自動で見つけて拒否する。無料で、最初からオンになっている</td>
+<td>拒否されたSMSは、あとから見ることができない<br><a href="https://network.mobile.rakuten.co.jp/service/sms-filter/">公式の案内</a></td>
+</tr>
+</tbody></table>
+<h3>固定電話(NTT東日本・NTT西日本)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td><strong>国際電話の利用休止</strong></td>
+<td>海外の番号からの電話を受けない(かけない)ようにする。無料。詐欺の電話には海外の番号が多く使われている</td>
+<td>「国際電話不取扱受付センター」(0120-210-364)に、止めたい電話から申し込む。Webや郵送でも申し込める。対象は固定電話とひかり電話で、携帯電話や050の番号は対象外。手続きに数日かかる<br><a href="https://www.kokusai-teishi.com/">公式の案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>ナンバー・ディスプレイとナンバー・リクエストの無料化</td>
+<td>かけてきた相手の番号を表示する。番号を隠してかけてきた相手には、番号を通知してかけ直すよう自動で伝える。70歳以上の人、または70歳以上の人と同居している人は、工事費も月額料金も無料</td>
+<td>申し出が必要。NTT東日本は0120-722-455、NTT西日本は0120-931-965(どちらも平日9時〜17時)<br><a href="https://www.keishicho.metro.tokyo.lg.jp/kurashi/tokushu/furikome/stop_sagi_tel.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>電話番号の変更</td>
+<td>詐欺の被害にあった、またはあいそうなときは、無料で番号を変えられる</td>
+<td>上と同じ窓口に申し出る</td>
+</tr>
+</tbody></table>
+<h3>デジポリス(警視庁の防犯アプリ)</h3>
+<table>
+<thead>
+<tr>
+<th>優先</th>
+<th>設定</th>
+<th>内容</th>
+<th>場所・注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◎</td>
+<td>国際電話番号のブロック</td>
+<td>海外の番号や、警察がつかんでいる詐欺に使われた番号からの電話を止める。無料</td>
+<td>アプリの右上の電話のマークから設定する。Androidは着信も発信も止められる。iPhoneは詐欺に使われた番号からの着信を止め、履歴に警告を出す。通信会社や機種によっては使えない<br><a href="https://www.city.tachikawa.lg.jp/bosai/bohan/1008437/1024010.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>iPhoneの「不明な発信者を消音」</td>
+<td>連絡先に入っていない番号からの電話を、鳴らさずに留守番電話に回す。デジポリスとあわせて使える</td>
+<td>iPhoneの「設定」の電話の項目にある。病院や宅配など、登録していない相手からの電話にも気付きにくくなる</td>
+</tr>
+</tbody></table>
+<p>「+」で始まる番号は海外からの電話です。心当たりがなければ出ない、かけ直さない、と決めておいてください。<a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/international-phone/">警察庁: みんなでとめよう!!国際電話詐欺</a></p>
+<hr>
+<h2>このページの説明</h2>
+<p><strong>何のページか</strong></p>
+<p>銀行、証券会社、メール、SNS、スマホ決済、クレジットカード、電話について、利用者が自分で入れられる守りの設定を、会社ごとにまとめたページです。乗っ取りや不正な送金のニュースを見て「自分は何をしておけばいいのか」と思った人が、自分の使っている会社の分だけを見て、設定できるようにすることを目的にしています。</p>
+<p><strong>だれが作ったか</strong></p>
+<p>個人が、AIを使って作りました。金融機関やセキュリティの会社が作ったものではなく、各社の公式の情報でもありません。</p>
+<p><strong>情報の集め方</strong></p>
+<ul>
+<li>各社の公式サイト、よくある質問、お知らせを中心に調べています。対策ごとに、もとになった公式ページへのリンク(「公式の案内」)を付けています。</li>
+<li>公式の情報で確かめられなかったことは、各社のページには書かず、「未確認情報」にまとめています。</li>
+<li>その会社に「ある」設定を載せています。載っていない設定が「ない」とは限りません。</li>
+</ul>
+<p><strong>使い方</strong></p>
+<ol>
+<li>最初の画面で、守りたいものの種類を選ぶ</li>
+<li>自分の使っている会社を選ぶ</li>
+<li>いちばん上の「まずこれだけ」から設定する。余裕があれば、下の表も上から順に進める</li>
+</ol>
+<p>すぐにできないものは「あとでやる」を押しておくと、メニューの「あとでやること」に並びます。この一覧は、いま使っている端末のブラウザにだけ保存されます。</p>
+<p><strong>選んだ内容の扱い</strong></p>
+<ul>
+<li>このページで選んだ会社や、「設定済み」「あとでやる」の印は、どこにも送られません。お使いの端末のブラウザの中にだけ保存されます。作った人にも見えません。</li>
+<li>ページを開いたあとは、外部との通信をしません。アクセス解析や広告の仕組みも入れていません。</li>
+<li>どの会社のページを見たかは、このページを置いているサーバーには伝わりません。会社を選んでも、新しくページを取りに行くことはなく、すでに開いているページの中で表示を切り替えているだけだからです。サーバーの記録に残るのは「このページを開いた」ということまでです。</li>
+<li>「公式の案内」から各社のサイトに移るときも、このページから来たことは相手のサイトに伝えない設定にしています。</li>
+<li>ブラウザのデータを消すと、選んだ内容も消えます。別の端末には引き継がれません。</li>
+</ul>
+<p><strong>インターネットにつながっていなくても使えます</strong></p>
+<ul>
+<li>このページは、1つのファイルでできています。最初の画面の「このページを保存する」から端末に保存しておけば、インターネットにつながっていないときでも開けます。</li>
+<li>保存したファイルは、保存した時点の内容のままです。新しい情報は、もとのページで確かめてください。</li>
+<li>「公式の案内」のリンク先を開くには、インターネットにつながっている必要があります。</li>
+</ul>
+<p><strong>表の見方</strong></p>
+<ul>
+<li>「最優先」は効果が大きいもの、「推奨」は入れておきたいもの、「自動」は何もしなくても適用されているものです。</li>
+<li>「目的」は、その設定が何のためのものかを示しています。</li>
+</ul>
+<p><strong>気を付けてほしいこと</strong></p>
+<ul>
+<li>各社の設定の内容やメニューの名前は、よく変わります。設定する前に、必ず公式サイトでも確かめてください。</li>
+<li>調査した日から1か月以上たつと、開いたときにお知らせが出ます。</li>
+<li>このページは「自分で防ぐ方法」だけを扱っています。被害にあったあとの手続きや補償については書いていません。被害にあったと思ったら、その会社の公式の窓口に直接問い合わせてください。</li>
+</ul>
+<hr>
+<h2>更新情報</h2>
+<table>
+<thead>
+<tr>
+<th>日付</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026-10-10</td>
+<td>「電話・SMS」の区分を追加(ドコモ、au、ソフトバンク、楽天モバイル、固定電話、デジポリス)</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>「SNSの釣り広告・釣り投稿」に、コンビニで金券を買わせて番号を聞き出す手口を追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>「スマホ決済をねらう詐欺」の、QRコードの貼り替えの説明を書き足し</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>楽天証券に、利用停止を設定するときの注意点を2つ追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>パスキーだけでログインする設定にしている場合の、端末を失ったときの戻し方を11社に追加。読みものに一覧表を追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>SBI証券に、スマホの買い替え・故障のときの戻し方を追加。パスキーを保管しているアカウントをねらう手口を「2段階認証をしていても乗っ取られる理由」に追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>設定ごとに「設定する前に」(使えなくなることなどの注意)を表示。スマホが壊れたとき・なくしたときの戻し方を7行に追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>各社のページに「こんなときは設定し直す」を追加(22社)。読みもの「スマホの買い替えなどで設定し直すもの」を追加</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>「全部まとめてチェック」を追加。最後に「設定のほかに、気をつけること」を表示</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>最初の画面の説明を書き直し。選んだ内容がどこにも送られないこと、保存すればインターネットなしで使えることを追記</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td>「このページの説明」と「更新情報」を追加</td>
+</tr>
+<tr>
+<td>2026-10-09</td>
+<td>Googleに、つながっているアプリの見直し、Androidの盗難保護、高度な保護機能プログラムを追加</td>
+</tr>
+<tr>
+<td>2026-10-09</td>
+<td>Appleに、信頼できる電話番号の確認、「Appleでサインイン」を使っているアプリの見直し、復旧キーを追加。「盗難デバイスの保護」の設定場所を公式ページで確認</td>
+</tr>
+<tr>
+<td>2026-10-08</td>
+<td>公開。金融機関(証券会社8社、銀行16行)、メール・アカウント7社、SNS 6社、スマホ決済5社、クレジットカード10社</td>
+</tr>
+<tr>
+<td>2026-10-08</td>
+<td>読みものを公開(だましの手口、2段階認証をしていても乗っ取られる理由、パスワードの使い回しと情報漏えい、クレジットカードの番号が盗まれる手口、スマホ決済をねらう詐欺、SNSの釣り広告・釣り投稿)</td>
+</tr>
+</tbody></table>
+<hr>
 <h2>未確認情報</h2>
 <p>公式情報で裏付けが取れていない項目です。利用する前に各社の窓口や設定画面で確認してください。</p>
 <ul>
@@ -2952,10 +3694,17 @@ body { padding-bottom: 72px; }
 <li>マネックス証券の取引制限(依頼制)とみずほ銀行の各項目は、公式ページを直接取得できず、検索結果の要約に基づいています。</li>
 <li>三菱UFJ eスマート証券、野村證券、大和証券、SMBC日興証券に、利用者が取引や出金を自分で止められる機能があるかは未確認です。</li>
 <li>各銀行のパスキー対応とログイン通知の有無は未確認です。</li>
+<li>端末を失ったときの戻し方で、電話や窓口での手続きになる会社(SBI証券、マネックス証券、松井証券、大和証券、SMBC日興証券など)は、必要なものや日数が未確認です。</li>
+<li>SBI証券で、パスキーが使えず「ログインパスワード無効設定」もしている場合に、電話での手続きに何が必要で、何日かかるかは未確認です。</li>
+<li>SBI証券の2026年10月の注意喚起は、報道記事に基づいています。SBI証券の発表そのもの(公式サイトのお知らせ)は見つけられていません。</li>
+<li>iPhoneの「非使用のAppを取り除く」でアプリが消えたあと、入れ直したときに銀行の登録が残っているかどうかは、銀行ごとに確認できていません。</li>
+<li>「こんなときは設定し直す」は、調査の中で公式ページに記載が見つかったものだけを載せています。載っていない会社でも、スマホの買い替えなどでやり直しが必要な場合があります。登録できるスマホが1台だけの会社(住信SBIネット銀行、SBI新生銀行など)の入れ替えの手順は未確認です。</li>
 <li>LINE、Instagram、au ID、個人用Microsoftアカウントのパスキー対応と設定手順は未確認です。ソフトバンクに、ログインのたびに追加の確認を求める設定(2段階認証)があるかも未確認です。</li>
 <li>メール・SNSの公式の案内は、英語のページに移動する場合があります。</li>
 <li>Discord、Facebook、TikTokの設定場所は、公式ヘルプの英語版をもとにした部分があり、日本語の画面での表示名は一部未確認です。</li>
 <li>楽天カード、イオンカード、au PAY カード、三菱UFJカードに、海外やネットでの利用を自分で止めておく設定や、利用のたびの通知があるかは、一部未確認です。</li>
+<li>iPhoneの「不明な発信者を消音」の設定場所は、公式ページで確認していません。デジポリスの機能の説明は、自治体の案内と報道に基づいています。</li>
+<li>街中のQRコードの貼り替えは、報道に基づく情報で、警察や国民生活センターの一次資料は確認できていません。</li>
 <li>楽天ペイの端末認証の設定場所と、利用上限を自分で下げられるかは未確認です。</li>
 <li>DiscordのQRコードを読み取らせて乗っ取る手口は、複数の解説記事に基づいており、Discord公式の説明は確認できていません。</li>
 <li>PayPayの2025年6月の被害額(70万円超)は個人の報告に基づくもので、PayPayが確認した数字ではありません。</li>
@@ -3194,12 +3943,38 @@ body { padding-bottom: 72px; }
   var intro = [];      // 冒頭の説明(会社を選ぶ画面でだけ見せる)
 
   function purposeOf(name) {
+    if (/迷惑|ナンバーブロック|国際電話|ナンバー・ディスプレイ|SMS拒否|危険SMS|電話番号の変更|不明な発信者/.test(name)) return '目的: 詐欺の電話やSMSを受けない';
     if (/通知先/.test(name)) return '目的: 本人確認を強くする';
     if (/復旧|再設定用|バックアップ|連絡先|連絡方法|信頼できる電話番号/.test(name)) return '目的: 自分が締め出されないようにする';
     if (/通知|速報|使いすぎ|お知らせメール|履歴|アラート|確認メール|お知らせメール|メールアドレス登録|登録電話番号の確認/.test(name)) return '目的: 不正にすぐ気付く';
     if (/ログイン|ログアウト|パスキー|高度な保護|つながっているアプリ|サインインを使っている|2ファクタ|二段階|2要素|2段階|あんしんパス|セーフティパス|バンキングロック|2段階|IP制限|モバイルアクセス|サインオン|生体認証|パスコード/.test(name)) return '目的: 他人にログインさせない';
     if (/限度額|上限|可能額|利用枠|バーチャル|停止|ロック|制限|出金|解約|変更|デビット|カード利用|フレキシブルペイ|一部利用/.test(name)) return '目的: お金を動かせなくする';
     return '目的: 本人確認を強くする';
+  }
+
+  // 設定の種類ごとの「設定する前に」。設定名から判定して、該当する行にだけ添える
+  function cautionOf(name) {
+    if (/パスワード無効|パスキーでのみ|パスキーのみ|いつもパスキー|パスワード認証」を無効|指紋・顔認証によるログイン/.test(name))
+      return 'この設定をすると、登録した端末がないとログインできなくなります。端末が壊れたとき・なくしたときにどう戻すかを確かめてから設定してください。予備の端末を登録できる会社では、先に登録しておいてください。';
+    if (/復旧キー|セキュリティキー|高度な保護/.test(name))
+      return '鍵をなくすと、自分もログインできなくなります。なくしたときにどう戻すかを確かめ、安全な場所に保管してから設定してください。';
+    if (/あんしんパス|セーフティパス|ログイン承認|スマホ認証|アプリ認証|認証アプリ|Authenticator|ゆうちょ認証アプリ|多要素認証\(認証アプリ\)|2要素認証\(認証アプリ\)/.test(name))
+      return '登録したスマホがないと、ログインや振込ができなくなります。スマホを買い替える前に、入れ替えの手順を確かめてください。';
+    if (/国際電話|不明な発信者/.test(name))
+      return '海外にいる家族や、連絡先に入れていない相手(病院、宅配など)からの電話も、受けられなくなることがあります。';
+    if (/SMS拒否|迷惑SMS|迷惑メールフィルター/.test(name))
+      return '必要なSMS(本人確認の番号など)まで届かなくなることがあります。届かないSMSがあるときは、この設定を見直してください。';
+    // 通知だけの設定、迷惑電話の番号を止める設定、アプリを開くときの確認は、自分が使えなくなる類ではない
+    if (/通知|ナンバーブロック|迷惑|セキュリティロック/.test(name)) return '';
+    if (/利用停止|取引制限|利用制限|ロック|海外利用停止|一時停止|0円にする|変更停止|番号停止|解約の停止|利用設定|ログイン許可|アプリ・ツール/.test(name))
+      return '止めているあいだは、自分も使えません。毎月の引き落としや積立が止まることがあります。使うときは解除が必要です。';
+    if (/限度額|上限|利用可能額|可能枠|利用枠/.test(name))
+      return '上限を下げると、それを超える支払いや振込は、その場ではできなくなります。引き上げには、追加の確認や日数が必要なことがあります。大きな支払いの予定があるときは、前もって上げておいてください。';
+    if (/2段階認証|二段階認証|2ファクタ|2要素|多要素|SMS認証|電話番号認証|本人認証|ワンタイム|追加認証|ログイン制限/.test(name))
+      return '確認のためのSMS・メール・電話を受け取れないと、ログインや支払いができなくなります。電話番号やメールアドレスを変えたときや、海外にいるときは気をつけてください。';
+    if (/パスキー/.test(name))
+      return 'パスキーを入れたスマホやパソコンが使えなくなったときに、どうログインするかを確かめておいてください。予備の端末を登録できる会社では、登録しておくと安心です。';
+    return '';
   }
 
   function decorate() {
@@ -3220,6 +3995,16 @@ body { padding-bottom: 72px; }
           tag.textContent = purposeOf(tr.cells[1].textContent);
           tr.cells[1].appendChild(document.createElement('br'));
           tr.cells[1].appendChild(tag);
+        }
+        // 使えなくなることがある設定には「設定する前に」を添える
+        if (b && tr.cells[1] && tr.cells[3] && b[0] !== 'auto') {
+          var warn = cautionOf(tr.cells[1].firstChild.textContent);
+          if (warn) {
+            var w = document.createElement('p');
+            w.className = 'caution';
+            w.textContent = '設定する前に: ' + warn;
+            tr.cells[3].appendChild(w);
+          }
         }
         // スマホ表示用: 名前の列を見出し扱いにし、残りの列に項目名を付ける
         var nameCol = b ? 1 : 0;
@@ -3280,6 +4065,17 @@ body { padding-bottom: 72px; }
     var first = content.querySelector('hr') || content.querySelector('h2');
     Array.prototype.forEach.call(content.children, function (el) {
       if (el.tagName === 'P' && (el.compareDocumentPosition(first) & Node.DOCUMENT_POSITION_FOLLOWING)) intro.push(el);
+      if (/^調査日/.test(el.textContent)) el.className = 'meta';
+      // 「保存しておけば…」の段落に、このページのファイルを保存するリンクを足す
+      if (el.textContent.indexOf('ページを保存しておけば') !== -1) {
+        var save = document.createElement('a');
+        save.id = 'save-page';
+        save.href = location.href.split('#')[0];
+        save.setAttribute('download', 'jiei-settei-matome.html');
+        save.textContent = 'このページを保存する';
+        el.appendChild(document.createTextNode(' '));
+        el.appendChild(save);
+      }
     });
     groups.forEach(function (section) {
       if (!section.kind) return;
@@ -3395,6 +4191,8 @@ body { padding-bottom: 72px; }
       first.querySelector('.n').textContent = row.cells[1].firstChild.textContent;
       first.querySelector('.d').textContent = row.cells[2].textContent + ' ';
       if (link) first.querySelector('.d').appendChild(link.cloneNode(true));
+      var warn = row.querySelector('.caution');
+      if (warn) first.appendChild(warn.cloneNode(true));
       content.insertBefore(first, table);
     }
     if (table) content.insertBefore(how, table);
@@ -3417,22 +4215,171 @@ body { padding-bottom: 72px; }
     content.insertBefore(box, table.nextSibling);
   }
 
+  // 最初の画面に出す更新情報。いちばん新しい1件だけが見える高さにして、
+  // 中をスクロールすると過去の分までさかのぼれる
+  function buildNews() {
+    var src = docs.filter(function (d) { return d.title === '更新情報'; })[0];
+    if (!src) return;
+    var box = document.createElement('div');
+    box.id = 'news';
+    box.innerHTML = '<p class="label">更新情報 <span>(枠の中をスクロールすると、過去の分が見られます)</span></p><div class="scroll" tabindex="0"></div>';
+    src.el.querySelectorAll('tbody tr').forEach(function (tr) {
+      var item = document.createElement('div');
+      item.className = 'item';
+      var time = document.createElement('time');
+      time.textContent = tr.cells[0].textContent;
+      item.appendChild(time);
+      item.appendChild(document.createTextNode(tr.cells[1].textContent));
+      box.querySelector('.scroll').appendChild(item);
+    });
+    content.insertBefore(box, document.getElementById('picker'));
+  }
+  function fitNews() {
+    var box = document.getElementById('news');
+    if (!box) return;
+    var first = box.querySelector('.item');
+    // 1件目の高さに合わせる(表示されていないときは高さが取れないので何もしない)
+    if (first && first.offsetHeight) box.querySelector('.scroll').style.maxHeight = (first.offsetHeight + 2) + 'px';
+  }
+  window.addEventListener('resize', fitNews);
+
+  // 知らせるためのボタン。外部の部品は読み込まず、各サービスの投稿画面を開くリンクだけを作る
+  // 押したときに入る文面。送る人の言葉を勝手に足さず、ページの題名と短い説明だけにする。
+  // 更新日は、いまのページの内容から作る。Xの文字数に余裕を残すため短くしてある
+  var SHARE = {
+    page: function () {
+      var latest = document.querySelector('#news time');
+      return content.querySelector('h1').textContent + '\n' +
+        '使っている会社を選ぶと、自分で入れられる守りの設定が出ます。' +
+        (latest ? '(' + latest.textContent + ' 更新)' : '');
+    },
+    company: function (name) {
+      return '「' + name + '」で自分で入れられる守りの設定\n' + content.querySelector('h1').textContent;
+    }
+  };
+  function shareUrl(name) {
+    return location.href.split('#')[0] + (name ? '#' + encodeURIComponent(name) : '');
+  }
+  function shareLinks(text, url) {
+    var t = encodeURIComponent(text), u = encodeURIComponent(url);
+    return {
+      line: 'https://line.me/R/share?text=' + encodeURIComponent(text + '\n' + url),
+      x: 'https://x.com/intent/post?text=' + t + '&url=' + u
+    };
+  }
+  function linkButton(label, kind) {
+    var a = document.createElement('a');
+    a.className = 'btn';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    // 各社のロゴは使わず、文字だけのボタンにする
+    a.textContent = label;
+    a.setAttribute('data-kind', kind);
+    return a;
+  }
+  function actionButton(label, kind) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn';
+    b.textContent = label;
+    b.setAttribute('data-kind', kind);
+    return b;
+  }
+  function buildShare() {
+    // 最初の画面: ボタンだけを並べる
+    var top = document.createElement('div');
+    top.id = 'share-top';
+    top.className = 'share';
+    top.setAttribute('role', 'group');
+    top.setAttribute('aria-label', 'このページを知らせる');
+    top.innerHTML = '<div class="row sns"></div><div class="row family"></div>';
+    var sns = top.querySelector('.row.sns');
+    sns.appendChild(linkButton('Xでポスト', 'x'));
+    var fam = top.querySelector('.row.family');
+    fam.appendChild(linkButton('LINEで送る', 'line'));
+    if (navigator.share) fam.appendChild(actionButton('共有する', 'native'));
+    content.insertBefore(top, document.getElementById('picker').nextSibling);
+
+    // 会社のページ: その会社のページが直接開くリンクを送る、紙に印刷する
+    var co = document.createElement('div');
+    co.id = 'share-co';
+    co.className = 'share unsel';
+    co.setAttribute('role', 'group');
+    co.setAttribute('aria-label', 'この会社のページを知らせる');
+    co.innerHTML = '<div class="row"></div>';
+    var row = co.querySelector('.row');
+    row.appendChild(linkButton('LINEで送る', 'line'));
+    if (navigator.share) row.appendChild(actionButton('共有する', 'native'));
+    row.appendChild(actionButton('印刷する', 'print'));
+    content.appendChild(co);
+
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('.share button.btn');
+      if (!b) return;
+      var kind = b.getAttribute('data-kind');
+      var text = b.getAttribute('data-text'), url = b.getAttribute('data-url');
+      if (kind === 'native') navigator.share({ text: text, url: url }).catch(function () {});
+      if (kind === 'print') window.print();
+    });
+  }
+  function fillShare(row, text, url) {
+    var links = shareLinks(text, url);
+    row.querySelectorAll('.btn').forEach(function (b) {
+      var kind = b.getAttribute('data-kind');
+      if (links[kind]) b.href = links[kind];
+      b.setAttribute('data-text', text);
+      b.setAttribute('data-url', url);
+    });
+  }
+  function showShare(current, top) {
+    var t = document.getElementById('share-top'), c = document.getElementById('share-co');
+    t.classList.toggle('unsel', !top);
+    c.classList.toggle('unsel', !current);
+    if (top) {
+      fillShare(t, SHARE.page(), shareUrl(''));
+    }
+    if (current) {
+      var text = SHARE.company(current.name.replace(/\(.*\)$/, ''));
+      fillShare(c.querySelector('.row'), text, shareUrl(current.name));
+      // 会社の節のいちばん下に置く
+      var last = current.items[current.items.length - 1];
+      content.insertBefore(c, last.nextSibling);
+    }
+  }
+
   // 「あとでやる」: 対策ごとに印を付け、一覧で見られるようにする(この端末のブラウザに保存)
+  var done = [];
+  try { done = JSON.parse(localStorage.getItem('done')) || []; } catch (e) {}
   var later = [];
   try { later = JSON.parse(localStorage.getItem('later')) || []; } catch (e) {}
   var measures = {};   // 「会社名|設定名」→ 行の情報
   function saveLater() {
-    try { localStorage.setItem('later', JSON.stringify(later)); } catch (e) {}
+    try {
+      localStorage.setItem('later', JSON.stringify(later));
+      localStorage.setItem('done', JSON.stringify(done));
+    } catch (e) {}
     document.querySelectorAll('.later[data-key]').forEach(function (b) {
       var on = later.indexOf(b.getAttribute('data-key')) !== -1;
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.textContent = on ? '✓ あとでやるに入れた(取り消す)' : 'あとでやる';
+      var fin = done.indexOf(b.getAttribute('data-key')) !== -1;
+      b.setAttribute('aria-pressed', on || fin ? 'true' : 'false');
+      b.textContent = fin ? '✓ 設定済み(取り消す)' : (on ? '✓ あとでやるに入れた(取り消す)' : 'あとでやる');
     });
     var n = later.filter(function (k) { return measures[k]; }).length;
     document.querySelectorAll('.later-count').forEach(function (el) { el.textContent = n ? '(' + n + '件)' : ''; });
     document.getElementById('todo-home').classList.toggle('unsel', n === 0 || !!location.hash.slice(1));
   }
+  function setState(key, state) {   // state: 'done' | 'later' | 'none'
+    var i = done.indexOf(key);
+    if (i !== -1) done.splice(i, 1);
+    i = later.indexOf(key);
+    if (i !== -1) later.splice(i, 1);
+    if (state === 'done') done.push(key);
+    if (state === 'later') later.push(key);
+    saveLater();
+  }
   function toggleLater(key) {
+    // 設定済みの印が付いているものは、押すと印を外す
+    if (done.indexOf(key) !== -1) { setState(key, 'none'); return; }
     var i = later.indexOf(key);
     if (i === -1) later.push(key); else later.splice(i, 1);
     saveLater();
@@ -3447,7 +4394,14 @@ body { padding-bottom: 72px; }
           var name = tr.cells[1].firstChild.textContent;
           var key = c.name + '|' + name;
           var link = tr.querySelector('a');
-          measures[key] = { company: c.name, name: name, text: tr.cells[2].textContent, href: link ? link.href : '' };
+          var place = tr.cells[3].cloneNode(true);
+          place.querySelectorAll('a, .caution').forEach(function (a) { a.remove(); });
+          var caution = tr.cells[3].querySelector('.caution');
+          measures[key] = {
+            key: key, company: c.name, name: name, text: tr.cells[2].textContent, href: link ? link.href : '',
+            place: place.textContent.trim(), top: badge.classList.contains('top'),
+            caution: caution ? caution.textContent : ''
+          };
           var b = document.createElement('button');
           b.type = 'button';
           b.className = 'later';
@@ -3505,15 +4459,274 @@ body { padding-bottom: 72px; }
           link.textContent = '公式の案内';
           item.querySelector('.d').appendChild(link);
         }
-        var done = document.createElement('button');
-        done.type = 'button';
-        done.className = 'later';
-        done.textContent = 'できた(一覧から外す)';
-        done.addEventListener('click', function () { toggleLater(k); renderTodo(); });
-        item.appendChild(done);
+        var fin = document.createElement('button');
+        fin.type = 'button';
+        fin.className = 'later';
+        fin.textContent = 'できた(一覧から外す)';
+        fin.addEventListener('click', function () { setState(k, 'done'); renderTodo(); });
+        item.appendChild(fin);
         sec.appendChild(item);
       });
     });
+  }
+
+  // 「設定のほかに、気をつけること」の表。チェックの最後に、選んだ区分に合うものを出す
+  var habits = [];
+  function buildHabits() {
+    var src = docs.filter(function (d) { return d.title === '設定のほかに、気をつけること'; })[0];
+    if (!src) return;
+    src.el.querySelectorAll('tbody tr').forEach(function (tr) {
+      var more = tr.cells[2].textContent.trim();
+      habits.push({ target: tr.cells[0].textContent.trim(), text: tr.cells[1].textContent, more: more });
+      // 読みものの名前は、その読みものへのリンクにする
+      if (more) tr.cells[2].innerHTML = '<a href="#' + encodeURIComponent('~' + more).replace('%7E', '~') + '"></a>';
+      if (more) tr.cells[2].querySelector('a').textContent = more;
+    });
+  }
+
+  // 質問に答えて確認する流れ:
+  //  区分(金融機関など)ごとに、使っている会社を選ぶ → 選んだ会社を1社1画面で確認する、を繰り返す。
+  //  設定ごとに「入れてある / あとでやる」を付ける。最後に結果と、設定のほかに気をつけることを出す
+  var mine = [];
+  try { mine = JSON.parse(localStorage.getItem('mine')) || []; } catch (e) {}
+  var wz = { step: 'pick', cat: 0, i: 0 };
+  function saveMine() { try { localStorage.setItem('mine', JSON.stringify(mine)); } catch (e) {} }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+  function wzButton(label, cls, fn) {
+    var b = el('button', 'wz-btn' + (cls ? ' ' + cls : ''), label);
+    b.type = 'button';
+    b.addEventListener('click', fn);
+    return b;
+  }
+  // 選んだ会社(ページに並んでいる順)と、その会社の設定
+  function myCompanies() {
+    return companies.filter(function (c) { return mine.indexOf(c.name) !== -1; });
+  }
+  function measuresOf(c) {
+    return Object.keys(measures).map(function (k) { return measures[k]; })
+      .filter(function (m) { return m.company === c.name; });
+  }
+  function countOf(c) {
+    var n = { done: 0, later: 0, open: 0 };
+    measuresOf(c).forEach(function (m) {
+      if (done.indexOf(m.key) !== -1) n.done++;
+      else if (later.indexOf(m.key) !== -1) n.later++;
+      else n.open++;
+    });
+    return n;
+  }
+  function shortName(c) { return c.name.replace(/\(.*\)$/, ''); }
+  // いまの区分で選んだ会社
+  function catCompanies(k) {
+    return myCompanies().filter(function (c) { return c.section.cat === cats[k].name; });
+  }
+  // 流れ: 区分で会社を選ぶ → その区分の会社を1社ずつ確認 → 次の区分で会社を選ぶ → … → 結果
+  function wzAfterPick() {
+    if (catCompanies(wz.cat).length) { wzGo('svc', 0); return; }
+    wzNextCat();
+  }
+  function wzNextCat() {
+    if (wz.cat < cats.length - 1) { wz.cat++; wzGo('pick', 0); return; }
+    wzGo(mine.length ? 'end' : 'none');
+  }
+  function wzPick() {
+    wz = { step: 'pick', cat: 0, i: 0 };
+    renderWizard();
+  }
+  // 入ったとき: 前に会社を選んであれば会社の一覧、なければ会社を選ぶ画面から
+  function wzStart() {
+    wz = { step: mine.length ? 'list' : 'pick', cat: 0, i: 0 };
+    renderWizard();
+  }
+  function wzGo(step, i) {
+    wz.step = step;
+    if (i !== undefined) wz.i = i;
+    renderWizard();
+    window.scrollTo(0, 0);
+  }
+  function renderWizard() {
+    var box = document.getElementById('wizard');
+    var list = myCompanies();
+    box.innerHTML = '';
+    box.appendChild(el('h2', '', '全部まとめてチェック'));
+
+    if (wz.step === 'pick') {
+      var cat = cats[wz.cat];
+      box.appendChild(el('p', 'wz-step', '区分 ' + (wz.cat + 1) + ' / ' + cats.length));
+      box.appendChild(el('p', 'wz-q', cat.name + ': 使っているものを、すべて選んでください'));
+      box.appendChild(el('p', 'hint', '使っていなければ、何も選ばずに「次へ」を押してください。'));
+      cat.sections.forEach(function (section) {
+        if (cat.sections.length > 1) box.appendChild(el('p', 'label', section.kind));
+        var row = el('div', 'group');
+        companies.forEach(function (c) {
+          if (c.section !== section) return;
+          var m = c.name.match(/^(.*?)\((.*)\)$/);
+          var b = tile(m ? m[1] : c.name, m ? m[2] : '');
+          b.classList.add('pick');
+          b.setAttribute('aria-pressed', mine.indexOf(c.name) !== -1 ? 'true' : 'false');
+          b.addEventListener('click', function () {
+            var i = mine.indexOf(c.name);
+            if (i === -1) mine.push(c.name); else mine.splice(i, 1);
+            saveMine();
+            b.setAttribute('aria-pressed', i === -1 ? 'true' : 'false');
+          });
+          row.appendChild(b);
+        });
+        box.appendChild(row);
+      });
+      var nav = el('div', 'wz-nav');
+      if (wz.cat > 0) nav.appendChild(wzButton('‹ 前の区分', '', function () { wz.cat--; wzGo('pick', 0); }));
+      nav.appendChild(wzButton('次へ ›', 'main', wzAfterPick));
+      box.appendChild(nav);
+      box.appendChild(el('p', 'hint wz-keep', '選んだ会社の設定を1社ずつ確認してから、次の区分に進みます。'));
+
+    } else if (wz.step === 'none') {
+      box.appendChild(el('p', 'wz-q', '会社が1つも選ばれていません。'));
+      box.appendChild(wzButton('選び直す', 'main', wzPick));
+
+    } else if (wz.step === 'list') {
+      // 選んだ会社の一覧。今日やる会社を選べる
+      box.appendChild(el('p', 'wz-q', 'どの会社の設定を確認しますか'));
+      box.appendChild(el('p', 'hint', '1日で全部やる必要はありません。今日やる会社を選んでください。'));
+      var rows = el('div', 'wz-list');
+      list.forEach(function (c, i) {
+        var n = countOf(c);
+        var b = el('button', 'wz-row');
+        b.type = 'button';
+        b.appendChild(el('span', 'n', shortName(c)));
+        b.appendChild(el('span', 's', n.open ? 'まだ答えていない設定 ' + n.open + '件' : 'すべて答えました(設定済み ' + n.done + '件 / あとでやる ' + n.later + '件)'));
+        b.addEventListener('click', function () {
+          // その会社の区分の中での順番に合わせて開く
+          wz.cat = cats.map(function (x) { return x.name; }).indexOf(c.section.cat);
+          wzGo('svc', catCompanies(wz.cat).indexOf(c));
+        });
+        rows.appendChild(b);
+      });
+      box.appendChild(rows);
+      var nav0 = el('div', 'wz-nav');
+      nav0.appendChild(wzButton('会社を選び直す', '', wzPick));
+      nav0.appendChild(wzButton('結果を見る', '', function () { wzGo('end'); }));
+      box.appendChild(nav0);
+      box.appendChild(wzButton('答えをすべて消して、最初からやり直す', 'skip', function () {
+        if (!window.confirm('選んだ会社と、「設定済み」「あとでやる」の印をすべて消します。よろしいですか。')) return;
+        mine = []; done = []; later = [];
+        saveMine(); saveLater();
+        wzPick();
+      }));
+
+    } else if (wz.step === 'svc') {
+      // 1社分の設定を、1画面にまとめて出す
+      var inCat = catCompanies(wz.cat);
+      var c = inCat[wz.i];
+      box.appendChild(el('p', 'wz-step', cats[wz.cat].name + ' ' + (wz.i + 1) + ' / ' + inCat.length + '社目'));
+      box.appendChild(el('p', 'wz-q', shortName(c)));
+      box.appendChild(el('p', 'hint', '入れてある設定には「入れてある」を、これからの設定には「あとでやる」を押してください。いま設定したものも「入れてある」で大丈夫です。'));
+      measuresOf(c).forEach(function (m) {
+        var card = el('div', 'wz-card');
+        var head = el('p', 'wz-name');
+        head.appendChild(el('span', 'badge ' + (m.top ? 'top' : 'mid'), m.top ? '◎ 最優先' : '○ 推奨'));
+        head.appendChild(document.createTextNode(' ' + m.name));
+        card.appendChild(head);
+        card.appendChild(el('p', 'wz-text', m.text));
+        if (m.place) {
+          card.appendChild(el('p', 'wz-label', '設定する場所・注意'));
+          card.appendChild(el('p', 'wz-text', m.place));
+        }
+        if (m.caution) card.appendChild(el('p', 'caution', m.caution));
+        if (m.href) {
+          var a = el('a', '', '公式の案内を開く');
+          a.href = m.href;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          var p = el('p', 'wz-text');
+          p.appendChild(a);
+          card.appendChild(p);
+        }
+        var ans = el('div', 'wz-ans');
+        [['done', '入れてある'], ['later', 'あとでやる']].forEach(function (pair) {
+          var b = wzButton(pair[1], '', function () {
+            var on = (pair[0] === 'done' ? done : later).indexOf(m.key) !== -1;
+            setState(m.key, on ? 'none' : pair[0]);
+            renderAns();
+          });
+          b.setAttribute('data-state', pair[0]);
+          ans.appendChild(b);
+        });
+        function renderAns() {
+          ans.querySelectorAll('button').forEach(function (b) {
+            var arr = b.getAttribute('data-state') === 'done' ? done : later;
+            b.setAttribute('aria-pressed', arr.indexOf(m.key) !== -1 ? 'true' : 'false');
+          });
+        }
+        renderAns();
+        card.appendChild(ans);
+        box.appendChild(card);
+      });
+      var more = el('a', '', 'この会社のページで、ほかの注意点も見る');
+      more.href = '#' + encodeURIComponent(c.name);
+      more.target = '_blank';
+      var mp = el('p', 'wz-text');
+      mp.appendChild(more);
+      box.appendChild(mp);
+      var nav1 = el('div', 'wz-nav');
+      nav1.appendChild(wzButton(wz.i > 0 ? '‹ 前の会社' : '‹ 会社を選び直す', '', function () {
+        if (wz.i > 0) wzGo('svc', wz.i - 1); else wzGo('pick', 0);
+      }));
+      var lastCo = wz.i === inCat.length - 1, lastCat = wz.cat === cats.length - 1;
+      nav1.appendChild(wzButton(!lastCo ? '次の会社 ›' : (lastCat ? '結果を見る' : '次の区分へ ›'), 'main', function () {
+        if (!lastCo) wzGo('svc', wz.i + 1); else wzNextCat();
+      }));
+      box.appendChild(nav1);
+      box.appendChild(wzButton('会社の一覧に戻る', 'skip', function () { wzGo('list'); }));
+      box.appendChild(el('p', 'hint wz-keep', '途中でやめても、答えた分は残ります。次に開いたときは、会社の一覧から続けられます。'));
+
+    } else {
+      var total = { done: 0, later: 0, open: 0 };
+      list.forEach(function (c) { var n = countOf(c); total.done += n.done; total.later += n.later; total.open += n.open; });
+      box.appendChild(el('p', 'wz-q', '確認の結果'));
+      box.appendChild(el('p', 'wz-result', '設定済み: ' + total.done + '件 / あとでやる: ' + total.later + '件' +
+        (total.open ? ' / まだ答えていない: ' + total.open + '件' : '')));
+      // 設定では防げないことを、選んだ区分に合わせて出す
+      var kinds = {};
+      list.forEach(function (c) { kinds[c.section.cat] = true; });
+      var tips = habits.filter(function (h) { return h.target === '共通' || kinds[h.target]; });
+      if (tips.length) {
+        box.appendChild(el('p', 'wz-q', '最後に: 設定のほかに、気をつけること'));
+        box.appendChild(el('p', 'hint', '設定を入れても、自分でだまされて操作してしまう被害は防げません。次のことを、決まりごとにしておいてください。'));
+        var ul = el('ul', 'wz-habits');
+        tips.forEach(function (h) {
+          var li = el('li', '', h.text);
+          if (h.more) {
+            var a = el('a', '', 'くわしく');
+            a.href = '#' + encodeURIComponent('~' + h.more).replace('%7E', '~');
+            li.appendChild(document.createTextNode(' '));
+            li.appendChild(a);
+          }
+          ul.appendChild(li);
+        });
+        box.appendChild(ul);
+      }
+      var nav3 = el('div', 'wz-nav');
+      nav3.appendChild(wzButton('あとでやることを見る', 'main', function () { location.hash = '+todo'; }));
+      nav3.appendChild(wzButton('会社の一覧に戻る', '', function () { wzGo('list'); }));
+      box.appendChild(nav3);
+    }
+  }
+  function buildWizard() {
+    var sec = document.createElement('section');
+    sec.id = 'wizard';
+    sec.className = 'unsel';
+    content.appendChild(sec);
+    var start = wzButton('全部まとめてチェック', 'main', function () { location.hash = '!check'; });
+    start.id = 'wizard-start';
+    start.appendChild(el('small', '', '使っている会社を選んで、設定を1つずつ確認します'));
+    // 「何を守りますか」の会社選びの下に置く
+    content.insertBefore(start, document.getElementById('picker').nextSibling);
   }
 
   // 会社以外の節(共通事項、手口の説明、出典など)は1ページずつにまとめ、サイドバーから開く
@@ -3546,6 +4759,8 @@ body { padding-bottom: 72px; }
       return a;
     }
     add('最初の画面', '#');
+    var checkLink = add('全部まとめてチェック', '#!check');
+    checkLink.id = 'check-link';
     var todoLink = add('あとでやること', '#+todo');
     todoLink.id = 'todo-link';
     todoLink.innerHTML = 'あとでやること<span class="later-count count"></span>';
@@ -3555,7 +4770,7 @@ body { padding-bottom: 72px; }
       box.innerHTML = '<summary></summary>';
       box.querySelector('summary').textContent = sh.title;
       docs.forEach(function (d) {
-        var about = /未確認情報|ことばの説明|出典/.test(d.title);
+        var about = /このページの説明|更新情報|未確認情報|ことばの説明|出典/.test(d.title);
         if (about !== (sh.id === 'about')) return;
         d.shelf = sh;
         d.link = document.createElement('a');
@@ -3615,11 +4830,19 @@ body { padding-bottom: 72px; }
     if (todo) renderTodo();
     var todoLink = document.getElementById('todo-link');
     if (todo) todoLink.setAttribute('aria-current', 'page'); else todoLink.removeAttribute('aria-current');
-    var top = !current && !doc && !cat && !todo;
+    var check = name === '!check';
+    document.getElementById('wizard').classList.toggle('unsel', !check);
+    var checkLink = document.getElementById('check-link');
+    if (check) checkLink.setAttribute('aria-current', 'page'); else checkLink.removeAttribute('aria-current');
+    if (check) wzStart();
+    var top = !current && !doc && !cat && !todo && !check;
+    document.getElementById('wizard-start').classList.toggle('unsel', !top);
     var home = document.querySelector('#side nav a');
     if (top) home.setAttribute('aria-current', 'page'); else home.removeAttribute('aria-current');
     document.getElementById('picker').classList.toggle('unsel', !top);
     intro.forEach(function (el) { el.classList.toggle('unsel', !top); });
+    var news = document.getElementById('news');
+    if (news) { news.classList.toggle('unsel', !top); fitNews(); }
     // 戻るボタン: 会社の画面からはその区分へ、区分の画面からは最初の画面へ
     var back = document.getElementById('back');
     back.classList.toggle('unsel', !current && !cat);
@@ -3631,6 +4854,7 @@ body { padding-bottom: 72px; }
       back.onclick = function () { location.hash = ''; };
     }
     showWords(current);
+    showShare(current, top);
     saveLater();
     if (!top) window.scrollTo(0, 0);
   }
@@ -3654,6 +4878,10 @@ body { padding-bottom: 72px; }
   buildWords();
   buildLater();
   buildDocs();
+  buildHabits();
+  buildNews();
+  buildShare();
+  buildWizard();
   apply();
 })();
 </script>
