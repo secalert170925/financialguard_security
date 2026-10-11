@@ -198,7 +198,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 }
 .share .btn:hover, .share .btn:focus-visible { border-color: var(--accent); }
 @media print {
-  .bar, #side, #notice, #back, #crumbs, #age-link, .later, .share, #mfa-note, #words, #how, #stale { display: none !important; }
+  .bar, #side, #notice, #back, #search-results, #crumbs, #age-link, .later, .share, #mfa-note, #words, #how, #stale { display: none !important; }
   body { padding-bottom: 0; background: #fff; }
   .layout { display: block; padding: 0; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
@@ -450,6 +450,18 @@ tr:last-child td { border-bottom: 0; }
 .badge.mid { background: var(--mid-bg); color: var(--mid-fg); }
 .badge.auto { background: var(--auto-bg); color: var(--auto-fg); }
 mark { background: var(--mark); color: inherit; padding: 0 1px; }
+.bar input { max-width: 320px; }
+#search-results { display: none; }
+body.searching #search-results { display: block; }
+body.searching #content, body.searching #crumbs, body.searching #back, body.searching #share { display: none !important; }
+#search-results .count { margin: 0 0 12px; font-weight: 700; }
+#search-results a.hit { display: block; padding: 12px 14px; margin: 0 0 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); text-decoration: none; }
+#search-results a.hit:hover, #search-results a.hit:focus-visible { border-color: var(--accent); }
+#search-results a.hit small { display: block; color: var(--muted); font-size: 12px; }
+#search-results a.hit strong { display: block; color: var(--accent); }
+#search-results a.hit .snippet { display: block; margin-top: 4px; font-size: 14px; line-height: 1.6; }
+@media (max-width: 640px) { .bar-title, .bar > strong { display: none; } }
+
 .hidden { display: none !important; }
 .closing { color: var(--muted); font-size: 0.85rem; margin-top: 48px; }
 #notice {
@@ -500,12 +512,14 @@ body { padding-bottom: 72px; }
   <div class="bar-inner">
     <button id="menu" type="button" aria-controls="side" aria-expanded="false">メニュー</button>
     <span class="bar-title">自衛設定まとめ</span>
+    <input id="q" type="search" placeholder="さがす(例: パスキー)" aria-label="このページの中をさがす" autocomplete="off">
     <button id="theme" type="button">表示切替</button>
   </div>
 </div>
 <div class="layout">
 <aside id="side"><nav aria-label="このページの内容"></nav></aside>
 <main>
+  <div id="search-results" aria-live="polite"></div>
   <article id="content">
 <h1>お金とアカウントを「自分で」守る設定まとめ</h1>
 <p>乗っ取りや不正送金のニュースを見て、「自分は何をしておけばいいんだろう」と思った人のためのページです。</p>
@@ -5082,6 +5096,85 @@ body { padding-bottom: 72px; }
 
   window.addEventListener('hashchange', apply);
 
+  // ページの中をさがす。入れた言葉はどこにも送らず、この画面の中だけで照らし合わせる
+  // entries: [{ title, where, hash, text }]
+  function setupSearch(entries) {
+    var input = document.getElementById('q');
+    var box = document.getElementById('search-results');
+    function norm(s) {
+      // 全角と半角、大文字と小文字、ひらがなとカタカナの違いを無視する
+      return s.normalize('NFKC').toLowerCase().replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+    }
+    entries.forEach(function (e) {
+      e.text = e.text.replace(/\s+/g, ' ');
+      e.nTitle = norm(e.title);
+      e.nText = norm(e.text);
+    });
+    function el(tag, cls, text) {
+      var x = document.createElement(tag);
+      if (cls) x.className = cls;
+      if (text) x.textContent = text;
+      return x;
+    }
+    function run() {
+      var words = norm(input.value).split(/\s+/).filter(Boolean);
+      document.body.classList.toggle('searching', words.length > 0);
+      box.textContent = '';
+      if (!words.length) return;
+      var hits = [];
+      entries.forEach(function (e) {
+        var score = 0;
+        for (var i = 0; i < words.length; i++) {
+          var inTitle = e.nTitle.indexOf(words[i]) >= 0;
+          var n = e.nText.split(words[i]).length - 1;
+          if (!inTitle && !n) return;
+          score += (inTitle ? 100 : 0) + Math.min(n, 20);
+        }
+        hits.push({ e: e, score: score });
+      });
+      hits.sort(function (a, b) { return b.score - a.score; });
+      box.appendChild(el('p', 'count', hits.length ? '「' + input.value.trim() + '」が出てくるところ: ' + hits.length + '件' : '「' + input.value.trim() + '」は見つかりませんでした。言葉を短くするか、別の言い方でためしてください。'));
+      hits.slice(0, 40).forEach(function (h) {
+        var a = el('a', 'hit');
+        a.href = h.e.hash;
+        if (h.e.where) a.appendChild(el('small', '', h.e.where));
+        a.appendChild(el('strong', '', h.e.title));
+        // 最初に出てくるところの前後を見せる(正規化で文字数は変わらないものとして位置を使う)
+        var at = h.e.nText.indexOf(words[0]);
+        if (at >= 0 && h.e.nText.length === h.e.text.length) {
+          var from = Math.max(0, at - 30), to = Math.min(h.e.text.length, at + words[0].length + 50);
+          var p = el('span', 'snippet');
+          p.appendChild(document.createTextNode((from ? '…' : '') + h.e.text.slice(from, at)));
+          p.appendChild(el('mark', '', h.e.text.slice(at, at + words[0].length)));
+          p.appendChild(document.createTextNode(h.e.text.slice(at + words[0].length, to) + (to < h.e.text.length ? '…' : '')));
+          a.appendChild(p);
+        }
+        box.appendChild(a);
+      });
+      window.scrollTo(0, 0);
+    }
+    input.addEventListener('input', run);
+    // 結果を選んだら(または別の画面に移ったら)、さがす欄を空に戻す
+    window.addEventListener('hashchange', function () { if (input.value) { input.value = ''; run(); } });
+    box.addEventListener('click', function (ev) {
+      var a = ev.target.closest ? ev.target.closest('a.hit') : null;
+      if (a && a.getAttribute('href') === (location.hash || '#')) { input.value = ''; run(); }
+    });
+  }
+
+  // さがす対象: 会社ごと、読みものごと
+  function buildSearch() {
+    var entries = [];
+    companies.forEach(function (c) {
+      entries.push({ title: c.name, where: c.section.cat, hash: '#' + encodeURIComponent(c.name),
+        text: c.head.textContent + ' ' + c.items.map(function (el) { return el.textContent; }).join(' ') });
+    });
+    docs.forEach(function (d) {
+      entries.push({ title: d.title, where: d.shelf ? d.shelf.title : '', hash: '#~' + encodeURIComponent(d.title), text: d.el.textContent });
+    });
+    setupSearch(entries);
+  }
+
   // 作成から1か月以上たっていたら、情報が古いことを開いたときに知らせる
   (function () {
     var built = new Date(document.body.getAttribute('data-built'));
@@ -5103,6 +5196,7 @@ body { padding-bottom: 72px; }
   buildNews();
   buildShare();
   buildWizard();
+  buildSearch();
   apply();
 })();
 </script>

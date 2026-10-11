@@ -60,6 +60,19 @@ a { color: var(--accent); }
   border-bottom: 1px solid var(--border);
 }
 .bar strong { flex: 1; font-size: 15px; line-height: 1.4; }
+.bar input { flex: 1; min-width: 0; max-width: 320px; padding: 8px 12px; font-size: 16px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+mark { background: var(--mark); color: inherit; padding: 0 1px; }
+#search-results { display: none; }
+body.searching #search-results { display: block; }
+body.searching #content, body.searching #crumbs, body.searching #back, body.searching #share { display: none !important; }
+#search-results .count { margin: 0 0 12px; font-weight: 700; }
+#search-results a.hit { display: block; padding: 12px 14px; margin: 0 0 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); text-decoration: none; }
+#search-results a.hit:hover, #search-results a.hit:focus-visible { border-color: var(--accent); }
+#search-results a.hit small { display: block; color: var(--muted); font-size: 12px; }
+#search-results a.hit strong { display: block; color: var(--accent); }
+#search-results a.hit .snippet { display: block; margin-top: 4px; font-size: 14px; line-height: 1.6; }
+@media (max-width: 640px) { .bar-title, .bar > strong { display: none; } }
+
 .bar button {
   font: inherit;
   font-size: 14px;
@@ -217,7 +230,7 @@ ul.checklist input { flex: none; width: 20px; height: 20px; margin: 4px 0 0; }
   td[data-label]:not(:first-child)::before { content: attr(data-label); display: block; font-size: 12px; color: var(--muted); }
 }
 @media print {
-  .bar, #notice, #tree, #crumbs, #ages, .submenu, .pager, .no-print { display: none !important; }
+  .bar, #notice, #tree, #search-results, #crumbs, #ages, .submenu, .pager, .no-print { display: none !important; }
   main { margin: 0 !important; }
   #photo-sheet, #photo-sheet-actions { border: 0; padding: 0; }
   ul.checklist li { break-inside: avoid; }
@@ -230,11 +243,13 @@ ul.checklist input { flex: none; width: 20px; height: 20px; margin: 4px 0 0; }
 <div class="bar">
   <button id="menu" type="button">メニュー</button>
   <strong>年代別: 気をつけること</strong>
+  <input id="q" type="search" placeholder="さがす(例: BeReal)" aria-label="このページの中をさがす" autocomplete="off">
   <button id="print" type="button">印刷する</button>
   <button id="theme" type="button">明るさ</button>
 </div>
 <aside id="tree" aria-label="メニュー"></aside>
 <main>
+<div id="search-results" aria-live="polite"></div>
 <nav id="crumbs" class="unsel" aria-label="今いるところ"></nav>
 <div id="content">
 <h1>年代別: ネットとお金のトラブルで気をつけること</h1>
@@ -1034,10 +1049,16 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <ul>
 <li>止められたところ: 子どものスマホに入れたカードの情報は、使い終わったら消す。明細や、支払いの完了メールを毎月見る。</li>
 </ul>
-<p><strong>通知が来たので、目の前のものを撮った(社会人)</strong></p>
-<p>2026年の春、学校の先生が、仕事で使うシステムの画面をパソコンごと撮って、友だちだけが見られるSNSにのせました。通知が届いたので、深く考えずに目の前のパソコンを撮った、と説明しています。同じころ、銀行の支店の中を撮った写真や動画も広まりました。ホワイトボードにお客さんの名前が書かれていて、銀行が謝罪しました。</p>
+<p><strong>BeRealの通知が来たので、目の前のものを撮った(社会人)</strong></p>
+<p>BeRealは、1日に1回、決まっていない時間に通知が来て、2分以内に撮ってのせるよう求められるSNSです。前と後ろのカメラで同時に撮り、加工はできません。見られるのは友だちだけで、時間がたつと消えます。</p>
+<p>2026年の春、このBeRealへの投稿から、職場の中の情報が外に出る例が続きました。</p>
 <ul>
-<li>止められたところ: 仕事をする場所では撮らない。通知が来ても、その場では撮らない。見ているのが友だちだけでも、見た人が外にのせれば広がる。</li>
+<li>小学校の先生が、学校で使うシステムを表示したパソコンの画面を撮って、のせました。通知が届いたので、深く考えずに目の前のパソコンを撮った、と説明しています。</li>
+<li>銀行の支店の中を撮った写真と動画が、Xに広まりました。写り込んだホワイトボードに、お客さんの名前が書かれていました。銀行の頭取が謝罪しています。</li>
+</ul>
+<p>どちらも、のせた本人は、友だちだけに見せたつもりでした。見た人のだれかが、ほかの場所にのせたことで広まっています。</p>
+<ul>
+<li>止められたところ: 仕事をする場所では撮らない。通知が来ても、その場では撮らず、場所を変えてからにする。「友だちだけ」「時間がたつと消える」でも、見た人が保存して外にのせれば広がる。</li>
 </ul>
 <p><strong>顔写真から、最寄りの駅が分かった(20代)</strong></p>
 <p>2019年、SNSに顔写真をのせていた女性が、家の前でおそわれました。相手は、写真のひとみに映った景色などの手がかりを組み合わせて最寄りの駅を割り出し、駅で待って、あとをつけていました。動画に映ったカーテンや光の入り方から、部屋の位置まで調べていたと報じられています。</p>
@@ -1595,6 +1616,84 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
   }
   window.addEventListener('hashchange', apply);
   apply();
+
+  // ページの中をさがす。入れた言葉はどこにも送らず、この画面の中だけで照らし合わせる
+  // entries: [{ title, where, hash, text }]
+  function setupSearch(entries) {
+    var input = document.getElementById('q');
+    var box = document.getElementById('search-results');
+    function norm(s) {
+      // 全角と半角、大文字と小文字、ひらがなとカタカナの違いを無視する
+      return s.normalize('NFKC').toLowerCase().replace(/[ァ-ヶ]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0x60); });
+    }
+    entries.forEach(function (e) {
+      e.text = e.text.replace(/\s+/g, ' ');
+      e.nTitle = norm(e.title);
+      e.nText = norm(e.text);
+    });
+    function el(tag, cls, text) {
+      var x = document.createElement(tag);
+      if (cls) x.className = cls;
+      if (text) x.textContent = text;
+      return x;
+    }
+    function run() {
+      var words = norm(input.value).split(/\s+/).filter(Boolean);
+      document.body.classList.toggle('searching', words.length > 0);
+      box.textContent = '';
+      if (!words.length) return;
+      var hits = [];
+      entries.forEach(function (e) {
+        var score = 0;
+        for (var i = 0; i < words.length; i++) {
+          var inTitle = e.nTitle.indexOf(words[i]) >= 0;
+          var n = e.nText.split(words[i]).length - 1;
+          if (!inTitle && !n) return;
+          score += (inTitle ? 100 : 0) + Math.min(n, 20);
+        }
+        hits.push({ e: e, score: score });
+      });
+      hits.sort(function (a, b) { return b.score - a.score; });
+      box.appendChild(el('p', 'count', hits.length ? '「' + input.value.trim() + '」が出てくるところ: ' + hits.length + '件' : '「' + input.value.trim() + '」は見つかりませんでした。言葉を短くするか、別の言い方でためしてください。'));
+      hits.slice(0, 40).forEach(function (h) {
+        var a = el('a', 'hit');
+        a.href = h.e.hash;
+        if (h.e.where) a.appendChild(el('small', '', h.e.where));
+        a.appendChild(el('strong', '', h.e.title));
+        // 最初に出てくるところの前後を見せる(正規化で文字数は変わらないものとして位置を使う)
+        var at = h.e.nText.indexOf(words[0]);
+        if (at >= 0 && h.e.nText.length === h.e.text.length) {
+          var from = Math.max(0, at - 30), to = Math.min(h.e.text.length, at + words[0].length + 50);
+          var p = el('span', 'snippet');
+          p.appendChild(document.createTextNode((from ? '…' : '') + h.e.text.slice(from, at)));
+          p.appendChild(el('mark', '', h.e.text.slice(at, at + words[0].length)));
+          p.appendChild(document.createTextNode(h.e.text.slice(at + words[0].length, to) + (to < h.e.text.length ? '…' : '')));
+          a.appendChild(p);
+        }
+        box.appendChild(a);
+      });
+      window.scrollTo(0, 0);
+    }
+    input.addEventListener('input', run);
+    // 結果を選んだら(または別の画面に移ったら)、さがす欄を空に戻す
+    window.addEventListener('hashchange', function () { if (input.value) { input.value = ''; run(); } });
+    box.addEventListener('click', function (ev) {
+      var a = ev.target.closest ? ev.target.closest('a.hit') : null;
+      if (a && a.getAttribute('href') === (location.hash || '#')) { input.value = ''; run(); }
+    });
+  }
+
+  // さがす対象: 小見出しごと。分けていない項目は、項目ごと
+  var entries = [];
+  sections.forEach(function (s) {
+    var name = s.getAttribute('data-name');
+    var it = info[name];
+    if (!it.blocks.length) { entries.push({ title: name, where: '', hash: href(name), text: s.textContent }); return; }
+    it.blocks.forEach(function (b) {
+      entries.push({ title: b.title, where: name, hash: href(name, b.title), text: b.el.textContent });
+    });
+  });
+  setupSearch(entries);
   document.getElementById('menu').addEventListener('click', function () { document.body.classList.toggle('tree-open'); });
 
   document.getElementById('print').addEventListener('click', function () { window.print(); });
