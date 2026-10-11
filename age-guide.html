@@ -133,6 +133,7 @@ hr { display: none; }
   body.tree-open #tree { display: block; }
 }
 .submenu h3 { margin: 28px 0 4px; font-size: 17px; padding-bottom: 4px; border-bottom: 2px solid var(--border); }
+.submenu .tiles.common a { border-style: dashed; }
 .submenu h4 { margin: 16px 0 6px; font-size: 13px; font-weight: 400; color: var(--muted); }
 .submenu .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
 .submenu .tiles a {
@@ -152,7 +153,12 @@ hr { display: none; }
 .pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); text-decoration: none; }
 .pager .next { margin-left: auto; }
 section.menu-view > .pager { display: none; }
-#ages { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 20px 0; }
+#ages { margin: 20px 0; }
+#ages .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+#ages h2.shelf { margin: 28px 0 10px; font-size: 16px; padding-bottom: 4px; border-bottom: 2px solid var(--border); }
+#ages h2.shelf:first-child { margin-top: 8px; }
+#ages .grid.small a { padding: 12px 14px; font-size: 15px; font-weight: 400; }
+#tree .shelf { display: block; margin: 14px 0 4px; padding: 0 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px; }
 #ages a {
   display: block;
   padding: 18px 16px;
@@ -542,6 +548,14 @@ A: 早く話すほど、止めやすくなります。話しても、あなた�
 <li>自分のことを悪く書かれたら、言い返さないで、画面をそのままにして、おうちの人や先生に見せる。</li>
 <li>書かれたあなたが悪いのではありません。</li>
 </ul>
+<p><strong>るすばんのとき(電話と、家に来る人)</strong></p>
+<ul>
+<li>ひとりのときは、ピンポンが鳴っても、ドアを開けない。知っている人でも、おうちの人に聞いてからにする。</li>
+<li>「おうちの人はいますか」「何時に帰ってきますか」と聞かれても、「今、手がはなせません」とだけ言う。ひとりだと言わない。</li>
+<li>電話で、名前、家族のこと、家にあるお金のことを聞かれても、答えない。</li>
+<li>警察や学校、宅配の人だと言われても、同じです。本当の用事なら、おうちの人にもう一度連絡が来ます。</li>
+<li>だれが来たか、どんな電話だったかを、あとでおうちの人に話す。</li>
+</ul>
 <p><strong>こまったら、だれに言う?</strong></p>
 <ol>
 <li><strong>まず、おうちの人。</strong> お金のこと、こわいこと、まちがえてしまったこと、何でも、いちばんに言ってください。</li>
@@ -700,6 +714,13 @@ x: トーク履歴を全部消して、なかったことにする
 o: 送らずに、画面を残したまま、すぐ大人か警察に相談する
 A: 言うとおりにしても、要求は止まらないことが多く、かえって増えることもあります。やりとりの画面は、相手を止めるための証拠になります。早く相談するほど、止めやすくなります。
 </code></pre>
+<p><strong>ひとりで家にいるとき(電話と、家に来る人)</strong></p>
+<ul>
+<li>たのんでいない訪問は、ドアを開けずに、インターホンごしに話す。点検や工事だと言われても、「親がいるときにお願いします」と言ってかまいません。</li>
+<li>家族が何人か、昼間だれがいるか、家にお金や貴金属があるかを聞かれても、答えない。こうしたことを聞いて回る下見がある、と警察が注意しています。</li>
+<li>警察や役所を名乗る電話で、お金や口座の話が出たら、切って、家族に伝える。</li>
+<li>おかしいと思ったことは、小さなことでも、その日のうちに家族に話す。</li>
+</ul>
 <p><strong>困ったら、だれに言う?</strong></p>
 <ol>
 <li><strong>まず、おうちの人。</strong> 写真を送ってしまった、お金を使ってしまった、おどされている、という場合でも、いちばん先に言ってください。早いほど、止めやすくなります。</li>
@@ -830,8 +851,18 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <li>身の危険を感じるときは、警察に相談します。</li>
 <li>書かれたあなたが悪いのではありません。つらいときは、がまんせずに、話せる人に話してください。</li>
 </ul>
+<p><strong>ひとりで家にいるとき、電話に出るとき</strong></p>
+<p>高校生になると、家族のかわりに応対することが増えます。自分で判断してよい場面と、家族に回す場面を、分けておきます。</p>
+<ul>
+<li>たのんでいない訪問は、ドアを開けずに、インターホンごしに話す。開けるときは、ドアガード(チェーン)をかけたままにする。</li>
+<li>点検や工事だと言われたら、会社の名前と用件を聞いて、「家族に確認してから、こちらから連絡します」と伝える。その場で家に入れない。契約の話は、自分では決めない。</li>
+<li>家族が何人か、昼間だれがいるか、家にお金や貴金属があるかは、相手がだれでも答えない。こうしたことを聞いて回る下見がある、と警察が注意しています。</li>
+<li>しつこく帰らない、ドアを開けようとする、といったときは、自分で110番してかまいません。</li>
+<li>警察や役所を名乗る電話で、お金や口座の話が出たら、切って、家族に伝える。祖父母の家にも同じ電話が来ているかもしれないので、家族で話題にする。</li>
+<li>「家の写真を撮ってくるだけ」「住所を調べるだけ」というアルバイトは、下見の手つだいになるおそれがあります。闇バイトと同じように、ことわります。</li>
+</ul>
 <p><strong>本人が気をつけること</strong></p>
-<p>ここに書いた手口は、一部です。だます側は、毎日新しいやり方を考えています。おかしいと思ったら、ひとりで決めずに、まず相談してください。警察を名乗る電話や、家に来る人のことは、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B%28%E5%B9%B4%E4%BB%A3%E3%82%92%E5%95%8F%E3%82%8F%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%29">「電話と家を守る(年代を問わないこと)」</a>にまとめています。</p>
+<p>ここに書いた手口は、一部です。だます側は、毎日新しいやり方を考えています。おかしいと思ったら、ひとりで決めずに、まず相談してください。警察を名乗る電話や、家に来る人のことは、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B">「電話と家を守る」</a>にまとめています。</p>
 <ul>
 <li>仕事の内容がはっきりしないのに、お金が高い募集には、応募しない。先輩や友だちからの誘いでも同じ。</li>
 <li>身分証や顔写真を、アルバイトの「登録」のために送らない。</li>
@@ -991,6 +1022,16 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <li>身の危険を感じるときは、警察に相談します。</li>
 <li>書かれたあなたが悪いのではありません。つらいときは、がまんせずに、話せる人に話してください。</li>
 </ul>
+<p><strong>ひとり暮らしの家と、電話のこと</strong></p>
+<p>進学や就職でひとり暮らしを始めると、応対するのも、決めるのも、自分ひとりになります。</p>
+<ul>
+<li>たのんでいない訪問は、ドアを開けずに、インターホンごしに話す。オートロックの建物でも、ほかの人について入ってくることがあります。</li>
+<li>点検や工事だと言われたら、管理会社や大家さんに、自分で電話して確かめてから開ける。「今日中に」と急がされても、確かめるほうを先にします。</li>
+<li>「水道の点検」「排水管のそうじ」「新聞」「NHKや通信の契約」などを名乗る訪問で、その場で契約や支払いを求められたら、いったんことわって、調べてから決める。</li>
+<li>ひとり暮らしであること、帰りの時間、部屋の番号が分かることを、SNSに書かない。郵便物や宅配のラベルは、そのまま捨てない。</li>
+<li>警察を名乗る電話は、高齢の人だけに来るものではありません。2025年のまとめ(暫定値)では、件数は30代がいちばん多く、次が20代でした。「あなたの口座が犯罪に使われた」と言われたら、切って、自分で調べた番号か「#9110」にかけ直します。</li>
+<li>実家の家族や祖父母にも、同じ電話や訪問が来ているかもしれません。帰ったときに、話題にしてください。</li>
+</ul>
 <p><strong>写真1枚から、ここまで分かる</strong></p>
 <p>ネットには、写真にうつった小さな手がかりから、場所や人を割り出すのが得意な人がたくさんいます。特別な道具はいりません。だれでも見られる地図や検索を組み合わせるだけです。ひとつひとつは小さな情報でも、いくつか合わせると、家や勤め先までたどり着けます。</p>
 <ul>
@@ -1003,7 +1044,7 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <li><strong>天気や電車の投稿</strong>。「ひょうが降った」「電車が止まった」という投稿を重ねると、住んでいる地域と使っている路線がしぼれます。</li>
 </ul>
 <p><strong>本人が気をつけること</strong></p>
-<p>ここに書いた手口は、一部です。だます側は、毎日新しいやり方を考えています。おかしいと思ったら、ひとりで決めずに、まず相談してください。警察を名乗る電話や、家に来る人のことは、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B%28%E5%B9%B4%E4%BB%A3%E3%82%92%E5%95%8F%E3%82%8F%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%29">「電話と家を守る(年代を問わないこと)」</a>にまとめています。</p>
+<p>ここに書いた手口は、一部です。だます側は、毎日新しいやり方を考えています。おかしいと思ったら、ひとりで決めずに、まず相談してください。警察を名乗る電話や、家に来る人のことは、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B">「電話と家を守る」</a>にまとめています。</p>
 <ul>
 <li>「必ずもうかる」「すぐ元が取れる」という話は、断る。借金をすすめられたら、その時点で詐欺を疑う。</li>
 <li>その場で契約しない。持ち帰って、家族や友人に話してから決める。</li>
@@ -1094,8 +1135,18 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <li>「暗号資産で送って」「家族には内緒で」と言われたら、詐欺を強くうたがってください。</li>
 <li>相手を好きになってしまうのは、はずかしいことではありません。相手は、そのために毎日時間を使っています。お金を送る前に、だれかひとりに話してください。</li>
 </ul>
+<p><strong>下見のための訪問や電話</strong></p>
+<p>強盗やどろぼうをするグループが、ねらう家を決める前に、下見をしていることが分かっています。業者や役所を名乗って来ることも、電話をかけてくることもあります。</p>
+<ul>
+<li>家族が何人か、ひとり暮らしかどうか、昼間だれがいるか、家にお金や貴金属があるかを聞かれても、答えない。「アンケート」「調査」「市役所」と言われても同じです。</li>
+<li>家にいるときも、昼間でも、玄関にかぎをかける。</li>
+<li>たのんでいない訪問は、ドアを開けずに、インターホンごしに話す。開けるときは、ドアガード(チェーン)をかけたままにする。</li>
+<li>家に多くの現金を置かない。警察がすすめている対策です。</li>
+<li>電話は、留守番電話にしておき、知っている相手にだけ、かけ直す。</li>
+<li>あやしい人が来た、同じ車を何度も見る、といったことがあったら、家族と、近くの警察署か「#9110」に伝える。気のせいでも、かまいません。</li>
+</ul>
 <p><strong>本人が気をつけること</strong></p>
-<p>ここに書いた手口は、一部です。おかしいと思ったら、まず相談してください。電話や訪問については、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B%28%E5%B9%B4%E4%BB%A3%E3%82%92%E5%95%8F%E3%82%8F%E3%81%AA%E3%81%84%E3%81%93%E3%81%A8%29">「電話と家を守る(年代を問わないこと)」</a>にもまとめています。</p>
+<p>ここに書いた手口は、一部です。おかしいと思ったら、まず相談してください。電話や訪問については、<a href="#%E9%9B%BB%E8%A9%B1%E3%81%A8%E5%AE%B6%E3%82%92%E5%AE%88%E3%82%8B">「電話と家を守る」</a>にもまとめています。</p>
 <ul>
 <li>電話でお金の話が出たら、いったん切る。そして、自分が知っている番号にかけ直す。</li>
 <li>警察や役所、銀行が、電話で「お金を移して」「ATMに行って」「カードを預かる」と言うことはありません。</li>
@@ -1151,7 +1202,7 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 </ul>
 <p>参考: <a href="https://www.kokusen.go.jp/news/data/n-20231011_1.html">国民生活センター: 屋根工事の点検商法のトラブルが増えています</a>、<a href="https://www.kokusen.go.jp/news/data/n-20240918_1.html">国民生活センター: きっかけは訪問購入?犯罪まがいの深刻なトラブルにご注意を!</a>、<a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/260605/01.html">警察庁: 令和7年における特殊詐欺及びSNS型投資・ロマンス詐欺の認知・検挙状況等について</a>、<a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/international-phone/">警察庁: みんなでとめよう!!国際電話詐欺</a></p>
 <hr>
-<h2>電話と家を守る(年代を問わないこと)</h2>
+<h2>電話と家を守る</h2>
 <p>パソコンやスマホを使わない詐欺や犯罪も、同じ人たちが、同じやり方でしかけてきます。相手の「大事なもの」を調べ、あせらせ、だれにも相談させない、というやり方です。ここは、年代に関係なく、家族みんなで読んでください。</p>
 <p><strong>手口は毎日変わる。おかしいと思ったら、まず相談</strong></p>
 <p>だます側は、それを仕事にして、朝から夜まで新しいやり方を考えています。こちらが全部の手口を先に知っておくことは、できません。だから、手口を覚えるより、<strong>「おかしい」と思ったときに止まって、人に話す</strong>と決めておくほうが役に立ちます。</p>
@@ -1222,48 +1273,6 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 </ul>
 <p>参考: <a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/241218/02.html">警察庁: ニセ警察詐欺に注意!</a>、<a href="https://www.keishicho.metro.tokyo.lg.jp/kurashi/higai/akisu/visitor_theft.html">警視庁: 事業者等を装った訪問者に注意</a>、<a href="https://www.npa.go.jp/hakusyo/r07/honbun/html/bb4412000.html">警察庁: 警察白書 匿名・流動型犯罪グループへの対策</a>、<a href="https://www.kokusen.go.jp/news/data/n-20231011_1.html">国民生活センター: 屋根工事の点検商法のトラブルが増えています</a></p>
 <hr>
-<h2>写真をのせる前のチェックシート</h2>
-<p>写真や動画を、SNSやゲームにのせる前、人に送る前に使うシートです。<strong>「のせてよいか」を保護者に決めてもらうためのものではありません。下の項目をひとつずつ確かめるためのものです。</strong> 項目に当てはまらないところがあれば、だれが見ても、のせません。</p>
-<p><strong>写真や動画そのものは、このページには入れません。</strong> 手もとのスマホで写真を開いて、見くらべながら使ってください。</p>
-<p>使い方は2つあります。</p>
-<ul>
-<li><strong>その場で一緒に見る</strong>: スマホで写真を開き、項目を上から順に確かめる。</li>
-<li><strong>はなれている保護者に知らせる</strong>: どんな写真を、どこにのせたいかを書いて、下の「保護者に知らせる」を押す。送られるのは、書いた文と、このページのリンクだけです。写真は、会ったときに見せて、一緒に項目を確かめます。</li>
-</ul>
-<p>書いた文字は、この画面の中だけで使います。保存はされず、ページを閉じると消えます。</p>
-<div id="photo-sheet"></div>
-
-<p>だれが写っているか</p>
-<ul>
-<li><input disabled="" type="checkbox"> 名前が分かるもの(名札、ゼッケン、持ち物に書いた名前、賞状)が写っていない</li>
-<li><input disabled="" type="checkbox"> ほかの子が写っていない。写っているなら、その子の保護者に聞いた</li>
-<li><input disabled="" type="checkbox"> 水着、着替え、おふろなど、はだの出ている写真ではない</li>
-<li><input disabled="" type="checkbox"> 本人が、のせてもよいと言っている。大きくなってから見ても、いやな思いをしない</li>
-</ul>
-<p>どこで撮ったかが分かるか</p>
-<ul>
-<li><input disabled="" type="checkbox"> 学校や園が分かるもの(制服、校章、体操服、校舎、行事の看板)が写っていない</li>
-<li><input disabled="" type="checkbox"> 家が分かるもの(家の外、表札、車のナンバー、電柱や建物の番地の板、近所の店)が写っていない</li>
-<li><input disabled="" type="checkbox"> 窓の外の景色が写っていない</li>
-<li><input disabled="" type="checkbox"> 写真に位置の情報が入っていない(入れない設定は「社会人になる前」の表にあります)</li>
-</ul>
-<p>写り込み</p>
-<ul>
-<li><input disabled="" type="checkbox"> 郵便物、荷物のラベル、通知表、連絡帳、プリントが写っていない</li>
-<li><input disabled="" type="checkbox"> パソコン、スマホ、テレビの画面が写っていない</li>
-<li><input disabled="" type="checkbox"> 鏡や窓ガラスに、まわりの様子が映っていない</li>
-</ul>
-<p>いつ、だれに</p>
-<ul>
-<li><input disabled="" type="checkbox"> 「今ここにいる」「今、家にいない」ことが伝わらない(旅行や外出の写真は、帰ってからにする)</li>
-<li><input disabled="" type="checkbox"> 習い事の曜日や時間、通学の道など、決まった行動が分かる書き方をしていない</li>
-<li><input disabled="" type="checkbox"> 見られる相手を確かめた。相手を限っていても、見た人を通して外に出ることがあると分かったうえでのせる</li>
-<li><input disabled="" type="checkbox"> 祖父母や親せきに見せたいだけなら、SNSにのせず、その人にだけ送る</li>
-</ul>
-<p>印が付かないものがひとつでもあれば、撮り直すか、のせるのをやめます。全部に印が付いても、見ている人を通して外に出ることはあります。それでも困らない写真だけをのせます。</p>
-<div id="photo-sheet-actions"></div>
-
-<hr>
 <h2>実際にあったこと</h2>
 <p>どれも、特別な人に起きたことではありません。ふつうに使っていて、「これくらいなら」と思ったところから起きています。こわがるためではなく、「どこで止められたか」を知るために読んでください。</p>
 <p><strong>指紋を足して、課金できてしまった(小学生)</strong></p>
@@ -1317,6 +1326,48 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <ul>
 <li>ここから分かること: 応募してしまったあとでも、身分証を送ってしまったあとでも、相談すれば引き返せる。</li>
 </ul>
+<hr>
+<h2>写真をのせる前のチェックシート</h2>
+<p>写真や動画を、SNSやゲームにのせる前、人に送る前に使うシートです。<strong>「のせてよいか」を保護者に決めてもらうためのものではありません。下の項目をひとつずつ確かめるためのものです。</strong> 項目に当てはまらないところがあれば、だれが見ても、のせません。</p>
+<p><strong>写真や動画そのものは、このページには入れません。</strong> 手もとのスマホで写真を開いて、見くらべながら使ってください。</p>
+<p>使い方は2つあります。</p>
+<ul>
+<li><strong>その場で一緒に見る</strong>: スマホで写真を開き、項目を上から順に確かめる。</li>
+<li><strong>はなれている保護者に知らせる</strong>: どんな写真を、どこにのせたいかを書いて、下の「保護者に知らせる」を押す。送られるのは、書いた文と、このページのリンクだけです。写真は、会ったときに見せて、一緒に項目を確かめます。</li>
+</ul>
+<p>書いた文字は、この画面の中だけで使います。保存はされず、ページを閉じると消えます。</p>
+<div id="photo-sheet"></div>
+
+<p>だれが写っているか</p>
+<ul>
+<li><input disabled="" type="checkbox"> 名前が分かるもの(名札、ゼッケン、持ち物に書いた名前、賞状)が写っていない</li>
+<li><input disabled="" type="checkbox"> ほかの子が写っていない。写っているなら、その子の保護者に聞いた</li>
+<li><input disabled="" type="checkbox"> 水着、着替え、おふろなど、はだの出ている写真ではない</li>
+<li><input disabled="" type="checkbox"> 本人が、のせてもよいと言っている。大きくなってから見ても、いやな思いをしない</li>
+</ul>
+<p>どこで撮ったかが分かるか</p>
+<ul>
+<li><input disabled="" type="checkbox"> 学校や園が分かるもの(制服、校章、体操服、校舎、行事の看板)が写っていない</li>
+<li><input disabled="" type="checkbox"> 家が分かるもの(家の外、表札、車のナンバー、電柱や建物の番地の板、近所の店)が写っていない</li>
+<li><input disabled="" type="checkbox"> 窓の外の景色が写っていない</li>
+<li><input disabled="" type="checkbox"> 写真に位置の情報が入っていない(入れない設定は「社会人になる前」の表にあります)</li>
+</ul>
+<p>写り込み</p>
+<ul>
+<li><input disabled="" type="checkbox"> 郵便物、荷物のラベル、通知表、連絡帳、プリントが写っていない</li>
+<li><input disabled="" type="checkbox"> パソコン、スマホ、テレビの画面が写っていない</li>
+<li><input disabled="" type="checkbox"> 鏡や窓ガラスに、まわりの様子が映っていない</li>
+</ul>
+<p>いつ、だれに</p>
+<ul>
+<li><input disabled="" type="checkbox"> 「今ここにいる」「今、家にいない」ことが伝わらない(旅行や外出の写真は、帰ってからにする)</li>
+<li><input disabled="" type="checkbox"> 習い事の曜日や時間、通学の道など、決まった行動が分かる書き方をしていない</li>
+<li><input disabled="" type="checkbox"> 見られる相手を確かめた。相手を限っていても、見た人を通して外に出ることがあると分かったうえでのせる</li>
+<li><input disabled="" type="checkbox"> 祖父母や親せきに見せたいだけなら、SNSにのせず、その人にだけ送る</li>
+</ul>
+<p>印が付かないものがひとつでもあれば、撮り直すか、のせるのをやめます。全部に印が付いても、見ている人を通して外に出ることはあります。それでも困らない写真だけをのせます。</p>
+<div id="photo-sheet-actions"></div>
+
 <hr>
 <h2>保護者の方へ: 子どもへの伝え方</h2>
 <p>子どもに「あぶないからダメ」と言うだけでは、伝わりにくいものです。理由が分からないルールは、見ていないところで破られがちです。ここでは、話すときの順番と言い方をまとめました。子どもの性格や家庭によって、合うやり方は違います。ひとつの例として読んでください。</p>
@@ -1468,6 +1519,7 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
 <li>ふざけた投稿が「進学や就職にひびくことがある」「名前で調べると何年たっても出てくる」という点、悪口を書かれたときに言い返さない・ミュートやブロックをする・画面を保存するという対処は、政府広報の記事の内容を検索結果で確かめたもので、記事そのものは読めていません。</li>
 <li>「電話と家を守る」のうち、いったん止まる5つの合図、電話で家族やお金のことを聞かれたときのこと、家のまわりで気付いたことを警察に伝えること、家族で決めておくことは、資料にそのままあるものではなく、資料の内容をもとにこのページでまとめたものです。警察庁の通達は、検索結果で内容を確かめたもので、全文は読めていません。</li>
 <li>SNSやゲームのアカウントを売ると詐欺に使われることがある、という点、代わりに契約した回線が詐欺の電話に使われる、という点、スマホを携帯会社のショップで見てもらうこと、送った覚えのないSMSの料金を確かめることは、資料で個別に確かめたものではなく、一般に知られていることとして書いています。</li>
+<li>電話と、家に来る人への応じ方は、年代ごとに書き分けています(小学生「るすばんのとき」、中学生・高校生「ひとりで家にいるとき」、社会人になる前「ひとり暮らしの家と、電話のこと」、高齢の方「下見のための訪問や電話」)。もとにしたのは「電話と家を守る」と同じ資料ですが、年代ごとの応じ方の線引き(小学生は開けない・答えない、高校生は自分で110番してよい、など)は、このページで決めたものです。「家の写真を撮ってくるだけ」というアルバイトが下見の手つだいになるおそれがある、という点と、ひとり暮らしの訪問の例も、資料で個別に確かめたものではありません。</li>
 <li>クイズの問いと答えは、上の資料の内容をもとに、このページで作りました。</li>
 <li>警察官を名乗る詐欺の年代ごとの件数は、警察庁の暫定値を報じた記事で確かめたもので、確定値の年代ごとの数字は見ていません。</li>
 </ul>
@@ -1666,6 +1718,9 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
   var WHOLE = ['写真をのせる前のチェックシート', '出典', 'このページについて'];   // 分けずに1ページで見せるもの
   var ADULT = ['高校生', '社会人になる前(18歳から)', '高齢の方'];                 // 本人が自分で全部読む年代
   var FIRST = 'はじめてスマホを持つとき';
+  var SHEET_NAME = '写真をのせる前のチェックシート', HOME_NAME = '電話と家を守る';
+  var COMMON = [HOME_NAME, SHEET_NAME];   // どの年代の一覧にも出す、共通の項目
+  var fromAge = '';                        // 共通の項目を、どの年代から開いたか(パンくず用)
   var AGE = [FIRST, '小学生', '中学生'].concat(ADULT);
   function forFamily(name, title) {
     if (name === FIRST) return !/あなたへ|自分で守ること|なくしたとき、こわれたとき/.test(title);
@@ -1677,9 +1732,9 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
   // 中間メニューの中を、話題ごとにまとめる(項目が多い年代で、さがしやすくするため)
   var THEMES = [
     ['まず知っておくこと', /大事にしていること|つけ込む手口|多いこと|あなたへ|手口は毎日変わる/],
-    ['お金と契約、人からのさそい', /クレジット|闇バイト|口座、身分証|家に来る人|SNSで知り合った人|名乗る電話|下見|SMSが来た/],
+    ['お金と契約、人からのさそい', /クレジット|闇バイト|口座、身分証|家に来る人|SNSで知り合った人|名乗る電話|下見|SMSが来た|ひとり暮らし/],
     ['のせること、書くこと', /友だちだけ|ふざけた|悪口|写真1枚|写真や動画をのせる前に/],
-    ['気をつけること、できること', /気をつけること|自分で守ること|あやしい|クイズ|約束|できること|渡す前|いっしょに決める|渡したあと|決めておくこと/],
+    ['気をつけること、できること', /気をつけること|自分で守ること|あやしい|クイズ|約束|できること|渡す前|いっしょに決める|渡したあと|決めておくこと|るすばん|ひとりで家にいる/],
     ['設定', /設定|フィルタリング/],
     ['困ったとき', /相談|だれに言う|なくしたとき、こわれたとき/]
   ];
@@ -1735,6 +1790,26 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
         if (it.order.indexOf(x.b) < 0) it.order.push(x.b);
       });
     });
+    if (AGE.indexOf(name) >= 0) {
+      // 小学生・中学生では、チェックシートは本人と保護者の両方に、電話と家のことは保護者の側に出す
+      var kids = name === '小学生' || name === '中学生';
+      Array.prototype.forEach.call(menu.querySelectorAll('h3'), function (h, gi) {
+        var names = name === FIRST ? (gi ? [SHEET_NAME] : []) :
+          kids ? (gi ? [HOME_NAME, SHEET_NAME] : [SHEET_NAME]) : (gi ? [] : [HOME_NAME, SHEET_NAME]);
+        if (!names.length) return;
+        var end = h.nextElementSibling;
+        while (end && end.tagName !== 'H3') end = end.nextElementSibling;
+        var box = make('div', 'tiles common');
+        names.forEach(function (n) {
+          var a = make('a', '', n);
+          a.href = href(n);
+          a.setAttribute('data-from', name);
+          box.appendChild(a);
+        });
+        menu.insertBefore(make('h4', '', 'どの年代にも共通のこと'), end);
+        menu.insertBefore(box, end);
+      });
+    }
     var all = make('a', 'all', 'この項目を全部、1ページで見る(印刷するときはこちら)');
     all.href = href(name, '*');
     menu.appendChild(all);
@@ -1751,7 +1826,7 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
     '高校生': '自分のお金がほしくなる年ごろ',
     '社会人になる前(18歳から)': '自分ひとりで契約できる年ごろ',
     '高齢の方': '子どもや孫が中心の年代',
-    '電話と家を守る(年代を問わないこと)': '警察を名乗る電話、家に来る人、下見。まず相談',
+    '電話と家を守る': '警察を名乗る電話、家に来る人、下見。まず相談',
     '写真をのせる前のチェックシート': 'のせる前に、項目をひとつずつ確かめる。紙やPDFにもできる',
     '実際にあったこと': 'どこで止められたかを知るための実例',
     '保護者の方へ: 子どもへの伝え方': '話す順番と、言い方の例',
@@ -1760,6 +1835,20 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
   };
   var ages = document.createElement('nav');
   ages.id = 'ages';
+  // 最初の画面は年代が先。「電話と家を守る」「チェックシート」は年代に関係なく使うので、
+  // 並べて置かず、それぞれの年代の一覧の中から開く
+  var SHELVES = [
+    ['年代からえらぶ', function (n) { return AGE.indexOf(n) >= 0; }],
+    ['そのほか', function () { return true; }]
+  ];
+  function shelfOf(n) { for (var i = 0; i < SHELVES.length; i++) if (SHELVES[i][1](n)) return i; }
+  var grids = SHELVES.map(function (sh, i) {
+    ages.appendChild(make('h2', 'shelf', sh[0]));
+    var g = make('div', 'grid' + (i ? ' small' : ''));
+    ages.appendChild(g);
+    return g;
+  });
+  var treeShelf = -1;
   // 左のメニュー(ツリー)。年代 → 小見出し の2段
   var tree = document.getElementById('tree');
   var home = make('a', 'top', '最初の画面');
@@ -1775,8 +1864,13 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
       sm.textContent = hints[name];
       a.appendChild(sm);
     }
-    ages.appendChild(a);
     content.appendChild(s);
+    if (COMMON.indexOf(name) >= 0) return;
+    grids[shelfOf(name)].appendChild(a);
+    if (shelfOf(name) !== treeShelf) {
+      treeShelf = shelfOf(name);
+      tree.appendChild(make('span', 'shelf', SHELVES[treeShelf][0]));
+    }
     var it = info[name];
     if (!it.blocks.length) {
       var leaf = make('a', 'leaf', name);
@@ -1803,8 +1897,23 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
       l.setAttribute('data-title', b.title);
       d.appendChild(l);
     });
+    if (AGE.indexOf(name) >= 0) {
+      d.appendChild(make('span', 'group', 'どの年代にも共通のこと'));
+      (name === FIRST ? [SHEET_NAME] : COMMON).forEach(function (n) {
+        var l = make('a', '', n);
+        l.href = href(n);
+        l.setAttribute('data-from', name);
+        l.setAttribute('data-common', n);
+        d.appendChild(l);
+      });
+    }
     tree.appendChild(d);
   });
+  // 共通の項目を年代の中から開いたときは、その年代を覚えておく
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[data-from]') : null;
+    fromAge = a ? a.getAttribute('data-from') : '';
+  }, true);
   intro.appendChild(ages);
 
   // URL の # のあとで、表示するところを切り替える(# のあとはサーバーに送られない)
@@ -1836,6 +1945,8 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
     sections.forEach(function (s) { s.classList.toggle('unsel', !it || s !== it.sec); });
     intro.classList.toggle('unsel', !!it);
     var cur = null;
+    var inAge = '';
+    if (it && COMMON.indexOf(name) < 0) fromAge = '';
     if (it && it.blocks.length) {
       var all = title === '*';
       cur = all ? null : it.blocks.filter(function (b) { return b.title === title; })[0] || null;
@@ -1860,7 +1971,10 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
     crumbs.textContent = '';
     crumbs.classList.toggle('unsel', !it);
     if (it) {
-      var path = [['年代別: 気をつけること', '#'], [name, href(name)]];
+      inAge = COMMON.indexOf(name) >= 0 && fromAge ? fromAge : '';
+      var path = [['年代別: 気をつけること', '#']];
+      if (inAge) path.push([inAge, href(inAge)]);
+      path.push([name, href(name)]);
       if (title) path.push([title === '*' ? '全部' : title, '']);
       path.forEach(function (x, i) {
         if (i) crumbs.appendChild(make('span', 'sep', '›'));
@@ -1881,6 +1995,13 @@ A: 言うとおりにしても、要求は止まらないことが多く、か�
     // 左のメニューの今いるところ
     Array.prototype.forEach.call(tree.querySelectorAll('.now'), function (e) { e.classList.remove('now'); });
     Array.prototype.forEach.call(tree.children, function (e) {
+      // 共通の項目は、開いてきた年代の枝の中で印を付ける
+      if (COMMON.indexOf(name) >= 0 && e.tagName === 'DETAILS' && e.getAttribute('data-name') === (inAge || '')) {
+        e.open = true;
+        var c = e.querySelector('a[data-common="' + name + '"]');
+        if (c && !title) c.classList.add('now');
+        return;
+      }
       if (e.getAttribute('data-name') !== name) return;
       if (e.tagName === 'DETAILS') {
         e.open = true;
