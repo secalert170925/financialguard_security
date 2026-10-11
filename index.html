@@ -198,12 +198,13 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 }
 .share .btn:hover, .share .btn:focus-visible { border-color: var(--accent); }
 @media print {
-  .bar, #side, #notice, #back, .later, .share, #mfa-note, #words, #how, #stale { display: none !important; }
+  .bar, #side, #notice, #back, #crumbs, #age-link, .later, .share, #mfa-note, #words, #how, #stale { display: none !important; }
   body { padding-bottom: 0; background: #fff; }
   .layout { display: block; padding: 0; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; word-break: break-all; }
 }
 #wizard-start { display: block; width: 100%; margin: 24px 0 0; padding: 16px; font-size: 1.15rem; }
+#age-link { margin: 12px 0 0; font-size: 0.92rem; }
 #wizard-start small { display: block; margin-top: 2px; font-size: 0.82rem; font-weight: 400; }
 .wz-btn {
   padding: 12px 18px;
@@ -356,6 +357,11 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 #content hr { display: none; }
 section.doc h2 { margin-top: 20px; }
 #side details { margin: 2px 0; }
+#side details details { margin-left: 10px; }
+#side details details summary { font-size: 0.92rem; }
+#crumbs { margin: 0 0 4px; font-size: 0.9rem; line-height: 1.6; }
+#crumbs .sep { margin: 0 6px; color: var(--muted); }
+#crumbs .here { font-weight: 700; }
 #side summary { padding: 9px 12px; border-radius: 8px; cursor: pointer; color: var(--text); }
 #side summary:hover { background: var(--head); }
 #side details a { padding: 7px 12px 7px 24px; font-size: 0.92rem; white-space: normal; line-height: 1.5; }
@@ -489,7 +495,7 @@ body { padding-bottom: 72px; }
 }
 </style>
 </head>
-<body data-built="2026-10-10">
+<body data-built="2026-10-11">
 <div class="bar">
   <div class="bar-inner">
     <button id="menu" type="button" aria-controls="side" aria-expanded="false">メニュー</button>
@@ -506,7 +512,7 @@ body { padding-bottom: 72px; }
 <p>使っている会社を選ぶと、その会社で<strong>自分で入れられる守りの設定</strong>だけが出ます。むずかしい知識はいりません。まずは、いちばん上に出る1つから始めてください。</p>
 <p>設定するときは、メールやSMSのリンクからではなく、いつものアプリか公式サイトから入ってください。</p>
 <p>このページで選んだ内容は、どこにも送られず、記録もされません。お使いの端末の中にだけ残ります。ページを保存しておけば、インターネットにつながっていなくても使えます。</p>
-<p>調査日: 2026-10-08 〜 2026-10-10(各社の公式ページ・よくある質問・お知らせを中心に確認)</p>
+<p>調査日: 2026-10-08 〜 2026-10-11(各社の公式ページ・よくある質問・お知らせを中心に確認)</p>
 <hr>
 <h2>はじめに: 心構え</h2>
 <p><strong>このページを作ったきっかけ</strong></p>
@@ -858,6 +864,31 @@ body { padding-bottom: 72px; }
 </ul>
 <p>参考: <a href="https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html">金融庁: インターネット取引サービスへの不正アクセス・不正取引にご注意ください</a>、<a href="https://scan.netsecurity.ne.jp/article/2025/10/03/53736.html">偽の確認画面について警察庁が注意喚起(ScanNetSecurity)</a>、<a href="https://atmarkit.itmedia.co.jp/ait/articles/2610/09/news034.html">SBI証券の注意喚起についての記事(@IT)</a>、<a href="https://www.itmedia.co.jp/news/article/2610/08/2000002137/">SBI証券「被害は確認されていない」(ITmedia NEWS)</a></p>
 <hr>
+<h2>電話番号を乗っ取られる手口(SIMの乗っ取り)</h2>
+<p>SMSで届く確認の番号は、「電話番号は本人のもの」という前提で使われています。その電話番号を他人に使われると、SMSでの確認を入れている口座やアカウントが、まとめて危なくなります。携帯料金とあわせて払う支払い(キャリア決済)で、買い物をされることもあります。</p>
+<p>電話番号を使われる道は、2つあります。守り方が違うので、分けて考えてください。</p>
+<p><strong>1. スマホを盗まれて、SIMカードを抜かれる</strong></p>
+<p>スマホに画面のロックをかけていても、中のSIMカードを抜いて別のスマホに差せば、電話もSMSも使えてしまいます。</p>
+<ul>
+<li>防ぐ設定は <strong>SIM PIN</strong>(SIMの暗証番号)です。設定しておくと、スマホの電源を入れ直したときと、SIMを別のスマホに差したときに、暗証番号を求められます。</li>
+<li>iPhoneに入っているeSIM(カードのないSIM)にも設定できます。</li>
+<li>設定の場所と、最初に入れる番号は、「電話・SMS」の各社のページにあります。</li>
+</ul>
+<p>SIM PINは、番号を3回続けて間違えるとロックがかかり、電話も通信もできなくなります。<strong>最初は、携帯会社が決めた番号を入れます。自分で考えた番号を入れてはいけません。</strong> 設定する前に、各社のページの「設定する前に」を必ず読んでください。</p>
+<p><strong>2. 携帯会社のアカウントに入られて、SIMを作り直される</strong></p>
+<p>携帯会社の会員サイトでは、SIMの再発行(eSIMの発行)を申し込めます。IDとパスワードを盗んだ他人がこの手続きをすると、電話番号が相手のスマホに移り、自分のスマホは圏外になります。楽天モバイルは、フィッシングで楽天IDとパスワードを盗まれ、eSIMを再発行された例があるとして、注意を呼びかけています。</p>
+<ul>
+<li>この道は、SIM PINでは防げません。SIMそのものが新しく作られるためです。</li>
+<li>防ぐのは、<strong>携帯会社のアカウント</strong>の守りです。パスワードをほかのサービスと別にし、パスキーや2段階認証を入れます。設定は、各社のページにあります。</li>
+<li>携帯会社を名乗るメールやSMSのリンクからは、ログインしないでください。</li>
+</ul>
+<p><strong>あわせてやっておくこと</strong></p>
+<ul>
+<li>口座やアカウントの確認の方法を、SMSだけに頼らない。パスキーや認証アプリを選べる会社では、そちらを使う。</li>
+<li>心当たりがないのに、スマホが急に圏外になって戻らないときは、Wi-Fiにつないで、または別の電話から、携帯会社に問い合わせる。</li>
+</ul>
+<p>参考: <a href="https://support.apple.com/ja-jp/118228">Apple: iPhoneやiPadでSIM PINを使う</a>、<a href="https://network.mobile.rakuten.co.jp/information/news/other/2675/">楽天モバイル: 身に覚えのないeSIMの再発行にご注意ください</a></p>
+<hr>
 <h2>パスワードの使い回しと情報漏えい</h2>
 <p>会社から会員情報が漏れたというニュースは、毎月のように出ています。漏れたIDとパスワードは、その会社だけの問題では終わりません。</p>
 <p><strong>漏れたパスワードは、ほかのサービスで試される</strong></p>
@@ -1077,6 +1108,11 @@ body { padding-bottom: 72px; }
 <td>電話・SMS</td>
 <td>「+」で始まる番号(海外からの電話)は、心当たりがなければ出ない、かけ直さない</td>
 <td></td>
+</tr>
+<tr>
+<td>電話・SMS</td>
+<td>心当たりがないのにスマホが急に圏外になって戻らないときは、携帯会社に問い合わせる</td>
+<td>電話番号を乗っ取られる手口(SIMの乗っ取り)</td>
 </tr>
 </tbody></table>
 <hr>
@@ -3444,6 +3480,7 @@ body { padding-bottom: 72px; }
 <hr>
 <h2>電話・SMS / 電話・SMS</h2>
 <p>詐欺の多くは、電話とSMSから始まります。あやしい電話やSMSが自分に届かないようにしておくと、口座やカードの設定より手前で防げます。無料でできるものが多くあります。</p>
+<p>電話番号そのものを他人に使われないようにする設定(SIM PIN、携帯会社のアカウントの守り)も、ここにまとめています。理由は「<a href="#~%E9%9B%BB%E8%A9%B1%E7%95%AA%E5%8F%B7%E3%82%92%E4%B9%97%E3%81%A3%E5%8F%96%E3%82%89%E3%82%8C%E3%82%8B%E6%89%8B%E5%8F%A3%28SIM%E3%81%AE%E4%B9%97%E3%81%A3%E5%8F%96%E3%82%8A%29">電話番号を乗っ取られる手口</a>」を見てください。</p>
 <h3>ドコモの電話・SMS</h3>
 <table>
 <thead>
@@ -3471,6 +3508,18 @@ body { padding-bottom: 72px; }
 <td>危険SMS拒否設定</td>
 <td>危険なSMSを自動で拒否する。無料</td>
 <td>「SMS一括拒否」や「個別番号受信」を自分で設定すると、この機能は外れる<br><a href="https://www.docomo.ne.jp/info/notice/page/220113_00.html">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SIM PIN(SIMの暗証番号)</td>
+<td>スマホを盗まれてSIMを抜かれても、暗証番号がないと電話やSMSを使えないようにする。eSIMにも設定できる。スマホの電源を入れ直すたびに入力が必要になる</td>
+<td>iPhoneは「設定 → モバイル通信 → SIM PIN」。Androidは設定の中の「セキュリティ」などにあり、機種で場所が違う。オンにするときに、最初の番号「0000」を入れ、そのあとで自分だけの番号(4〜8けた)に変える。ロックがかかったときの解除の番号(PUK)は、My docomoかドコモ インフォメーションセンターで確かめる。解除の番号を10回間違えると、ドコモショップでの手続きになる<br><a href="https://www.docomo.ne.jp/support/password_pin/">公式の案内</a><br><a href="https://support.apple.com/ja-jp/118228">Appleの案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>dアカウントの守りを入れる</td>
+<td>SIMの再発行などの手続きに使うアカウントを守る。他人に入られると、電話番号を移されるおそれがある</td>
+<td>設定は「<a href="#%E3%83%89%E3%82%B3%E3%83%A2%28d%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%83%BB%E3%83%89%E3%82%B3%E3%83%A2%E3%83%A1%E3%83%BC%E3%83%AB%29">ドコモ(dアカウント・ドコモメール)</a>」のページにある(パスキー端末設定、2段階認証を「強」にする)</td>
 </tr>
 </tbody></table>
 <p><strong>使えない場合の代替策と費用</strong></p>
@@ -3505,6 +3554,18 @@ body { padding-bottom: 72px; }
 <td>迷惑SMSの疑いがあるものを、届く前に自動で止める。無料で、申込みもいらない</td>
 <td><a href="https://www.au.com/mobile/service/sms/filter/">公式の案内</a></td>
 </tr>
+<tr>
+<td>○</td>
+<td>SIM PIN(SIMの暗証番号)</td>
+<td>スマホを盗まれてSIMを抜かれても、暗証番号がないと電話やSMSを使えないようにする。eSIMにも設定できる。スマホの電源を入れ直すたびに入力が必要になる</td>
+<td>iPhoneは「設定 → モバイル通信 → SIM PIN」。Androidは設定の中の「セキュリティ」などにあり、機種で場所が違う。オンにするときに、最初の番号「1234」を入れ、そのあとで自分だけの番号(4〜8けた)に変える。ロックがかかったときの解除の番号(PUK)は、SIMカードが付いていた台紙の裏、My au、auショップで確かめる。解除の番号を10回間違えると、auショップかお客さまセンターでの手続きになる<br><a href="https://www.au.com/support/service/mobile/procedure/id/pin-code/">公式の案内</a><br><a href="https://support.apple.com/ja-jp/118228">Appleの案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>au IDの守りを入れる</td>
+<td>SIMの再発行などの手続きに使うアカウントを守る。他人に入られると、電話番号を移されるおそれがある</td>
+<td>設定は「<a href="#au%28au%20ID%E3%83%BBau%E3%83%A1%E3%83%BC%E3%83%AB%29">au(au ID・auメール)</a>」のページにある(2段階認証、指紋・顔認証によるログイン)</td>
+</tr>
 </tbody></table>
 <h3>ソフトバンクの電話・SMS</h3>
 <table>
@@ -3527,6 +3588,18 @@ body { padding-bottom: 72px; }
 <td>SMSの迷惑メールフィルター</td>
 <td>迷惑SMSを受け取らないようにする。無料</td>
 <td>My SoftBankで設定<br><a href="https://www.softbank.jp/mobile/support/protect/specialfraud/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SIM PIN(SIMの暗証番号)</td>
+<td>スマホを盗まれてSIMを抜かれても、暗証番号がないと電話やSMSを使えないようにする。eSIMにも設定できる。スマホの電源を入れ直すたびに入力が必要になる</td>
+<td>iPhoneは「設定 → モバイル通信 → SIM PIN」。Androidは設定の中の「セキュリティ」などにあり、機種で場所が違う。オンにするときに、最初の番号「9999」を入れ、そのあとで自分だけの番号(4〜8けた)に変える。ロックがかかったときの解除の番号(PUK)は、My SoftBank、ソフトバンクショップ、電話で確かめる。解除の番号を10回間違えると、ショップでSIMの交換が必要になる<br><a href="https://www.softbank.jp/support/faq/view/10057">公式の案内</a><br><a href="https://support.apple.com/ja-jp/118228">Appleの案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>My SoftBankの守りを入れる</td>
+<td>SIMの再発行などの手続きに使うアカウントを守る。他人に入られると、電話番号を移されるおそれがある</td>
+<td>設定は「<a href="#%E3%82%BD%E3%83%95%E3%83%88%E3%83%90%E3%83%B3%E3%82%AF%28My%20SoftBank%29">ソフトバンク(My SoftBank)</a>」のページにある(パスキー認証)</td>
 </tr>
 </tbody></table>
 <p><strong>使えない場合の代替策と費用</strong></p>
@@ -3554,6 +3627,30 @@ body { padding-bottom: 72px; }
 <td>迷惑SMS拒否設定</td>
 <td>詐欺に使われるSMSを自動で見つけて拒否する。無料で、最初からオンになっている</td>
 <td>拒否されたSMSは、あとから見ることができない<br><a href="https://network.mobile.rakuten.co.jp/service/sms-filter/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>SIM PIN(SIMの暗証番号)</td>
+<td>スマホを盗まれてSIMを抜かれても、暗証番号がないと電話やSMSを使えないようにする。eSIMにも設定できる。スマホの電源を入れ直すたびに入力が必要になる</td>
+<td>iPhoneは「設定 → モバイル通信 → SIM PIN」。Androidは設定の中の「セキュリティ」などにあり、機種で場所が違う。オンにするときに、最初の番号「0000」を入れ、そのあとで自分だけの番号(4〜8けた)に変える。ロックがかかると圏外になり、電話ができなくなる。解除の番号(PUK)は、楽天モバイルに問い合わせて教えてもらう<br><a href="https://network.mobile.rakuten.co.jp/faq/detail/00001106/">公式の案内</a><br><a href="https://support.apple.com/ja-jp/118228">Appleの案内</a></td>
+</tr>
+<tr>
+<td>◎</td>
+<td>楽天IDのパスワードをほかと別にする</td>
+<td>楽天モバイルの手続きは楽天IDで行う。楽天IDとパスワードを盗まれ、eSIMを再発行された例がある</td>
+<td>楽天の会員情報の「アカウントとセキュリティ」で変える<br><a href="https://network.mobile.rakuten.co.jp/information/news/other/2675/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>楽天IDのユーザIDをメールアドレス以外にする</td>
+<td>ログインに使うIDを、メールアドレスとは別のものにする。メールアドレスを知られただけでは、ログインを試せなくなる</td>
+<td>楽天の会員情報の「アカウントとセキュリティ」で設定<br><a href="https://network.mobile.rakuten.co.jp/information/news/other/2675/">公式の案内</a></td>
+</tr>
+<tr>
+<td>○</td>
+<td>楽天IDのログイン通知</td>
+<td>楽天IDにログインがあると、メールで知らせる</td>
+<td>楽天の会員情報の「アカウントとセキュリティ」で設定。楽天IDのパスキーは「<a href="#%E6%A5%BD%E5%A4%A9%E3%83%9A%E3%82%A4">楽天ペイ</a>」のページにある</td>
 </tr>
 </tbody></table>
 <h3>固定電話(NTT東日本・NTT西日本)</h3>
@@ -3663,6 +3760,22 @@ body { padding-bottom: 72px; }
 </tr>
 </thead>
 <tbody><tr>
+<td>2026-10-11</td>
+<td>読みもの「電話番号を乗っ取られる手口(SIMの乗っ取り)」を追加。「電話・SMS」のドコモ、au、ソフトバンク、楽天モバイルに、SIM PIN(SIMの暗証番号)と、携帯会社のアカウントを守る設定を追加</td>
+</tr>
+<tr>
+<td>2026-10-11</td>
+<td>別のページ「年代別: 気をつけること」を追加(はじめてスマホを持つとき、小学生、中学生、高校生、社会人になる前、高齢の方)</td>
+</tr>
+<tr>
+<td>2026-10-11</td>
+<td>読みもの「はじめに: 心構え」を追加(デジタル大臣が呼びかけた3つの対策、自分で守れることの限り、パスワードの使い回し、身近な人への相談)</td>
+</tr>
+<tr>
+<td>2026-10-11</td>
+<td>「2段階認証をしていても乗っ取られる理由」の、パスキーを保管しているアカウントをねらう手口の説明を修正(ほかの証券会社で報告された事案であること、SBI証券での被害は確認されていないことを明記)</td>
+</tr>
+<tr>
 <td>2026-10-10</td>
 <td>「電話・SMS」の区分を追加(ドコモ、au、ソフトバンク、楽天モバイル、固定電話、デジポリス)</td>
 </tr>
@@ -3677,10 +3790,6 @@ body { padding-bottom: 72px; }
 <tr>
 <td>2026-10-10</td>
 <td>楽天証券に、利用停止を設定するときの注意点を2つ追加</td>
-</tr>
-<tr>
-<td>2026-10-10</td>
-<td>読みもの「はじめに: 心構え」を追加(自分で守れることの限り、パスワードの使い回し、身近な人への相談など)</td>
 </tr>
 <tr>
 <td>2026-10-10</td>
@@ -3986,6 +4095,7 @@ body { padding-bottom: 72px; }
   var intro = [];      // 冒頭の説明(会社を選ぶ画面でだけ見せる)
 
   function purposeOf(name) {
+    if (/SIM PIN|の守りを入れる|楽天IDのパスワード|楽天IDのユーザID/.test(name)) return '目的: 電話番号を他人に使われないようにする';
     if (/迷惑|ナンバーブロック|国際電話|ナンバー・ディスプレイ|SMS拒否|危険SMS|電話番号の変更|不明な発信者/.test(name)) return '目的: 詐欺の電話やSMSを受けない';
     if (/通知先/.test(name)) return '目的: 本人確認を強くする';
     if (/復旧|再設定用|バックアップ|連絡先|連絡方法|信頼できる電話番号/.test(name)) return '目的: 自分が締め出されないようにする';
@@ -3997,6 +4107,8 @@ body { padding-bottom: 72px; }
 
   // 設定の種類ごとの「設定する前に」。設定名から判定して、該当する行にだけ添える
   function cautionOf(name) {
+    if (/SIM PIN/.test(name))
+      return '番号を3回続けて間違えるとロックがかかり、電話も通信もできなくなります。最初に入れるのは、自分で考えた番号ではなく、携帯会社が決めた最初の番号です。前に自分で変えた覚えがあって番号が分からないときは、試さずに携帯会社に聞いてください。変えたあとの番号は、忘れないように控えてください。';
     if (/パスワード無効|パスキーでのみ|パスキーのみ|いつもパスキー|パスワード認証」を無効|指紋・顔認証によるログイン/.test(name))
       return 'この設定をすると、登録した端末がないとログインできなくなります。端末が壊れたとき・なくしたときにどう戻すかを確かめてから設定してください。予備の端末を登録できる会社では、先に登録しておいてください。';
     if (/復旧キー|セキュリティキー|高度な保護/.test(name))
@@ -4767,9 +4879,17 @@ body { padding-bottom: 72px; }
     content.appendChild(sec);
     var start = wzButton('全部まとめてチェック', 'main', function () { location.hash = '!check'; });
     start.id = 'wizard-start';
-    start.appendChild(el('small', '', '使っている会社を選んで、設定を1つずつ確認します'));
+    start.appendChild(el('small', '', '使っている会社を選んで、会社ごとに設定を確認します'));
     // 「何を守りますか」の会社選びの下に置く
     content.insertBefore(start, document.getElementById('picker').nextSibling);
+    // 年代別のページ(別ファイル)への入口
+    var age = el('p', '', '子どもや高齢の家族のことは、');
+    age.id = 'age-link';
+    var a = el('a', '', '年代別: 気をつけること');
+    a.href = 'age-guide.html';
+    age.appendChild(a);
+    age.appendChild(document.createTextNode('にまとめています。'));
+    content.insertBefore(age, start.nextSibling);
   }
 
   // 会社以外の節(共通事項、手口の説明、出典など)は1ページずつにまとめ、サイドバーから開く
@@ -4807,9 +4927,40 @@ body { padding-bottom: 72px; }
     var todoLink = add('あとでやること', '#+todo');
     todoLink.id = 'todo-link';
     todoLink.innerHTML = 'あとでやること<span class="later-count count"></span>';
+    // 会社へ直接移るためのツリー(区分 → 会社)。閉じた状態で置く
+    var tree = document.createElement('details');
+    tree.id = 'tree';
+    tree.innerHTML = '<summary>会社から探す</summary>';
+    cats.forEach(function (cat) {
+      var d = document.createElement('details');
+      d.innerHTML = '<summary></summary>';
+      d.querySelector('summary').textContent = cat.name;
+      cat.treeBox = d;
+      var list = document.createElement('a');
+      list.href = '#@' + encodeURIComponent(cat.name);
+      list.textContent = '一覧';
+      cat.treeLink = list;
+      d.appendChild(list);
+      companies.forEach(function (c) {
+        if (c.section.cat !== cat.name) return;
+        c.treeLink = document.createElement('a');
+        c.treeLink.href = '#' + encodeURIComponent(c.name);
+        c.treeLink.textContent = c.name;
+        d.appendChild(c.treeLink);
+      });
+      tree.appendChild(d);
+    });
+    nav.appendChild(tree);
+    // パンくず(今いるところ)。本文の上に置く
+    var crumbs = document.createElement('nav');
+    crumbs.id = 'crumbs';
+    crumbs.className = 'unsel';
+    crumbs.setAttribute('aria-label', '今いるところ');
+    content.parentNode.insertBefore(crumbs, content);
     // 読みものは、閉じた状態の折りたたみ(アコーディオン)2つにまとめる
     shelves.forEach(function (sh) {
       var box = document.createElement('details');
+      box.className = 'shelf';
       box.innerHTML = '<summary></summary>';
       box.querySelector('summary').textContent = sh.title;
       docs.forEach(function (d) {
@@ -4880,6 +5031,7 @@ body { padding-bottom: 72px; }
     if (check) wzStart();
     var top = !current && !doc && !cat && !todo && !check;
     document.getElementById('wizard-start').classList.toggle('unsel', !top);
+    document.getElementById('age-link').classList.toggle('unsel', !top);
     var home = document.querySelector('#side nav a');
     if (top) home.setAttribute('aria-current', 'page'); else home.removeAttribute('aria-current');
     document.getElementById('picker').classList.toggle('unsel', !top);
@@ -4896,6 +5048,32 @@ body { padding-bottom: 72px; }
       back.textContent = '‹ 最初の画面に戻る';
       back.onclick = function () { location.hash = ''; };
     }
+    // パンくず: 最初の画面 › 区分 › 会社、最初の画面 › 読みものの棚 › 題名 など
+    var path = top ? [] :
+      current ? [[current.section.cat, '#@' + encodeURIComponent(current.section.cat)], [current.name]] :
+      cat ? [[cat.name]] :
+      doc ? [[doc.shelf.title], [doc.title]] :
+      todo ? [['あとでやること']] : [['全部まとめてチェック']];
+    var crumbs = document.getElementById('crumbs');
+    crumbs.textContent = '';
+    crumbs.classList.toggle('unsel', top);
+    [['最初の画面', '#']].concat(path).forEach(function (x, i) {
+      if (i) { var sep = document.createElement('span'); sep.className = 'sep'; sep.textContent = '›'; crumbs.appendChild(sep); }
+      var e = document.createElement(x[1] ? 'a' : 'span');
+      if (x[1]) e.href = x[1];
+      if (i === path.length) e.className = 'here';
+      e.textContent = x[0];
+      crumbs.appendChild(e);
+    });
+    // ツリーの今いるところ。開いている会社・区分の枝は開いた状態にする
+    companies.forEach(function (c) {
+      if (!c.treeLink) return;
+      if (c === current) c.treeLink.setAttribute('aria-current', 'page'); else c.treeLink.removeAttribute('aria-current');
+    });
+    cats.forEach(function (c) {
+      if (c === cat) c.treeLink.setAttribute('aria-current', 'page'); else c.treeLink.removeAttribute('aria-current');
+      if (c === cat || (current && current.section.cat === c.name)) { c.treeBox.open = true; document.getElementById('tree').open = true; }
+    });
     showWords(current);
     showShare(current, top);
     saveLater();

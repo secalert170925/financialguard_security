@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>年代別: ネットとお金のトラブルで気をつけること</title>
+<style>
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #1c2330;
+  --muted: #5b6676;
+  --border: #dde2ea;
+  --accent: #0b5cad;
+  --head: #eef2f7;
+  --mark: #fff1a8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161c;
+    --surface: #1a2029;
+    --text: #e6eaf0;
+    --muted: #9aa6b6;
+    --border: #2d3644;
+    --accent: #6db3ff;
+    --head: #222a36;
+    --mark: #5c5200;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161c;
+  --surface: #1a2029;
+  --text: #e6eaf0;
+  --muted: #9aa6b6;
+  --border: #2d3644;
+  --accent: #6db3ff;
+  --head: #222a36;
+  --mark: #5c5200;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo, sans-serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+a { color: var(--accent); }
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.bar strong { flex: 1; font-size: 15px; line-height: 1.4; }
+.bar button {
+  font: inherit;
+  font-size: 14px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+main { max-width: 820px; margin: 0 auto; padding: 20px 16px 96px; }
+h1 { font-size: 24px; line-height: 1.4; margin: 8px 0 16px; }
+h2 { font-size: 22px; line-height: 1.4; margin: 8px 0 16px; }
+hr { display: none; }
+#crumbs { margin: 0 0 12px; font-size: 14px; line-height: 1.6; }
+#crumbs .sep { margin: 0 6px; color: var(--muted); }
+#crumbs .here { font-weight: 700; }
+#tree {
+  position: fixed;
+  top: 53px; bottom: 37px; left: 0;
+  width: 290px;
+  overflow-y: auto;
+  padding: 12px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  font-size: 14px;
+  z-index: 4;
+}
+#tree a { display: block; padding: 6px 8px; border-radius: 6px; color: var(--text); text-decoration: none; }
+#tree a:hover { background: var(--head); }
+#tree a.now { background: var(--head); font-weight: 700; border-left: 3px solid var(--accent); }
+#tree summary { padding: 6px 8px; cursor: pointer; font-weight: 700; }
+#tree details a { margin-left: 14px; }
+#tree .group { display: block; margin: 8px 0 2px 14px; padding: 0 8px; font-size: 12px; color: var(--muted); }
+#menu { display: none; }
+@media (min-width: 1100px) {
+  main { margin-left: max(290px, calc(50% - 410px + 145px)); margin-right: auto; }
+}
+@media (max-width: 1099px) {
+  #menu { display: inline-block; }
+  #tree { display: none; width: min(320px, 86vw); box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2); }
+  body.tree-open #tree { display: block; }
+}
+.submenu h3 { margin: 24px 0 8px; font-size: 16px; }
+.submenu .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.submenu .tiles a {
+  display: block;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.submenu .tiles a:hover, .submenu .tiles a:focus-visible { border-color: var(--accent); }
+.submenu .all { display: inline-block; margin: 20px 0 0; font-size: 14px; }
+.pager { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 28px 0 0; }
+.pager a { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); text-decoration: none; }
+.pager .next { margin-left: auto; }
+section.menu-view > .pager { display: none; }
+#ages { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 20px 0; }
+#ages a {
+  display: block;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+}
+#ages a small { display: block; margin-top: 4px; font-weight: 400; font-size: 13px; color: var(--muted); }
+#ages a:hover, #ages a:focus-visible { border-color: var(--accent); }
+section.age p > strong:only-child {
+  display: block;
+  margin-top: 12px;
+  padding: 6px 12px;
+  background: var(--head);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+section.age li { margin: 6px 0; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; background: var(--surface); }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--head); font-size: 14px; }
+.unsel { display: none !important; }
+ul.checklist { list-style: none; padding-left: 0; }
+ul.checklist li { margin: 0; border-bottom: 1px solid var(--border); }
+ul.checklist label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 4px; cursor: pointer; }
+ul.checklist input { flex: none; width: 20px; height: 20px; margin: 4px 0 0; }
+#photo-sheet, #photo-sheet-actions { margin: 16px 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+#photo-sheet label.field { display: block; margin: 12px 0 0; font-weight: 700; }
+#photo-sheet label.field small { display: block; font-weight: 400; color: var(--muted); }
+#photo-sheet input[type="text"] { display: block; width: 100%; margin-top: 4px; padding: 10px 12px; font: inherit; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+#photo-sheet .photos { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0 0; }
+#photo-sheet .photos figure { margin: 0; min-width: 80px; }
+#photo-sheet .photos img { display: block; max-width: 100%; max-height: 320px; border: 1px solid var(--border); border-radius: 8px; }
+#photo-sheet .photos button { display: block; margin: 6px 0 0; }
+.sheet-btn { font: inherit; padding: 10px 14px; margin: 4px 8px 4px 0; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); cursor: pointer; }
+.sheet-btn.main { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+#sheet-msg { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+.quiz { margin: 16px 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.quiz .q { margin: 0 0 12px; font-weight: 700; }
+.quiz button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px 14px;
+  font: inherit;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+.quiz button.right { border-color: var(--accent); border-width: 2px; font-weight: 700; }
+.quiz button.wrong { opacity: 0.6; text-decoration: line-through; }
+.quiz .result { margin: 12px 0 0; padding: 10px 12px; background: var(--head); border-radius: 8px; }
+.quiz .result strong { display: block; }
+.quiz-score { margin: 12px 0; font-weight: 700; }
+#notice {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 8px 16px;
+  background: var(--mark);
+  color: var(--text);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tr { border: 1px solid var(--border); border-radius: 10px; margin: 12px 0; background: var(--surface); overflow: hidden; }
+  td { border: 0; border-top: 1px solid var(--border); }
+  td:first-child { border-top: 0; font-weight: 700; background: var(--head); }
+  td[data-label]:not(:first-child)::before { content: attr(data-label); display: block; font-size: 12px; color: var(--muted); }
+}
+@media print {
+  .bar, #notice, #tree, #crumbs, #ages, .submenu, .pager, .no-print { display: none !important; }
+  main { margin: 0 !important; }
+  #photo-sheet, #photo-sheet-actions { border: 0; padding: 0; }
+  #photo-sheet .photos img { max-height: 9cm; }
+  ul.checklist li { break-inside: avoid; }
+  main { padding: 0; max-width: none; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <button id="menu" type="button">メニュー</button>
+  <strong>年代別: 気をつけること</strong>
+  <button id="print" type="button">印刷する</button>
+  <button id="theme" type="button">明るさ</button>
+</div>
+<aside id="tree" aria-label="メニュー"></aside>
+<main>
+<nav id="crumbs" class="unsel" aria-label="今いるところ"></nav>
+<div id="content">
+<h1>年代別: ネットとお金のトラブルで気をつけること</h1>
+<p>人は年代によって、いちばん大事にしているものが違います。ゲーム、友だち、お金、子どもや孫。だます側は、その「いちばん大事なもの」を入口にしてきます。</p>
+<p>このページは、年代ごとに「大事にしていること」「そこにつけ込む手口」「本人が気をつけること」「家族ができること」をまとめたものです。働いている世代の方は、<a href="index.html">お金とアカウントを「自分で」守る設定まとめ</a>を見てください。</p>
+<p>家族のだれかのために読む方は、その年代のところだけ読めば足ります。本人に見せるより、内容をかみくだいて一緒に話すほうが伝わります。</p>
+<p>調査日: 2026-10-11(国の機関の資料を中心に確認)</p>
+<hr>
+<h2>はじめてスマホを持つとき</h2>
+<p>小学校の高学年から中学生にかけて、自分のスマホを持ちはじめる子が増えます。トラブルの多くは、持たせたあとではなく、<strong>持たせる前の準備</strong>で減らせます。渡したあとで制限を足すのは、子どもにとって「取り上げられた」と感じやすく、うまくいきません。</p>
+<p><strong>渡す前にすること</strong></p>
+<ul>
+<li>契約するときに、「使うのは子どもです」と店で伝える。18歳未満が使う回線には、携帯会社がフィルタリングを用意することになっています。</li>
+<li>保護者のアカウントを使い回さず、子ども用のアカウントを作る。年を上にごまかして作らないでください。入れた年に合わせて、制限が自動でかかるためです。</li>
+<li>アプリを入れるとき、課金するときに、保護者の承認が必要な設定にする。</li>
+<li>使える時間を決める設定を入れる。</li>
+<li>クレジットカードの情報を、子どもの端末に入れない。</li>
+<li>画面のロックを設定する。暗証番号は、保護者も知っておく。</li>
+</ul>
+<p>携帯会社ごとのフィルタリングは、下の表にまとめています。iPhoneやAndroidの本体の設定(スクリーンタイム、ファミリーリンク)の場所は、「小学生」の表にあります。</p>
+<p><strong>携帯会社ごとのフィルタリング</strong></p>
+<p>フィルタリングは、契約している携帯会社のものを使います。名前も、申込みがいるかどうかも、会社ごとに違います。どの会社も、申し込んだだけでは働きません。<strong>子どものスマホにアプリを入れて、最初の設定をすませてから渡します。</strong></p>
+<table>
+<thead>
+<tr>
+<th>携帯会社</th>
+<th>サービスの名前</th>
+<th>料金と申込み</th>
+<th>注意と、公式の案内</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ドコモ(ahamoをふくむ)</td>
+<td>あんしんフィルター for docomo</td>
+<td>無料。申込みはいらない</td>
+<td>学年(小学生・中学生・高校生・高校生プラス)を選ぶと、合った制限がかかる。**2026年10月7日から障害が続いていて、10月11日に確認した時点で、iPhoneではほとんどの機能が、Androidでもウェブの制限と保護者ページが止まっている。**ドコモは、直るまでのあいだ、iPhoneは「スクリーンタイム」、Androidは「ファミリーリンク」を使うよう案内している<br><a href="https://www.docomo.ne.jp/service/anshin_filter/">公式の案内</a></td>
+</tr>
+<tr>
+<td>au、UQ mobile、povo</td>
+<td>あんしんフィルター for au</td>
+<td>無料。申込みはいらない</td>
+<td>契約者か、使う人として登録した人が18歳未満の回線が対象。iPhoneでは、使える時間は「スクリーンタイム」で決めるよう案内されている<br><a href="https://www.au.com/mobile/service/anshin-filter/">公式の案内</a></td>
+</tr>
+<tr>
+<td>ソフトバンク</td>
+<td>あんしんフィルター</td>
+<td>無料。申込みがいる(My SoftBank、電話、ショップ)</td>
+<td>やめるときは、ショップでしか手続きできない。Google Pixelなど、使えない機種がある。iPhoneでは、ネットを見るのは専用のアプリの中だけになる<br><a href="https://www.softbank.jp/mobile/service/filtering/anshin-filter/">公式の案内</a></td>
+</tr>
+<tr>
+<td>ワイモバイル</td>
+<td>あんしんフィルター</td>
+<td>無料。申込みがいる(My Y!mobile、ショップ)</td>
+<td>使えない機種がある。SIMだけの契約では、My Y!mobileから申し込めない<br><a href="https://www.ymobile.jp/service/sp_safety/">公式の案内</a></td>
+</tr>
+<tr>
+<td>LINEMO</td>
+<td>あんしんフィルター</td>
+<td>公式の案内で確かめてください</td>
+<td><a href="https://www.linemo.jp/service/filter/sp_safety/">公式の案内</a></td>
+</tr>
+<tr>
+<td>楽天モバイル</td>
+<td>あんしんコントロール</td>
+<td>月550円(はじめての申込みは3か月無料)。申込みがいる</td>
+<td>契約者が18歳未満のときは、原則として申込みが必要。iPhoneでは、ネットを見るのは専用のアプリの中だけで、使えない機能がある<br><a href="https://network.mobile.rakuten.co.jp/service/anshin-control/">公式の案内</a></td>
+</tr>
+<tr>
+<td>そのほかの会社(格安SIMなど)</td>
+<td>会社ごとに違う</td>
+<td>有料のことがある</td>
+<td>契約するときに、子どもが使うことを伝えて、フィルタリングを申し込む</td>
+</tr>
+</tbody></table>
+<p>保護者の名義で契約したスマホを子どもに使わせるときは、「使うのは子どもです」と伝えないと、フィルタリングが付かないことがあります。</p>
+<p><strong>いっしょに決めること</strong></p>
+<ul>
+<li>使う時間と場所(夜は居間に置く、など)。</li>
+<li>お金がかかることは、先に聞く。</li>
+<li>入れてよいアプリ。多くのSNSは、13歳以上が対象です。</li>
+<li>誕生日、学校、住んでいるところを、プロフィールにのせない。誕生日は、本人かどうかを確かめるのに使われることがあります。</li>
+<li>写真や動画をのせるときのこと。制服、家のまわり、位置の情報から、学校や家が分かります。小学生のうちは、のせる前に保護者が見ると決めておきます(<a href="#%E5%86%99%E7%9C%9F%E3%82%92%E3%81%AE%E3%81%9B%E3%82%8B%E5%89%8D%E3%81%AE%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%88">チェックシート</a>があります)。</li>
+<li>困ったときは、怒られる心配をせずに言ってよい、ということ。</li>
+</ul>
+<p>ルールは、保護者が決めて渡すより、子どもと話して決めたほうが守られます。紙に書いて、見えるところにはっておくと、あとで話し合いやすくなります。</p>
+<p><strong>渡したあと</strong></p>
+<ul>
+<li>フィルタリングを「じゃまだから」と外さない。警察庁によると、SNSをきっかけに被害にあった子どものうち、使っていたかどうかが分かっている人の約9割は、フィルタリングを使っていませんでした。</li>
+<li>家のWi-Fiにつないでいるときは、携帯会社のフィルタリングが効かないことがあります。スマホ本体の設定(スクリーンタイム、ファミリーリンク)もあわせて使います。</li>
+<li>学年が上がるごとに、ルールを見直す。ゆるめるときも、一度に全部は外さない。</li>
+<li>支払いの完了メールや明細を、ふだんから見る。</li>
+</ul>
+<p>参考: <a href="https://www.soumu.go.jp/use_the_internet_wisely/special/filtering/">総務省: フィルタリングの案内</a>、<a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/">総務省: インターネットトラブル事例集</a>、<a href="https://www.cfa.go.jp/policies/youth-kankyou">こども家庭庁: 青少年の安全で安心な社会環境の整備</a></p>
+<hr>
+<h2>小学生</h2>
+<p><strong>この年代が大事にしていること</strong></p>
+<p>ゲームと動画が中心です。「強くなりたい」「めずらしいアイテムがほしい」「続きが見たい」という気持ちが、いちばん強く働きます。お金の重さや、画面の向こうにいる人のことは、まだ実感しにくい年ごろです。</p>
+<p><strong>そこにつけ込む手口</strong></p>
+<ul>
+<li>「アイテムをあげる」「強いアカウントと交換しよう」と言って、IDとパスワード、保護者のカードの番号を聞き出す。</li>
+<li>ゲームの中で「あと少しで手に入る」と思わせ、課金を重ねさせる。</li>
+<li>ゲームのチャットで仲良くなり、「ふたりだけのひみつ」と言って、別のアプリでのやりとりや写真を求める。</li>
+</ul>
+<p><strong>この年代で多いこと</strong></p>
+<ul>
+<li><strong>ゲームの課金</strong>。保護者のスマホやゲーム機で、気付かないうちに高額の課金をしてしまう相談が、国民生活センターに多く寄せられています。保護者のアカウントで課金した場合は、子どもが操作していても、取り消しが認められないことがあります。</li>
+<li><strong>ネットで知り合った人とのトラブル</strong>。警察庁のまとめでは、SNSをきっかけに犯罪の被害にあう小学生がこの数年ふえていて、被害にあう年が下がってきています。ゲームのチャットやSNSで仲良くなった相手から、写真を送るよう求められる例があります。</li>
+<li><strong>個人情報を出してしまう</strong>。名前、学校、住んでいる場所、顔写真を、深く考えずに出してしまいます。</li>
+</ul>
+<p><strong>自分で気をつけること</strong></p>
+<ul>
+<li>ネットで知り合った人には、会わない。名前、学校、家の場所、写真を教えない。</li>
+<li>写真や動画は、のせる前に、おうちの人に見せる。友だちに送るときも同じ。</li>
+<li>お金がかかるかも、と思ったら、おす前におうちの人に聞く。</li>
+<li>パスワードは、なかのよい友だちにも教えない。</li>
+<li>いやなこと、こわいことがあったら、すぐにおうちの人に話す。話しても、おこられません。</li>
+</ul>
+<p><strong>こんなことを言われたら、あやしい</strong></p>
+<ul>
+<li>「アイテムをあげるから、IDとパスワードを教えて」</li>
+<li>「ふたりだけのひみつだよ。おうちの人には言わないでね」</li>
+<li>「べつのアプリで話そう」</li>
+<li>「同じ小学生だよ。どこの学校? 写真を見せて」</li>
+<li>「あと1回で、強いキャラが出るよ」</li>
+</ul>
+<p>ひとつでも言われたら、返事をしないで、おうちの人に見せてください。</p>
+<p><strong>子どもと約束しておくこと</strong></p>
+<ul>
+<li>ネットで知り合った人には、会わない。名前、学校、家の場所、写真を教えない。</li>
+<li>写真や動画は、自分ではネットにのせない。のせたいときは、先におうちの人に見せて、いいよと言われてからにする。友だちに送るときも同じ。</li>
+<li>「お金がかかるかも」と思ったら、押す前におうちの人に聞く。</li>
+<li>いやなことを言われたり、こわいと思ったりしたら、すぐにおうちの人に言う。言っても怒られない、と伝えておく。</li>
+</ul>
+<p><strong>家族ができること</strong></p>
+<ul>
+<li><p>保護者のスマホを貸すのではなく、子ども用のアカウントを作って使わせる。</p>
+</li>
+<li><p>課金は、保護者が承認しないとできない設定にする。</p>
+</li>
+<li><p>クレジットカードの情報を、子どもが使う端末に残さない。支払いの完了メールや明細を、ふだんから見る。</p>
+</li>
+<li><p>使う時間と場所、課金のルールを、子どもと一緒に決める。</p>
+</li>
+<li><p>子どもが写真や動画をのせたいと言ったら、頭から止めるのではなく、<a href="#%E5%86%99%E7%9C%9F%E3%82%92%E3%81%AE%E3%81%9B%E3%82%8B%E5%89%8D%E3%81%AE%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%88">チェックシート</a>で一緒に見る。何がいけないのかを、その写真で説明できます。</p>
+</li>
+<li><p>保護者が子どもの写真をのせるときも、同じチェックシートを使う。</p>
+</li>
+</ul>
+<p><strong>写真や動画をのせる前に</strong></p>
+<p>小学生のうちは、のせないのが基本です。のせるとき、送るときは、保護者が先に見て、<a href="#%E5%86%99%E7%9C%9F%E3%82%92%E3%81%AE%E3%81%9B%E3%82%8B%E5%89%8D%E3%81%AE%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%88">「写真をのせる前のチェックシート」</a>の項目を確かめてください。写真を入れて、紙やPDFにすることもできます。</p>
+<p><strong>入れておきたい設定</strong></p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>内容</th>
+<th>場所</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>フィルタリング</td>
+<td>有害なサイトやアプリを開けないようにする。18歳未満が使う回線には、携帯会社が用意することになっている</td>
+<td>契約するときに「子どもが使う」と申し出る。携帯会社ごとの名前と申込みは「はじめてスマホを持つとき」の表にある。家のWi-Fiにつないだときは効かないことがあるので、下の設定もあわせて使う<br><a href="https://www.soumu.go.jp/use_the_internet_wisely/special/filtering/">総務省の案内</a></td>
+</tr>
+<tr>
+<td>iPhone・iPad: 承認と購入のリクエスト</td>
+<td>子どもがアプリを入れたり課金したりしようとすると、保護者に確認が届く</td>
+<td>保護者のiPhoneの「設定 → ファミリー → 子どもの名前 → アプリとウェブサイト → 制限 → 承認と購入のリクエスト」<br><a href="https://support.apple.com/ja-jp/105055">Appleの案内</a></td>
+</tr>
+<tr>
+<td>iPhone・iPad: スクリーンタイム</td>
+<td>使える時間、使えるアプリを決める</td>
+<td>保護者のiPhoneの「設定 → ファミリー → 子どもの名前 → スクリーンタイム」<br><a href="https://support.apple.com/ja-jp/108806">Appleの案内</a></td>
+</tr>
+<tr>
+<td>Android: ファミリーリンク</td>
+<td>アプリの購入の承認、使える時間、使えるアプリを決める</td>
+<td>保護者のスマホに「ファミリーリンク」アプリを入れ、「管理 → Google Play → 購入とダウンロードの承認」<br>Google Playを通さない支払いには効きません<br><a href="https://support.google.com/families/answer/7101025?hl=ja">Googleの案内(ファミリーリンクの始め方)</a></td>
+</tr>
+<tr>
+<td>ゲーム機の保護者による制限</td>
+<td>課金や、知らない人とのやりとりを制限する</td>
+<td>ゲーム機ごとの保護者向けの設定</td>
+</tr>
+</tbody></table>
+<p><strong>クイズ: おうちの人といっしょに</strong></p>
+<pre><code class="language-quiz">Q: ゲームでなかよくなった人が「レアなアイテムをあげるから、IDとパスワードを教えて」と言ってきました。どうする?
+x: アイテムがほしいので教える
+o: 教えないで、おうちの人に話す
+x: パスワードだけなら教える
+A: IDとパスワードを教えると、アカウントをとられてしまいます。アイテムをくれる、という話は、聞き出すためのうそです。
+
+Q: ゲームをしていたら「このボタンをおすと強いキャラが手に入る」と出ました。お金がかかるかもしれません。どうする?
+x: 1回だけならおしてみる
+x: 友だちもやっているのでおす
+o: おす前に、おうちの人に聞く
+A: 1回は少しのお金でも、くり返すと大きなお金になります。おうちの人のお金は、勝手に使えません。
+
+Q: ゲームのチャットで知り合った人に「同じ小学生だよ。どこの学校?写真も見せて」と言われました。どうする?
+o: 学校の名前も写真も教えない
+x: 同じ小学生なら教えてよい
+x: 写真だけ送る
+A: 画面の向こうの人が、本当に小学生かどうかは分かりません。大人が小学生のふりをしていることがあります。
+
+Q: 運動会で友だちととった写真を、ゲームのプロフィールにのせたくなりました。どうする?
+x: 友だちもよろこぶと思うので、のせる
+o: のせる前に、おうちの人に写真を見せて聞く
+x: 名前を書かなければ、のせてよい
+A: 体そう服や校しゃから、学校が分かってしまいます。友だちの顔も、勝手にのせてはいけません。写真は、おうちの人に見せてからにします。
+
+Q: ネットでいやなことを言われたり、こわいと思ったりしました。どうする?
+x: おこられそうなので、だまっておく
+x: 自分で言い返す
+o: すぐに、おうちの人や先生に話す
+A: 早く話すほど、早く止められます。話しても、あなたが悪いことにはなりません。
+</code></pre>
+<p><strong>困ったときの相談先</strong></p>
+<ul>
+<li>課金のトラブル: 消費者ホットライン「188」</li>
+<li>こわい思いをした、写真を送ってしまった: 警察相談専用電話「#9110」、または近くの警察署</li>
+</ul>
+<p>参考: <a href="https://www.kokusen.go.jp/news/data/n-20240313_1.html">国民生活センター: 子どものオンラインゲーム 無断課金につながるあぶない場面に注意</a>、<a href="https://www.npa.go.jp/publications/statistics/safetylife/pdf_r7_syonenkohosiryo.pdf">警察庁: 令和7年における少年非行及び子供の性被害の状況</a></p>
+<hr>
+<h2>中学生</h2>
+<p><strong>この年代が大事にしていること</strong></p>
+<p>友だちです。グループから外れたくない、すぐに返事をしたい、認められたい、という気持ちが強くなります。親には言いにくいことが増え、ネットで話を聞いてくれる人を信頼しやすい年ごろです。</p>
+<p><strong>そこにつけ込む手口</strong></p>
+<ul>
+<li>悩みを聞いてくれる「やさしい年上の人」として近づき、信頼させてから写真を求める。</li>
+<li>友だちのアカウントを乗っ取り、その友だちを名乗って「番号を送って」「投票して」と頼む。断りにくさを利用します。</li>
+<li>「みんなやっている」「送らないと仲間じゃない」と言って、写真や個人情報を出させる。</li>
+</ul>
+<p><strong>この年代で多いこと</strong></p>
+<ul>
+<li><strong>SNSで知り合った相手からの被害</strong>。警察庁によると、SNSをきっかけに犯罪の被害にあった子どもは2025年に1,500人をこえ、その大半が中学生と高校生です。被害にあった子どものうち、フィルタリングを使っていたかどうかが分かっている人の約9割は、使っていませんでした。</li>
+<li><strong>自分の写真を送ってしまう</strong>。親しくなった相手に求められて送った写真で、あとからおどされることがあります。写真を別の画像に作り変えられる被害(ディープフェイク)も、総務省が注意を呼びかけています。</li>
+<li><strong>友だちとのやりとりのトラブル</strong>。文字だけのやりとりで誤解が生まれたり、仲間外れやなりすましが起きたりします。</li>
+<li><strong>アカウントの乗っ取り</strong>。友だちを名乗るメッセージで、認証の番号やパスワードを聞き出されます。</li>
+<li><strong>写真から、学校や家が分かる</strong>。制服、名札、窓の外の景色、近所の店、位置の情報から、通っている学校や住んでいる場所が分かることがあります。自分は気をつけていても、友だちがのせた写真に自分が写っていることもあります。</li>
+</ul>
+<p><strong>「友だちだけ」でも、インターネットです</strong></p>
+<p>見られる相手を友だちやグループだけにしていても、のせた先はインターネットです。<strong>見ている人がいるかぎり、その人を通して外に出ることがあります。</strong></p>
+<ul>
+<li>見た人は、画面を保存できます。保存したものを、別のグループや、だれでも見られる場所にのせられます。</li>
+<li>悪気がなくても、「これ見て」と別の人に見せることがあります。けんかをしたあとで、わざと広められることもあります。</li>
+<li>見ている人のアカウントが乗っ取られれば、その先のことは、だれにも止められません。</li>
+<li>時間がたつと消える投稿でも、消える前に保存されれば残ります。</li>
+<li>これは、友だちがのせた自分の写真や、自分がのせた友だちの写真でも同じです。</li>
+</ul>
+<p>のせる前に、「これが学校の全員や、知らない人に見られても困らないか」を考えてください。困るものは、相手を限っていても、のせません。</p>
+<p><strong>こんなことを言われたら、あやしい</strong></p>
+<ul>
+<li>「だれにも見せないから、写真を送って」</li>
+<li>「みんなやってるよ。やらないの?」</li>
+<li>「機種変更したら入れなくなった。そっちに届いた番号を教えて」</li>
+<li>「親には言わないで」</li>
+<li>「会って話そう。ひとりで来て」</li>
+</ul>
+<p>どれも、断りにくい気持ちを使う言い方です。言われたら、相手がだれであっても、いったん返事を止めてください。</p>
+<p><strong>本人が気をつけること</strong></p>
+<ul>
+<li>ネットで知り合った人に、ひとりで会わない。年や性別は、うそをつけます。</li>
+<li>はだかや下着の写真は、だれに頼まれても送らない。一度送った写真は、取り戻せません。</li>
+<li>届いた番号(認証コード)やパスワードは、友だちにも教えない。</li>
+<li>困ったことになったら、消したり隠したりする前に、大人に見せる。早いほど止めやすくなります。</li>
+<li>写真1枚から家や学校を割り出すのが得意な人が、ネットにはたくさんいます。何が手がかりになるかは、「社会人になる前」のところにまとめています。</li>
+<li>写真をのせる前に、後ろに何が写っているかを見る。友だちが写っている写真は、のせてよいか本人に聞く。</li>
+<li>のせてよいか迷う写真は、<a href="#%E5%86%99%E7%9C%9F%E3%82%92%E3%81%AE%E3%81%9B%E3%82%8B%E5%89%8D%E3%81%AE%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%B7%E3%83%BC%E3%83%88">チェックシート</a>に入れて、おうちの人に送って一緒に見てもらう。</li>
+<li>相手を限っていても、のせたものは、だれにでも見られるものと考える(上の「友だちだけでも、インターネットです」)。</li>
+</ul>
+<p><strong>家族ができること</strong></p>
+<ul>
+<li>フィルタリングと、スマホの保護者向けの設定(上の「小学生」の表と同じもの)を続ける。年に合わせてゆるめるときも、いきなり全部外さない。</li>
+<li>「何かあったら、怒る前に一緒に考える」と、先に伝えておく。言い出せずに被害が大きくなる例が多くあります。</li>
+<li>SNSのアカウントに、2段階認証を入れるのを手伝う。設定のしかたは<a href="index.html">設定まとめのSNSのページ</a>にあります。</li>
+</ul>
+<p><strong>クイズ: 自分ならどうするか</strong></p>
+<pre><code class="language-quiz">Q: 友だちから「機種変更したら入れなくなった。そっちに届く番号を教えて」とメッセージが来ました。どうする?
+x: 友だちが困っているので、すぐ教える
+o: 教えない。電話や学校で、本人に確かめる
+x: 番号の半分だけ教える
+A: 届いた番号(認証コード)を教えると、自分のアカウントを乗っ取られます。そのメッセージは、乗っ取られた友だちのアカウントから送られていることがあります。
+
+Q: SNSで悩みを聞いてくれる年上の人と仲良くなりました。「顔が見たい。だれにも見せないから、写真を送って」と言われました。どうする?
+x: 信頼しているので送る
+x: 顔が写らなければ送ってよい
+o: 送らない。しつこいときは、大人に相談する
+A: 一度送った写真は、取り戻せません。親しくなってから写真を求めるのは、よくある手口です。「だれにも見せない」という約束を、確かめる方法はありません。
+
+Q: グループで「みんなやってるよ。やらないの?」と、個人情報を書き込むよう言われました。どうする?
+o: 書かない。外されるのがこわいときは、大人に相談する
+x: 仲間外れになりたくないので書く
+x: うその情報なら書いてよい
+A: 「みんなやっている」は、断りにくくするための言葉です。書いた内容は、グループの外にも広がります。
+
+Q: 仲のよい5人だけが見られるグループに、友だちの変な顔の写真をのせようと思います。「5人しか見ないから大丈夫」は正しい?
+x: 正しい。5人しか見られない設定だから
+x: 正しい。あとで消せば残らないから
+o: 正しくない。見た人が保存して、ほかの場所にのせられるから
+A: 相手を限っていても、のせた先はインターネットです。見ている人がいるかぎり、その人を通して外に出ることがあります。消す前に保存されれば、消しても残ります。友だちの写真は、のせる前に本人に聞きます。
+
+Q: 写真を送ってしまい、「ばらまかれたくなければ、もっと送れ」と言われました。どうする?
+x: これ以上広がらないよう、言われたとおりにする
+x: トーク履歴を全部消して、なかったことにする
+o: 送らずに、画面を残したまま、すぐ大人か警察に相談する
+A: 言うとおりにしても、要求は止まりません。やりとりの画面は、相手を止めるための証拠になります。早く相談するほど、止めやすくなります。
+</code></pre>
+<p><strong>困ったときの相談先</strong></p>
+<ul>
+<li>警察相談専用電話「#9110」、各都道府県の少年相談の窓口</li>
+<li>学校の先生、スクールカウンセラー</li>
+</ul>
+<p>参考: <a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/">総務省: インターネットトラブル事例集</a>、<a href="https://www.npa.go.jp/publications/statistics/safetylife/pdf_r7_syonenkohosiryo.pdf">警察庁: 令和7年における少年非行及び子供の性被害の状況</a></p>
+<hr>
+<h2>高校生</h2>
+<p><strong>この年代が大事にしていること</strong></p>
+<p>自分で使えるお金と、自分で決めることです。アルバイトを始め、ほしいものや行きたい場所が増えます。親に頼らずにお金を作りたい、という気持ちが強くなります。先輩や友だちの誘いは断りにくい年ごろです。</p>
+<p><strong>そこにつけ込む手口</strong></p>
+<ul>
+<li>「1日で数万円」「荷物を受け取るだけ」と、短い時間で大きなお金になる仕事を見せる。</li>
+<li>先輩や友だちを通じて誘う。知っている人の紹介だと、あやしいと思いにくくなります。</li>
+<li>「もう身分証をもらっている」「家を知っている」と言って、やめたい気持ちをおさえ込む。</li>
+<li>人気のチケットや限定品を「ゆずる」と言って、先にお金を払わせる。</li>
+</ul>
+<p><strong>この年代で多いこと</strong></p>
+<ul>
+<li><strong>「闇バイト」</strong>。SNSで「楽で、簡単、高収入」とうたう募集は、犯罪の実行役を集めるものです。警察庁によると、詐欺の受け取り役などになった少年の約6割は、先輩や友人からの誘いがきっかけでした。</li>
+<li><strong>身分証を送ってしまう</strong>。「登録に必要」と言われて身分証や顔写真を送ると、「家族に危害を加える」などとおどされ、やめられなくなります。やりとりは、記録が消えるアプリ(TelegramやSignalなど)に移すよう指示されます。</li>
+<li><strong>SNSで知り合った相手からの被害</strong>。中学生と同じく、被害の中心の年代です。</li>
+<li><strong>ネットでの買い物や売り買い</strong>。「お試し」のつもりが定期購入だった、フリマアプリやチケットの取引でお金だけ取られた、という相談があります。</li>
+<li><strong>オンラインカジノ</strong>。スマホからでも、日本国内で賭ければ犯罪です。総務省の事例集にも特集があります。</li>
+<li><strong>「今すぐ撮ってのせる」SNSでの写り込み</strong>。BeRealのように、通知が来てから数分のうちに、前と後ろのカメラで同時に撮ってのせるSNSでは、後ろに何が写っているかを確かめる時間がありません。教室の黒板や名簿、アルバイト先の伝票やお客さんの名前、家の中の郵便物などが写り込みます。</li>
+<li><strong>悪ふざけの投稿</strong>。アルバイト先や学校での悪ふざけをのせて広まり、店や学校に大きな迷惑をかける例が、総務省の事例集にも取り上げられています。のせた本人の名前や学校も、調べられて広まります。</li>
+</ul>
+<p><strong>本人が気をつけること</strong></p>
+<ul>
+<li>仕事の内容がはっきりしないのに、お金が高い募集には、応募しない。先輩や友だちからの誘いでも同じ。</li>
+<li>身分証や顔写真を、アルバイトの「登録」のために送らない。</li>
+<li>別のアプリに移るよう言われたら、そこでやめる。</li>
+<li>もう応募してしまった、おどされている、という場合でも、警察は相談した人を守ります。ひとりで抱えず、すぐに相談する。</li>
+<li>18歳になると、親の同意なしに契約ができるようになります。そのかわり、「未成年だから」と取り消すことはできなくなります。</li>
+<li>アルバイト先では、仕事をする場所で写真や動画を撮らない。通知が来ても、その場では撮らない。</li>
+<li>写真から場所や人が分かる手がかりは、「社会人になる前」のところにまとめています。</li>
+<li>撮る前に、後ろと手元を見る。人の顔、名前の書かれたもの、パソコンやレジの画面が入っていたら、撮らない。</li>
+<li><strong>見られる相手を友だちだけにしていても、のせた先はインターネットです。見ている人がいるかぎり、その人を通して外に出ます。</strong> 一度広がったものは、消せません。くわしくは「中学生」のところにあります。</li>
+</ul>
+<p><strong>家族ができること</strong></p>
+<ul>
+<li>「高収入のバイトの話が来たら、受ける前に教えて」と伝えておく。</li>
+<li>急にお金回りが変わった、知らないアプリで連絡を取っている、という変化に気付いたら、責めずに聞く。</li>
+<li>18歳になる前に、契約とお金の話(クレジットカード、分割払い、借金)を一度しておく。</li>
+</ul>
+<p><strong>困ったときの相談先</strong></p>
+<ul>
+<li>闇バイトに応募してしまった、おどされている: 警察相談専用電話「#9110」。危険がせまっているときは「110」</li>
+<li>買い物や契約のトラブル: 消費者ホットライン「188」</li>
+</ul>
+<p>参考: <a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/">総務省: インターネットトラブル事例集</a>、<a href="https://www.itmedia.co.jp/news/articles/2606/01/news073.html">ITmedia NEWS: 人気のBeRealで相次ぐ内部情報流出</a>、<a href="https://www.npa.go.jp/bureau/safetylife/yamibaito/hanzaishaboshu.html">警察庁: いわゆる「闇バイト」の危険性について</a>、<a href="https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_122.html">消費者庁: 成年年齢引下げと若者の消費者トラブル(消費者白書)</a></p>
+<hr>
+<h2>社会人になる前(18歳から)</h2>
+<p><strong>この年代が大事にしていること</strong></p>
+<p>将来と、ひとり立ちです。就職、お金、見た目、まわりとの差が気になります。「早くかせげるようになりたい」「ほかの人におくれたくない」という気持ちが強くなります。はじめて、自分ひとりの判断で契約ができるようになる年ごろでもあります。</p>
+<p><strong>そこにつけ込む手口</strong></p>
+<ul>
+<li>「今始めないとおくれる」「学生のうちに資産を作る」と、あせりを利用して、投資や副業の教材を契約させる。</li>
+<li>「お金がない」と断ると、「借りればすぐ返せる」と言って借金をさせる。</li>
+<li>「今日だけの値段」と言って、その場で契約させる。相談する時間を与えません。</li>
+<li>「あなたに逮捕状が出ている」と言って、将来を失うこわさを利用する。</li>
+</ul>
+<p><strong>この年代で多いこと</strong></p>
+<ul>
+<li><strong>もうけ話と借金</strong>。副業や投資の名目で高額の契約をさせ、お金がないと言うと、複数の貸金業者から借りさせる手口に、国民生活センターが注意を呼びかけています。</li>
+<li><strong>美容の契約</strong>。国民生活センターの2022年度のまとめでは、18歳・19歳の相談でいちばん多かったのは脱毛エステでした。</li>
+<li><strong>取り消しができない</strong>。18歳からは、親の同意がなくても契約ができます。未成年のときのように、あとから取り消すことはできません。</li>
+<li><strong>闇バイト</strong>。大学生や、仕事を探している若い人もねらわれます。</li>
+<li><strong>警察官を名乗る詐欺</strong>。「あなたの口座が犯罪に使われた」などと言って送金させる詐欺は、高齢の方だけのものではありません。警察庁の2025年のまとめ(暫定値)では、被害の件数は30代がいちばん多く、次が20代でした。</li>
+<li><strong>はじめての口座とカード</strong>。口座やクレジットカード、スマホ決済を自分で持ちはじめる時期です。最初の設定のまま使っている人が多くいます。</li>
+<li><strong>職場の中を撮ってしまう</strong>。2026年の春には、銀行の支店の中を撮った写真や動画が広まり、写り込んだホワイトボードにお客さんの名前があったとして、銀行が謝罪しました。学校の先生が、仕事で使う画面を撮ってのせた例も報じられています。どちらも、友だちだけに見せるSNS(BeReal)への投稿がもとでした。</li>
+</ul>
+<p><strong>写真1枚から、ここまで分かる</strong></p>
+<p>ネットには、写真にうつった小さな手がかりから、場所や人を割り出すのが得意な人がたくさんいます。特別な道具はいりません。だれでも見られる地図や検索を組み合わせるだけです。ひとつひとつは小さな情報でも、いくつか合わせると、家や勤め先までたどり着けます。</p>
+<ul>
+<li><strong>写真に入っている位置の情報</strong>。スマホで撮った写真には、撮った場所と日時が、目に見えない形で記録されていることがあります。大手のSNSは、のせるときに自動で消すことが多いものの、ブログや、メール・ファイルでそのまま送る場合には残ることがあります。</li>
+<li><strong>電柱、看板、マンホール</strong>。電柱や建物には、町の名前と番地を書いた板が付いています。店の看板、マンホールのふたの模様、バス停の名前も、場所を知る手がかりになります。</li>
+<li><strong>窓の外の景色</strong>。見える建物や山の形から、部屋の向きと階まで分かることがあります。</li>
+<li><strong>映り込み</strong>。鏡、窓ガラス、パソコンやテレビの画面、ひとみに、まわりの様子が映ります。2019年には、のせた顔写真のひとみに映った景色などから最寄りの駅を割り出され、家を突き止められて、おそわれた事件がありました。</li>
+<li><strong>荷物のラベル、郵便物、レシート</strong>。住所の文字を消しても、郵便番号やバーコードが残っていれば、読み取れます。</li>
+<li><strong>「いつ」の情報</strong>。その場ですぐにのせると、「今そこにいる」ことと、家を空けていることが伝わります。毎日同じ時間の投稿からは、通勤の道と時間が分かります。</li>
+<li><strong>天気や電車の投稿</strong>。「ひょうが降った」「電車が止まった」という投稿を重ねると、住んでいる地域と使っている路線がしぼれます。</li>
+</ul>
+<p><strong>本人が気をつけること</strong></p>
+<ul>
+<li>「必ずもうかる」「すぐ元が取れる」という話は、断る。借金をすすめられたら、その時点で詐欺を疑う。</li>
+<li>その場で契約しない。持ち帰って、家族や友人に話してから決める。</li>
+<li>口座、キャッシュカード、スマホのアカウントを、人に売らない、貸さない。犯罪に使われ、自分が罪に問われます。</li>
+<li>警察や役所が、電話やSNSで「お金を移して」と言うことはありません。</li>
+<li>口座やカードを作ったら、<a href="index.html">設定まとめ</a>で、自分の会社のページを一度見る。通知と上限の設定だけでも入れておく。</li>
+<li>パスワードを使い回さない。学生のころに作ったアカウントのパスワードを、口座やカードに使わない。</li>
+<li><strong>相手を限った投稿でも、インターネットにのせたことに変わりはありません。見ている人がいれば、その人を通して伝わります。</strong> 銀行や学校の例も、友だちだけに見せるつもりの投稿が、見た人によって外にのせられたものでした。</li>
+<li>仕事をする場所、研修、インターン先では、写真や動画を撮らない。社員証、パソコンの画面、ホワイトボード、書類、お客さんの姿が写ると、自分だけの問題ではすまなくなります。</li>
+<li>家で仕事や課題をしているときも、画面が写らないようにする。</li>
+<li>内定先や勤め先の名前、仕事の中身を、SNSに書かない。会社ごとの決まりがあるので、入るときに確かめる。</li>
+<li>家のまわり、通勤や通学の道、職場のまわりで撮った写真は、のせない。のせるなら、その場ではなく、時間をおいてからにする。</li>
+<li>のせる前に、写真を大きくして、すみまで見る。文字、画面、映り込み、ラベルがあれば、やめるか、撮り直す。</li>
+<li>スマホのカメラが、位置の情報を記録しない設定にしておく(下の表)。</li>
+</ul>
+<p><strong>入れておきたい設定</strong></p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>内容</th>
+<th>場所</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>iPhone: カメラに位置の情報を記録させない</td>
+<td>これから撮る写真に、撮った場所が入らなくなる</td>
+<td>「設定 → プライバシーとセキュリティ → 位置情報サービス → カメラ」で「しない」を選ぶ。写真アプリで、撮った場所ごとに写真を探すことはできなくなる<br><a href="https://support.apple.com/ja-jp/guide/personal-safety/ips0d7a5df82/web">Appleの案内</a></td>
+</tr>
+<tr>
+<td>iPhone: 送るときだけ位置の情報を外す</td>
+<td>すでに撮った写真を、場所の情報なしで送る</td>
+<td>写真を選んで共有のボタンを押し、「オプション」で「位置情報」をオフにする。上に「位置情報なし」と出ているのを確かめてから送る<br><a href="https://support.apple.com/ja-jp/guide/personal-safety/ips0d7a5df82/web">Appleの案内</a></td>
+</tr>
+<tr>
+<td>Android: カメラに位置の情報を記録させない</td>
+<td>これから撮る写真に、撮った場所が入らなくなる</td>
+<td>カメラのアプリの設定にある。名前と場所は、機種によって違う</td>
+</tr>
+</tbody></table>
+<p><strong>家族ができること</strong></p>
+<ul>
+<li>進学や就職で家を出る前に、「大きな契約をする前に一度連絡して」と伝えておく。</li>
+<li>契約を取りやめるときは、本人が申し出る必要があります。家族は、相談先を一緒に探す形で手伝えます。</li>
+</ul>
+<p><strong>困ったときの相談先</strong></p>
+<ul>
+<li>契約のトラブル: 消費者ホットライン「188」</li>
+<li>詐欺かもしれない: 警察相談専用電話「#9110」</li>
+</ul>
+<p>参考: <a href="https://www.kokusen.go.jp/soudan_now/data/wakamono.html">国民生活センター: 若者の消費者トラブル</a>、<a href="https://www.kokusen.go.jp/news/data/n-20230531_1.html">国民生活センター: 18歳・19歳の消費者トラブルの状況</a></p>
+<hr>
+<h2>高齢の方</h2>
+<p><strong>この年代が大事にしていること</strong></p>
+<p>子どもや孫、そして、これまでにためてきたお金と健康です。「家族が困っているなら助けたい」「人に迷惑をかけたくない」という気持ちが強く働きます。警察や役所、銀行の言うことは信頼する、という方も多い年代です。</p>
+<p><strong>そこにつけ込む手口</strong></p>
+<ul>
+<li>子どもや孫を名乗り、「会社のお金をなくした」「今日中に必要」と言って、助けたい気持ちを利用する。</li>
+<li>警察官を名乗り、「あなたの口座が犯罪に使われた」と言って、まじめな人ほど従ってしまう状況を作る。</li>
+<li>「家族にも話してはいけない」と言って、相談させない。</li>
+<li>「お金が戻ってくる」「老後の資金をふやせる」と言って、お金の心配を利用する。</li>
+</ul>
+<p><strong>この年代で多いこと</strong></p>
+<ul>
+<li><strong>電話から始まる詐欺</strong>。警察庁によると、2025年の特殊詐欺の被害は約1,423億円で、そのうち約841億円が65歳以上の方の被害でした。</li>
+<li><strong>警察官を名乗る詐欺</strong>。「あなたの口座が犯罪に使われている。調べるのでお金を移してほしい」などと言う手口が、被害額のいちばん大きい手口になっています。</li>
+<li><strong>家族を名乗る詐欺、還付金の詐欺</strong>。「お金が戻るのでATMに行って」と言われる手口が続いています。</li>
+<li><strong>パソコンの「ウイルスに感染しました」という画面</strong>。表示された番号に電話をかけさせ、コンビニで電子マネーのカードを買わせます。</li>
+<li><strong>有名人の名前を使った投資の広告</strong>。SNSの広告からLINEのグループに誘われ、お金を振り込ませます。</li>
+</ul>
+<p><strong>本人が気をつけること</strong></p>
+<ul>
+<li>電話でお金の話が出たら、いったん切る。そして、自分が知っている番号にかけ直す。</li>
+<li>警察や役所、銀行が、電話で「お金を移して」「ATMに行って」「カードを預かる」と言うことはありません。</li>
+<li>暗証番号は、だれにも教えない。キャッシュカードは、だれにも渡さない。</li>
+<li>「カードを買って、番号を教えて」と言われたら詐欺です。</li>
+<li>「+」で始まる番号(海外からの電話)や、知らない番号には、出なくてかまいません。留守番電話にしておきます。</li>
+<li>画面に出た電話番号には、かけない。パソコンは、電源を切ってかまいません。</li>
+</ul>
+<p><strong>家族ができること</strong></p>
+<ul>
+<li>「お金の話の電話が来たら、払う前に必ず連絡して」と決めておく。合言葉を決めておくのも役に立ちます。</li>
+<li>固定電話の対策を、一緒に手続きする。固定電話で国際電話を止める申込みは無料です。70歳以上の方がいる家では、かけてきた相手の番号を表示するサービスを無料にできる場合があります。</li>
+<li>留守番電話を、いつも入れておく設定にする。</li>
+<li>ATMで振り込める上限を下げておく。長く振込をしていない高齢の方は、銀行の側で上限を下げていることもあります。</li>
+<li>スマホやパソコンの設定は、「全部まとめてチェック」を使って、一緒に見ながら進める。紙に印刷して渡すこともできます。</li>
+</ul>
+<p><strong>入れておきたい設定</strong></p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>内容</th>
+<th>場所</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>固定電話: 国際電話の利用休止</td>
+<td>海外の番号からの電話を受けないようにする。申込みは無料。携帯電話と050の番号は対象外</td>
+<td>国際電話不取扱受付センター(0120-210-364)。むずかしいときは近くの警察署でも手伝ってもらえます<br><a href="https://www.kokusai-teishi.com/">公式の案内</a></td>
+</tr>
+<tr>
+<td>固定電話: 番号の表示サービスの無料化</td>
+<td>かけてきた相手の番号を表示する。70歳以上の方、または同居している方が契約している回線が対象。申込みが必要</td>
+<td>NTT東日本 0120-722-455、NTT西日本 0120-931-965(どちらも特殊詐欺対策ダイヤル。平日の午前9時から午後5時)。条件は変わることがあるので、電話で確認してください<br><a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/service/">警察庁の案内</a></td>
+</tr>
+<tr>
+<td>携帯電話の迷惑電話対策</td>
+<td>迷惑電話の番号を登録して、次からは断る</td>
+<td>携帯会社ごとの設定。<a href="index.html">設定まとめの「電話・SMS」</a>を見てください</td>
+</tr>
+<tr>
+<td>振込の上限の引き下げ</td>
+<td>1日に振り込める金額を下げる</td>
+<td>銀行ごとの設定。<a href="index.html">設定まとめの金融機関のページ</a>を見てください</td>
+</tr>
+</tbody></table>
+<p><strong>困ったときの相談先</strong></p>
+<ul>
+<li>詐欺かもしれない電話があった: 警察相談専用電話「#9110」</li>
+<li>契約や買い物のトラブル: 消費者ホットライン「188」</li>
+</ul>
+<p>参考: <a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/260605/01.html">警察庁: 令和7年における特殊詐欺及びSNS型投資・ロマンス詐欺の認知・検挙状況等について</a>、<a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/international-phone/">警察庁: みんなでとめよう!!国際電話詐欺</a></p>
+<hr>
+<h2>写真をのせる前のチェックシート</h2>
+<p>写真や動画を、SNSやゲームにのせる前、人に送る前に使うシートです。<strong>「のせてよいか」を保護者に決めてもらうためのものではありません。下の項目をひとつずつ確かめるためのものです。</strong> 項目に当てはまらないところがあれば、だれが見ても、のせません。</p>
+<p>使い方は2つあります。</p>
+<ul>
+<li><strong>その場で一緒に見る</strong>: 写真を入れて、項目を上から順に確かめる。</li>
+<li><strong>はなれている保護者に送る</strong>: 写真と、のせたい場所を入れて、下の「画像にして送る」を押す。写真と項目が1枚の画像になるので、保護者に送って、項目を見てもらう。</li>
+</ul>
+<p>入れた写真と文字は、この画面の中だけで使います。どこにも送られず、保存もされません。ページを閉じると消えます。</p>
+<div id="photo-sheet"></div>
+
+<p>だれが写っているか</p>
+<ul>
+<li><input disabled="" type="checkbox"> 名前が分かるもの(名札、ゼッケン、持ち物に書いた名前、賞状)が写っていない</li>
+<li><input disabled="" type="checkbox"> ほかの子が写っていない。写っているなら、その子の保護者に聞いた</li>
+<li><input disabled="" type="checkbox"> 水着、着替え、おふろなど、はだの出ている写真ではない</li>
+<li><input disabled="" type="checkbox"> 本人が、のせてもよいと言っている。大きくなってから見ても、いやな思いをしない</li>
+</ul>
+<p>どこで撮ったかが分かるか</p>
+<ul>
+<li><input disabled="" type="checkbox"> 学校や園が分かるもの(制服、校章、体操服、校舎、行事の看板)が写っていない</li>
+<li><input disabled="" type="checkbox"> 家が分かるもの(家の外、表札、車のナンバー、電柱や建物の番地の板、近所の店)が写っていない</li>
+<li><input disabled="" type="checkbox"> 窓の外の景色が写っていない</li>
+<li><input disabled="" type="checkbox"> 写真に位置の情報が入っていない(入れない設定は「社会人になる前」の表にあります)</li>
+</ul>
+<p>写り込み</p>
+<ul>
+<li><input disabled="" type="checkbox"> 郵便物、荷物のラベル、通知表、連絡帳、プリントが写っていない</li>
+<li><input disabled="" type="checkbox"> パソコン、スマホ、テレビの画面が写っていない</li>
+<li><input disabled="" type="checkbox"> 鏡や窓ガラスに、まわりの様子が映っていない</li>
+</ul>
+<p>いつ、だれに</p>
+<ul>
+<li><input disabled="" type="checkbox"> 「今ここにいる」「今、家にいない」ことが伝わらない(旅行や外出の写真は、帰ってからにする)</li>
+<li><input disabled="" type="checkbox"> 習い事の曜日や時間、通学の道など、決まった行動が分かる書き方をしていない</li>
+<li><input disabled="" type="checkbox"> 見られる相手を確かめた。相手を限っていても、見た人を通して外に出ることがあると分かったうえでのせる</li>
+<li><input disabled="" type="checkbox"> 祖父母や親せきに見せたいだけなら、SNSにのせず、その人にだけ送る</li>
+</ul>
+<p>印が付かないものがひとつでもあれば、撮り直すか、のせるのをやめます。全部に印が付いても、見ている人を通して外に出ることはあります。それでも困らない写真だけをのせます。</p>
+<div id="photo-sheet-actions"></div>
+
+<hr>
+<h2>実際にあったこと</h2>
+<p>どれも、特別な人に起きたことではありません。ふつうに使っていて、「これくらいなら」と思ったところから起きています。こわがるためではなく、「どこで止められたか」を知るために読んでください。</p>
+<p><strong>指紋を足して、課金できてしまった(小学生)</strong></p>
+<p>母親の古いスマホを、家のWi-Fiにつないで使っていた小学生の例です。課金には指紋が必要でしたが、スマホは母親のアカウントにログインしたままでした。子どもは自分の指紋を足して登録し、約5万円を課金していました。</p>
+<ul>
+<li>止められたところ: 保護者のアカウントのまま渡さず、子ども用のアカウントを作って、課金を承認制にする。</li>
+</ul>
+<p><strong>前に入れたカードの番号が、残っていた(中学生)</strong></p>
+<p>母親が数年前、ゲームとは別の用事で、子どものスマホにクレジットカードの番号を入れていました。その番号が残っていて、1年ほどのあいだにゲームの課金が続き、合わせて約55万円になっていました。</p>
+<ul>
+<li>止められたところ: 子どものスマホに入れたカードの情報は、使い終わったら消す。明細や、支払いの完了メールを毎月見る。</li>
+</ul>
+<p><strong>通知が来たので、目の前のものを撮った(社会人)</strong></p>
+<p>2026年の春、学校の先生が、仕事で使うシステムの画面をパソコンごと撮って、友だちだけが見られるSNSにのせました。通知が届いたので、深く考えずに目の前のパソコンを撮った、と説明しています。同じころ、銀行の支店の中を撮った写真や動画も広まりました。ホワイトボードにお客さんの名前が書かれていて、銀行が謝罪しました。</p>
+<ul>
+<li>止められたところ: 仕事をする場所では撮らない。通知が来ても、その場では撮らない。見ているのが友だちだけでも、見た人が外にのせれば広がる。</li>
+</ul>
+<p><strong>顔写真から、最寄りの駅が分かった(20代)</strong></p>
+<p>2019年、SNSに顔写真をのせていた女性が、家の前でおそわれました。相手は、写真のひとみに映った景色などの手がかりを組み合わせて最寄りの駅を割り出し、駅で待って、あとをつけていました。動画に映ったカーテンや光の入り方から、部屋の位置まで調べていたと報じられています。</p>
+<ul>
+<li>止められたところ: 家のまわりで撮った写真をのせない。ひとつひとつは小さな手がかりでも、合わせると場所が分かる。</li>
+</ul>
+<p><strong>「あなたに逮捕状が出ています」(全年代)</strong></p>
+<p>自動音声の電話から始まり、通信会社を名乗る人、そのあと警察官を名乗る人に代わります。「あなたのカードが、犯人の家から見つかった」と言われ、SNSのビデオ通話に移るよう指示されます。画面には、警察手帳や逮捕状が映ります。「うたがいを晴らすために、お金を調べる」と言われ、振り込んでしまいます。2025年には、この手口の被害がいちばん大きくなりました。</p>
+<ul>
+<li>止められたところ: 警察は、SNSで連絡しません。警察手帳や逮捕状の画像を送りません。電話を切って、自分で調べた番号か「#9110」にかけ直す。</li>
+</ul>
+<p><strong>「借りればすぐ返せる」(18歳から)</strong></p>
+<p>副業や投資を教える、という名目で高額の契約をすすめられ、「お金がない」と断ると、複数の貸金業者から次々に借りるよう指示された、という相談が国民生活センターに寄せられています。</p>
+<ul>
+<li>止められたところ: 借金をすすめられた時点で、やめる。その場で契約せず、持ち帰って人に話す。</li>
+</ul>
+<p><strong>応募したあとで、引き返した(10代から)</strong></p>
+<p>「高収入」の募集に応募してしまったあとで、おかしいと気付き、警察に相談して引き返した例を、警察庁が紹介しています。警察は、相談した本人と家族を守る、としています。</p>
+<ul>
+<li>ここから分かること: 応募してしまったあとでも、身分証を送ってしまったあとでも、相談すれば引き返せる。</li>
+</ul>
+<hr>
+<h2>保護者の方へ: 子どもへの伝え方</h2>
+<p>子どもに「あぶないからダメ」と言うだけでは、伝わりません。理由が分からないルールは、見ていないところで破られます。ここでは、話すときの順番と言い方をまとめました。</p>
+<p><strong>話す順番</strong></p>
+<ol>
+<li><strong>実際にあったことを、ひとつ話す。</strong> 「実際にあったこと」から、年に合うものを選びます。「こういうことがあったんだって」と、ニュースを話すように伝えます。</li>
+<li><strong>なぜ起きたかを、一緒に考える。</strong> 「どこで止められたと思う?」と聞きます。答えを先に言わないでください。</li>
+<li><strong>うちではどうするかを、一緒に決める。</strong> 決めたことは紙に書いて、見えるところにはります。</li>
+</ol>
+<p><strong>言い方</strong></p>
+<ul>
+<li><strong>おどさない。</strong> 「スマホを取り上げるよ」と言うと、子どもは困ったときに隠すようになります。被害が大きくなるのは、言い出せなかったときです。</li>
+<li><strong>禁止だけで終わらせない。</strong> 「のせちゃダメ」ではなく、「のせる前に見せて。一緒に確かめよう」と、代わりにすることを伝えます。</li>
+<li><strong>「あなたを信じていない」とは言わない。</strong> 「あなたが悪いことをするとは思っていない。だます側がうまいから、一緒に見る」と伝えます。</li>
+<li><strong>こわい話は短く。</strong> くわしく話すほど、こわさだけが残ります。「何が起きたか」は一言にして、「どうすれば止められたか」に時間を使います。</li>
+<li><strong>最初の一言を決めておく。</strong> 子どもが困ったことを話してきたら、まず「話してくれてありがとう」と言います。しかるのは、あとでもできます。</li>
+</ul>
+<p><strong>年に合わせた言い方の例</strong></p>
+<table>
+<thead>
+<tr>
+<th>年代</th>
+<th>伝えたいこと</th>
+<th>言い方の例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>小学生</td>
+<td>写真は、のせる前に見せる</td>
+<td>「写真をのせたくなったら、先に見せてね。お母さん(お父さん)もいっしょに、あぶないところがないか見るから」</td>
+</tr>
+<tr>
+<td>小学生</td>
+<td>知らない人に教えない</td>
+<td>「ゲームの中の人は、顔が見えないでしょう。やさしくても、本当はだれか分からないんだよ」</td>
+</tr>
+<tr>
+<td>小学生</td>
+<td>お金のこと</td>
+<td>「このボタンを押すと、本物のお金がなくなるんだよ。押す前に聞いてね。聞いてくれたら、おこらないから」</td>
+</tr>
+<tr>
+<td>中学生</td>
+<td>「友だちだけ」でも広がる</td>
+<td>「見せた相手が、スクショして別の人に見せることもあるよ。それでも平気な写真かな」</td>
+</tr>
+<tr>
+<td>中学生</td>
+<td>写真を求められたら</td>
+<td>「送ってと言われて困ったら、断る役をこっちに回していいよ。『親に見られてるから無理』って言っていい」</td>
+</tr>
+<tr>
+<td>高校生</td>
+<td>お金の話</td>
+<td>「高いバイトの話が来たら、受ける前に教えて。止めたいんじゃなくて、いっしょに調べたい」</td>
+</tr>
+<tr>
+<td>高校生</td>
+<td>困ったとき</td>
+<td>「もう何か送ってしまっていても、そこから一緒に考えるから、早く言って」</td>
+</tr>
+</tbody></table>
+<p><strong>保護者自身のこと</strong></p>
+<ul>
+<li>子どもの写真をのせる前に、子どもに聞く。聞かれて育った子は、友だちの写真をのせる前に聞くようになります。</li>
+<li>自分もチェックシートを使う。子どもに求めることを、保護者もやって見せます。</li>
+<li>分からないことは、「分からないから一緒に調べよう」と言う。知っているふりをすると、子どもは次から聞いてきません。</li>
+</ul>
+<p><strong>やらないほうがよいこと</strong></p>
+<ul>
+<li>だまってスマホの中を見る。見るなら、「見ることがある」と先に伝えておきます。</li>
+<li>一度の失敗で、全部を取り上げる。次から、失敗を言わなくなります。</li>
+<li>ルールを保護者だけで決める。一緒に決めたルールのほうが守られます。</li>
+</ul>
+<p>参考: <a href="https://www.soumu.go.jp/use_the_internet_wisely/parent-teacher/digital_citizenship/">総務省: 家庭で学ぶデジタル・シティズンシップ</a>、<a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/reference/reference04.html">総務省: 知っていますか?「ペアレンタルコントロール」</a></p>
+<hr>
+<h2>出典</h2>
+<p>このページの数字、手口、設定の説明は、次の資料をもとにしています。2026年10月11日に確認しました。</p>
+<p><strong>子どもとスマホ、フィルタリング</strong></p>
+<ul>
+<li><a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/">総務省: インターネットトラブル事例集</a> — 写真を作り変えられる被害、ゲームの課金、オンラインカジノなどの事例</li>
+<li><a href="https://www.soumu.go.jp/use_the_internet_wisely/special/filtering/">総務省: フィルタリングの特集</a> — フィルタリングでできること、学年ごとのモード</li>
+<li><a href="https://www.cfa.go.jp/policies/youth-kankyou">こども家庭庁: 青少年の安全で安心な社会環境の整備</a> — 青少年のインターネット利用についての国の取り組み。18歳未満が使う回線にフィルタリングを用意する決まりは、青少年インターネット環境整備法によるもの</li>
+<li><a href="https://www.npa.go.jp/publications/statistics/safetylife/pdf_r7_syonenkohosiryo.pdf">警察庁: 令和7年における少年非行及び子供の性被害の状況</a> — SNSをきっかけに被害にあった子どもの数、フィルタリングを使っていなかった割合。このページでは、この資料を引用した県警の資料(<a href="https://www.police.pref.saitama.lg.jp/documents/663/torimakugenjyo_.pdf">埼玉県警</a>、<a href="https://www.pref.shiga.lg.jp/police/pa21/15842.html">滋賀県警</a>、<a href="https://www.pref.hiroshima.lg.jp/uploaded/attachment/674023.pdf">広島県警</a>)で数字を確かめています</li>
+<li><a href="https://www.kokusen.go.jp/news/data/n-20240313_1.html">国民生活センター: 子どものオンラインゲーム 無断課金につながるあぶない場面に注意</a> — 保護者のアカウントでの課金、承認の設定</li>
+<li>携帯会社のフィルタリング: <a href="https://www.docomo.ne.jp/service/anshin_filter/">ドコモ</a>、<a href="https://www.au.com/mobile/service/anshin-filter/">au</a>、<a href="https://www.softbank.jp/mobile/service/filtering/anshin-filter/">ソフトバンク</a>、<a href="https://www.ymobile.jp/service/sp_safety/">ワイモバイル</a>、<a href="https://www.linemo.jp/service/filter/sp_safety/">LINEMO</a>、<a href="https://network.mobile.rakuten.co.jp/service/anshin-control/">楽天モバイル</a>、<a href="https://faq.ahamo.com/faq/show/32?category_id=14&site_domain=default">ahamo</a></li>
+<li>スマホ本体の設定: <a href="https://support.apple.com/ja-jp/105055">Apple: 承認と購入のリクエスト</a>、<a href="https://support.apple.com/ja-jp/108806">Apple: スクリーンタイム</a>、<a href="https://support.google.com/families/answer/7101025?hl=ja">Google: ファミリーリンク</a></li>
+</ul>
+<p><strong>実際にあったこと、子どもへの伝え方</strong></p>
+<ul>
+<li>課金の2つの例は、上の国民生活センターの資料の相談事例です。写り込みと顔写真の例は、下のITmedia NEWSと文春オンラインの記事によります</li>
+<li><a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/241218/02.html">警察庁: ニセ警察詐欺に注意!</a>、<a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/241218/06.html">警察庁: ニセ警察官とのビデオ通話</a> — 自動音声の電話からビデオ通話に移る流れ、警察がしないこと</li>
+<li><a href="https://www.soumu.go.jp/use_the_internet_wisely/parent-teacher/digital_citizenship/">総務省: 家庭で学ぶデジタル・シティズンシップ</a>、<a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/reference/reference04.html">総務省: 知っていますか?「ペアレンタルコントロール」</a> — 家庭での話し合いと、保護者による設定</li>
+</ul>
+<p><strong>高校生、社会人になる前</strong></p>
+<ul>
+<li><a href="https://www.itmedia.co.jp/news/articles/2606/01/news073.html">ITmedia NEWS: 人気のBeRealで相次ぐ内部情報流出(2026年6月1日)</a> — 通知から2分以内に前後のカメラで撮る仕組み、銀行と学校での例、見られる相手を限っていても広がること</li>
+<li><a href="https://www.soumu.go.jp/use_the_internet_wisely/trouble/">総務省: インターネットトラブル事例集</a> — 写真から個人や場所が分かる例、悪ふざけの投稿</li>
+<li><a href="https://bunshun.jp/articles/-/15110">文春オンライン: 顔写真の&quot;瞳に映った景色&quot;から自宅を特定(2019年11月2日)</a> — ひとみへの映り込みなどから最寄りの駅を割り出された事件、小さな情報をいくつも組み合わせて割り出すこと、マンホールやレシートの写り込み</li>
+<li><a href="https://gendai.media/articles/-/84669">現代ビジネス: 子どもがSNSに投稿した写真で「住所が特定される」(2021年7月5日)</a> — 写真の位置の情報が大手のSNSでは消されることが多く、ブログなどでは残ること、荷物のラベルや鏡への映り込み、天気や電車の投稿</li>
+<li><a href="https://ryukyushimpo.jp/news/entry-905647.html">琉球新報: 投稿画像に個人情報!?(2019年4月19日)</a> — 窓の外の景色、郵便番号やバーコードから住所が分かること</li>
+<li><a href="https://support.apple.com/ja-jp/guide/personal-safety/ips0d7a5df82/web">Apple: 「写真」で位置情報メタデータを管理する</a> — iPhoneのカメラと共有の設定</li>
+<li><a href="https://www.npa.go.jp/bureau/safetylife/yamibaito/hanzaishaboshu.html">警察庁: いわゆる「闇バイト」の危険性について</a> — 募集の言葉、別のアプリへの誘導、身分証を送らせておどす手口、先輩や友人からの誘いの割合</li>
+<li><a href="https://www.kokusen.go.jp/soudan_now/data/wakamono.html">国民生活センター: 若者の消費者トラブル</a> — もうけ話、借金をさせる手口、定期購入</li>
+<li><a href="https://www.kokusen.go.jp/news/data/n-20230531_1.html">国民生活センター: 18歳・19歳の消費者トラブルの状況</a> — 2022年度に相談が多かった商品・サービス</li>
+<li><a href="https://www.caa.go.jp/policies/policy/consumer_research/white_paper/2022/white_paper_122.html">消費者庁: 消費者白書(成年年齢引下げ)</a> — 18歳から親の同意なしに契約できること、取り消しができなくなること</li>
+</ul>
+<p><strong>高齢の方</strong></p>
+<ul>
+<li><a href="https://www.npa.go.jp/bureau/safetylife/sos47/new-topics/260605/01.html">警察庁: 令和7年における特殊詐欺及びSNS型投資・ロマンス詐欺の認知・検挙状況等について</a> — 被害の件数と金額、65歳以上の被害、警察官を名乗る詐欺</li>
+<li><a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/international-phone/">警察庁: みんなでとめよう!!国際電話詐欺</a>、<a href="https://www.kokusai-teishi.com/">国際電話不取扱受付センター</a> — 国際電話の利用休止</li>
+<li><a href="https://www.npa.go.jp/bureau/safetylife/sos47/case/service/">警察庁: 固定電話の番号表示・非通知拒否サービス</a> — 番号の表示サービスの無料化と、申込みの電話番号</li>
+</ul>
+<p><strong>資料によらないもの</strong></p>
+<ul>
+<li>それぞれの年代の「大事にしていること」と、それに合わせた手口の並べ方は、このページでの整理です。</li>
+<li>電柱や建物に町の名前と番地を書いた板が付いていること、その場ですぐにのせると留守が伝わること、Androidのカメラの設定は、資料ではなく、一般に知られていることとして書いています。</li>
+<li>「写真をのせる前のチェックシート」の項目は、上の資料と「写真1枚から、ここまで分かる」の内容をもとに、このページで作りました。国や学校が出しているものではありません。</li>
+<li>「保護者の方へ: 子どもへの伝え方」の話す順番、言い方、言い方の例は、資料にあるものではなく、このページでまとめた工夫です。家庭によって合う合わないがあります。</li>
+<li>クイズの問いと答えは、上の資料の内容をもとに、このページで作りました。</li>
+<li>警察官を名乗る詐欺の年代ごとの件数は、警察庁の暫定値を報じた記事で確かめたもので、確定値の年代ごとの数字は見ていません。</li>
+</ul>
+<hr>
+<h2>このページについて</h2>
+<ul>
+<li>個人が、AIを使ってまとめたものです。国の機関や学校が作ったものではありません。</li>
+<li>数字や手口は、警察庁、総務省、消費者庁、国民生活センターなどの公表資料をもとにしています。もとの資料は「出典」にまとめています。</li>
+<li>それぞれの年代の「大事にしていること」は、手口を理解しやすくするための、このページでの整理です。資料にある分類ではなく、人によっても違います。</li>
+<li>年代の分け方は目安です。上の年代、下の年代のところも、あわせて見てください。</li>
+<li>「家族ができること」のうち、合言葉を決める、留守番電話を入れておく、家を出る前に話しておく、などは、資料に書かれた数字ではなく、一般にすすめられている工夫として載せています。</li>
+<li>困ったときは、ひとりで決めずに、身近な人や、ここに書いた相談先に連絡してください。</li>
+</ul>
+
+</div>
+</main>
+<footer id="notice">個人がAIを使ってまとめた情報です。数字や連絡先は、必ず公式の案内でも確認してください。</footer>
+<script>
+(function () {
+  var content = document.getElementById('content');
+  var back = document.getElementById('back');
+
+  // 表を横スクロールできる枠で包み、スマホ用に見出しを各マスへ写す
+  Array.prototype.forEach.call(content.querySelectorAll('table'), function (t) {
+    var heads = Array.prototype.map.call(t.querySelectorAll('th'), function (th) { return th.textContent; });
+    Array.prototype.forEach.call(t.querySelectorAll('tbody tr'), function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute('data-label', heads[i] || ''); });
+    });
+    var w = document.createElement('div');
+    w.className = 'table-wrap';
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
+
+  // チェックリスト(- [ ] で書いた項目)は、印を付けられるようにする。印は保存しない
+  Array.prototype.forEach.call(content.querySelectorAll('li > input[type="checkbox"]'), function (box) {
+    box.disabled = false;
+    var li = box.parentNode;
+    li.parentNode.classList.add('checklist');
+    var label = document.createElement('label');
+    while (li.firstChild) label.appendChild(li.firstChild);
+    li.appendChild(label);
+  });
+
+  // 外へのリンクは別の画面で開く
+  Array.prototype.forEach.call(content.querySelectorAll('a[href^="http"]'), function (a) {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+
+  // ```quiz のかたまりを、えらんで答えるクイズにする
+  // 書き方: 「Q: 問い」「o: 正しい答え」「x: ちがう答え」「A: 説明」。問いと問いの間は1行あける
+  Array.prototype.forEach.call(content.querySelectorAll('pre > code.language-quiz'), function (code) {
+    var wrap = document.createElement('div');
+    wrap.className = 'quizzes';
+    var score = document.createElement('p');
+    score.className = 'quiz-score unsel';
+    var total = 0, answered = 0, correct = 0;
+    code.textContent.trim().split(/\n\s*\n/).forEach(function (block, n) {
+      var q = '', why = '', choices = [];
+      block.split('\n').forEach(function (line) {
+        var m = line.match(/^([QoxA]):\s*(.+)$/);
+        if (!m) return;
+        if (m[1] === 'Q') q = m[2];
+        else if (m[1] === 'A') why = m[2];
+        else choices.push({ text: m[2], ok: m[1] === 'o' });
+      });
+      if (!q || !choices.length) return;
+      total++;
+      var box = document.createElement('div');
+      box.className = 'quiz';
+      var p = document.createElement('p');
+      p.className = 'q';
+      p.textContent = '第' + (n + 1) + '問  ' + q;
+      box.appendChild(p);
+      var result = document.createElement('div');
+      result.className = 'result unsel';
+      result.setAttribute('role', 'status');
+      var buttons = choices.map(function (c) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = c.text;
+        b.addEventListener('click', function () {
+          if (box.getAttribute('data-done')) return;
+          box.setAttribute('data-done', '1');
+          buttons.forEach(function (x, i) {
+            x.disabled = true;
+            if (choices[i].ok) x.classList.add('right');
+            else if (x === b) x.classList.add('wrong');
+          });
+          var head = document.createElement('strong');
+          head.textContent = c.ok ? '正解です' : '正解は「' + choices.filter(function (x) { return x.ok; })[0].text + '」です';
+          result.appendChild(head);
+          result.appendChild(document.createTextNode(why));
+          result.classList.remove('unsel');
+          answered++;
+          if (c.ok) correct++;
+          if (answered === total) {
+            score.textContent = total + '問のうち、' + correct + '問が正解でした。まちがえたところは、もう一度読んでみてください。';
+            score.classList.remove('unsel');
+          }
+        });
+        box.appendChild(b);
+        return b;
+      });
+      box.appendChild(result);
+      wrap.appendChild(box);
+    });
+    wrap.appendChild(score);
+    code.parentNode.parentNode.replaceChild(wrap, code.parentNode);
+  });
+
+  // 写真をのせる前のチェックシート。写真はこの画面の中だけで扱い、どこにも送らない
+  (function () {
+    var top = document.getElementById('photo-sheet');
+    var actions = document.getElementById('photo-sheet-actions');
+    if (!top || !actions) return;
+    var MAX = 3;
+    function make(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text) e.textContent = text;
+      return e;
+    }
+    function field(label, hint, id, placeholder) {
+      var l = make('label', 'field', label);
+      l.appendChild(make('small', '', hint));
+      var i = make('input');
+      i.type = 'text';
+      i.id = id;
+      i.placeholder = placeholder;
+      i.maxLength = 60;
+      l.appendChild(i);
+      top.appendChild(l);
+      return i;
+    }
+    var pick = make('label', 'sheet-btn main no-print', '写真を選ぶ');
+    var file = make('input');
+    file.type = 'file';
+    file.accept = 'image/*';
+    file.multiple = true;
+    file.id = 'sheet-file';
+    file.hidden = true;
+    pick.appendChild(file);
+    top.appendChild(pick);
+    top.appendChild(make('span', 'no-print', '3枚まで。パソコンでは、画像をコピーして、この画面に貼り付けることもできます。'));
+    var photos = make('div', 'photos');
+    top.appendChild(photos);
+    var where = field('どこにのせたいか', '例: LINEのクラスのグループ、ゲームのプロフィール、Instagramのストーリーズ', 'sheet-where', 'のせたい場所');
+    var who = field('だれが見られるか', '例: クラスの30人、フォローしている人だけ、だれでも', 'sheet-who', '見られる人');
+
+    function addPhoto(blob) {
+      if (!blob || blob.type.indexOf('image/') !== 0) return;
+      if (photos.children.length >= MAX) { say('写真は' + MAX + '枚までです。'); return; }
+      var fig = make('figure');
+      var img = make('img');
+      img.alt = 'のせたい写真';
+      img.src = URL.createObjectURL(blob);
+      var del = make('button', 'sheet-btn no-print', '外す');
+      del.type = 'button';
+      del.addEventListener('click', function () { URL.revokeObjectURL(img.src); photos.removeChild(fig); });
+      fig.appendChild(img);
+      fig.appendChild(del);
+      photos.appendChild(fig);
+    }
+    file.addEventListener('change', function () {
+      Array.prototype.forEach.call(file.files, addPhoto);
+      file.value = '';
+    });
+    document.addEventListener('paste', function (e) {
+      var sec = top.parentNode;
+      if (!sec || sec.classList.contains('unsel') || !e.clipboardData) return;
+      Array.prototype.forEach.call(e.clipboardData.items, function (it) {
+        if (it.kind === 'file') addPhoto(it.getAsFile());
+      });
+    });
+
+    var send = make('button', 'sheet-btn main no-print', '画像にして送る');
+    send.type = 'button';
+    var print = make('button', 'sheet-btn no-print', 'このシートを印刷する(PDFにもできます)');
+    print.type = 'button';
+    var msg = make('p', 'no-print');
+    msg.id = 'sheet-msg';
+    msg.setAttribute('role', 'status');
+    actions.appendChild(send);
+    actions.appendChild(print);
+    actions.appendChild(msg);
+    actions.appendChild(make('p', 'no-print', '送る相手は、保護者だけにしてください。印刷の画面で「PDFに保存」を選ぶと、PDFにできます。'));
+    function say(text) { msg.textContent = text; }
+    print.addEventListener('click', function () { window.print(); });
+
+    // 写真・のせたい場所・項目を、1枚の画像にまとめる
+    function compose() {
+      var W = 1080, PAD = 48, INNER = W - PAD * 2;
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var FONT = '"Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo, sans-serif';
+      function font(size, bold) { return (bold ? '700 ' : '400 ') + size + 'px ' + FONT; }
+      function wrap(text, size, bold, width) {
+        ctx.font = font(size, bold);
+        var lines = [], line = '';
+        Array.from(text).forEach(function (ch) {
+          if (ctx.measureText(line + ch).width > width && line) { lines.push(line); line = ch; }
+          else line += ch;
+        });
+        if (line) lines.push(line);
+        return lines;
+      }
+      var parts = [];
+      function text(str, size, bold, gap) { parts.push({ kind: 'text', lines: wrap(str, size, bold, INNER), size: size, bold: bold, gap: gap || 0 }); }
+      text('写真をのせる前のチェックシート', 46, true, 16);
+      text('この写真を、下の項目でひとつずつ見てください。', 30, false, 20);
+      text('のせたい場所: ' + (where.value.trim() || '(書いていません)'), 32, true, 6);
+      text('見られる人: ' + (who.value.trim() || '(書いていません)'), 32, true, 20);
+      Array.prototype.forEach.call(photos.querySelectorAll('img'), function (img) {
+        if (!img.naturalWidth) return;
+        var k = Math.min(INNER / img.naturalWidth, 900 / img.naturalHeight, 1);
+        parts.push({ kind: 'img', img: img, w: Math.round(img.naturalWidth * k), h: Math.round(img.naturalHeight * k) });
+      });
+      var sec = top.parentNode;
+      Array.prototype.forEach.call(sec.children, function (el) {
+        if (el.tagName === 'UL' && el.classList.contains('checklist')) {
+          Array.prototype.forEach.call(el.querySelectorAll('li'), function (li) {
+            var box = li.querySelector('input');
+            parts.push({ kind: 'check', on: box.checked, lines: wrap(li.textContent.trim(), 30, false, INNER - 56), size: 30 });
+          });
+        } else if (el.tagName === 'P' && el.previousElementSibling && el.nextElementSibling &&
+                   el.nextElementSibling.tagName === 'UL' && el.nextElementSibling.classList.contains('checklist')) {
+          text(el.textContent.trim(), 32, true, 4);
+          parts[parts.length - 1].before = 24;
+        }
+      });
+      text('印が付かないものがひとつでもあれば、撮り直すか、のせるのをやめます。', 30, true, 0);
+      parts[parts.length - 1].before = 28;
+
+      function layout(draw) {
+        var y = PAD;
+        parts.forEach(function (p) {
+          y += p.before || 0;
+          if (p.kind === 'img') {
+            if (draw) ctx.drawImage(p.img, PAD, y, p.w, p.h);
+            y += p.h + 24;
+            return;
+          }
+          var lh = Math.round(p.size * 1.5);
+          var x = PAD + (p.kind === 'check' ? 56 : 0);
+          if (draw && p.kind === 'check') {
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#1c2330';
+            ctx.strokeRect(PAD + 2, y + 8, 32, 32);
+            if (p.on) {
+              ctx.beginPath();
+              ctx.moveTo(PAD + 8, y + 24); ctx.lineTo(PAD + 16, y + 34); ctx.lineTo(PAD + 30, y + 12);
+              ctx.stroke();
+            }
+          }
+          p.lines.forEach(function (line) {
+            if (draw) { ctx.font = font(p.size, p.bold); ctx.fillStyle = '#1c2330'; ctx.textBaseline = 'top'; ctx.fillText(line, x, y + Math.round(p.size * 0.25)); }
+            y += lh;
+          });
+          y += (p.gap || 0) + (p.kind === 'check' ? 10 : 0);
+        });
+        return y + PAD;
+      }
+      canvas.width = W;
+      canvas.height = layout(false);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      layout(true);
+      return canvas;
+    }
+
+    send.addEventListener('click', function () {
+      if (!photos.querySelector('img')) { say('先に、写真を選んでください。'); return; }
+      say('画像を作っています。');
+      compose().toBlob(function (blob) {
+        if (!blob) { say('画像を作れませんでした。「このシートを印刷する」を使ってください。'); return; }
+        var f = null;
+        try { f = new File([blob], 'photo-check.jpg', { type: 'image/jpeg' }); } catch (e) {}
+        var data = f && { files: [f], title: '写真をのせる前のチェックシート', text: 'この写真をのせたいので、項目をひとつずつ見てください。' };
+        if (data && navigator.canShare && navigator.canShare({ files: [f] })) {
+          navigator.share(data).then(function () { say('送る画面を開きました。'); }, function () { say('送るのをやめました。'); });
+          return;
+        }
+        // 送る機能がないブラウザでは、画像を保存してもらう
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'photo-check.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 10000);
+        say('画像を保存しました。保存した画像を、保護者に送ってください。');
+      }, 'image/jpeg', 0.9);
+    });
+  })();
+
+  // h2 ごとに1つのまとまりにする。最初の h2 より前は、最初の画面の説明
+  var intro = document.createElement('div');
+  intro.id = 'intro';
+  var sections = [];
+  var cur = intro;
+  Array.prototype.slice.call(content.childNodes).forEach(function (n) {
+    if (n.nodeType === 1 && n.tagName === 'H2') {
+      cur = document.createElement('section');
+      cur.className = 'age unsel';
+      cur.setAttribute('data-name', n.textContent);
+      sections.push(cur);
+    }
+    cur.appendChild(n);
+  });
+  content.appendChild(intro);
+
+  function make(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+  function href(name, title) { return '#' + encodeURIComponent(name) + (title ? '/' + encodeURIComponent(title) : ''); }
+
+  // 太字だけの段落(小見出し)ごとに中身を分け、年代のページでは小見出しの一覧(中間メニュー)から開く
+  var WHOLE = ['写真をのせる前のチェックシート', '出典', 'このページについて'];   // 分けずに1ページで見せるもの
+  var ADULT = ['社会人になる前(18歳から)', '高齢の方'];                           // 本人が大人の年代
+  var AGE = ['小学生', '中学生', '高校生'].concat(ADULT);
+  function forFamily(name, title) {
+    if (/家族ができること|子どもと約束/.test(title)) return true;
+    if (name === '高齢の方' && /入れておきたい設定/.test(title)) return true;
+    if (ADULT.indexOf(name) >= 0) return false;
+    return /大事にしていること|つけ込む手口|多いこと|入れておきたい設定|写真や動画をのせる前に/.test(title);
+  }
+  var info = {};   // 名前 → { sec, blocks: [{ title, el, group }], menu }
+  sections.forEach(function (s) {
+    var name = s.getAttribute('data-name');
+    var it = info[name] = { sec: s, blocks: [], menu: null };
+    if (WHOLE.indexOf(name) >= 0) return;
+    var heads = Array.prototype.filter.call(s.children, function (el) {
+      return el.tagName === 'P' && el.children.length === 1 && el.firstElementChild.tagName === 'STRONG' &&
+        el.textContent.trim() === el.firstElementChild.textContent.trim();
+    });
+    if (heads.length < 3) return;
+    var block = null;
+    Array.prototype.slice.call(s.childNodes).forEach(function (n) {
+      if (heads.indexOf(n) >= 0) {
+        block = make('div', 'block');
+        var title = n.textContent.trim();
+        block.setAttribute('data-title', title);
+        s.insertBefore(block, n);
+        it.blocks.push({ title: title, el: block, group: AGE.indexOf(name) < 0 ? '' : forFamily(name, title) ? 'family' : 'self' });
+      }
+      if (block && n !== block) block.appendChild(n);
+    });
+    // 中間メニュー。年代のページは「本人が読むところ」と「保護者・家族が読むところ」に分ける
+    var menu = it.menu = make('nav', 'submenu');
+    var groups = AGE.indexOf(name) < 0 ? [['', '']] :
+      [['self', ADULT.indexOf(name) >= 0 ? '本人が読むところ' : '本人が読むところ(子どもといっしょに)'], ['family', name === '高齢の方' ? '家族が読むところ' : '保護者・家族が読むところ']];
+    it.order = [];
+    groups.forEach(function (g) {
+      var list = it.blocks.filter(function (b) { return b.group === g[0] || /相談先/.test(b.title); });
+      if (!list.length) return;
+      if (g[1]) menu.appendChild(make('h3', '', g[1]));
+      var box = make('div', 'tiles');
+      list.forEach(function (b) {
+        var a = make('a', '', b.title);
+        a.href = href(name, b.title);
+        box.appendChild(a);
+        if (it.order.indexOf(b) < 0) it.order.push(b);
+      });
+      menu.appendChild(box);
+    });
+    var all = make('a', 'all', 'この項目を全部、1ページで見る(印刷するときはこちら)');
+    all.href = href(name, '*');
+    menu.appendChild(all);
+    s.insertBefore(menu, it.blocks[0].el);
+    it.pager = make('nav', 'pager');
+    s.appendChild(it.pager);
+  });
+
+  // 年代を選ぶ大きなボタン
+  var hints = {
+    'はじめてスマホを持つとき': '渡す前の準備と、家のルール',
+    '小学生': 'ゲームと動画が中心の年ごろ',
+    '中学生': '友だちが中心の年ごろ',
+    '高校生': '自分のお金がほしくなる年ごろ',
+    '社会人になる前(18歳から)': '自分ひとりで契約できる年ごろ',
+    '高齢の方': '子どもや孫が中心の年代',
+    '写真をのせる前のチェックシート': '写真を入れて、項目を確かめる。紙やPDFにもできる',
+    '実際にあったこと': 'どこで止められたかを知るための実例',
+    '保護者の方へ: 子どもへの伝え方': '話す順番と、言い方の例',
+    '出典': 'もとにした資料の一覧',
+    'このページについて': 'だれが、何をもとに作ったか'
+  };
+  var ages = document.createElement('nav');
+  ages.id = 'ages';
+  // 左のメニュー(ツリー)。年代 → 小見出し の2段
+  var tree = document.getElementById('tree');
+  var home = make('a', 'top', '最初の画面');
+  home.href = '#';
+  tree.appendChild(home);
+  sections.forEach(function (s) {
+    var name = s.getAttribute('data-name');
+    var a = document.createElement('a');
+    a.href = href(name);
+    a.textContent = name;
+    if (hints[name]) {
+      var sm = document.createElement('small');
+      sm.textContent = hints[name];
+      a.appendChild(sm);
+    }
+    ages.appendChild(a);
+    content.appendChild(s);
+    var it = info[name];
+    if (!it.blocks.length) {
+      var leaf = make('a', 'leaf', name);
+      leaf.href = href(name);
+      leaf.setAttribute('data-name', name);
+      tree.appendChild(leaf);
+      return;
+    }
+    var d = make('details');
+    d.setAttribute('data-name', name);
+    d.appendChild(make('summary', '', name));
+    var first = make('a', '', '一覧');
+    first.href = href(name);
+    first.setAttribute('data-title', '');
+    d.appendChild(first);
+    var seen = '';
+    it.order.forEach(function (b) {
+      if (b.group && b.group !== seen) {
+        seen = b.group;
+        d.appendChild(make('span', 'group', b.group === 'self' ? '本人が読むところ' : '保護者・家族が読むところ'));
+      }
+      var l = make('a', '', b.title);
+      l.href = href(name, b.title);
+      l.setAttribute('data-title', b.title);
+      d.appendChild(l);
+    });
+    tree.appendChild(d);
+  });
+  intro.appendChild(ages);
+
+  // URL の # のあとで、表示するところを切り替える(# のあとはサーバーに送られない)
+  //   なし = 最初の画面 / 年代 = その年代の一覧 / 年代/小見出し = その部分 / 年代/* = 全部
+  var crumbs = document.getElementById('crumbs');
+  function apply() {
+    var raw = location.hash.slice(1).split('/');
+    var name = '', title = '';
+    try { name = decodeURIComponent(raw[0] || ''); title = decodeURIComponent(raw.slice(1).join('/')); } catch (e) {}
+    var it = info[name];
+    sections.forEach(function (s) { s.classList.toggle('unsel', !it || s !== it.sec); });
+    intro.classList.toggle('unsel', !!it);
+    var cur = null;
+    if (it && it.blocks.length) {
+      var all = title === '*';
+      cur = all ? null : it.blocks.filter(function (b) { return b.title === title; })[0] || null;
+      it.blocks.forEach(function (b) { b.el.classList.toggle('unsel', !all && b !== cur); });
+      it.menu.classList.toggle('unsel', all || !!cur);
+      it.sec.classList.toggle('menu-view', !all && !cur);
+      // 前へ・次へ
+      it.pager.textContent = '';
+      if (cur) {
+        var i = it.order.indexOf(cur);
+        [[i - 1, '← 前: '], [i + 1, '次: ']].forEach(function (x) {
+          var b = it.order[x[0]];
+          if (!b) return;
+          var a = make('a', x[0] < i ? 'prev' : 'next', x[1] + b.title + (x[0] > i ? ' →' : ''));
+          a.href = href(name, b.title);
+          it.pager.appendChild(a);
+        });
+      }
+      if (!cur && !all) title = '';
+    } else title = '';
+    // パンくず
+    crumbs.textContent = '';
+    crumbs.classList.toggle('unsel', !it);
+    if (it) {
+      var path = [['年代別: 気をつけること', '#'], [name, href(name)]];
+      if (title) path.push([title === '*' ? '全部' : title, '']);
+      path.forEach(function (x, i) {
+        if (i) crumbs.appendChild(make('span', 'sep', '›'));
+        if (i === path.length - 1) { crumbs.appendChild(make('span', 'here', x[0])); return; }
+        var a = make('a', '', x[0]);
+        a.href = x[1];
+        crumbs.appendChild(a);
+      });
+    }
+    // 左のメニューの今いるところ
+    Array.prototype.forEach.call(tree.querySelectorAll('.now'), function (e) { e.classList.remove('now'); });
+    Array.prototype.forEach.call(tree.children, function (e) {
+      if (e.getAttribute('data-name') !== name) return;
+      if (e.tagName === 'DETAILS') {
+        e.open = true;
+        Array.prototype.forEach.call(e.querySelectorAll('a'), function (l) {
+          if (l.getAttribute('data-title') === (title === '*' ? '' : title)) l.classList.add('now');
+        });
+      } else e.classList.add('now');
+    });
+    document.body.classList.remove('tree-open');
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', apply);
+  apply();
+  document.getElementById('menu').addEventListener('click', function () { document.body.classList.toggle('tree-open'); });
+
+  document.getElementById('print').addEventListener('click', function () { window.print(); });
+  document.getElementById('theme').addEventListener('click', function () {
+    var root = document.documentElement;
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+  });
+})();
+</script>
+</body>
+</html>
